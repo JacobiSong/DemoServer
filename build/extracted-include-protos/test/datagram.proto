@@ -1,0 +1,100 @@
+syntax = "proto3";
+option java_package = "com.example.demo.datagram";
+option java_outer_classname = "DatagramProto";
+
+message Datagram {
+  int32 version = 1;
+  int32 type = 2;
+  int32 subtype = 3;
+  oneof data {
+    User user = 4;
+    Messages messages = 5;
+    Courses courses = 6;
+    Notifications notifications = 7;
+    Login login = 8;
+    Register register = 9;
+    string id = 10;
+  }
+  reserved 11 to 15;
+}
+
+message Student {
+  int32 class_no = 1;
+  string major = 2;
+  string department = 3;
+}
+
+message Teacher {
+  string department = 1;
+}
+
+message User {
+  enum UserType {
+    STUDENT = 0;
+    TEACHER = 1;
+  }
+  string id = 1;
+  string password = 2;
+  string name = 3;
+  string phone = 4;
+  string email = 5;
+  enum Gender {
+    MALE = 0;
+    FEMALE = 1;
+    SECURITY = 2;
+  }
+  Gender gender = 6;
+  UserType type = 7;
+  oneof data {
+    Student student = 8;
+    Teacher teacher = 9;
+  }
+  reserved 10 to 15;
+}
+
+message Login {
+  string username = 1;
+  string password = 2;
+}
+
+message Register {
+  string username = 1;
+  string password = 2;
+}
+
+message Course {
+  string id = 1;
+  string name = 2;
+  string classroom = 3;
+  string time = 4;
+  int32 semester = 5;
+  string remarks = 6;
+  bool hasGroup = 7;
+}
+
+message Message {
+  string sender_id = 1;
+  string receiver_id = 2;
+  string content = 3;
+  int64 time = 4;
+}
+
+message Notification {
+  string sender_id = 1;
+  string receiver_id = 2;
+  string title = 3;
+  string content = 4;
+  int64 time = 5;
+}
+
+message Messages {
+  repeated Message messages = 1;
+}
+
+message Notifications {
+  repeated Notification notifications = 1;
+}
+
+message Courses {
+  repeated Course courses = 1;
+}
