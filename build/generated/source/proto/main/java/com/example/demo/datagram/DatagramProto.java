@@ -25,120 +25,10 @@ public final class DatagramProto {
     int getVersion();
 
     /**
-     * <code>int32 type = 2;</code>
-     * @return The type.
+     * <code>bytes datagram = 2;</code>
+     * @return The datagram.
      */
-    int getType();
-
-    /**
-     * <code>int32 subtype = 3;</code>
-     * @return The subtype.
-     */
-    int getSubtype();
-
-    /**
-     * <code>.User user = 4;</code>
-     * @return Whether the user field is set.
-     */
-    boolean hasUser();
-    /**
-     * <code>.User user = 4;</code>
-     * @return The user.
-     */
-    com.example.demo.datagram.DatagramProto.User getUser();
-    /**
-     * <code>.User user = 4;</code>
-     */
-    com.example.demo.datagram.DatagramProto.UserOrBuilder getUserOrBuilder();
-
-    /**
-     * <code>.Messages messages = 5;</code>
-     * @return Whether the messages field is set.
-     */
-    boolean hasMessages();
-    /**
-     * <code>.Messages messages = 5;</code>
-     * @return The messages.
-     */
-    com.example.demo.datagram.DatagramProto.Messages getMessages();
-    /**
-     * <code>.Messages messages = 5;</code>
-     */
-    com.example.demo.datagram.DatagramProto.MessagesOrBuilder getMessagesOrBuilder();
-
-    /**
-     * <code>.Courses courses = 6;</code>
-     * @return Whether the courses field is set.
-     */
-    boolean hasCourses();
-    /**
-     * <code>.Courses courses = 6;</code>
-     * @return The courses.
-     */
-    com.example.demo.datagram.DatagramProto.Courses getCourses();
-    /**
-     * <code>.Courses courses = 6;</code>
-     */
-    com.example.demo.datagram.DatagramProto.CoursesOrBuilder getCoursesOrBuilder();
-
-    /**
-     * <code>.Notifications notifications = 7;</code>
-     * @return Whether the notifications field is set.
-     */
-    boolean hasNotifications();
-    /**
-     * <code>.Notifications notifications = 7;</code>
-     * @return The notifications.
-     */
-    com.example.demo.datagram.DatagramProto.Notifications getNotifications();
-    /**
-     * <code>.Notifications notifications = 7;</code>
-     */
-    com.example.demo.datagram.DatagramProto.NotificationsOrBuilder getNotificationsOrBuilder();
-
-    /**
-     * <code>.Login login = 8;</code>
-     * @return Whether the login field is set.
-     */
-    boolean hasLogin();
-    /**
-     * <code>.Login login = 8;</code>
-     * @return The login.
-     */
-    com.example.demo.datagram.DatagramProto.Login getLogin();
-    /**
-     * <code>.Login login = 8;</code>
-     */
-    com.example.demo.datagram.DatagramProto.LoginOrBuilder getLoginOrBuilder();
-
-    /**
-     * <code>.Register register = 9;</code>
-     * @return Whether the register field is set.
-     */
-    boolean hasRegister();
-    /**
-     * <code>.Register register = 9;</code>
-     * @return The register.
-     */
-    com.example.demo.datagram.DatagramProto.Register getRegister();
-    /**
-     * <code>.Register register = 9;</code>
-     */
-    com.example.demo.datagram.DatagramProto.RegisterOrBuilder getRegisterOrBuilder();
-
-    /**
-     * <code>string id = 10;</code>
-     * @return The id.
-     */
-    java.lang.String getId();
-    /**
-     * <code>string id = 10;</code>
-     * @return The bytes for id.
-     */
-    com.google.protobuf.ByteString
-        getIdBytes();
-
-    public com.example.demo.datagram.DatagramProto.Datagram.DataCase getDataCase();
+    com.google.protobuf.ByteString getDatagram();
   }
   /**
    * Protobuf type {@code Datagram}
@@ -153,6 +43,7 @@ public final class DatagramProto {
       super(builder);
     }
     private Datagram() {
+      datagram_ = com.google.protobuf.ByteString.EMPTY;
     }
 
     @java.lang.Override
@@ -190,104 +81,9 @@ public final class DatagramProto {
               version_ = input.readInt32();
               break;
             }
-            case 16: {
+            case 18: {
 
-              type_ = input.readInt32();
-              break;
-            }
-            case 24: {
-
-              subtype_ = input.readInt32();
-              break;
-            }
-            case 34: {
-              com.example.demo.datagram.DatagramProto.User.Builder subBuilder = null;
-              if (dataCase_ == 4) {
-                subBuilder = ((com.example.demo.datagram.DatagramProto.User) data_).toBuilder();
-              }
-              data_ =
-                  input.readMessage(com.example.demo.datagram.DatagramProto.User.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom((com.example.demo.datagram.DatagramProto.User) data_);
-                data_ = subBuilder.buildPartial();
-              }
-              dataCase_ = 4;
-              break;
-            }
-            case 42: {
-              com.example.demo.datagram.DatagramProto.Messages.Builder subBuilder = null;
-              if (dataCase_ == 5) {
-                subBuilder = ((com.example.demo.datagram.DatagramProto.Messages) data_).toBuilder();
-              }
-              data_ =
-                  input.readMessage(com.example.demo.datagram.DatagramProto.Messages.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom((com.example.demo.datagram.DatagramProto.Messages) data_);
-                data_ = subBuilder.buildPartial();
-              }
-              dataCase_ = 5;
-              break;
-            }
-            case 50: {
-              com.example.demo.datagram.DatagramProto.Courses.Builder subBuilder = null;
-              if (dataCase_ == 6) {
-                subBuilder = ((com.example.demo.datagram.DatagramProto.Courses) data_).toBuilder();
-              }
-              data_ =
-                  input.readMessage(com.example.demo.datagram.DatagramProto.Courses.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom((com.example.demo.datagram.DatagramProto.Courses) data_);
-                data_ = subBuilder.buildPartial();
-              }
-              dataCase_ = 6;
-              break;
-            }
-            case 58: {
-              com.example.demo.datagram.DatagramProto.Notifications.Builder subBuilder = null;
-              if (dataCase_ == 7) {
-                subBuilder = ((com.example.demo.datagram.DatagramProto.Notifications) data_).toBuilder();
-              }
-              data_ =
-                  input.readMessage(com.example.demo.datagram.DatagramProto.Notifications.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom((com.example.demo.datagram.DatagramProto.Notifications) data_);
-                data_ = subBuilder.buildPartial();
-              }
-              dataCase_ = 7;
-              break;
-            }
-            case 66: {
-              com.example.demo.datagram.DatagramProto.Login.Builder subBuilder = null;
-              if (dataCase_ == 8) {
-                subBuilder = ((com.example.demo.datagram.DatagramProto.Login) data_).toBuilder();
-              }
-              data_ =
-                  input.readMessage(com.example.demo.datagram.DatagramProto.Login.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom((com.example.demo.datagram.DatagramProto.Login) data_);
-                data_ = subBuilder.buildPartial();
-              }
-              dataCase_ = 8;
-              break;
-            }
-            case 74: {
-              com.example.demo.datagram.DatagramProto.Register.Builder subBuilder = null;
-              if (dataCase_ == 9) {
-                subBuilder = ((com.example.demo.datagram.DatagramProto.Register) data_).toBuilder();
-              }
-              data_ =
-                  input.readMessage(com.example.demo.datagram.DatagramProto.Register.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom((com.example.demo.datagram.DatagramProto.Register) data_);
-                data_ = subBuilder.buildPartial();
-              }
-              dataCase_ = 9;
-              break;
-            }
-            case 82: {
-              java.lang.String s = input.readStringRequireUtf8();
-              dataCase_ = 10;
-              data_ = s;
+              datagram_ = input.readBytes();
               break;
             }
             default: {
@@ -322,57 +118,6 @@ public final class DatagramProto {
               com.example.demo.datagram.DatagramProto.Datagram.class, com.example.demo.datagram.DatagramProto.Datagram.Builder.class);
     }
 
-    private int dataCase_ = 0;
-    private java.lang.Object data_;
-    public enum DataCase
-        implements com.google.protobuf.Internal.EnumLite,
-            com.google.protobuf.AbstractMessage.InternalOneOfEnum {
-      USER(4),
-      MESSAGES(5),
-      COURSES(6),
-      NOTIFICATIONS(7),
-      LOGIN(8),
-      REGISTER(9),
-      ID(10),
-      DATA_NOT_SET(0);
-      private final int value;
-      private DataCase(int value) {
-        this.value = value;
-      }
-      /**
-       * @param value The number of the enum to look for.
-       * @return The enum associated with the given number.
-       * @deprecated Use {@link #forNumber(int)} instead.
-       */
-      @java.lang.Deprecated
-      public static DataCase valueOf(int value) {
-        return forNumber(value);
-      }
-
-      public static DataCase forNumber(int value) {
-        switch (value) {
-          case 4: return USER;
-          case 5: return MESSAGES;
-          case 6: return COURSES;
-          case 7: return NOTIFICATIONS;
-          case 8: return LOGIN;
-          case 9: return REGISTER;
-          case 10: return ID;
-          case 0: return DATA_NOT_SET;
-          default: return null;
-        }
-      }
-      public int getNumber() {
-        return this.value;
-      }
-    };
-
-    public DataCase
-    getDataCase() {
-      return DataCase.forNumber(
-          dataCase_);
-    }
-
     public static final int VERSION_FIELD_NUMBER = 1;
     private int version_;
     /**
@@ -384,257 +129,15 @@ public final class DatagramProto {
       return version_;
     }
 
-    public static final int TYPE_FIELD_NUMBER = 2;
-    private int type_;
+    public static final int DATAGRAM_FIELD_NUMBER = 2;
+    private com.google.protobuf.ByteString datagram_;
     /**
-     * <code>int32 type = 2;</code>
-     * @return The type.
+     * <code>bytes datagram = 2;</code>
+     * @return The datagram.
      */
     @java.lang.Override
-    public int getType() {
-      return type_;
-    }
-
-    public static final int SUBTYPE_FIELD_NUMBER = 3;
-    private int subtype_;
-    /**
-     * <code>int32 subtype = 3;</code>
-     * @return The subtype.
-     */
-    @java.lang.Override
-    public int getSubtype() {
-      return subtype_;
-    }
-
-    public static final int USER_FIELD_NUMBER = 4;
-    /**
-     * <code>.User user = 4;</code>
-     * @return Whether the user field is set.
-     */
-    @java.lang.Override
-    public boolean hasUser() {
-      return dataCase_ == 4;
-    }
-    /**
-     * <code>.User user = 4;</code>
-     * @return The user.
-     */
-    @java.lang.Override
-    public com.example.demo.datagram.DatagramProto.User getUser() {
-      if (dataCase_ == 4) {
-         return (com.example.demo.datagram.DatagramProto.User) data_;
-      }
-      return com.example.demo.datagram.DatagramProto.User.getDefaultInstance();
-    }
-    /**
-     * <code>.User user = 4;</code>
-     */
-    @java.lang.Override
-    public com.example.demo.datagram.DatagramProto.UserOrBuilder getUserOrBuilder() {
-      if (dataCase_ == 4) {
-         return (com.example.demo.datagram.DatagramProto.User) data_;
-      }
-      return com.example.demo.datagram.DatagramProto.User.getDefaultInstance();
-    }
-
-    public static final int MESSAGES_FIELD_NUMBER = 5;
-    /**
-     * <code>.Messages messages = 5;</code>
-     * @return Whether the messages field is set.
-     */
-    @java.lang.Override
-    public boolean hasMessages() {
-      return dataCase_ == 5;
-    }
-    /**
-     * <code>.Messages messages = 5;</code>
-     * @return The messages.
-     */
-    @java.lang.Override
-    public com.example.demo.datagram.DatagramProto.Messages getMessages() {
-      if (dataCase_ == 5) {
-         return (com.example.demo.datagram.DatagramProto.Messages) data_;
-      }
-      return com.example.demo.datagram.DatagramProto.Messages.getDefaultInstance();
-    }
-    /**
-     * <code>.Messages messages = 5;</code>
-     */
-    @java.lang.Override
-    public com.example.demo.datagram.DatagramProto.MessagesOrBuilder getMessagesOrBuilder() {
-      if (dataCase_ == 5) {
-         return (com.example.demo.datagram.DatagramProto.Messages) data_;
-      }
-      return com.example.demo.datagram.DatagramProto.Messages.getDefaultInstance();
-    }
-
-    public static final int COURSES_FIELD_NUMBER = 6;
-    /**
-     * <code>.Courses courses = 6;</code>
-     * @return Whether the courses field is set.
-     */
-    @java.lang.Override
-    public boolean hasCourses() {
-      return dataCase_ == 6;
-    }
-    /**
-     * <code>.Courses courses = 6;</code>
-     * @return The courses.
-     */
-    @java.lang.Override
-    public com.example.demo.datagram.DatagramProto.Courses getCourses() {
-      if (dataCase_ == 6) {
-         return (com.example.demo.datagram.DatagramProto.Courses) data_;
-      }
-      return com.example.demo.datagram.DatagramProto.Courses.getDefaultInstance();
-    }
-    /**
-     * <code>.Courses courses = 6;</code>
-     */
-    @java.lang.Override
-    public com.example.demo.datagram.DatagramProto.CoursesOrBuilder getCoursesOrBuilder() {
-      if (dataCase_ == 6) {
-         return (com.example.demo.datagram.DatagramProto.Courses) data_;
-      }
-      return com.example.demo.datagram.DatagramProto.Courses.getDefaultInstance();
-    }
-
-    public static final int NOTIFICATIONS_FIELD_NUMBER = 7;
-    /**
-     * <code>.Notifications notifications = 7;</code>
-     * @return Whether the notifications field is set.
-     */
-    @java.lang.Override
-    public boolean hasNotifications() {
-      return dataCase_ == 7;
-    }
-    /**
-     * <code>.Notifications notifications = 7;</code>
-     * @return The notifications.
-     */
-    @java.lang.Override
-    public com.example.demo.datagram.DatagramProto.Notifications getNotifications() {
-      if (dataCase_ == 7) {
-         return (com.example.demo.datagram.DatagramProto.Notifications) data_;
-      }
-      return com.example.demo.datagram.DatagramProto.Notifications.getDefaultInstance();
-    }
-    /**
-     * <code>.Notifications notifications = 7;</code>
-     */
-    @java.lang.Override
-    public com.example.demo.datagram.DatagramProto.NotificationsOrBuilder getNotificationsOrBuilder() {
-      if (dataCase_ == 7) {
-         return (com.example.demo.datagram.DatagramProto.Notifications) data_;
-      }
-      return com.example.demo.datagram.DatagramProto.Notifications.getDefaultInstance();
-    }
-
-    public static final int LOGIN_FIELD_NUMBER = 8;
-    /**
-     * <code>.Login login = 8;</code>
-     * @return Whether the login field is set.
-     */
-    @java.lang.Override
-    public boolean hasLogin() {
-      return dataCase_ == 8;
-    }
-    /**
-     * <code>.Login login = 8;</code>
-     * @return The login.
-     */
-    @java.lang.Override
-    public com.example.demo.datagram.DatagramProto.Login getLogin() {
-      if (dataCase_ == 8) {
-         return (com.example.demo.datagram.DatagramProto.Login) data_;
-      }
-      return com.example.demo.datagram.DatagramProto.Login.getDefaultInstance();
-    }
-    /**
-     * <code>.Login login = 8;</code>
-     */
-    @java.lang.Override
-    public com.example.demo.datagram.DatagramProto.LoginOrBuilder getLoginOrBuilder() {
-      if (dataCase_ == 8) {
-         return (com.example.demo.datagram.DatagramProto.Login) data_;
-      }
-      return com.example.demo.datagram.DatagramProto.Login.getDefaultInstance();
-    }
-
-    public static final int REGISTER_FIELD_NUMBER = 9;
-    /**
-     * <code>.Register register = 9;</code>
-     * @return Whether the register field is set.
-     */
-    @java.lang.Override
-    public boolean hasRegister() {
-      return dataCase_ == 9;
-    }
-    /**
-     * <code>.Register register = 9;</code>
-     * @return The register.
-     */
-    @java.lang.Override
-    public com.example.demo.datagram.DatagramProto.Register getRegister() {
-      if (dataCase_ == 9) {
-         return (com.example.demo.datagram.DatagramProto.Register) data_;
-      }
-      return com.example.demo.datagram.DatagramProto.Register.getDefaultInstance();
-    }
-    /**
-     * <code>.Register register = 9;</code>
-     */
-    @java.lang.Override
-    public com.example.demo.datagram.DatagramProto.RegisterOrBuilder getRegisterOrBuilder() {
-      if (dataCase_ == 9) {
-         return (com.example.demo.datagram.DatagramProto.Register) data_;
-      }
-      return com.example.demo.datagram.DatagramProto.Register.getDefaultInstance();
-    }
-
-    public static final int ID_FIELD_NUMBER = 10;
-    /**
-     * <code>string id = 10;</code>
-     * @return The id.
-     */
-    public java.lang.String getId() {
-      java.lang.Object ref = "";
-      if (dataCase_ == 10) {
-        ref = data_;
-      }
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (dataCase_ == 10) {
-          data_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>string id = 10;</code>
-     * @return The bytes for id.
-     */
-    public com.google.protobuf.ByteString
-        getIdBytes() {
-      java.lang.Object ref = "";
-      if (dataCase_ == 10) {
-        ref = data_;
-      }
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        if (dataCase_ == 10) {
-          data_ = b;
-        }
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public com.google.protobuf.ByteString getDatagram() {
+      return datagram_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -654,32 +157,8 @@ public final class DatagramProto {
       if (version_ != 0) {
         output.writeInt32(1, version_);
       }
-      if (type_ != 0) {
-        output.writeInt32(2, type_);
-      }
-      if (subtype_ != 0) {
-        output.writeInt32(3, subtype_);
-      }
-      if (dataCase_ == 4) {
-        output.writeMessage(4, (com.example.demo.datagram.DatagramProto.User) data_);
-      }
-      if (dataCase_ == 5) {
-        output.writeMessage(5, (com.example.demo.datagram.DatagramProto.Messages) data_);
-      }
-      if (dataCase_ == 6) {
-        output.writeMessage(6, (com.example.demo.datagram.DatagramProto.Courses) data_);
-      }
-      if (dataCase_ == 7) {
-        output.writeMessage(7, (com.example.demo.datagram.DatagramProto.Notifications) data_);
-      }
-      if (dataCase_ == 8) {
-        output.writeMessage(8, (com.example.demo.datagram.DatagramProto.Login) data_);
-      }
-      if (dataCase_ == 9) {
-        output.writeMessage(9, (com.example.demo.datagram.DatagramProto.Register) data_);
-      }
-      if (dataCase_ == 10) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 10, data_);
+      if (!datagram_.isEmpty()) {
+        output.writeBytes(2, datagram_);
       }
       unknownFields.writeTo(output);
     }
@@ -694,40 +173,9 @@ public final class DatagramProto {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(1, version_);
       }
-      if (type_ != 0) {
+      if (!datagram_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, type_);
-      }
-      if (subtype_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, subtype_);
-      }
-      if (dataCase_ == 4) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, (com.example.demo.datagram.DatagramProto.User) data_);
-      }
-      if (dataCase_ == 5) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, (com.example.demo.datagram.DatagramProto.Messages) data_);
-      }
-      if (dataCase_ == 6) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(6, (com.example.demo.datagram.DatagramProto.Courses) data_);
-      }
-      if (dataCase_ == 7) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(7, (com.example.demo.datagram.DatagramProto.Notifications) data_);
-      }
-      if (dataCase_ == 8) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(8, (com.example.demo.datagram.DatagramProto.Login) data_);
-      }
-      if (dataCase_ == 9) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(9, (com.example.demo.datagram.DatagramProto.Register) data_);
-      }
-      if (dataCase_ == 10) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(10, data_);
+          .computeBytesSize(2, datagram_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -746,43 +194,8 @@ public final class DatagramProto {
 
       if (getVersion()
           != other.getVersion()) return false;
-      if (getType()
-          != other.getType()) return false;
-      if (getSubtype()
-          != other.getSubtype()) return false;
-      if (!getDataCase().equals(other.getDataCase())) return false;
-      switch (dataCase_) {
-        case 4:
-          if (!getUser()
-              .equals(other.getUser())) return false;
-          break;
-        case 5:
-          if (!getMessages()
-              .equals(other.getMessages())) return false;
-          break;
-        case 6:
-          if (!getCourses()
-              .equals(other.getCourses())) return false;
-          break;
-        case 7:
-          if (!getNotifications()
-              .equals(other.getNotifications())) return false;
-          break;
-        case 8:
-          if (!getLogin()
-              .equals(other.getLogin())) return false;
-          break;
-        case 9:
-          if (!getRegister()
-              .equals(other.getRegister())) return false;
-          break;
-        case 10:
-          if (!getId()
-              .equals(other.getId())) return false;
-          break;
-        case 0:
-        default:
-      }
+      if (!getDatagram()
+          .equals(other.getDatagram())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -796,42 +209,8 @@ public final class DatagramProto {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + VERSION_FIELD_NUMBER;
       hash = (53 * hash) + getVersion();
-      hash = (37 * hash) + TYPE_FIELD_NUMBER;
-      hash = (53 * hash) + getType();
-      hash = (37 * hash) + SUBTYPE_FIELD_NUMBER;
-      hash = (53 * hash) + getSubtype();
-      switch (dataCase_) {
-        case 4:
-          hash = (37 * hash) + USER_FIELD_NUMBER;
-          hash = (53 * hash) + getUser().hashCode();
-          break;
-        case 5:
-          hash = (37 * hash) + MESSAGES_FIELD_NUMBER;
-          hash = (53 * hash) + getMessages().hashCode();
-          break;
-        case 6:
-          hash = (37 * hash) + COURSES_FIELD_NUMBER;
-          hash = (53 * hash) + getCourses().hashCode();
-          break;
-        case 7:
-          hash = (37 * hash) + NOTIFICATIONS_FIELD_NUMBER;
-          hash = (53 * hash) + getNotifications().hashCode();
-          break;
-        case 8:
-          hash = (37 * hash) + LOGIN_FIELD_NUMBER;
-          hash = (53 * hash) + getLogin().hashCode();
-          break;
-        case 9:
-          hash = (37 * hash) + REGISTER_FIELD_NUMBER;
-          hash = (53 * hash) + getRegister().hashCode();
-          break;
-        case 10:
-          hash = (37 * hash) + ID_FIELD_NUMBER;
-          hash = (53 * hash) + getId().hashCode();
-          break;
-        case 0:
-        default:
-      }
+      hash = (37 * hash) + DATAGRAM_FIELD_NUMBER;
+      hash = (53 * hash) + getDatagram().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -967,12 +346,8 @@ public final class DatagramProto {
         super.clear();
         version_ = 0;
 
-        type_ = 0;
+        datagram_ = com.google.protobuf.ByteString.EMPTY;
 
-        subtype_ = 0;
-
-        dataCase_ = 0;
-        data_ = null;
         return this;
       }
 
@@ -1000,54 +375,7 @@ public final class DatagramProto {
       public com.example.demo.datagram.DatagramProto.Datagram buildPartial() {
         com.example.demo.datagram.DatagramProto.Datagram result = new com.example.demo.datagram.DatagramProto.Datagram(this);
         result.version_ = version_;
-        result.type_ = type_;
-        result.subtype_ = subtype_;
-        if (dataCase_ == 4) {
-          if (userBuilder_ == null) {
-            result.data_ = data_;
-          } else {
-            result.data_ = userBuilder_.build();
-          }
-        }
-        if (dataCase_ == 5) {
-          if (messagesBuilder_ == null) {
-            result.data_ = data_;
-          } else {
-            result.data_ = messagesBuilder_.build();
-          }
-        }
-        if (dataCase_ == 6) {
-          if (coursesBuilder_ == null) {
-            result.data_ = data_;
-          } else {
-            result.data_ = coursesBuilder_.build();
-          }
-        }
-        if (dataCase_ == 7) {
-          if (notificationsBuilder_ == null) {
-            result.data_ = data_;
-          } else {
-            result.data_ = notificationsBuilder_.build();
-          }
-        }
-        if (dataCase_ == 8) {
-          if (loginBuilder_ == null) {
-            result.data_ = data_;
-          } else {
-            result.data_ = loginBuilder_.build();
-          }
-        }
-        if (dataCase_ == 9) {
-          if (registerBuilder_ == null) {
-            result.data_ = data_;
-          } else {
-            result.data_ = registerBuilder_.build();
-          }
-        }
-        if (dataCase_ == 10) {
-          result.data_ = data_;
-        }
-        result.dataCase_ = dataCase_;
+        result.datagram_ = datagram_;
         onBuilt();
         return result;
       }
@@ -1099,46 +427,8 @@ public final class DatagramProto {
         if (other.getVersion() != 0) {
           setVersion(other.getVersion());
         }
-        if (other.getType() != 0) {
-          setType(other.getType());
-        }
-        if (other.getSubtype() != 0) {
-          setSubtype(other.getSubtype());
-        }
-        switch (other.getDataCase()) {
-          case USER: {
-            mergeUser(other.getUser());
-            break;
-          }
-          case MESSAGES: {
-            mergeMessages(other.getMessages());
-            break;
-          }
-          case COURSES: {
-            mergeCourses(other.getCourses());
-            break;
-          }
-          case NOTIFICATIONS: {
-            mergeNotifications(other.getNotifications());
-            break;
-          }
-          case LOGIN: {
-            mergeLogin(other.getLogin());
-            break;
-          }
-          case REGISTER: {
-            mergeRegister(other.getRegister());
-            break;
-          }
-          case ID: {
-            dataCase_ = 10;
-            data_ = other.data_;
-            onChanged();
-            break;
-          }
-          case DATA_NOT_SET: {
-            break;
-          }
+        if (other.getDatagram() != com.google.protobuf.ByteString.EMPTY) {
+          setDatagram(other.getDatagram());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -1168,21 +458,6 @@ public final class DatagramProto {
         }
         return this;
       }
-      private int dataCase_ = 0;
-      private java.lang.Object data_;
-      public DataCase
-          getDataCase() {
-        return DataCase.forNumber(
-            dataCase_);
-      }
-
-      public Builder clearData() {
-        dataCase_ = 0;
-        data_ = null;
-        onChanged();
-        return this;
-      }
-
 
       private int version_ ;
       /**
@@ -1215,999 +490,36 @@ public final class DatagramProto {
         return this;
       }
 
-      private int type_ ;
+      private com.google.protobuf.ByteString datagram_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>int32 type = 2;</code>
-       * @return The type.
+       * <code>bytes datagram = 2;</code>
+       * @return The datagram.
        */
       @java.lang.Override
-      public int getType() {
-        return type_;
+      public com.google.protobuf.ByteString getDatagram() {
+        return datagram_;
       }
       /**
-       * <code>int32 type = 2;</code>
-       * @param value The type to set.
+       * <code>bytes datagram = 2;</code>
+       * @param value The datagram to set.
        * @return This builder for chaining.
        */
-      public Builder setType(int value) {
-        
-        type_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 type = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearType() {
-        
-        type_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int subtype_ ;
-      /**
-       * <code>int32 subtype = 3;</code>
-       * @return The subtype.
-       */
-      @java.lang.Override
-      public int getSubtype() {
-        return subtype_;
-      }
-      /**
-       * <code>int32 subtype = 3;</code>
-       * @param value The subtype to set.
-       * @return This builder for chaining.
-       */
-      public Builder setSubtype(int value) {
-        
-        subtype_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 subtype = 3;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearSubtype() {
-        
-        subtype_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.example.demo.datagram.DatagramProto.User, com.example.demo.datagram.DatagramProto.User.Builder, com.example.demo.datagram.DatagramProto.UserOrBuilder> userBuilder_;
-      /**
-       * <code>.User user = 4;</code>
-       * @return Whether the user field is set.
-       */
-      @java.lang.Override
-      public boolean hasUser() {
-        return dataCase_ == 4;
-      }
-      /**
-       * <code>.User user = 4;</code>
-       * @return The user.
-       */
-      @java.lang.Override
-      public com.example.demo.datagram.DatagramProto.User getUser() {
-        if (userBuilder_ == null) {
-          if (dataCase_ == 4) {
-            return (com.example.demo.datagram.DatagramProto.User) data_;
-          }
-          return com.example.demo.datagram.DatagramProto.User.getDefaultInstance();
-        } else {
-          if (dataCase_ == 4) {
-            return userBuilder_.getMessage();
-          }
-          return com.example.demo.datagram.DatagramProto.User.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>.User user = 4;</code>
-       */
-      public Builder setUser(com.example.demo.datagram.DatagramProto.User value) {
-        if (userBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          data_ = value;
-          onChanged();
-        } else {
-          userBuilder_.setMessage(value);
-        }
-        dataCase_ = 4;
-        return this;
-      }
-      /**
-       * <code>.User user = 4;</code>
-       */
-      public Builder setUser(
-          com.example.demo.datagram.DatagramProto.User.Builder builderForValue) {
-        if (userBuilder_ == null) {
-          data_ = builderForValue.build();
-          onChanged();
-        } else {
-          userBuilder_.setMessage(builderForValue.build());
-        }
-        dataCase_ = 4;
-        return this;
-      }
-      /**
-       * <code>.User user = 4;</code>
-       */
-      public Builder mergeUser(com.example.demo.datagram.DatagramProto.User value) {
-        if (userBuilder_ == null) {
-          if (dataCase_ == 4 &&
-              data_ != com.example.demo.datagram.DatagramProto.User.getDefaultInstance()) {
-            data_ = com.example.demo.datagram.DatagramProto.User.newBuilder((com.example.demo.datagram.DatagramProto.User) data_)
-                .mergeFrom(value).buildPartial();
-          } else {
-            data_ = value;
-          }
-          onChanged();
-        } else {
-          if (dataCase_ == 4) {
-            userBuilder_.mergeFrom(value);
-          }
-          userBuilder_.setMessage(value);
-        }
-        dataCase_ = 4;
-        return this;
-      }
-      /**
-       * <code>.User user = 4;</code>
-       */
-      public Builder clearUser() {
-        if (userBuilder_ == null) {
-          if (dataCase_ == 4) {
-            dataCase_ = 0;
-            data_ = null;
-            onChanged();
-          }
-        } else {
-          if (dataCase_ == 4) {
-            dataCase_ = 0;
-            data_ = null;
-          }
-          userBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>.User user = 4;</code>
-       */
-      public com.example.demo.datagram.DatagramProto.User.Builder getUserBuilder() {
-        return getUserFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.User user = 4;</code>
-       */
-      @java.lang.Override
-      public com.example.demo.datagram.DatagramProto.UserOrBuilder getUserOrBuilder() {
-        if ((dataCase_ == 4) && (userBuilder_ != null)) {
-          return userBuilder_.getMessageOrBuilder();
-        } else {
-          if (dataCase_ == 4) {
-            return (com.example.demo.datagram.DatagramProto.User) data_;
-          }
-          return com.example.demo.datagram.DatagramProto.User.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>.User user = 4;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.example.demo.datagram.DatagramProto.User, com.example.demo.datagram.DatagramProto.User.Builder, com.example.demo.datagram.DatagramProto.UserOrBuilder> 
-          getUserFieldBuilder() {
-        if (userBuilder_ == null) {
-          if (!(dataCase_ == 4)) {
-            data_ = com.example.demo.datagram.DatagramProto.User.getDefaultInstance();
-          }
-          userBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.example.demo.datagram.DatagramProto.User, com.example.demo.datagram.DatagramProto.User.Builder, com.example.demo.datagram.DatagramProto.UserOrBuilder>(
-                  (com.example.demo.datagram.DatagramProto.User) data_,
-                  getParentForChildren(),
-                  isClean());
-          data_ = null;
-        }
-        dataCase_ = 4;
-        onChanged();;
-        return userBuilder_;
-      }
-
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.example.demo.datagram.DatagramProto.Messages, com.example.demo.datagram.DatagramProto.Messages.Builder, com.example.demo.datagram.DatagramProto.MessagesOrBuilder> messagesBuilder_;
-      /**
-       * <code>.Messages messages = 5;</code>
-       * @return Whether the messages field is set.
-       */
-      @java.lang.Override
-      public boolean hasMessages() {
-        return dataCase_ == 5;
-      }
-      /**
-       * <code>.Messages messages = 5;</code>
-       * @return The messages.
-       */
-      @java.lang.Override
-      public com.example.demo.datagram.DatagramProto.Messages getMessages() {
-        if (messagesBuilder_ == null) {
-          if (dataCase_ == 5) {
-            return (com.example.demo.datagram.DatagramProto.Messages) data_;
-          }
-          return com.example.demo.datagram.DatagramProto.Messages.getDefaultInstance();
-        } else {
-          if (dataCase_ == 5) {
-            return messagesBuilder_.getMessage();
-          }
-          return com.example.demo.datagram.DatagramProto.Messages.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>.Messages messages = 5;</code>
-       */
-      public Builder setMessages(com.example.demo.datagram.DatagramProto.Messages value) {
-        if (messagesBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          data_ = value;
-          onChanged();
-        } else {
-          messagesBuilder_.setMessage(value);
-        }
-        dataCase_ = 5;
-        return this;
-      }
-      /**
-       * <code>.Messages messages = 5;</code>
-       */
-      public Builder setMessages(
-          com.example.demo.datagram.DatagramProto.Messages.Builder builderForValue) {
-        if (messagesBuilder_ == null) {
-          data_ = builderForValue.build();
-          onChanged();
-        } else {
-          messagesBuilder_.setMessage(builderForValue.build());
-        }
-        dataCase_ = 5;
-        return this;
-      }
-      /**
-       * <code>.Messages messages = 5;</code>
-       */
-      public Builder mergeMessages(com.example.demo.datagram.DatagramProto.Messages value) {
-        if (messagesBuilder_ == null) {
-          if (dataCase_ == 5 &&
-              data_ != com.example.demo.datagram.DatagramProto.Messages.getDefaultInstance()) {
-            data_ = com.example.demo.datagram.DatagramProto.Messages.newBuilder((com.example.demo.datagram.DatagramProto.Messages) data_)
-                .mergeFrom(value).buildPartial();
-          } else {
-            data_ = value;
-          }
-          onChanged();
-        } else {
-          if (dataCase_ == 5) {
-            messagesBuilder_.mergeFrom(value);
-          }
-          messagesBuilder_.setMessage(value);
-        }
-        dataCase_ = 5;
-        return this;
-      }
-      /**
-       * <code>.Messages messages = 5;</code>
-       */
-      public Builder clearMessages() {
-        if (messagesBuilder_ == null) {
-          if (dataCase_ == 5) {
-            dataCase_ = 0;
-            data_ = null;
-            onChanged();
-          }
-        } else {
-          if (dataCase_ == 5) {
-            dataCase_ = 0;
-            data_ = null;
-          }
-          messagesBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>.Messages messages = 5;</code>
-       */
-      public com.example.demo.datagram.DatagramProto.Messages.Builder getMessagesBuilder() {
-        return getMessagesFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.Messages messages = 5;</code>
-       */
-      @java.lang.Override
-      public com.example.demo.datagram.DatagramProto.MessagesOrBuilder getMessagesOrBuilder() {
-        if ((dataCase_ == 5) && (messagesBuilder_ != null)) {
-          return messagesBuilder_.getMessageOrBuilder();
-        } else {
-          if (dataCase_ == 5) {
-            return (com.example.demo.datagram.DatagramProto.Messages) data_;
-          }
-          return com.example.demo.datagram.DatagramProto.Messages.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>.Messages messages = 5;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.example.demo.datagram.DatagramProto.Messages, com.example.demo.datagram.DatagramProto.Messages.Builder, com.example.demo.datagram.DatagramProto.MessagesOrBuilder> 
-          getMessagesFieldBuilder() {
-        if (messagesBuilder_ == null) {
-          if (!(dataCase_ == 5)) {
-            data_ = com.example.demo.datagram.DatagramProto.Messages.getDefaultInstance();
-          }
-          messagesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.example.demo.datagram.DatagramProto.Messages, com.example.demo.datagram.DatagramProto.Messages.Builder, com.example.demo.datagram.DatagramProto.MessagesOrBuilder>(
-                  (com.example.demo.datagram.DatagramProto.Messages) data_,
-                  getParentForChildren(),
-                  isClean());
-          data_ = null;
-        }
-        dataCase_ = 5;
-        onChanged();;
-        return messagesBuilder_;
-      }
-
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.example.demo.datagram.DatagramProto.Courses, com.example.demo.datagram.DatagramProto.Courses.Builder, com.example.demo.datagram.DatagramProto.CoursesOrBuilder> coursesBuilder_;
-      /**
-       * <code>.Courses courses = 6;</code>
-       * @return Whether the courses field is set.
-       */
-      @java.lang.Override
-      public boolean hasCourses() {
-        return dataCase_ == 6;
-      }
-      /**
-       * <code>.Courses courses = 6;</code>
-       * @return The courses.
-       */
-      @java.lang.Override
-      public com.example.demo.datagram.DatagramProto.Courses getCourses() {
-        if (coursesBuilder_ == null) {
-          if (dataCase_ == 6) {
-            return (com.example.demo.datagram.DatagramProto.Courses) data_;
-          }
-          return com.example.demo.datagram.DatagramProto.Courses.getDefaultInstance();
-        } else {
-          if (dataCase_ == 6) {
-            return coursesBuilder_.getMessage();
-          }
-          return com.example.demo.datagram.DatagramProto.Courses.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>.Courses courses = 6;</code>
-       */
-      public Builder setCourses(com.example.demo.datagram.DatagramProto.Courses value) {
-        if (coursesBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          data_ = value;
-          onChanged();
-        } else {
-          coursesBuilder_.setMessage(value);
-        }
-        dataCase_ = 6;
-        return this;
-      }
-      /**
-       * <code>.Courses courses = 6;</code>
-       */
-      public Builder setCourses(
-          com.example.demo.datagram.DatagramProto.Courses.Builder builderForValue) {
-        if (coursesBuilder_ == null) {
-          data_ = builderForValue.build();
-          onChanged();
-        } else {
-          coursesBuilder_.setMessage(builderForValue.build());
-        }
-        dataCase_ = 6;
-        return this;
-      }
-      /**
-       * <code>.Courses courses = 6;</code>
-       */
-      public Builder mergeCourses(com.example.demo.datagram.DatagramProto.Courses value) {
-        if (coursesBuilder_ == null) {
-          if (dataCase_ == 6 &&
-              data_ != com.example.demo.datagram.DatagramProto.Courses.getDefaultInstance()) {
-            data_ = com.example.demo.datagram.DatagramProto.Courses.newBuilder((com.example.demo.datagram.DatagramProto.Courses) data_)
-                .mergeFrom(value).buildPartial();
-          } else {
-            data_ = value;
-          }
-          onChanged();
-        } else {
-          if (dataCase_ == 6) {
-            coursesBuilder_.mergeFrom(value);
-          }
-          coursesBuilder_.setMessage(value);
-        }
-        dataCase_ = 6;
-        return this;
-      }
-      /**
-       * <code>.Courses courses = 6;</code>
-       */
-      public Builder clearCourses() {
-        if (coursesBuilder_ == null) {
-          if (dataCase_ == 6) {
-            dataCase_ = 0;
-            data_ = null;
-            onChanged();
-          }
-        } else {
-          if (dataCase_ == 6) {
-            dataCase_ = 0;
-            data_ = null;
-          }
-          coursesBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>.Courses courses = 6;</code>
-       */
-      public com.example.demo.datagram.DatagramProto.Courses.Builder getCoursesBuilder() {
-        return getCoursesFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.Courses courses = 6;</code>
-       */
-      @java.lang.Override
-      public com.example.demo.datagram.DatagramProto.CoursesOrBuilder getCoursesOrBuilder() {
-        if ((dataCase_ == 6) && (coursesBuilder_ != null)) {
-          return coursesBuilder_.getMessageOrBuilder();
-        } else {
-          if (dataCase_ == 6) {
-            return (com.example.demo.datagram.DatagramProto.Courses) data_;
-          }
-          return com.example.demo.datagram.DatagramProto.Courses.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>.Courses courses = 6;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.example.demo.datagram.DatagramProto.Courses, com.example.demo.datagram.DatagramProto.Courses.Builder, com.example.demo.datagram.DatagramProto.CoursesOrBuilder> 
-          getCoursesFieldBuilder() {
-        if (coursesBuilder_ == null) {
-          if (!(dataCase_ == 6)) {
-            data_ = com.example.demo.datagram.DatagramProto.Courses.getDefaultInstance();
-          }
-          coursesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.example.demo.datagram.DatagramProto.Courses, com.example.demo.datagram.DatagramProto.Courses.Builder, com.example.demo.datagram.DatagramProto.CoursesOrBuilder>(
-                  (com.example.demo.datagram.DatagramProto.Courses) data_,
-                  getParentForChildren(),
-                  isClean());
-          data_ = null;
-        }
-        dataCase_ = 6;
-        onChanged();;
-        return coursesBuilder_;
-      }
-
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.example.demo.datagram.DatagramProto.Notifications, com.example.demo.datagram.DatagramProto.Notifications.Builder, com.example.demo.datagram.DatagramProto.NotificationsOrBuilder> notificationsBuilder_;
-      /**
-       * <code>.Notifications notifications = 7;</code>
-       * @return Whether the notifications field is set.
-       */
-      @java.lang.Override
-      public boolean hasNotifications() {
-        return dataCase_ == 7;
-      }
-      /**
-       * <code>.Notifications notifications = 7;</code>
-       * @return The notifications.
-       */
-      @java.lang.Override
-      public com.example.demo.datagram.DatagramProto.Notifications getNotifications() {
-        if (notificationsBuilder_ == null) {
-          if (dataCase_ == 7) {
-            return (com.example.demo.datagram.DatagramProto.Notifications) data_;
-          }
-          return com.example.demo.datagram.DatagramProto.Notifications.getDefaultInstance();
-        } else {
-          if (dataCase_ == 7) {
-            return notificationsBuilder_.getMessage();
-          }
-          return com.example.demo.datagram.DatagramProto.Notifications.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>.Notifications notifications = 7;</code>
-       */
-      public Builder setNotifications(com.example.demo.datagram.DatagramProto.Notifications value) {
-        if (notificationsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          data_ = value;
-          onChanged();
-        } else {
-          notificationsBuilder_.setMessage(value);
-        }
-        dataCase_ = 7;
-        return this;
-      }
-      /**
-       * <code>.Notifications notifications = 7;</code>
-       */
-      public Builder setNotifications(
-          com.example.demo.datagram.DatagramProto.Notifications.Builder builderForValue) {
-        if (notificationsBuilder_ == null) {
-          data_ = builderForValue.build();
-          onChanged();
-        } else {
-          notificationsBuilder_.setMessage(builderForValue.build());
-        }
-        dataCase_ = 7;
-        return this;
-      }
-      /**
-       * <code>.Notifications notifications = 7;</code>
-       */
-      public Builder mergeNotifications(com.example.demo.datagram.DatagramProto.Notifications value) {
-        if (notificationsBuilder_ == null) {
-          if (dataCase_ == 7 &&
-              data_ != com.example.demo.datagram.DatagramProto.Notifications.getDefaultInstance()) {
-            data_ = com.example.demo.datagram.DatagramProto.Notifications.newBuilder((com.example.demo.datagram.DatagramProto.Notifications) data_)
-                .mergeFrom(value).buildPartial();
-          } else {
-            data_ = value;
-          }
-          onChanged();
-        } else {
-          if (dataCase_ == 7) {
-            notificationsBuilder_.mergeFrom(value);
-          }
-          notificationsBuilder_.setMessage(value);
-        }
-        dataCase_ = 7;
-        return this;
-      }
-      /**
-       * <code>.Notifications notifications = 7;</code>
-       */
-      public Builder clearNotifications() {
-        if (notificationsBuilder_ == null) {
-          if (dataCase_ == 7) {
-            dataCase_ = 0;
-            data_ = null;
-            onChanged();
-          }
-        } else {
-          if (dataCase_ == 7) {
-            dataCase_ = 0;
-            data_ = null;
-          }
-          notificationsBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>.Notifications notifications = 7;</code>
-       */
-      public com.example.demo.datagram.DatagramProto.Notifications.Builder getNotificationsBuilder() {
-        return getNotificationsFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.Notifications notifications = 7;</code>
-       */
-      @java.lang.Override
-      public com.example.demo.datagram.DatagramProto.NotificationsOrBuilder getNotificationsOrBuilder() {
-        if ((dataCase_ == 7) && (notificationsBuilder_ != null)) {
-          return notificationsBuilder_.getMessageOrBuilder();
-        } else {
-          if (dataCase_ == 7) {
-            return (com.example.demo.datagram.DatagramProto.Notifications) data_;
-          }
-          return com.example.demo.datagram.DatagramProto.Notifications.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>.Notifications notifications = 7;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.example.demo.datagram.DatagramProto.Notifications, com.example.demo.datagram.DatagramProto.Notifications.Builder, com.example.demo.datagram.DatagramProto.NotificationsOrBuilder> 
-          getNotificationsFieldBuilder() {
-        if (notificationsBuilder_ == null) {
-          if (!(dataCase_ == 7)) {
-            data_ = com.example.demo.datagram.DatagramProto.Notifications.getDefaultInstance();
-          }
-          notificationsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.example.demo.datagram.DatagramProto.Notifications, com.example.demo.datagram.DatagramProto.Notifications.Builder, com.example.demo.datagram.DatagramProto.NotificationsOrBuilder>(
-                  (com.example.demo.datagram.DatagramProto.Notifications) data_,
-                  getParentForChildren(),
-                  isClean());
-          data_ = null;
-        }
-        dataCase_ = 7;
-        onChanged();;
-        return notificationsBuilder_;
-      }
-
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.example.demo.datagram.DatagramProto.Login, com.example.demo.datagram.DatagramProto.Login.Builder, com.example.demo.datagram.DatagramProto.LoginOrBuilder> loginBuilder_;
-      /**
-       * <code>.Login login = 8;</code>
-       * @return Whether the login field is set.
-       */
-      @java.lang.Override
-      public boolean hasLogin() {
-        return dataCase_ == 8;
-      }
-      /**
-       * <code>.Login login = 8;</code>
-       * @return The login.
-       */
-      @java.lang.Override
-      public com.example.demo.datagram.DatagramProto.Login getLogin() {
-        if (loginBuilder_ == null) {
-          if (dataCase_ == 8) {
-            return (com.example.demo.datagram.DatagramProto.Login) data_;
-          }
-          return com.example.demo.datagram.DatagramProto.Login.getDefaultInstance();
-        } else {
-          if (dataCase_ == 8) {
-            return loginBuilder_.getMessage();
-          }
-          return com.example.demo.datagram.DatagramProto.Login.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>.Login login = 8;</code>
-       */
-      public Builder setLogin(com.example.demo.datagram.DatagramProto.Login value) {
-        if (loginBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          data_ = value;
-          onChanged();
-        } else {
-          loginBuilder_.setMessage(value);
-        }
-        dataCase_ = 8;
-        return this;
-      }
-      /**
-       * <code>.Login login = 8;</code>
-       */
-      public Builder setLogin(
-          com.example.demo.datagram.DatagramProto.Login.Builder builderForValue) {
-        if (loginBuilder_ == null) {
-          data_ = builderForValue.build();
-          onChanged();
-        } else {
-          loginBuilder_.setMessage(builderForValue.build());
-        }
-        dataCase_ = 8;
-        return this;
-      }
-      /**
-       * <code>.Login login = 8;</code>
-       */
-      public Builder mergeLogin(com.example.demo.datagram.DatagramProto.Login value) {
-        if (loginBuilder_ == null) {
-          if (dataCase_ == 8 &&
-              data_ != com.example.demo.datagram.DatagramProto.Login.getDefaultInstance()) {
-            data_ = com.example.demo.datagram.DatagramProto.Login.newBuilder((com.example.demo.datagram.DatagramProto.Login) data_)
-                .mergeFrom(value).buildPartial();
-          } else {
-            data_ = value;
-          }
-          onChanged();
-        } else {
-          if (dataCase_ == 8) {
-            loginBuilder_.mergeFrom(value);
-          }
-          loginBuilder_.setMessage(value);
-        }
-        dataCase_ = 8;
-        return this;
-      }
-      /**
-       * <code>.Login login = 8;</code>
-       */
-      public Builder clearLogin() {
-        if (loginBuilder_ == null) {
-          if (dataCase_ == 8) {
-            dataCase_ = 0;
-            data_ = null;
-            onChanged();
-          }
-        } else {
-          if (dataCase_ == 8) {
-            dataCase_ = 0;
-            data_ = null;
-          }
-          loginBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>.Login login = 8;</code>
-       */
-      public com.example.demo.datagram.DatagramProto.Login.Builder getLoginBuilder() {
-        return getLoginFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.Login login = 8;</code>
-       */
-      @java.lang.Override
-      public com.example.demo.datagram.DatagramProto.LoginOrBuilder getLoginOrBuilder() {
-        if ((dataCase_ == 8) && (loginBuilder_ != null)) {
-          return loginBuilder_.getMessageOrBuilder();
-        } else {
-          if (dataCase_ == 8) {
-            return (com.example.demo.datagram.DatagramProto.Login) data_;
-          }
-          return com.example.demo.datagram.DatagramProto.Login.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>.Login login = 8;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.example.demo.datagram.DatagramProto.Login, com.example.demo.datagram.DatagramProto.Login.Builder, com.example.demo.datagram.DatagramProto.LoginOrBuilder> 
-          getLoginFieldBuilder() {
-        if (loginBuilder_ == null) {
-          if (!(dataCase_ == 8)) {
-            data_ = com.example.demo.datagram.DatagramProto.Login.getDefaultInstance();
-          }
-          loginBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.example.demo.datagram.DatagramProto.Login, com.example.demo.datagram.DatagramProto.Login.Builder, com.example.demo.datagram.DatagramProto.LoginOrBuilder>(
-                  (com.example.demo.datagram.DatagramProto.Login) data_,
-                  getParentForChildren(),
-                  isClean());
-          data_ = null;
-        }
-        dataCase_ = 8;
-        onChanged();;
-        return loginBuilder_;
-      }
-
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.example.demo.datagram.DatagramProto.Register, com.example.demo.datagram.DatagramProto.Register.Builder, com.example.demo.datagram.DatagramProto.RegisterOrBuilder> registerBuilder_;
-      /**
-       * <code>.Register register = 9;</code>
-       * @return Whether the register field is set.
-       */
-      @java.lang.Override
-      public boolean hasRegister() {
-        return dataCase_ == 9;
-      }
-      /**
-       * <code>.Register register = 9;</code>
-       * @return The register.
-       */
-      @java.lang.Override
-      public com.example.demo.datagram.DatagramProto.Register getRegister() {
-        if (registerBuilder_ == null) {
-          if (dataCase_ == 9) {
-            return (com.example.demo.datagram.DatagramProto.Register) data_;
-          }
-          return com.example.demo.datagram.DatagramProto.Register.getDefaultInstance();
-        } else {
-          if (dataCase_ == 9) {
-            return registerBuilder_.getMessage();
-          }
-          return com.example.demo.datagram.DatagramProto.Register.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>.Register register = 9;</code>
-       */
-      public Builder setRegister(com.example.demo.datagram.DatagramProto.Register value) {
-        if (registerBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          data_ = value;
-          onChanged();
-        } else {
-          registerBuilder_.setMessage(value);
-        }
-        dataCase_ = 9;
-        return this;
-      }
-      /**
-       * <code>.Register register = 9;</code>
-       */
-      public Builder setRegister(
-          com.example.demo.datagram.DatagramProto.Register.Builder builderForValue) {
-        if (registerBuilder_ == null) {
-          data_ = builderForValue.build();
-          onChanged();
-        } else {
-          registerBuilder_.setMessage(builderForValue.build());
-        }
-        dataCase_ = 9;
-        return this;
-      }
-      /**
-       * <code>.Register register = 9;</code>
-       */
-      public Builder mergeRegister(com.example.demo.datagram.DatagramProto.Register value) {
-        if (registerBuilder_ == null) {
-          if (dataCase_ == 9 &&
-              data_ != com.example.demo.datagram.DatagramProto.Register.getDefaultInstance()) {
-            data_ = com.example.demo.datagram.DatagramProto.Register.newBuilder((com.example.demo.datagram.DatagramProto.Register) data_)
-                .mergeFrom(value).buildPartial();
-          } else {
-            data_ = value;
-          }
-          onChanged();
-        } else {
-          if (dataCase_ == 9) {
-            registerBuilder_.mergeFrom(value);
-          }
-          registerBuilder_.setMessage(value);
-        }
-        dataCase_ = 9;
-        return this;
-      }
-      /**
-       * <code>.Register register = 9;</code>
-       */
-      public Builder clearRegister() {
-        if (registerBuilder_ == null) {
-          if (dataCase_ == 9) {
-            dataCase_ = 0;
-            data_ = null;
-            onChanged();
-          }
-        } else {
-          if (dataCase_ == 9) {
-            dataCase_ = 0;
-            data_ = null;
-          }
-          registerBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>.Register register = 9;</code>
-       */
-      public com.example.demo.datagram.DatagramProto.Register.Builder getRegisterBuilder() {
-        return getRegisterFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.Register register = 9;</code>
-       */
-      @java.lang.Override
-      public com.example.demo.datagram.DatagramProto.RegisterOrBuilder getRegisterOrBuilder() {
-        if ((dataCase_ == 9) && (registerBuilder_ != null)) {
-          return registerBuilder_.getMessageOrBuilder();
-        } else {
-          if (dataCase_ == 9) {
-            return (com.example.demo.datagram.DatagramProto.Register) data_;
-          }
-          return com.example.demo.datagram.DatagramProto.Register.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>.Register register = 9;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.example.demo.datagram.DatagramProto.Register, com.example.demo.datagram.DatagramProto.Register.Builder, com.example.demo.datagram.DatagramProto.RegisterOrBuilder> 
-          getRegisterFieldBuilder() {
-        if (registerBuilder_ == null) {
-          if (!(dataCase_ == 9)) {
-            data_ = com.example.demo.datagram.DatagramProto.Register.getDefaultInstance();
-          }
-          registerBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.example.demo.datagram.DatagramProto.Register, com.example.demo.datagram.DatagramProto.Register.Builder, com.example.demo.datagram.DatagramProto.RegisterOrBuilder>(
-                  (com.example.demo.datagram.DatagramProto.Register) data_,
-                  getParentForChildren(),
-                  isClean());
-          data_ = null;
-        }
-        dataCase_ = 9;
-        onChanged();;
-        return registerBuilder_;
-      }
-
-      /**
-       * <code>string id = 10;</code>
-       * @return The id.
-       */
-      @java.lang.Override
-      public java.lang.String getId() {
-        java.lang.Object ref = "";
-        if (dataCase_ == 10) {
-          ref = data_;
-        }
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (dataCase_ == 10) {
-            data_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string id = 10;</code>
-       * @return The bytes for id.
-       */
-      @java.lang.Override
-      public com.google.protobuf.ByteString
-          getIdBytes() {
-        java.lang.Object ref = "";
-        if (dataCase_ == 10) {
-          ref = data_;
-        }
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          if (dataCase_ == 10) {
-            data_ = b;
-          }
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string id = 10;</code>
-       * @param value The id to set.
-       * @return This builder for chaining.
-       */
-      public Builder setId(
-          java.lang.String value) {
+      public Builder setDatagram(com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  dataCase_ = 10;
-        data_ = value;
+  
+        datagram_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string id = 10;</code>
+       * <code>bytes datagram = 2;</code>
        * @return This builder for chaining.
        */
-      public Builder clearId() {
-        if (dataCase_ == 10) {
-          dataCase_ = 0;
-          data_ = null;
-          onChanged();
-        }
-        return this;
-      }
-      /**
-       * <code>string id = 10;</code>
-       * @param value The bytes for id to set.
-       * @return This builder for chaining.
-       */
-      public Builder setIdBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        dataCase_ = 10;
-        data_ = value;
+      public Builder clearDatagram() {
+        
+        datagram_ = getDefaultInstance().getDatagram();
         onChanged();
         return this;
       }
@@ -2259,6 +571,6478 @@ public final class DatagramProto {
 
     @java.lang.Override
     public com.example.demo.datagram.DatagramProto.Datagram getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface DatagramVersion1OrBuilder extends
+      // @@protoc_insertion_point(interface_extends:DatagramVersion1)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.DatagramVersion1.Type type = 1;</code>
+     * @return The enum numeric value on the wire for type.
+     */
+    int getTypeValue();
+    /**
+     * <code>.DatagramVersion1.Type type = 1;</code>
+     * @return The type.
+     */
+    com.example.demo.datagram.DatagramProto.DatagramVersion1.Type getType();
+
+    /**
+     * <code>.DatagramVersion1.Subtype subtype = 2;</code>
+     * @return The enum numeric value on the wire for subtype.
+     */
+    int getSubtypeValue();
+    /**
+     * <code>.DatagramVersion1.Subtype subtype = 2;</code>
+     * @return The subtype.
+     */
+    com.example.demo.datagram.DatagramProto.DatagramVersion1.Subtype getSubtype();
+
+    /**
+     * <code>string token = 3;</code>
+     * @return The token.
+     */
+    java.lang.String getToken();
+    /**
+     * <code>string token = 3;</code>
+     * @return The bytes for token.
+     */
+    com.google.protobuf.ByteString
+        getTokenBytes();
+
+    /**
+     * <code>int32 ok = 4;</code>
+     * @return The ok.
+     */
+    int getOk();
+
+    /**
+     * <code>.Message message = 5;</code>
+     * @return Whether the message field is set.
+     */
+    boolean hasMessage();
+    /**
+     * <code>.Message message = 5;</code>
+     * @return The message.
+     */
+    com.example.demo.datagram.DatagramProto.Message getMessage();
+    /**
+     * <code>.Message message = 5;</code>
+     */
+    com.example.demo.datagram.DatagramProto.MessageOrBuilder getMessageOrBuilder();
+
+    /**
+     * <code>.Messages messages = 6;</code>
+     * @return Whether the messages field is set.
+     */
+    boolean hasMessages();
+    /**
+     * <code>.Messages messages = 6;</code>
+     * @return The messages.
+     */
+    com.example.demo.datagram.DatagramProto.Messages getMessages();
+    /**
+     * <code>.Messages messages = 6;</code>
+     */
+    com.example.demo.datagram.DatagramProto.MessagesOrBuilder getMessagesOrBuilder();
+
+    /**
+     * <code>.Login login = 7;</code>
+     * @return Whether the login field is set.
+     */
+    boolean hasLogin();
+    /**
+     * <code>.Login login = 7;</code>
+     * @return The login.
+     */
+    com.example.demo.datagram.DatagramProto.Login getLogin();
+    /**
+     * <code>.Login login = 7;</code>
+     */
+    com.example.demo.datagram.DatagramProto.LoginOrBuilder getLoginOrBuilder();
+
+    /**
+     * <code>.Course course = 8;</code>
+     * @return Whether the course field is set.
+     */
+    boolean hasCourse();
+    /**
+     * <code>.Course course = 8;</code>
+     * @return The course.
+     */
+    com.example.demo.datagram.DatagramProto.Course getCourse();
+    /**
+     * <code>.Course course = 8;</code>
+     */
+    com.example.demo.datagram.DatagramProto.CourseOrBuilder getCourseOrBuilder();
+
+    /**
+     * <code>.Courses courses = 9;</code>
+     * @return Whether the courses field is set.
+     */
+    boolean hasCourses();
+    /**
+     * <code>.Courses courses = 9;</code>
+     * @return The courses.
+     */
+    com.example.demo.datagram.DatagramProto.Courses getCourses();
+    /**
+     * <code>.Courses courses = 9;</code>
+     */
+    com.example.demo.datagram.DatagramProto.CoursesOrBuilder getCoursesOrBuilder();
+
+    /**
+     * <code>.Notification notification = 10;</code>
+     * @return Whether the notification field is set.
+     */
+    boolean hasNotification();
+    /**
+     * <code>.Notification notification = 10;</code>
+     * @return The notification.
+     */
+    com.example.demo.datagram.DatagramProto.Notification getNotification();
+    /**
+     * <code>.Notification notification = 10;</code>
+     */
+    com.example.demo.datagram.DatagramProto.NotificationOrBuilder getNotificationOrBuilder();
+
+    /**
+     * <code>.Notifications notifications = 11;</code>
+     * @return Whether the notifications field is set.
+     */
+    boolean hasNotifications();
+    /**
+     * <code>.Notifications notifications = 11;</code>
+     * @return The notifications.
+     */
+    com.example.demo.datagram.DatagramProto.Notifications getNotifications();
+    /**
+     * <code>.Notifications notifications = 11;</code>
+     */
+    com.example.demo.datagram.DatagramProto.NotificationsOrBuilder getNotificationsOrBuilder();
+
+    /**
+     * <code>.Register register = 12;</code>
+     * @return Whether the register field is set.
+     */
+    boolean hasRegister();
+    /**
+     * <code>.Register register = 12;</code>
+     * @return The register.
+     */
+    com.example.demo.datagram.DatagramProto.Register getRegister();
+    /**
+     * <code>.Register register = 12;</code>
+     */
+    com.example.demo.datagram.DatagramProto.RegisterOrBuilder getRegisterOrBuilder();
+
+    /**
+     * <code>.User user = 13;</code>
+     * @return Whether the user field is set.
+     */
+    boolean hasUser();
+    /**
+     * <code>.User user = 13;</code>
+     * @return The user.
+     */
+    com.example.demo.datagram.DatagramProto.User getUser();
+    /**
+     * <code>.User user = 13;</code>
+     */
+    com.example.demo.datagram.DatagramProto.UserOrBuilder getUserOrBuilder();
+
+    /**
+     * <code>.Group group = 14;</code>
+     * @return Whether the group field is set.
+     */
+    boolean hasGroup();
+    /**
+     * <code>.Group group = 14;</code>
+     * @return The group.
+     */
+    com.example.demo.datagram.DatagramProto.Group getGroup();
+    /**
+     * <code>.Group group = 14;</code>
+     */
+    com.example.demo.datagram.DatagramProto.GroupOrBuilder getGroupOrBuilder();
+
+    public com.example.demo.datagram.DatagramProto.DatagramVersion1.DataCase getDataCase();
+  }
+  /**
+   * Protobuf type {@code DatagramVersion1}
+   */
+  public static final class DatagramVersion1 extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:DatagramVersion1)
+      DatagramVersion1OrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use DatagramVersion1.newBuilder() to construct.
+    private DatagramVersion1(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private DatagramVersion1() {
+      type_ = 0;
+      subtype_ = 0;
+      token_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new DatagramVersion1();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private DatagramVersion1(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+              int rawValue = input.readEnum();
+
+              type_ = rawValue;
+              break;
+            }
+            case 16: {
+              int rawValue = input.readEnum();
+
+              subtype_ = rawValue;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              token_ = s;
+              break;
+            }
+            case 32: {
+
+              ok_ = input.readInt32();
+              break;
+            }
+            case 42: {
+              com.example.demo.datagram.DatagramProto.Message.Builder subBuilder = null;
+              if (dataCase_ == 5) {
+                subBuilder = ((com.example.demo.datagram.DatagramProto.Message) data_).toBuilder();
+              }
+              data_ =
+                  input.readMessage(com.example.demo.datagram.DatagramProto.Message.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((com.example.demo.datagram.DatagramProto.Message) data_);
+                data_ = subBuilder.buildPartial();
+              }
+              dataCase_ = 5;
+              break;
+            }
+            case 50: {
+              com.example.demo.datagram.DatagramProto.Messages.Builder subBuilder = null;
+              if (dataCase_ == 6) {
+                subBuilder = ((com.example.demo.datagram.DatagramProto.Messages) data_).toBuilder();
+              }
+              data_ =
+                  input.readMessage(com.example.demo.datagram.DatagramProto.Messages.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((com.example.demo.datagram.DatagramProto.Messages) data_);
+                data_ = subBuilder.buildPartial();
+              }
+              dataCase_ = 6;
+              break;
+            }
+            case 58: {
+              com.example.demo.datagram.DatagramProto.Login.Builder subBuilder = null;
+              if (dataCase_ == 7) {
+                subBuilder = ((com.example.demo.datagram.DatagramProto.Login) data_).toBuilder();
+              }
+              data_ =
+                  input.readMessage(com.example.demo.datagram.DatagramProto.Login.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((com.example.demo.datagram.DatagramProto.Login) data_);
+                data_ = subBuilder.buildPartial();
+              }
+              dataCase_ = 7;
+              break;
+            }
+            case 66: {
+              com.example.demo.datagram.DatagramProto.Course.Builder subBuilder = null;
+              if (dataCase_ == 8) {
+                subBuilder = ((com.example.demo.datagram.DatagramProto.Course) data_).toBuilder();
+              }
+              data_ =
+                  input.readMessage(com.example.demo.datagram.DatagramProto.Course.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((com.example.demo.datagram.DatagramProto.Course) data_);
+                data_ = subBuilder.buildPartial();
+              }
+              dataCase_ = 8;
+              break;
+            }
+            case 74: {
+              com.example.demo.datagram.DatagramProto.Courses.Builder subBuilder = null;
+              if (dataCase_ == 9) {
+                subBuilder = ((com.example.demo.datagram.DatagramProto.Courses) data_).toBuilder();
+              }
+              data_ =
+                  input.readMessage(com.example.demo.datagram.DatagramProto.Courses.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((com.example.demo.datagram.DatagramProto.Courses) data_);
+                data_ = subBuilder.buildPartial();
+              }
+              dataCase_ = 9;
+              break;
+            }
+            case 82: {
+              com.example.demo.datagram.DatagramProto.Notification.Builder subBuilder = null;
+              if (dataCase_ == 10) {
+                subBuilder = ((com.example.demo.datagram.DatagramProto.Notification) data_).toBuilder();
+              }
+              data_ =
+                  input.readMessage(com.example.demo.datagram.DatagramProto.Notification.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((com.example.demo.datagram.DatagramProto.Notification) data_);
+                data_ = subBuilder.buildPartial();
+              }
+              dataCase_ = 10;
+              break;
+            }
+            case 90: {
+              com.example.demo.datagram.DatagramProto.Notifications.Builder subBuilder = null;
+              if (dataCase_ == 11) {
+                subBuilder = ((com.example.demo.datagram.DatagramProto.Notifications) data_).toBuilder();
+              }
+              data_ =
+                  input.readMessage(com.example.demo.datagram.DatagramProto.Notifications.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((com.example.demo.datagram.DatagramProto.Notifications) data_);
+                data_ = subBuilder.buildPartial();
+              }
+              dataCase_ = 11;
+              break;
+            }
+            case 98: {
+              com.example.demo.datagram.DatagramProto.Register.Builder subBuilder = null;
+              if (dataCase_ == 12) {
+                subBuilder = ((com.example.demo.datagram.DatagramProto.Register) data_).toBuilder();
+              }
+              data_ =
+                  input.readMessage(com.example.demo.datagram.DatagramProto.Register.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((com.example.demo.datagram.DatagramProto.Register) data_);
+                data_ = subBuilder.buildPartial();
+              }
+              dataCase_ = 12;
+              break;
+            }
+            case 106: {
+              com.example.demo.datagram.DatagramProto.User.Builder subBuilder = null;
+              if (dataCase_ == 13) {
+                subBuilder = ((com.example.demo.datagram.DatagramProto.User) data_).toBuilder();
+              }
+              data_ =
+                  input.readMessage(com.example.demo.datagram.DatagramProto.User.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((com.example.demo.datagram.DatagramProto.User) data_);
+                data_ = subBuilder.buildPartial();
+              }
+              dataCase_ = 13;
+              break;
+            }
+            case 114: {
+              com.example.demo.datagram.DatagramProto.Group.Builder subBuilder = null;
+              if (dataCase_ == 14) {
+                subBuilder = ((com.example.demo.datagram.DatagramProto.Group) data_).toBuilder();
+              }
+              data_ =
+                  input.readMessage(com.example.demo.datagram.DatagramProto.Group.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((com.example.demo.datagram.DatagramProto.Group) data_);
+                data_ = subBuilder.buildPartial();
+              }
+              dataCase_ = 14;
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.example.demo.datagram.DatagramProto.internal_static_DatagramVersion1_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.example.demo.datagram.DatagramProto.internal_static_DatagramVersion1_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.example.demo.datagram.DatagramProto.DatagramVersion1.class, com.example.demo.datagram.DatagramProto.DatagramVersion1.Builder.class);
+    }
+
+    /**
+     * Protobuf enum {@code DatagramVersion1.Type}
+     */
+    public enum Type
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>KEEP_ALIVE = 0;</code>
+       */
+      KEEP_ALIVE(0),
+      /**
+       * <code>MESSAGE = 1;</code>
+       */
+      MESSAGE(1),
+      /**
+       * <code>USER = 2;</code>
+       */
+      USER(2),
+      /**
+       * <code>LOGIN = 3;</code>
+       */
+      LOGIN(3),
+      /**
+       * <code>NOTIFICATION = 4;</code>
+       */
+      NOTIFICATION(4),
+      /**
+       * <code>COURSE = 5;</code>
+       */
+      COURSE(5),
+      /**
+       * <code>REGISTER = 6;</code>
+       */
+      REGISTER(6),
+      /**
+       * <code>LOGOUT = 7;</code>
+       */
+      LOGOUT(7),
+      /**
+       * <code>GROUP = 8;</code>
+       */
+      GROUP(8),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>KEEP_ALIVE = 0;</code>
+       */
+      public static final int KEEP_ALIVE_VALUE = 0;
+      /**
+       * <code>MESSAGE = 1;</code>
+       */
+      public static final int MESSAGE_VALUE = 1;
+      /**
+       * <code>USER = 2;</code>
+       */
+      public static final int USER_VALUE = 2;
+      /**
+       * <code>LOGIN = 3;</code>
+       */
+      public static final int LOGIN_VALUE = 3;
+      /**
+       * <code>NOTIFICATION = 4;</code>
+       */
+      public static final int NOTIFICATION_VALUE = 4;
+      /**
+       * <code>COURSE = 5;</code>
+       */
+      public static final int COURSE_VALUE = 5;
+      /**
+       * <code>REGISTER = 6;</code>
+       */
+      public static final int REGISTER_VALUE = 6;
+      /**
+       * <code>LOGOUT = 7;</code>
+       */
+      public static final int LOGOUT_VALUE = 7;
+      /**
+       * <code>GROUP = 8;</code>
+       */
+      public static final int GROUP_VALUE = 8;
+
+
+      public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalArgumentException(
+              "Can't get the number of an unknown enum value.");
+        }
+        return value;
+      }
+
+      /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static Type valueOf(int value) {
+        return forNumber(value);
+      }
+
+      /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
+       */
+      public static Type forNumber(int value) {
+        switch (value) {
+          case 0: return KEEP_ALIVE;
+          case 1: return MESSAGE;
+          case 2: return USER;
+          case 3: return LOGIN;
+          case 4: return NOTIFICATION;
+          case 5: return COURSE;
+          case 6: return REGISTER;
+          case 7: return LOGOUT;
+          case 8: return GROUP;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<Type>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          Type> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<Type>() {
+              public Type findValueByNumber(int number) {
+                return Type.forNumber(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalStateException(
+              "Can't get the descriptor of an unrecognized enum value.");
+        }
+        return getDescriptor().getValues().get(ordinal());
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return com.example.demo.datagram.DatagramProto.DatagramVersion1.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final Type[] VALUES = values();
+
+      public static Type valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        if (desc.getIndex() == -1) {
+          return UNRECOGNIZED;
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int value;
+
+      private Type(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:DatagramVersion1.Type)
+    }
+
+    /**
+     * Protobuf enum {@code DatagramVersion1.Subtype}
+     */
+    public enum Subtype
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>PUSH = 0;</code>
+       */
+      PUSH(0),
+      /**
+       * <code>ACK = 1;</code>
+       */
+      ACK(1),
+      /**
+       * <code>REQUEST = 2;</code>
+       */
+      REQUEST(2),
+      /**
+       * <code>RESPONSE = 3;</code>
+       */
+      RESPONSE(3),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>PUSH = 0;</code>
+       */
+      public static final int PUSH_VALUE = 0;
+      /**
+       * <code>ACK = 1;</code>
+       */
+      public static final int ACK_VALUE = 1;
+      /**
+       * <code>REQUEST = 2;</code>
+       */
+      public static final int REQUEST_VALUE = 2;
+      /**
+       * <code>RESPONSE = 3;</code>
+       */
+      public static final int RESPONSE_VALUE = 3;
+
+
+      public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalArgumentException(
+              "Can't get the number of an unknown enum value.");
+        }
+        return value;
+      }
+
+      /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static Subtype valueOf(int value) {
+        return forNumber(value);
+      }
+
+      /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
+       */
+      public static Subtype forNumber(int value) {
+        switch (value) {
+          case 0: return PUSH;
+          case 1: return ACK;
+          case 2: return REQUEST;
+          case 3: return RESPONSE;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<Subtype>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          Subtype> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<Subtype>() {
+              public Subtype findValueByNumber(int number) {
+                return Subtype.forNumber(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalStateException(
+              "Can't get the descriptor of an unrecognized enum value.");
+        }
+        return getDescriptor().getValues().get(ordinal());
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return com.example.demo.datagram.DatagramProto.DatagramVersion1.getDescriptor().getEnumTypes().get(1);
+      }
+
+      private static final Subtype[] VALUES = values();
+
+      public static Subtype valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        if (desc.getIndex() == -1) {
+          return UNRECOGNIZED;
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int value;
+
+      private Subtype(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:DatagramVersion1.Subtype)
+    }
+
+    private int dataCase_ = 0;
+    private java.lang.Object data_;
+    public enum DataCase
+        implements com.google.protobuf.Internal.EnumLite,
+            com.google.protobuf.AbstractMessage.InternalOneOfEnum {
+      MESSAGE(5),
+      MESSAGES(6),
+      LOGIN(7),
+      COURSE(8),
+      COURSES(9),
+      NOTIFICATION(10),
+      NOTIFICATIONS(11),
+      REGISTER(12),
+      USER(13),
+      GROUP(14),
+      DATA_NOT_SET(0);
+      private final int value;
+      private DataCase(int value) {
+        this.value = value;
+      }
+      /**
+       * @param value The number of the enum to look for.
+       * @return The enum associated with the given number.
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static DataCase valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static DataCase forNumber(int value) {
+        switch (value) {
+          case 5: return MESSAGE;
+          case 6: return MESSAGES;
+          case 7: return LOGIN;
+          case 8: return COURSE;
+          case 9: return COURSES;
+          case 10: return NOTIFICATION;
+          case 11: return NOTIFICATIONS;
+          case 12: return REGISTER;
+          case 13: return USER;
+          case 14: return GROUP;
+          case 0: return DATA_NOT_SET;
+          default: return null;
+        }
+      }
+      public int getNumber() {
+        return this.value;
+      }
+    };
+
+    public DataCase
+    getDataCase() {
+      return DataCase.forNumber(
+          dataCase_);
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 1;
+    private int type_;
+    /**
+     * <code>.DatagramVersion1.Type type = 1;</code>
+     * @return The enum numeric value on the wire for type.
+     */
+    @java.lang.Override public int getTypeValue() {
+      return type_;
+    }
+    /**
+     * <code>.DatagramVersion1.Type type = 1;</code>
+     * @return The type.
+     */
+    @java.lang.Override public com.example.demo.datagram.DatagramProto.DatagramVersion1.Type getType() {
+      @SuppressWarnings("deprecation")
+      com.example.demo.datagram.DatagramProto.DatagramVersion1.Type result = com.example.demo.datagram.DatagramProto.DatagramVersion1.Type.valueOf(type_);
+      return result == null ? com.example.demo.datagram.DatagramProto.DatagramVersion1.Type.UNRECOGNIZED : result;
+    }
+
+    public static final int SUBTYPE_FIELD_NUMBER = 2;
+    private int subtype_;
+    /**
+     * <code>.DatagramVersion1.Subtype subtype = 2;</code>
+     * @return The enum numeric value on the wire for subtype.
+     */
+    @java.lang.Override public int getSubtypeValue() {
+      return subtype_;
+    }
+    /**
+     * <code>.DatagramVersion1.Subtype subtype = 2;</code>
+     * @return The subtype.
+     */
+    @java.lang.Override public com.example.demo.datagram.DatagramProto.DatagramVersion1.Subtype getSubtype() {
+      @SuppressWarnings("deprecation")
+      com.example.demo.datagram.DatagramProto.DatagramVersion1.Subtype result = com.example.demo.datagram.DatagramProto.DatagramVersion1.Subtype.valueOf(subtype_);
+      return result == null ? com.example.demo.datagram.DatagramProto.DatagramVersion1.Subtype.UNRECOGNIZED : result;
+    }
+
+    public static final int TOKEN_FIELD_NUMBER = 3;
+    private volatile java.lang.Object token_;
+    /**
+     * <code>string token = 3;</code>
+     * @return The token.
+     */
+    @java.lang.Override
+    public java.lang.String getToken() {
+      java.lang.Object ref = token_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        token_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string token = 3;</code>
+     * @return The bytes for token.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getTokenBytes() {
+      java.lang.Object ref = token_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        token_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int OK_FIELD_NUMBER = 4;
+    private int ok_;
+    /**
+     * <code>int32 ok = 4;</code>
+     * @return The ok.
+     */
+    @java.lang.Override
+    public int getOk() {
+      return ok_;
+    }
+
+    public static final int MESSAGE_FIELD_NUMBER = 5;
+    /**
+     * <code>.Message message = 5;</code>
+     * @return Whether the message field is set.
+     */
+    @java.lang.Override
+    public boolean hasMessage() {
+      return dataCase_ == 5;
+    }
+    /**
+     * <code>.Message message = 5;</code>
+     * @return The message.
+     */
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.Message getMessage() {
+      if (dataCase_ == 5) {
+         return (com.example.demo.datagram.DatagramProto.Message) data_;
+      }
+      return com.example.demo.datagram.DatagramProto.Message.getDefaultInstance();
+    }
+    /**
+     * <code>.Message message = 5;</code>
+     */
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.MessageOrBuilder getMessageOrBuilder() {
+      if (dataCase_ == 5) {
+         return (com.example.demo.datagram.DatagramProto.Message) data_;
+      }
+      return com.example.demo.datagram.DatagramProto.Message.getDefaultInstance();
+    }
+
+    public static final int MESSAGES_FIELD_NUMBER = 6;
+    /**
+     * <code>.Messages messages = 6;</code>
+     * @return Whether the messages field is set.
+     */
+    @java.lang.Override
+    public boolean hasMessages() {
+      return dataCase_ == 6;
+    }
+    /**
+     * <code>.Messages messages = 6;</code>
+     * @return The messages.
+     */
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.Messages getMessages() {
+      if (dataCase_ == 6) {
+         return (com.example.demo.datagram.DatagramProto.Messages) data_;
+      }
+      return com.example.demo.datagram.DatagramProto.Messages.getDefaultInstance();
+    }
+    /**
+     * <code>.Messages messages = 6;</code>
+     */
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.MessagesOrBuilder getMessagesOrBuilder() {
+      if (dataCase_ == 6) {
+         return (com.example.demo.datagram.DatagramProto.Messages) data_;
+      }
+      return com.example.demo.datagram.DatagramProto.Messages.getDefaultInstance();
+    }
+
+    public static final int LOGIN_FIELD_NUMBER = 7;
+    /**
+     * <code>.Login login = 7;</code>
+     * @return Whether the login field is set.
+     */
+    @java.lang.Override
+    public boolean hasLogin() {
+      return dataCase_ == 7;
+    }
+    /**
+     * <code>.Login login = 7;</code>
+     * @return The login.
+     */
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.Login getLogin() {
+      if (dataCase_ == 7) {
+         return (com.example.demo.datagram.DatagramProto.Login) data_;
+      }
+      return com.example.demo.datagram.DatagramProto.Login.getDefaultInstance();
+    }
+    /**
+     * <code>.Login login = 7;</code>
+     */
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.LoginOrBuilder getLoginOrBuilder() {
+      if (dataCase_ == 7) {
+         return (com.example.demo.datagram.DatagramProto.Login) data_;
+      }
+      return com.example.demo.datagram.DatagramProto.Login.getDefaultInstance();
+    }
+
+    public static final int COURSE_FIELD_NUMBER = 8;
+    /**
+     * <code>.Course course = 8;</code>
+     * @return Whether the course field is set.
+     */
+    @java.lang.Override
+    public boolean hasCourse() {
+      return dataCase_ == 8;
+    }
+    /**
+     * <code>.Course course = 8;</code>
+     * @return The course.
+     */
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.Course getCourse() {
+      if (dataCase_ == 8) {
+         return (com.example.demo.datagram.DatagramProto.Course) data_;
+      }
+      return com.example.demo.datagram.DatagramProto.Course.getDefaultInstance();
+    }
+    /**
+     * <code>.Course course = 8;</code>
+     */
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.CourseOrBuilder getCourseOrBuilder() {
+      if (dataCase_ == 8) {
+         return (com.example.demo.datagram.DatagramProto.Course) data_;
+      }
+      return com.example.demo.datagram.DatagramProto.Course.getDefaultInstance();
+    }
+
+    public static final int COURSES_FIELD_NUMBER = 9;
+    /**
+     * <code>.Courses courses = 9;</code>
+     * @return Whether the courses field is set.
+     */
+    @java.lang.Override
+    public boolean hasCourses() {
+      return dataCase_ == 9;
+    }
+    /**
+     * <code>.Courses courses = 9;</code>
+     * @return The courses.
+     */
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.Courses getCourses() {
+      if (dataCase_ == 9) {
+         return (com.example.demo.datagram.DatagramProto.Courses) data_;
+      }
+      return com.example.demo.datagram.DatagramProto.Courses.getDefaultInstance();
+    }
+    /**
+     * <code>.Courses courses = 9;</code>
+     */
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.CoursesOrBuilder getCoursesOrBuilder() {
+      if (dataCase_ == 9) {
+         return (com.example.demo.datagram.DatagramProto.Courses) data_;
+      }
+      return com.example.demo.datagram.DatagramProto.Courses.getDefaultInstance();
+    }
+
+    public static final int NOTIFICATION_FIELD_NUMBER = 10;
+    /**
+     * <code>.Notification notification = 10;</code>
+     * @return Whether the notification field is set.
+     */
+    @java.lang.Override
+    public boolean hasNotification() {
+      return dataCase_ == 10;
+    }
+    /**
+     * <code>.Notification notification = 10;</code>
+     * @return The notification.
+     */
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.Notification getNotification() {
+      if (dataCase_ == 10) {
+         return (com.example.demo.datagram.DatagramProto.Notification) data_;
+      }
+      return com.example.demo.datagram.DatagramProto.Notification.getDefaultInstance();
+    }
+    /**
+     * <code>.Notification notification = 10;</code>
+     */
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.NotificationOrBuilder getNotificationOrBuilder() {
+      if (dataCase_ == 10) {
+         return (com.example.demo.datagram.DatagramProto.Notification) data_;
+      }
+      return com.example.demo.datagram.DatagramProto.Notification.getDefaultInstance();
+    }
+
+    public static final int NOTIFICATIONS_FIELD_NUMBER = 11;
+    /**
+     * <code>.Notifications notifications = 11;</code>
+     * @return Whether the notifications field is set.
+     */
+    @java.lang.Override
+    public boolean hasNotifications() {
+      return dataCase_ == 11;
+    }
+    /**
+     * <code>.Notifications notifications = 11;</code>
+     * @return The notifications.
+     */
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.Notifications getNotifications() {
+      if (dataCase_ == 11) {
+         return (com.example.demo.datagram.DatagramProto.Notifications) data_;
+      }
+      return com.example.demo.datagram.DatagramProto.Notifications.getDefaultInstance();
+    }
+    /**
+     * <code>.Notifications notifications = 11;</code>
+     */
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.NotificationsOrBuilder getNotificationsOrBuilder() {
+      if (dataCase_ == 11) {
+         return (com.example.demo.datagram.DatagramProto.Notifications) data_;
+      }
+      return com.example.demo.datagram.DatagramProto.Notifications.getDefaultInstance();
+    }
+
+    public static final int REGISTER_FIELD_NUMBER = 12;
+    /**
+     * <code>.Register register = 12;</code>
+     * @return Whether the register field is set.
+     */
+    @java.lang.Override
+    public boolean hasRegister() {
+      return dataCase_ == 12;
+    }
+    /**
+     * <code>.Register register = 12;</code>
+     * @return The register.
+     */
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.Register getRegister() {
+      if (dataCase_ == 12) {
+         return (com.example.demo.datagram.DatagramProto.Register) data_;
+      }
+      return com.example.demo.datagram.DatagramProto.Register.getDefaultInstance();
+    }
+    /**
+     * <code>.Register register = 12;</code>
+     */
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.RegisterOrBuilder getRegisterOrBuilder() {
+      if (dataCase_ == 12) {
+         return (com.example.demo.datagram.DatagramProto.Register) data_;
+      }
+      return com.example.demo.datagram.DatagramProto.Register.getDefaultInstance();
+    }
+
+    public static final int USER_FIELD_NUMBER = 13;
+    /**
+     * <code>.User user = 13;</code>
+     * @return Whether the user field is set.
+     */
+    @java.lang.Override
+    public boolean hasUser() {
+      return dataCase_ == 13;
+    }
+    /**
+     * <code>.User user = 13;</code>
+     * @return The user.
+     */
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.User getUser() {
+      if (dataCase_ == 13) {
+         return (com.example.demo.datagram.DatagramProto.User) data_;
+      }
+      return com.example.demo.datagram.DatagramProto.User.getDefaultInstance();
+    }
+    /**
+     * <code>.User user = 13;</code>
+     */
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.UserOrBuilder getUserOrBuilder() {
+      if (dataCase_ == 13) {
+         return (com.example.demo.datagram.DatagramProto.User) data_;
+      }
+      return com.example.demo.datagram.DatagramProto.User.getDefaultInstance();
+    }
+
+    public static final int GROUP_FIELD_NUMBER = 14;
+    /**
+     * <code>.Group group = 14;</code>
+     * @return Whether the group field is set.
+     */
+    @java.lang.Override
+    public boolean hasGroup() {
+      return dataCase_ == 14;
+    }
+    /**
+     * <code>.Group group = 14;</code>
+     * @return The group.
+     */
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.Group getGroup() {
+      if (dataCase_ == 14) {
+         return (com.example.demo.datagram.DatagramProto.Group) data_;
+      }
+      return com.example.demo.datagram.DatagramProto.Group.getDefaultInstance();
+    }
+    /**
+     * <code>.Group group = 14;</code>
+     */
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.GroupOrBuilder getGroupOrBuilder() {
+      if (dataCase_ == 14) {
+         return (com.example.demo.datagram.DatagramProto.Group) data_;
+      }
+      return com.example.demo.datagram.DatagramProto.Group.getDefaultInstance();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (type_ != com.example.demo.datagram.DatagramProto.DatagramVersion1.Type.KEEP_ALIVE.getNumber()) {
+        output.writeEnum(1, type_);
+      }
+      if (subtype_ != com.example.demo.datagram.DatagramProto.DatagramVersion1.Subtype.PUSH.getNumber()) {
+        output.writeEnum(2, subtype_);
+      }
+      if (!getTokenBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, token_);
+      }
+      if (ok_ != 0) {
+        output.writeInt32(4, ok_);
+      }
+      if (dataCase_ == 5) {
+        output.writeMessage(5, (com.example.demo.datagram.DatagramProto.Message) data_);
+      }
+      if (dataCase_ == 6) {
+        output.writeMessage(6, (com.example.demo.datagram.DatagramProto.Messages) data_);
+      }
+      if (dataCase_ == 7) {
+        output.writeMessage(7, (com.example.demo.datagram.DatagramProto.Login) data_);
+      }
+      if (dataCase_ == 8) {
+        output.writeMessage(8, (com.example.demo.datagram.DatagramProto.Course) data_);
+      }
+      if (dataCase_ == 9) {
+        output.writeMessage(9, (com.example.demo.datagram.DatagramProto.Courses) data_);
+      }
+      if (dataCase_ == 10) {
+        output.writeMessage(10, (com.example.demo.datagram.DatagramProto.Notification) data_);
+      }
+      if (dataCase_ == 11) {
+        output.writeMessage(11, (com.example.demo.datagram.DatagramProto.Notifications) data_);
+      }
+      if (dataCase_ == 12) {
+        output.writeMessage(12, (com.example.demo.datagram.DatagramProto.Register) data_);
+      }
+      if (dataCase_ == 13) {
+        output.writeMessage(13, (com.example.demo.datagram.DatagramProto.User) data_);
+      }
+      if (dataCase_ == 14) {
+        output.writeMessage(14, (com.example.demo.datagram.DatagramProto.Group) data_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (type_ != com.example.demo.datagram.DatagramProto.DatagramVersion1.Type.KEEP_ALIVE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, type_);
+      }
+      if (subtype_ != com.example.demo.datagram.DatagramProto.DatagramVersion1.Subtype.PUSH.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(2, subtype_);
+      }
+      if (!getTokenBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, token_);
+      }
+      if (ok_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, ok_);
+      }
+      if (dataCase_ == 5) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, (com.example.demo.datagram.DatagramProto.Message) data_);
+      }
+      if (dataCase_ == 6) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, (com.example.demo.datagram.DatagramProto.Messages) data_);
+      }
+      if (dataCase_ == 7) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(7, (com.example.demo.datagram.DatagramProto.Login) data_);
+      }
+      if (dataCase_ == 8) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(8, (com.example.demo.datagram.DatagramProto.Course) data_);
+      }
+      if (dataCase_ == 9) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(9, (com.example.demo.datagram.DatagramProto.Courses) data_);
+      }
+      if (dataCase_ == 10) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(10, (com.example.demo.datagram.DatagramProto.Notification) data_);
+      }
+      if (dataCase_ == 11) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(11, (com.example.demo.datagram.DatagramProto.Notifications) data_);
+      }
+      if (dataCase_ == 12) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(12, (com.example.demo.datagram.DatagramProto.Register) data_);
+      }
+      if (dataCase_ == 13) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(13, (com.example.demo.datagram.DatagramProto.User) data_);
+      }
+      if (dataCase_ == 14) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(14, (com.example.demo.datagram.DatagramProto.Group) data_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.example.demo.datagram.DatagramProto.DatagramVersion1)) {
+        return super.equals(obj);
+      }
+      com.example.demo.datagram.DatagramProto.DatagramVersion1 other = (com.example.demo.datagram.DatagramProto.DatagramVersion1) obj;
+
+      if (type_ != other.type_) return false;
+      if (subtype_ != other.subtype_) return false;
+      if (!getToken()
+          .equals(other.getToken())) return false;
+      if (getOk()
+          != other.getOk()) return false;
+      if (!getDataCase().equals(other.getDataCase())) return false;
+      switch (dataCase_) {
+        case 5:
+          if (!getMessage()
+              .equals(other.getMessage())) return false;
+          break;
+        case 6:
+          if (!getMessages()
+              .equals(other.getMessages())) return false;
+          break;
+        case 7:
+          if (!getLogin()
+              .equals(other.getLogin())) return false;
+          break;
+        case 8:
+          if (!getCourse()
+              .equals(other.getCourse())) return false;
+          break;
+        case 9:
+          if (!getCourses()
+              .equals(other.getCourses())) return false;
+          break;
+        case 10:
+          if (!getNotification()
+              .equals(other.getNotification())) return false;
+          break;
+        case 11:
+          if (!getNotifications()
+              .equals(other.getNotifications())) return false;
+          break;
+        case 12:
+          if (!getRegister()
+              .equals(other.getRegister())) return false;
+          break;
+        case 13:
+          if (!getUser()
+              .equals(other.getUser())) return false;
+          break;
+        case 14:
+          if (!getGroup()
+              .equals(other.getGroup())) return false;
+          break;
+        case 0:
+        default:
+      }
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + type_;
+      hash = (37 * hash) + SUBTYPE_FIELD_NUMBER;
+      hash = (53 * hash) + subtype_;
+      hash = (37 * hash) + TOKEN_FIELD_NUMBER;
+      hash = (53 * hash) + getToken().hashCode();
+      hash = (37 * hash) + OK_FIELD_NUMBER;
+      hash = (53 * hash) + getOk();
+      switch (dataCase_) {
+        case 5:
+          hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
+          hash = (53 * hash) + getMessage().hashCode();
+          break;
+        case 6:
+          hash = (37 * hash) + MESSAGES_FIELD_NUMBER;
+          hash = (53 * hash) + getMessages().hashCode();
+          break;
+        case 7:
+          hash = (37 * hash) + LOGIN_FIELD_NUMBER;
+          hash = (53 * hash) + getLogin().hashCode();
+          break;
+        case 8:
+          hash = (37 * hash) + COURSE_FIELD_NUMBER;
+          hash = (53 * hash) + getCourse().hashCode();
+          break;
+        case 9:
+          hash = (37 * hash) + COURSES_FIELD_NUMBER;
+          hash = (53 * hash) + getCourses().hashCode();
+          break;
+        case 10:
+          hash = (37 * hash) + NOTIFICATION_FIELD_NUMBER;
+          hash = (53 * hash) + getNotification().hashCode();
+          break;
+        case 11:
+          hash = (37 * hash) + NOTIFICATIONS_FIELD_NUMBER;
+          hash = (53 * hash) + getNotifications().hashCode();
+          break;
+        case 12:
+          hash = (37 * hash) + REGISTER_FIELD_NUMBER;
+          hash = (53 * hash) + getRegister().hashCode();
+          break;
+        case 13:
+          hash = (37 * hash) + USER_FIELD_NUMBER;
+          hash = (53 * hash) + getUser().hashCode();
+          break;
+        case 14:
+          hash = (37 * hash) + GROUP_FIELD_NUMBER;
+          hash = (53 * hash) + getGroup().hashCode();
+          break;
+        case 0:
+        default:
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.example.demo.datagram.DatagramProto.DatagramVersion1 parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.demo.datagram.DatagramProto.DatagramVersion1 parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.demo.datagram.DatagramProto.DatagramVersion1 parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.demo.datagram.DatagramProto.DatagramVersion1 parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.demo.datagram.DatagramProto.DatagramVersion1 parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.demo.datagram.DatagramProto.DatagramVersion1 parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.demo.datagram.DatagramProto.DatagramVersion1 parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.demo.datagram.DatagramProto.DatagramVersion1 parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.demo.datagram.DatagramProto.DatagramVersion1 parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.example.demo.datagram.DatagramProto.DatagramVersion1 parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.demo.datagram.DatagramProto.DatagramVersion1 parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.demo.datagram.DatagramProto.DatagramVersion1 parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.example.demo.datagram.DatagramProto.DatagramVersion1 prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code DatagramVersion1}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:DatagramVersion1)
+        com.example.demo.datagram.DatagramProto.DatagramVersion1OrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.example.demo.datagram.DatagramProto.internal_static_DatagramVersion1_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.example.demo.datagram.DatagramProto.internal_static_DatagramVersion1_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.example.demo.datagram.DatagramProto.DatagramVersion1.class, com.example.demo.datagram.DatagramProto.DatagramVersion1.Builder.class);
+      }
+
+      // Construct using com.example.demo.datagram.DatagramProto.DatagramVersion1.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        type_ = 0;
+
+        subtype_ = 0;
+
+        token_ = "";
+
+        ok_ = 0;
+
+        dataCase_ = 0;
+        data_ = null;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.example.demo.datagram.DatagramProto.internal_static_DatagramVersion1_descriptor;
+      }
+
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.DatagramVersion1 getDefaultInstanceForType() {
+        return com.example.demo.datagram.DatagramProto.DatagramVersion1.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.DatagramVersion1 build() {
+        com.example.demo.datagram.DatagramProto.DatagramVersion1 result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.DatagramVersion1 buildPartial() {
+        com.example.demo.datagram.DatagramProto.DatagramVersion1 result = new com.example.demo.datagram.DatagramProto.DatagramVersion1(this);
+        result.type_ = type_;
+        result.subtype_ = subtype_;
+        result.token_ = token_;
+        result.ok_ = ok_;
+        if (dataCase_ == 5) {
+          if (messageBuilder_ == null) {
+            result.data_ = data_;
+          } else {
+            result.data_ = messageBuilder_.build();
+          }
+        }
+        if (dataCase_ == 6) {
+          if (messagesBuilder_ == null) {
+            result.data_ = data_;
+          } else {
+            result.data_ = messagesBuilder_.build();
+          }
+        }
+        if (dataCase_ == 7) {
+          if (loginBuilder_ == null) {
+            result.data_ = data_;
+          } else {
+            result.data_ = loginBuilder_.build();
+          }
+        }
+        if (dataCase_ == 8) {
+          if (courseBuilder_ == null) {
+            result.data_ = data_;
+          } else {
+            result.data_ = courseBuilder_.build();
+          }
+        }
+        if (dataCase_ == 9) {
+          if (coursesBuilder_ == null) {
+            result.data_ = data_;
+          } else {
+            result.data_ = coursesBuilder_.build();
+          }
+        }
+        if (dataCase_ == 10) {
+          if (notificationBuilder_ == null) {
+            result.data_ = data_;
+          } else {
+            result.data_ = notificationBuilder_.build();
+          }
+        }
+        if (dataCase_ == 11) {
+          if (notificationsBuilder_ == null) {
+            result.data_ = data_;
+          } else {
+            result.data_ = notificationsBuilder_.build();
+          }
+        }
+        if (dataCase_ == 12) {
+          if (registerBuilder_ == null) {
+            result.data_ = data_;
+          } else {
+            result.data_ = registerBuilder_.build();
+          }
+        }
+        if (dataCase_ == 13) {
+          if (userBuilder_ == null) {
+            result.data_ = data_;
+          } else {
+            result.data_ = userBuilder_.build();
+          }
+        }
+        if (dataCase_ == 14) {
+          if (groupBuilder_ == null) {
+            result.data_ = data_;
+          } else {
+            result.data_ = groupBuilder_.build();
+          }
+        }
+        result.dataCase_ = dataCase_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.example.demo.datagram.DatagramProto.DatagramVersion1) {
+          return mergeFrom((com.example.demo.datagram.DatagramProto.DatagramVersion1)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.example.demo.datagram.DatagramProto.DatagramVersion1 other) {
+        if (other == com.example.demo.datagram.DatagramProto.DatagramVersion1.getDefaultInstance()) return this;
+        if (other.type_ != 0) {
+          setTypeValue(other.getTypeValue());
+        }
+        if (other.subtype_ != 0) {
+          setSubtypeValue(other.getSubtypeValue());
+        }
+        if (!other.getToken().isEmpty()) {
+          token_ = other.token_;
+          onChanged();
+        }
+        if (other.getOk() != 0) {
+          setOk(other.getOk());
+        }
+        switch (other.getDataCase()) {
+          case MESSAGE: {
+            mergeMessage(other.getMessage());
+            break;
+          }
+          case MESSAGES: {
+            mergeMessages(other.getMessages());
+            break;
+          }
+          case LOGIN: {
+            mergeLogin(other.getLogin());
+            break;
+          }
+          case COURSE: {
+            mergeCourse(other.getCourse());
+            break;
+          }
+          case COURSES: {
+            mergeCourses(other.getCourses());
+            break;
+          }
+          case NOTIFICATION: {
+            mergeNotification(other.getNotification());
+            break;
+          }
+          case NOTIFICATIONS: {
+            mergeNotifications(other.getNotifications());
+            break;
+          }
+          case REGISTER: {
+            mergeRegister(other.getRegister());
+            break;
+          }
+          case USER: {
+            mergeUser(other.getUser());
+            break;
+          }
+          case GROUP: {
+            mergeGroup(other.getGroup());
+            break;
+          }
+          case DATA_NOT_SET: {
+            break;
+          }
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.example.demo.datagram.DatagramProto.DatagramVersion1 parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.example.demo.datagram.DatagramProto.DatagramVersion1) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int dataCase_ = 0;
+      private java.lang.Object data_;
+      public DataCase
+          getDataCase() {
+        return DataCase.forNumber(
+            dataCase_);
+      }
+
+      public Builder clearData() {
+        dataCase_ = 0;
+        data_ = null;
+        onChanged();
+        return this;
+      }
+
+
+      private int type_ = 0;
+      /**
+       * <code>.DatagramVersion1.Type type = 1;</code>
+       * @return The enum numeric value on the wire for type.
+       */
+      @java.lang.Override public int getTypeValue() {
+        return type_;
+      }
+      /**
+       * <code>.DatagramVersion1.Type type = 1;</code>
+       * @param value The enum numeric value on the wire for type to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTypeValue(int value) {
+        
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.DatagramVersion1.Type type = 1;</code>
+       * @return The type.
+       */
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.DatagramVersion1.Type getType() {
+        @SuppressWarnings("deprecation")
+        com.example.demo.datagram.DatagramProto.DatagramVersion1.Type result = com.example.demo.datagram.DatagramProto.DatagramVersion1.Type.valueOf(type_);
+        return result == null ? com.example.demo.datagram.DatagramProto.DatagramVersion1.Type.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.DatagramVersion1.Type type = 1;</code>
+       * @param value The type to set.
+       * @return This builder for chaining.
+       */
+      public Builder setType(com.example.demo.datagram.DatagramProto.DatagramVersion1.Type value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        type_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.DatagramVersion1.Type type = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearType() {
+        
+        type_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int subtype_ = 0;
+      /**
+       * <code>.DatagramVersion1.Subtype subtype = 2;</code>
+       * @return The enum numeric value on the wire for subtype.
+       */
+      @java.lang.Override public int getSubtypeValue() {
+        return subtype_;
+      }
+      /**
+       * <code>.DatagramVersion1.Subtype subtype = 2;</code>
+       * @param value The enum numeric value on the wire for subtype to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSubtypeValue(int value) {
+        
+        subtype_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.DatagramVersion1.Subtype subtype = 2;</code>
+       * @return The subtype.
+       */
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.DatagramVersion1.Subtype getSubtype() {
+        @SuppressWarnings("deprecation")
+        com.example.demo.datagram.DatagramProto.DatagramVersion1.Subtype result = com.example.demo.datagram.DatagramProto.DatagramVersion1.Subtype.valueOf(subtype_);
+        return result == null ? com.example.demo.datagram.DatagramProto.DatagramVersion1.Subtype.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.DatagramVersion1.Subtype subtype = 2;</code>
+       * @param value The subtype to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSubtype(com.example.demo.datagram.DatagramProto.DatagramVersion1.Subtype value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        subtype_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.DatagramVersion1.Subtype subtype = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearSubtype() {
+        
+        subtype_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object token_ = "";
+      /**
+       * <code>string token = 3;</code>
+       * @return The token.
+       */
+      public java.lang.String getToken() {
+        java.lang.Object ref = token_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          token_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string token = 3;</code>
+       * @return The bytes for token.
+       */
+      public com.google.protobuf.ByteString
+          getTokenBytes() {
+        java.lang.Object ref = token_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          token_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string token = 3;</code>
+       * @param value The token to set.
+       * @return This builder for chaining.
+       */
+      public Builder setToken(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        token_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string token = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearToken() {
+        
+        token_ = getDefaultInstance().getToken();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string token = 3;</code>
+       * @param value The bytes for token to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTokenBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        token_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int ok_ ;
+      /**
+       * <code>int32 ok = 4;</code>
+       * @return The ok.
+       */
+      @java.lang.Override
+      public int getOk() {
+        return ok_;
+      }
+      /**
+       * <code>int32 ok = 4;</code>
+       * @param value The ok to set.
+       * @return This builder for chaining.
+       */
+      public Builder setOk(int value) {
+        
+        ok_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 ok = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearOk() {
+        
+        ok_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.demo.datagram.DatagramProto.Message, com.example.demo.datagram.DatagramProto.Message.Builder, com.example.demo.datagram.DatagramProto.MessageOrBuilder> messageBuilder_;
+      /**
+       * <code>.Message message = 5;</code>
+       * @return Whether the message field is set.
+       */
+      @java.lang.Override
+      public boolean hasMessage() {
+        return dataCase_ == 5;
+      }
+      /**
+       * <code>.Message message = 5;</code>
+       * @return The message.
+       */
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.Message getMessage() {
+        if (messageBuilder_ == null) {
+          if (dataCase_ == 5) {
+            return (com.example.demo.datagram.DatagramProto.Message) data_;
+          }
+          return com.example.demo.datagram.DatagramProto.Message.getDefaultInstance();
+        } else {
+          if (dataCase_ == 5) {
+            return messageBuilder_.getMessage();
+          }
+          return com.example.demo.datagram.DatagramProto.Message.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.Message message = 5;</code>
+       */
+      public Builder setMessage(com.example.demo.datagram.DatagramProto.Message value) {
+        if (messageBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          data_ = value;
+          onChanged();
+        } else {
+          messageBuilder_.setMessage(value);
+        }
+        dataCase_ = 5;
+        return this;
+      }
+      /**
+       * <code>.Message message = 5;</code>
+       */
+      public Builder setMessage(
+          com.example.demo.datagram.DatagramProto.Message.Builder builderForValue) {
+        if (messageBuilder_ == null) {
+          data_ = builderForValue.build();
+          onChanged();
+        } else {
+          messageBuilder_.setMessage(builderForValue.build());
+        }
+        dataCase_ = 5;
+        return this;
+      }
+      /**
+       * <code>.Message message = 5;</code>
+       */
+      public Builder mergeMessage(com.example.demo.datagram.DatagramProto.Message value) {
+        if (messageBuilder_ == null) {
+          if (dataCase_ == 5 &&
+              data_ != com.example.demo.datagram.DatagramProto.Message.getDefaultInstance()) {
+            data_ = com.example.demo.datagram.DatagramProto.Message.newBuilder((com.example.demo.datagram.DatagramProto.Message) data_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            data_ = value;
+          }
+          onChanged();
+        } else {
+          if (dataCase_ == 5) {
+            messageBuilder_.mergeFrom(value);
+          }
+          messageBuilder_.setMessage(value);
+        }
+        dataCase_ = 5;
+        return this;
+      }
+      /**
+       * <code>.Message message = 5;</code>
+       */
+      public Builder clearMessage() {
+        if (messageBuilder_ == null) {
+          if (dataCase_ == 5) {
+            dataCase_ = 0;
+            data_ = null;
+            onChanged();
+          }
+        } else {
+          if (dataCase_ == 5) {
+            dataCase_ = 0;
+            data_ = null;
+          }
+          messageBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.Message message = 5;</code>
+       */
+      public com.example.demo.datagram.DatagramProto.Message.Builder getMessageBuilder() {
+        return getMessageFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.Message message = 5;</code>
+       */
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.MessageOrBuilder getMessageOrBuilder() {
+        if ((dataCase_ == 5) && (messageBuilder_ != null)) {
+          return messageBuilder_.getMessageOrBuilder();
+        } else {
+          if (dataCase_ == 5) {
+            return (com.example.demo.datagram.DatagramProto.Message) data_;
+          }
+          return com.example.demo.datagram.DatagramProto.Message.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.Message message = 5;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.demo.datagram.DatagramProto.Message, com.example.demo.datagram.DatagramProto.Message.Builder, com.example.demo.datagram.DatagramProto.MessageOrBuilder> 
+          getMessageFieldBuilder() {
+        if (messageBuilder_ == null) {
+          if (!(dataCase_ == 5)) {
+            data_ = com.example.demo.datagram.DatagramProto.Message.getDefaultInstance();
+          }
+          messageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.example.demo.datagram.DatagramProto.Message, com.example.demo.datagram.DatagramProto.Message.Builder, com.example.demo.datagram.DatagramProto.MessageOrBuilder>(
+                  (com.example.demo.datagram.DatagramProto.Message) data_,
+                  getParentForChildren(),
+                  isClean());
+          data_ = null;
+        }
+        dataCase_ = 5;
+        onChanged();;
+        return messageBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.demo.datagram.DatagramProto.Messages, com.example.demo.datagram.DatagramProto.Messages.Builder, com.example.demo.datagram.DatagramProto.MessagesOrBuilder> messagesBuilder_;
+      /**
+       * <code>.Messages messages = 6;</code>
+       * @return Whether the messages field is set.
+       */
+      @java.lang.Override
+      public boolean hasMessages() {
+        return dataCase_ == 6;
+      }
+      /**
+       * <code>.Messages messages = 6;</code>
+       * @return The messages.
+       */
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.Messages getMessages() {
+        if (messagesBuilder_ == null) {
+          if (dataCase_ == 6) {
+            return (com.example.demo.datagram.DatagramProto.Messages) data_;
+          }
+          return com.example.demo.datagram.DatagramProto.Messages.getDefaultInstance();
+        } else {
+          if (dataCase_ == 6) {
+            return messagesBuilder_.getMessage();
+          }
+          return com.example.demo.datagram.DatagramProto.Messages.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.Messages messages = 6;</code>
+       */
+      public Builder setMessages(com.example.demo.datagram.DatagramProto.Messages value) {
+        if (messagesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          data_ = value;
+          onChanged();
+        } else {
+          messagesBuilder_.setMessage(value);
+        }
+        dataCase_ = 6;
+        return this;
+      }
+      /**
+       * <code>.Messages messages = 6;</code>
+       */
+      public Builder setMessages(
+          com.example.demo.datagram.DatagramProto.Messages.Builder builderForValue) {
+        if (messagesBuilder_ == null) {
+          data_ = builderForValue.build();
+          onChanged();
+        } else {
+          messagesBuilder_.setMessage(builderForValue.build());
+        }
+        dataCase_ = 6;
+        return this;
+      }
+      /**
+       * <code>.Messages messages = 6;</code>
+       */
+      public Builder mergeMessages(com.example.demo.datagram.DatagramProto.Messages value) {
+        if (messagesBuilder_ == null) {
+          if (dataCase_ == 6 &&
+              data_ != com.example.demo.datagram.DatagramProto.Messages.getDefaultInstance()) {
+            data_ = com.example.demo.datagram.DatagramProto.Messages.newBuilder((com.example.demo.datagram.DatagramProto.Messages) data_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            data_ = value;
+          }
+          onChanged();
+        } else {
+          if (dataCase_ == 6) {
+            messagesBuilder_.mergeFrom(value);
+          }
+          messagesBuilder_.setMessage(value);
+        }
+        dataCase_ = 6;
+        return this;
+      }
+      /**
+       * <code>.Messages messages = 6;</code>
+       */
+      public Builder clearMessages() {
+        if (messagesBuilder_ == null) {
+          if (dataCase_ == 6) {
+            dataCase_ = 0;
+            data_ = null;
+            onChanged();
+          }
+        } else {
+          if (dataCase_ == 6) {
+            dataCase_ = 0;
+            data_ = null;
+          }
+          messagesBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.Messages messages = 6;</code>
+       */
+      public com.example.demo.datagram.DatagramProto.Messages.Builder getMessagesBuilder() {
+        return getMessagesFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.Messages messages = 6;</code>
+       */
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.MessagesOrBuilder getMessagesOrBuilder() {
+        if ((dataCase_ == 6) && (messagesBuilder_ != null)) {
+          return messagesBuilder_.getMessageOrBuilder();
+        } else {
+          if (dataCase_ == 6) {
+            return (com.example.demo.datagram.DatagramProto.Messages) data_;
+          }
+          return com.example.demo.datagram.DatagramProto.Messages.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.Messages messages = 6;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.demo.datagram.DatagramProto.Messages, com.example.demo.datagram.DatagramProto.Messages.Builder, com.example.demo.datagram.DatagramProto.MessagesOrBuilder> 
+          getMessagesFieldBuilder() {
+        if (messagesBuilder_ == null) {
+          if (!(dataCase_ == 6)) {
+            data_ = com.example.demo.datagram.DatagramProto.Messages.getDefaultInstance();
+          }
+          messagesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.example.demo.datagram.DatagramProto.Messages, com.example.demo.datagram.DatagramProto.Messages.Builder, com.example.demo.datagram.DatagramProto.MessagesOrBuilder>(
+                  (com.example.demo.datagram.DatagramProto.Messages) data_,
+                  getParentForChildren(),
+                  isClean());
+          data_ = null;
+        }
+        dataCase_ = 6;
+        onChanged();;
+        return messagesBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.demo.datagram.DatagramProto.Login, com.example.demo.datagram.DatagramProto.Login.Builder, com.example.demo.datagram.DatagramProto.LoginOrBuilder> loginBuilder_;
+      /**
+       * <code>.Login login = 7;</code>
+       * @return Whether the login field is set.
+       */
+      @java.lang.Override
+      public boolean hasLogin() {
+        return dataCase_ == 7;
+      }
+      /**
+       * <code>.Login login = 7;</code>
+       * @return The login.
+       */
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.Login getLogin() {
+        if (loginBuilder_ == null) {
+          if (dataCase_ == 7) {
+            return (com.example.demo.datagram.DatagramProto.Login) data_;
+          }
+          return com.example.demo.datagram.DatagramProto.Login.getDefaultInstance();
+        } else {
+          if (dataCase_ == 7) {
+            return loginBuilder_.getMessage();
+          }
+          return com.example.demo.datagram.DatagramProto.Login.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.Login login = 7;</code>
+       */
+      public Builder setLogin(com.example.demo.datagram.DatagramProto.Login value) {
+        if (loginBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          data_ = value;
+          onChanged();
+        } else {
+          loginBuilder_.setMessage(value);
+        }
+        dataCase_ = 7;
+        return this;
+      }
+      /**
+       * <code>.Login login = 7;</code>
+       */
+      public Builder setLogin(
+          com.example.demo.datagram.DatagramProto.Login.Builder builderForValue) {
+        if (loginBuilder_ == null) {
+          data_ = builderForValue.build();
+          onChanged();
+        } else {
+          loginBuilder_.setMessage(builderForValue.build());
+        }
+        dataCase_ = 7;
+        return this;
+      }
+      /**
+       * <code>.Login login = 7;</code>
+       */
+      public Builder mergeLogin(com.example.demo.datagram.DatagramProto.Login value) {
+        if (loginBuilder_ == null) {
+          if (dataCase_ == 7 &&
+              data_ != com.example.demo.datagram.DatagramProto.Login.getDefaultInstance()) {
+            data_ = com.example.demo.datagram.DatagramProto.Login.newBuilder((com.example.demo.datagram.DatagramProto.Login) data_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            data_ = value;
+          }
+          onChanged();
+        } else {
+          if (dataCase_ == 7) {
+            loginBuilder_.mergeFrom(value);
+          }
+          loginBuilder_.setMessage(value);
+        }
+        dataCase_ = 7;
+        return this;
+      }
+      /**
+       * <code>.Login login = 7;</code>
+       */
+      public Builder clearLogin() {
+        if (loginBuilder_ == null) {
+          if (dataCase_ == 7) {
+            dataCase_ = 0;
+            data_ = null;
+            onChanged();
+          }
+        } else {
+          if (dataCase_ == 7) {
+            dataCase_ = 0;
+            data_ = null;
+          }
+          loginBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.Login login = 7;</code>
+       */
+      public com.example.demo.datagram.DatagramProto.Login.Builder getLoginBuilder() {
+        return getLoginFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.Login login = 7;</code>
+       */
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.LoginOrBuilder getLoginOrBuilder() {
+        if ((dataCase_ == 7) && (loginBuilder_ != null)) {
+          return loginBuilder_.getMessageOrBuilder();
+        } else {
+          if (dataCase_ == 7) {
+            return (com.example.demo.datagram.DatagramProto.Login) data_;
+          }
+          return com.example.demo.datagram.DatagramProto.Login.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.Login login = 7;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.demo.datagram.DatagramProto.Login, com.example.demo.datagram.DatagramProto.Login.Builder, com.example.demo.datagram.DatagramProto.LoginOrBuilder> 
+          getLoginFieldBuilder() {
+        if (loginBuilder_ == null) {
+          if (!(dataCase_ == 7)) {
+            data_ = com.example.demo.datagram.DatagramProto.Login.getDefaultInstance();
+          }
+          loginBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.example.demo.datagram.DatagramProto.Login, com.example.demo.datagram.DatagramProto.Login.Builder, com.example.demo.datagram.DatagramProto.LoginOrBuilder>(
+                  (com.example.demo.datagram.DatagramProto.Login) data_,
+                  getParentForChildren(),
+                  isClean());
+          data_ = null;
+        }
+        dataCase_ = 7;
+        onChanged();;
+        return loginBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.demo.datagram.DatagramProto.Course, com.example.demo.datagram.DatagramProto.Course.Builder, com.example.demo.datagram.DatagramProto.CourseOrBuilder> courseBuilder_;
+      /**
+       * <code>.Course course = 8;</code>
+       * @return Whether the course field is set.
+       */
+      @java.lang.Override
+      public boolean hasCourse() {
+        return dataCase_ == 8;
+      }
+      /**
+       * <code>.Course course = 8;</code>
+       * @return The course.
+       */
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.Course getCourse() {
+        if (courseBuilder_ == null) {
+          if (dataCase_ == 8) {
+            return (com.example.demo.datagram.DatagramProto.Course) data_;
+          }
+          return com.example.demo.datagram.DatagramProto.Course.getDefaultInstance();
+        } else {
+          if (dataCase_ == 8) {
+            return courseBuilder_.getMessage();
+          }
+          return com.example.demo.datagram.DatagramProto.Course.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.Course course = 8;</code>
+       */
+      public Builder setCourse(com.example.demo.datagram.DatagramProto.Course value) {
+        if (courseBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          data_ = value;
+          onChanged();
+        } else {
+          courseBuilder_.setMessage(value);
+        }
+        dataCase_ = 8;
+        return this;
+      }
+      /**
+       * <code>.Course course = 8;</code>
+       */
+      public Builder setCourse(
+          com.example.demo.datagram.DatagramProto.Course.Builder builderForValue) {
+        if (courseBuilder_ == null) {
+          data_ = builderForValue.build();
+          onChanged();
+        } else {
+          courseBuilder_.setMessage(builderForValue.build());
+        }
+        dataCase_ = 8;
+        return this;
+      }
+      /**
+       * <code>.Course course = 8;</code>
+       */
+      public Builder mergeCourse(com.example.demo.datagram.DatagramProto.Course value) {
+        if (courseBuilder_ == null) {
+          if (dataCase_ == 8 &&
+              data_ != com.example.demo.datagram.DatagramProto.Course.getDefaultInstance()) {
+            data_ = com.example.demo.datagram.DatagramProto.Course.newBuilder((com.example.demo.datagram.DatagramProto.Course) data_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            data_ = value;
+          }
+          onChanged();
+        } else {
+          if (dataCase_ == 8) {
+            courseBuilder_.mergeFrom(value);
+          }
+          courseBuilder_.setMessage(value);
+        }
+        dataCase_ = 8;
+        return this;
+      }
+      /**
+       * <code>.Course course = 8;</code>
+       */
+      public Builder clearCourse() {
+        if (courseBuilder_ == null) {
+          if (dataCase_ == 8) {
+            dataCase_ = 0;
+            data_ = null;
+            onChanged();
+          }
+        } else {
+          if (dataCase_ == 8) {
+            dataCase_ = 0;
+            data_ = null;
+          }
+          courseBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.Course course = 8;</code>
+       */
+      public com.example.demo.datagram.DatagramProto.Course.Builder getCourseBuilder() {
+        return getCourseFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.Course course = 8;</code>
+       */
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.CourseOrBuilder getCourseOrBuilder() {
+        if ((dataCase_ == 8) && (courseBuilder_ != null)) {
+          return courseBuilder_.getMessageOrBuilder();
+        } else {
+          if (dataCase_ == 8) {
+            return (com.example.demo.datagram.DatagramProto.Course) data_;
+          }
+          return com.example.demo.datagram.DatagramProto.Course.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.Course course = 8;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.demo.datagram.DatagramProto.Course, com.example.demo.datagram.DatagramProto.Course.Builder, com.example.demo.datagram.DatagramProto.CourseOrBuilder> 
+          getCourseFieldBuilder() {
+        if (courseBuilder_ == null) {
+          if (!(dataCase_ == 8)) {
+            data_ = com.example.demo.datagram.DatagramProto.Course.getDefaultInstance();
+          }
+          courseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.example.demo.datagram.DatagramProto.Course, com.example.demo.datagram.DatagramProto.Course.Builder, com.example.demo.datagram.DatagramProto.CourseOrBuilder>(
+                  (com.example.demo.datagram.DatagramProto.Course) data_,
+                  getParentForChildren(),
+                  isClean());
+          data_ = null;
+        }
+        dataCase_ = 8;
+        onChanged();;
+        return courseBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.demo.datagram.DatagramProto.Courses, com.example.demo.datagram.DatagramProto.Courses.Builder, com.example.demo.datagram.DatagramProto.CoursesOrBuilder> coursesBuilder_;
+      /**
+       * <code>.Courses courses = 9;</code>
+       * @return Whether the courses field is set.
+       */
+      @java.lang.Override
+      public boolean hasCourses() {
+        return dataCase_ == 9;
+      }
+      /**
+       * <code>.Courses courses = 9;</code>
+       * @return The courses.
+       */
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.Courses getCourses() {
+        if (coursesBuilder_ == null) {
+          if (dataCase_ == 9) {
+            return (com.example.demo.datagram.DatagramProto.Courses) data_;
+          }
+          return com.example.demo.datagram.DatagramProto.Courses.getDefaultInstance();
+        } else {
+          if (dataCase_ == 9) {
+            return coursesBuilder_.getMessage();
+          }
+          return com.example.demo.datagram.DatagramProto.Courses.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.Courses courses = 9;</code>
+       */
+      public Builder setCourses(com.example.demo.datagram.DatagramProto.Courses value) {
+        if (coursesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          data_ = value;
+          onChanged();
+        } else {
+          coursesBuilder_.setMessage(value);
+        }
+        dataCase_ = 9;
+        return this;
+      }
+      /**
+       * <code>.Courses courses = 9;</code>
+       */
+      public Builder setCourses(
+          com.example.demo.datagram.DatagramProto.Courses.Builder builderForValue) {
+        if (coursesBuilder_ == null) {
+          data_ = builderForValue.build();
+          onChanged();
+        } else {
+          coursesBuilder_.setMessage(builderForValue.build());
+        }
+        dataCase_ = 9;
+        return this;
+      }
+      /**
+       * <code>.Courses courses = 9;</code>
+       */
+      public Builder mergeCourses(com.example.demo.datagram.DatagramProto.Courses value) {
+        if (coursesBuilder_ == null) {
+          if (dataCase_ == 9 &&
+              data_ != com.example.demo.datagram.DatagramProto.Courses.getDefaultInstance()) {
+            data_ = com.example.demo.datagram.DatagramProto.Courses.newBuilder((com.example.demo.datagram.DatagramProto.Courses) data_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            data_ = value;
+          }
+          onChanged();
+        } else {
+          if (dataCase_ == 9) {
+            coursesBuilder_.mergeFrom(value);
+          }
+          coursesBuilder_.setMessage(value);
+        }
+        dataCase_ = 9;
+        return this;
+      }
+      /**
+       * <code>.Courses courses = 9;</code>
+       */
+      public Builder clearCourses() {
+        if (coursesBuilder_ == null) {
+          if (dataCase_ == 9) {
+            dataCase_ = 0;
+            data_ = null;
+            onChanged();
+          }
+        } else {
+          if (dataCase_ == 9) {
+            dataCase_ = 0;
+            data_ = null;
+          }
+          coursesBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.Courses courses = 9;</code>
+       */
+      public com.example.demo.datagram.DatagramProto.Courses.Builder getCoursesBuilder() {
+        return getCoursesFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.Courses courses = 9;</code>
+       */
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.CoursesOrBuilder getCoursesOrBuilder() {
+        if ((dataCase_ == 9) && (coursesBuilder_ != null)) {
+          return coursesBuilder_.getMessageOrBuilder();
+        } else {
+          if (dataCase_ == 9) {
+            return (com.example.demo.datagram.DatagramProto.Courses) data_;
+          }
+          return com.example.demo.datagram.DatagramProto.Courses.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.Courses courses = 9;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.demo.datagram.DatagramProto.Courses, com.example.demo.datagram.DatagramProto.Courses.Builder, com.example.demo.datagram.DatagramProto.CoursesOrBuilder> 
+          getCoursesFieldBuilder() {
+        if (coursesBuilder_ == null) {
+          if (!(dataCase_ == 9)) {
+            data_ = com.example.demo.datagram.DatagramProto.Courses.getDefaultInstance();
+          }
+          coursesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.example.demo.datagram.DatagramProto.Courses, com.example.demo.datagram.DatagramProto.Courses.Builder, com.example.demo.datagram.DatagramProto.CoursesOrBuilder>(
+                  (com.example.demo.datagram.DatagramProto.Courses) data_,
+                  getParentForChildren(),
+                  isClean());
+          data_ = null;
+        }
+        dataCase_ = 9;
+        onChanged();;
+        return coursesBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.demo.datagram.DatagramProto.Notification, com.example.demo.datagram.DatagramProto.Notification.Builder, com.example.demo.datagram.DatagramProto.NotificationOrBuilder> notificationBuilder_;
+      /**
+       * <code>.Notification notification = 10;</code>
+       * @return Whether the notification field is set.
+       */
+      @java.lang.Override
+      public boolean hasNotification() {
+        return dataCase_ == 10;
+      }
+      /**
+       * <code>.Notification notification = 10;</code>
+       * @return The notification.
+       */
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.Notification getNotification() {
+        if (notificationBuilder_ == null) {
+          if (dataCase_ == 10) {
+            return (com.example.demo.datagram.DatagramProto.Notification) data_;
+          }
+          return com.example.demo.datagram.DatagramProto.Notification.getDefaultInstance();
+        } else {
+          if (dataCase_ == 10) {
+            return notificationBuilder_.getMessage();
+          }
+          return com.example.demo.datagram.DatagramProto.Notification.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.Notification notification = 10;</code>
+       */
+      public Builder setNotification(com.example.demo.datagram.DatagramProto.Notification value) {
+        if (notificationBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          data_ = value;
+          onChanged();
+        } else {
+          notificationBuilder_.setMessage(value);
+        }
+        dataCase_ = 10;
+        return this;
+      }
+      /**
+       * <code>.Notification notification = 10;</code>
+       */
+      public Builder setNotification(
+          com.example.demo.datagram.DatagramProto.Notification.Builder builderForValue) {
+        if (notificationBuilder_ == null) {
+          data_ = builderForValue.build();
+          onChanged();
+        } else {
+          notificationBuilder_.setMessage(builderForValue.build());
+        }
+        dataCase_ = 10;
+        return this;
+      }
+      /**
+       * <code>.Notification notification = 10;</code>
+       */
+      public Builder mergeNotification(com.example.demo.datagram.DatagramProto.Notification value) {
+        if (notificationBuilder_ == null) {
+          if (dataCase_ == 10 &&
+              data_ != com.example.demo.datagram.DatagramProto.Notification.getDefaultInstance()) {
+            data_ = com.example.demo.datagram.DatagramProto.Notification.newBuilder((com.example.demo.datagram.DatagramProto.Notification) data_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            data_ = value;
+          }
+          onChanged();
+        } else {
+          if (dataCase_ == 10) {
+            notificationBuilder_.mergeFrom(value);
+          }
+          notificationBuilder_.setMessage(value);
+        }
+        dataCase_ = 10;
+        return this;
+      }
+      /**
+       * <code>.Notification notification = 10;</code>
+       */
+      public Builder clearNotification() {
+        if (notificationBuilder_ == null) {
+          if (dataCase_ == 10) {
+            dataCase_ = 0;
+            data_ = null;
+            onChanged();
+          }
+        } else {
+          if (dataCase_ == 10) {
+            dataCase_ = 0;
+            data_ = null;
+          }
+          notificationBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.Notification notification = 10;</code>
+       */
+      public com.example.demo.datagram.DatagramProto.Notification.Builder getNotificationBuilder() {
+        return getNotificationFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.Notification notification = 10;</code>
+       */
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.NotificationOrBuilder getNotificationOrBuilder() {
+        if ((dataCase_ == 10) && (notificationBuilder_ != null)) {
+          return notificationBuilder_.getMessageOrBuilder();
+        } else {
+          if (dataCase_ == 10) {
+            return (com.example.demo.datagram.DatagramProto.Notification) data_;
+          }
+          return com.example.demo.datagram.DatagramProto.Notification.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.Notification notification = 10;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.demo.datagram.DatagramProto.Notification, com.example.demo.datagram.DatagramProto.Notification.Builder, com.example.demo.datagram.DatagramProto.NotificationOrBuilder> 
+          getNotificationFieldBuilder() {
+        if (notificationBuilder_ == null) {
+          if (!(dataCase_ == 10)) {
+            data_ = com.example.demo.datagram.DatagramProto.Notification.getDefaultInstance();
+          }
+          notificationBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.example.demo.datagram.DatagramProto.Notification, com.example.demo.datagram.DatagramProto.Notification.Builder, com.example.demo.datagram.DatagramProto.NotificationOrBuilder>(
+                  (com.example.demo.datagram.DatagramProto.Notification) data_,
+                  getParentForChildren(),
+                  isClean());
+          data_ = null;
+        }
+        dataCase_ = 10;
+        onChanged();;
+        return notificationBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.demo.datagram.DatagramProto.Notifications, com.example.demo.datagram.DatagramProto.Notifications.Builder, com.example.demo.datagram.DatagramProto.NotificationsOrBuilder> notificationsBuilder_;
+      /**
+       * <code>.Notifications notifications = 11;</code>
+       * @return Whether the notifications field is set.
+       */
+      @java.lang.Override
+      public boolean hasNotifications() {
+        return dataCase_ == 11;
+      }
+      /**
+       * <code>.Notifications notifications = 11;</code>
+       * @return The notifications.
+       */
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.Notifications getNotifications() {
+        if (notificationsBuilder_ == null) {
+          if (dataCase_ == 11) {
+            return (com.example.demo.datagram.DatagramProto.Notifications) data_;
+          }
+          return com.example.demo.datagram.DatagramProto.Notifications.getDefaultInstance();
+        } else {
+          if (dataCase_ == 11) {
+            return notificationsBuilder_.getMessage();
+          }
+          return com.example.demo.datagram.DatagramProto.Notifications.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.Notifications notifications = 11;</code>
+       */
+      public Builder setNotifications(com.example.demo.datagram.DatagramProto.Notifications value) {
+        if (notificationsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          data_ = value;
+          onChanged();
+        } else {
+          notificationsBuilder_.setMessage(value);
+        }
+        dataCase_ = 11;
+        return this;
+      }
+      /**
+       * <code>.Notifications notifications = 11;</code>
+       */
+      public Builder setNotifications(
+          com.example.demo.datagram.DatagramProto.Notifications.Builder builderForValue) {
+        if (notificationsBuilder_ == null) {
+          data_ = builderForValue.build();
+          onChanged();
+        } else {
+          notificationsBuilder_.setMessage(builderForValue.build());
+        }
+        dataCase_ = 11;
+        return this;
+      }
+      /**
+       * <code>.Notifications notifications = 11;</code>
+       */
+      public Builder mergeNotifications(com.example.demo.datagram.DatagramProto.Notifications value) {
+        if (notificationsBuilder_ == null) {
+          if (dataCase_ == 11 &&
+              data_ != com.example.demo.datagram.DatagramProto.Notifications.getDefaultInstance()) {
+            data_ = com.example.demo.datagram.DatagramProto.Notifications.newBuilder((com.example.demo.datagram.DatagramProto.Notifications) data_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            data_ = value;
+          }
+          onChanged();
+        } else {
+          if (dataCase_ == 11) {
+            notificationsBuilder_.mergeFrom(value);
+          }
+          notificationsBuilder_.setMessage(value);
+        }
+        dataCase_ = 11;
+        return this;
+      }
+      /**
+       * <code>.Notifications notifications = 11;</code>
+       */
+      public Builder clearNotifications() {
+        if (notificationsBuilder_ == null) {
+          if (dataCase_ == 11) {
+            dataCase_ = 0;
+            data_ = null;
+            onChanged();
+          }
+        } else {
+          if (dataCase_ == 11) {
+            dataCase_ = 0;
+            data_ = null;
+          }
+          notificationsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.Notifications notifications = 11;</code>
+       */
+      public com.example.demo.datagram.DatagramProto.Notifications.Builder getNotificationsBuilder() {
+        return getNotificationsFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.Notifications notifications = 11;</code>
+       */
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.NotificationsOrBuilder getNotificationsOrBuilder() {
+        if ((dataCase_ == 11) && (notificationsBuilder_ != null)) {
+          return notificationsBuilder_.getMessageOrBuilder();
+        } else {
+          if (dataCase_ == 11) {
+            return (com.example.demo.datagram.DatagramProto.Notifications) data_;
+          }
+          return com.example.demo.datagram.DatagramProto.Notifications.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.Notifications notifications = 11;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.demo.datagram.DatagramProto.Notifications, com.example.demo.datagram.DatagramProto.Notifications.Builder, com.example.demo.datagram.DatagramProto.NotificationsOrBuilder> 
+          getNotificationsFieldBuilder() {
+        if (notificationsBuilder_ == null) {
+          if (!(dataCase_ == 11)) {
+            data_ = com.example.demo.datagram.DatagramProto.Notifications.getDefaultInstance();
+          }
+          notificationsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.example.demo.datagram.DatagramProto.Notifications, com.example.demo.datagram.DatagramProto.Notifications.Builder, com.example.demo.datagram.DatagramProto.NotificationsOrBuilder>(
+                  (com.example.demo.datagram.DatagramProto.Notifications) data_,
+                  getParentForChildren(),
+                  isClean());
+          data_ = null;
+        }
+        dataCase_ = 11;
+        onChanged();;
+        return notificationsBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.demo.datagram.DatagramProto.Register, com.example.demo.datagram.DatagramProto.Register.Builder, com.example.demo.datagram.DatagramProto.RegisterOrBuilder> registerBuilder_;
+      /**
+       * <code>.Register register = 12;</code>
+       * @return Whether the register field is set.
+       */
+      @java.lang.Override
+      public boolean hasRegister() {
+        return dataCase_ == 12;
+      }
+      /**
+       * <code>.Register register = 12;</code>
+       * @return The register.
+       */
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.Register getRegister() {
+        if (registerBuilder_ == null) {
+          if (dataCase_ == 12) {
+            return (com.example.demo.datagram.DatagramProto.Register) data_;
+          }
+          return com.example.demo.datagram.DatagramProto.Register.getDefaultInstance();
+        } else {
+          if (dataCase_ == 12) {
+            return registerBuilder_.getMessage();
+          }
+          return com.example.demo.datagram.DatagramProto.Register.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.Register register = 12;</code>
+       */
+      public Builder setRegister(com.example.demo.datagram.DatagramProto.Register value) {
+        if (registerBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          data_ = value;
+          onChanged();
+        } else {
+          registerBuilder_.setMessage(value);
+        }
+        dataCase_ = 12;
+        return this;
+      }
+      /**
+       * <code>.Register register = 12;</code>
+       */
+      public Builder setRegister(
+          com.example.demo.datagram.DatagramProto.Register.Builder builderForValue) {
+        if (registerBuilder_ == null) {
+          data_ = builderForValue.build();
+          onChanged();
+        } else {
+          registerBuilder_.setMessage(builderForValue.build());
+        }
+        dataCase_ = 12;
+        return this;
+      }
+      /**
+       * <code>.Register register = 12;</code>
+       */
+      public Builder mergeRegister(com.example.demo.datagram.DatagramProto.Register value) {
+        if (registerBuilder_ == null) {
+          if (dataCase_ == 12 &&
+              data_ != com.example.demo.datagram.DatagramProto.Register.getDefaultInstance()) {
+            data_ = com.example.demo.datagram.DatagramProto.Register.newBuilder((com.example.demo.datagram.DatagramProto.Register) data_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            data_ = value;
+          }
+          onChanged();
+        } else {
+          if (dataCase_ == 12) {
+            registerBuilder_.mergeFrom(value);
+          }
+          registerBuilder_.setMessage(value);
+        }
+        dataCase_ = 12;
+        return this;
+      }
+      /**
+       * <code>.Register register = 12;</code>
+       */
+      public Builder clearRegister() {
+        if (registerBuilder_ == null) {
+          if (dataCase_ == 12) {
+            dataCase_ = 0;
+            data_ = null;
+            onChanged();
+          }
+        } else {
+          if (dataCase_ == 12) {
+            dataCase_ = 0;
+            data_ = null;
+          }
+          registerBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.Register register = 12;</code>
+       */
+      public com.example.demo.datagram.DatagramProto.Register.Builder getRegisterBuilder() {
+        return getRegisterFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.Register register = 12;</code>
+       */
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.RegisterOrBuilder getRegisterOrBuilder() {
+        if ((dataCase_ == 12) && (registerBuilder_ != null)) {
+          return registerBuilder_.getMessageOrBuilder();
+        } else {
+          if (dataCase_ == 12) {
+            return (com.example.demo.datagram.DatagramProto.Register) data_;
+          }
+          return com.example.demo.datagram.DatagramProto.Register.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.Register register = 12;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.demo.datagram.DatagramProto.Register, com.example.demo.datagram.DatagramProto.Register.Builder, com.example.demo.datagram.DatagramProto.RegisterOrBuilder> 
+          getRegisterFieldBuilder() {
+        if (registerBuilder_ == null) {
+          if (!(dataCase_ == 12)) {
+            data_ = com.example.demo.datagram.DatagramProto.Register.getDefaultInstance();
+          }
+          registerBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.example.demo.datagram.DatagramProto.Register, com.example.demo.datagram.DatagramProto.Register.Builder, com.example.demo.datagram.DatagramProto.RegisterOrBuilder>(
+                  (com.example.demo.datagram.DatagramProto.Register) data_,
+                  getParentForChildren(),
+                  isClean());
+          data_ = null;
+        }
+        dataCase_ = 12;
+        onChanged();;
+        return registerBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.demo.datagram.DatagramProto.User, com.example.demo.datagram.DatagramProto.User.Builder, com.example.demo.datagram.DatagramProto.UserOrBuilder> userBuilder_;
+      /**
+       * <code>.User user = 13;</code>
+       * @return Whether the user field is set.
+       */
+      @java.lang.Override
+      public boolean hasUser() {
+        return dataCase_ == 13;
+      }
+      /**
+       * <code>.User user = 13;</code>
+       * @return The user.
+       */
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.User getUser() {
+        if (userBuilder_ == null) {
+          if (dataCase_ == 13) {
+            return (com.example.demo.datagram.DatagramProto.User) data_;
+          }
+          return com.example.demo.datagram.DatagramProto.User.getDefaultInstance();
+        } else {
+          if (dataCase_ == 13) {
+            return userBuilder_.getMessage();
+          }
+          return com.example.demo.datagram.DatagramProto.User.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.User user = 13;</code>
+       */
+      public Builder setUser(com.example.demo.datagram.DatagramProto.User value) {
+        if (userBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          data_ = value;
+          onChanged();
+        } else {
+          userBuilder_.setMessage(value);
+        }
+        dataCase_ = 13;
+        return this;
+      }
+      /**
+       * <code>.User user = 13;</code>
+       */
+      public Builder setUser(
+          com.example.demo.datagram.DatagramProto.User.Builder builderForValue) {
+        if (userBuilder_ == null) {
+          data_ = builderForValue.build();
+          onChanged();
+        } else {
+          userBuilder_.setMessage(builderForValue.build());
+        }
+        dataCase_ = 13;
+        return this;
+      }
+      /**
+       * <code>.User user = 13;</code>
+       */
+      public Builder mergeUser(com.example.demo.datagram.DatagramProto.User value) {
+        if (userBuilder_ == null) {
+          if (dataCase_ == 13 &&
+              data_ != com.example.demo.datagram.DatagramProto.User.getDefaultInstance()) {
+            data_ = com.example.demo.datagram.DatagramProto.User.newBuilder((com.example.demo.datagram.DatagramProto.User) data_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            data_ = value;
+          }
+          onChanged();
+        } else {
+          if (dataCase_ == 13) {
+            userBuilder_.mergeFrom(value);
+          }
+          userBuilder_.setMessage(value);
+        }
+        dataCase_ = 13;
+        return this;
+      }
+      /**
+       * <code>.User user = 13;</code>
+       */
+      public Builder clearUser() {
+        if (userBuilder_ == null) {
+          if (dataCase_ == 13) {
+            dataCase_ = 0;
+            data_ = null;
+            onChanged();
+          }
+        } else {
+          if (dataCase_ == 13) {
+            dataCase_ = 0;
+            data_ = null;
+          }
+          userBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.User user = 13;</code>
+       */
+      public com.example.demo.datagram.DatagramProto.User.Builder getUserBuilder() {
+        return getUserFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.User user = 13;</code>
+       */
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.UserOrBuilder getUserOrBuilder() {
+        if ((dataCase_ == 13) && (userBuilder_ != null)) {
+          return userBuilder_.getMessageOrBuilder();
+        } else {
+          if (dataCase_ == 13) {
+            return (com.example.demo.datagram.DatagramProto.User) data_;
+          }
+          return com.example.demo.datagram.DatagramProto.User.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.User user = 13;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.demo.datagram.DatagramProto.User, com.example.demo.datagram.DatagramProto.User.Builder, com.example.demo.datagram.DatagramProto.UserOrBuilder> 
+          getUserFieldBuilder() {
+        if (userBuilder_ == null) {
+          if (!(dataCase_ == 13)) {
+            data_ = com.example.demo.datagram.DatagramProto.User.getDefaultInstance();
+          }
+          userBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.example.demo.datagram.DatagramProto.User, com.example.demo.datagram.DatagramProto.User.Builder, com.example.demo.datagram.DatagramProto.UserOrBuilder>(
+                  (com.example.demo.datagram.DatagramProto.User) data_,
+                  getParentForChildren(),
+                  isClean());
+          data_ = null;
+        }
+        dataCase_ = 13;
+        onChanged();;
+        return userBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.demo.datagram.DatagramProto.Group, com.example.demo.datagram.DatagramProto.Group.Builder, com.example.demo.datagram.DatagramProto.GroupOrBuilder> groupBuilder_;
+      /**
+       * <code>.Group group = 14;</code>
+       * @return Whether the group field is set.
+       */
+      @java.lang.Override
+      public boolean hasGroup() {
+        return dataCase_ == 14;
+      }
+      /**
+       * <code>.Group group = 14;</code>
+       * @return The group.
+       */
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.Group getGroup() {
+        if (groupBuilder_ == null) {
+          if (dataCase_ == 14) {
+            return (com.example.demo.datagram.DatagramProto.Group) data_;
+          }
+          return com.example.demo.datagram.DatagramProto.Group.getDefaultInstance();
+        } else {
+          if (dataCase_ == 14) {
+            return groupBuilder_.getMessage();
+          }
+          return com.example.demo.datagram.DatagramProto.Group.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.Group group = 14;</code>
+       */
+      public Builder setGroup(com.example.demo.datagram.DatagramProto.Group value) {
+        if (groupBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          data_ = value;
+          onChanged();
+        } else {
+          groupBuilder_.setMessage(value);
+        }
+        dataCase_ = 14;
+        return this;
+      }
+      /**
+       * <code>.Group group = 14;</code>
+       */
+      public Builder setGroup(
+          com.example.demo.datagram.DatagramProto.Group.Builder builderForValue) {
+        if (groupBuilder_ == null) {
+          data_ = builderForValue.build();
+          onChanged();
+        } else {
+          groupBuilder_.setMessage(builderForValue.build());
+        }
+        dataCase_ = 14;
+        return this;
+      }
+      /**
+       * <code>.Group group = 14;</code>
+       */
+      public Builder mergeGroup(com.example.demo.datagram.DatagramProto.Group value) {
+        if (groupBuilder_ == null) {
+          if (dataCase_ == 14 &&
+              data_ != com.example.demo.datagram.DatagramProto.Group.getDefaultInstance()) {
+            data_ = com.example.demo.datagram.DatagramProto.Group.newBuilder((com.example.demo.datagram.DatagramProto.Group) data_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            data_ = value;
+          }
+          onChanged();
+        } else {
+          if (dataCase_ == 14) {
+            groupBuilder_.mergeFrom(value);
+          }
+          groupBuilder_.setMessage(value);
+        }
+        dataCase_ = 14;
+        return this;
+      }
+      /**
+       * <code>.Group group = 14;</code>
+       */
+      public Builder clearGroup() {
+        if (groupBuilder_ == null) {
+          if (dataCase_ == 14) {
+            dataCase_ = 0;
+            data_ = null;
+            onChanged();
+          }
+        } else {
+          if (dataCase_ == 14) {
+            dataCase_ = 0;
+            data_ = null;
+          }
+          groupBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.Group group = 14;</code>
+       */
+      public com.example.demo.datagram.DatagramProto.Group.Builder getGroupBuilder() {
+        return getGroupFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.Group group = 14;</code>
+       */
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.GroupOrBuilder getGroupOrBuilder() {
+        if ((dataCase_ == 14) && (groupBuilder_ != null)) {
+          return groupBuilder_.getMessageOrBuilder();
+        } else {
+          if (dataCase_ == 14) {
+            return (com.example.demo.datagram.DatagramProto.Group) data_;
+          }
+          return com.example.demo.datagram.DatagramProto.Group.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.Group group = 14;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.demo.datagram.DatagramProto.Group, com.example.demo.datagram.DatagramProto.Group.Builder, com.example.demo.datagram.DatagramProto.GroupOrBuilder> 
+          getGroupFieldBuilder() {
+        if (groupBuilder_ == null) {
+          if (!(dataCase_ == 14)) {
+            data_ = com.example.demo.datagram.DatagramProto.Group.getDefaultInstance();
+          }
+          groupBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.example.demo.datagram.DatagramProto.Group, com.example.demo.datagram.DatagramProto.Group.Builder, com.example.demo.datagram.DatagramProto.GroupOrBuilder>(
+                  (com.example.demo.datagram.DatagramProto.Group) data_,
+                  getParentForChildren(),
+                  isClean());
+          data_ = null;
+        }
+        dataCase_ = 14;
+        onChanged();;
+        return groupBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:DatagramVersion1)
+    }
+
+    // @@protoc_insertion_point(class_scope:DatagramVersion1)
+    private static final com.example.demo.datagram.DatagramProto.DatagramVersion1 DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.example.demo.datagram.DatagramProto.DatagramVersion1();
+    }
+
+    public static com.example.demo.datagram.DatagramProto.DatagramVersion1 getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<DatagramVersion1>
+        PARSER = new com.google.protobuf.AbstractParser<DatagramVersion1>() {
+      @java.lang.Override
+      public DatagramVersion1 parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new DatagramVersion1(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<DatagramVersion1> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<DatagramVersion1> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.DatagramVersion1 getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface LoginOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Login)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string username = 1;</code>
+     * @return The username.
+     */
+    java.lang.String getUsername();
+    /**
+     * <code>string username = 1;</code>
+     * @return The bytes for username.
+     */
+    com.google.protobuf.ByteString
+        getUsernameBytes();
+
+    /**
+     * <code>string password = 2;</code>
+     * @return The password.
+     */
+    java.lang.String getPassword();
+    /**
+     * <code>string password = 2;</code>
+     * @return The bytes for password.
+     */
+    com.google.protobuf.ByteString
+        getPasswordBytes();
+
+    /**
+     * <code>int64 db_version = 3;</code>
+     * @return The dbVersion.
+     */
+    long getDbVersion();
+  }
+  /**
+   * Protobuf type {@code Login}
+   */
+  public static final class Login extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:Login)
+      LoginOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use Login.newBuilder() to construct.
+    private Login(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Login() {
+      username_ = "";
+      password_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new Login();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Login(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              username_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              password_ = s;
+              break;
+            }
+            case 24: {
+
+              dbVersion_ = input.readInt64();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.example.demo.datagram.DatagramProto.internal_static_Login_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.example.demo.datagram.DatagramProto.internal_static_Login_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.example.demo.datagram.DatagramProto.Login.class, com.example.demo.datagram.DatagramProto.Login.Builder.class);
+    }
+
+    public static final int USERNAME_FIELD_NUMBER = 1;
+    private volatile java.lang.Object username_;
+    /**
+     * <code>string username = 1;</code>
+     * @return The username.
+     */
+    @java.lang.Override
+    public java.lang.String getUsername() {
+      java.lang.Object ref = username_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        username_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string username = 1;</code>
+     * @return The bytes for username.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getUsernameBytes() {
+      java.lang.Object ref = username_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        username_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int PASSWORD_FIELD_NUMBER = 2;
+    private volatile java.lang.Object password_;
+    /**
+     * <code>string password = 2;</code>
+     * @return The password.
+     */
+    @java.lang.Override
+    public java.lang.String getPassword() {
+      java.lang.Object ref = password_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        password_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string password = 2;</code>
+     * @return The bytes for password.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getPasswordBytes() {
+      java.lang.Object ref = password_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        password_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int DB_VERSION_FIELD_NUMBER = 3;
+    private long dbVersion_;
+    /**
+     * <code>int64 db_version = 3;</code>
+     * @return The dbVersion.
+     */
+    @java.lang.Override
+    public long getDbVersion() {
+      return dbVersion_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getUsernameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, username_);
+      }
+      if (!getPasswordBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, password_);
+      }
+      if (dbVersion_ != 0L) {
+        output.writeInt64(3, dbVersion_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getUsernameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, username_);
+      }
+      if (!getPasswordBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, password_);
+      }
+      if (dbVersion_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(3, dbVersion_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.example.demo.datagram.DatagramProto.Login)) {
+        return super.equals(obj);
+      }
+      com.example.demo.datagram.DatagramProto.Login other = (com.example.demo.datagram.DatagramProto.Login) obj;
+
+      if (!getUsername()
+          .equals(other.getUsername())) return false;
+      if (!getPassword()
+          .equals(other.getPassword())) return false;
+      if (getDbVersion()
+          != other.getDbVersion()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + USERNAME_FIELD_NUMBER;
+      hash = (53 * hash) + getUsername().hashCode();
+      hash = (37 * hash) + PASSWORD_FIELD_NUMBER;
+      hash = (53 * hash) + getPassword().hashCode();
+      hash = (37 * hash) + DB_VERSION_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getDbVersion());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.example.demo.datagram.DatagramProto.Login parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.demo.datagram.DatagramProto.Login parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.demo.datagram.DatagramProto.Login parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.demo.datagram.DatagramProto.Login parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.demo.datagram.DatagramProto.Login parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.demo.datagram.DatagramProto.Login parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.demo.datagram.DatagramProto.Login parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.demo.datagram.DatagramProto.Login parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.demo.datagram.DatagramProto.Login parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.example.demo.datagram.DatagramProto.Login parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.demo.datagram.DatagramProto.Login parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.demo.datagram.DatagramProto.Login parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.example.demo.datagram.DatagramProto.Login prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code Login}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Login)
+        com.example.demo.datagram.DatagramProto.LoginOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.example.demo.datagram.DatagramProto.internal_static_Login_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.example.demo.datagram.DatagramProto.internal_static_Login_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.example.demo.datagram.DatagramProto.Login.class, com.example.demo.datagram.DatagramProto.Login.Builder.class);
+      }
+
+      // Construct using com.example.demo.datagram.DatagramProto.Login.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        username_ = "";
+
+        password_ = "";
+
+        dbVersion_ = 0L;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.example.demo.datagram.DatagramProto.internal_static_Login_descriptor;
+      }
+
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.Login getDefaultInstanceForType() {
+        return com.example.demo.datagram.DatagramProto.Login.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.Login build() {
+        com.example.demo.datagram.DatagramProto.Login result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.Login buildPartial() {
+        com.example.demo.datagram.DatagramProto.Login result = new com.example.demo.datagram.DatagramProto.Login(this);
+        result.username_ = username_;
+        result.password_ = password_;
+        result.dbVersion_ = dbVersion_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.example.demo.datagram.DatagramProto.Login) {
+          return mergeFrom((com.example.demo.datagram.DatagramProto.Login)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.example.demo.datagram.DatagramProto.Login other) {
+        if (other == com.example.demo.datagram.DatagramProto.Login.getDefaultInstance()) return this;
+        if (!other.getUsername().isEmpty()) {
+          username_ = other.username_;
+          onChanged();
+        }
+        if (!other.getPassword().isEmpty()) {
+          password_ = other.password_;
+          onChanged();
+        }
+        if (other.getDbVersion() != 0L) {
+          setDbVersion(other.getDbVersion());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.example.demo.datagram.DatagramProto.Login parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.example.demo.datagram.DatagramProto.Login) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object username_ = "";
+      /**
+       * <code>string username = 1;</code>
+       * @return The username.
+       */
+      public java.lang.String getUsername() {
+        java.lang.Object ref = username_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          username_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string username = 1;</code>
+       * @return The bytes for username.
+       */
+      public com.google.protobuf.ByteString
+          getUsernameBytes() {
+        java.lang.Object ref = username_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          username_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string username = 1;</code>
+       * @param value The username to set.
+       * @return This builder for chaining.
+       */
+      public Builder setUsername(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        username_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string username = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearUsername() {
+        
+        username_ = getDefaultInstance().getUsername();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string username = 1;</code>
+       * @param value The bytes for username to set.
+       * @return This builder for chaining.
+       */
+      public Builder setUsernameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        username_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object password_ = "";
+      /**
+       * <code>string password = 2;</code>
+       * @return The password.
+       */
+      public java.lang.String getPassword() {
+        java.lang.Object ref = password_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          password_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string password = 2;</code>
+       * @return The bytes for password.
+       */
+      public com.google.protobuf.ByteString
+          getPasswordBytes() {
+        java.lang.Object ref = password_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          password_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string password = 2;</code>
+       * @param value The password to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPassword(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        password_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string password = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPassword() {
+        
+        password_ = getDefaultInstance().getPassword();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string password = 2;</code>
+       * @param value The bytes for password to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPasswordBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        password_ = value;
+        onChanged();
+        return this;
+      }
+
+      private long dbVersion_ ;
+      /**
+       * <code>int64 db_version = 3;</code>
+       * @return The dbVersion.
+       */
+      @java.lang.Override
+      public long getDbVersion() {
+        return dbVersion_;
+      }
+      /**
+       * <code>int64 db_version = 3;</code>
+       * @param value The dbVersion to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDbVersion(long value) {
+        
+        dbVersion_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 db_version = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearDbVersion() {
+        
+        dbVersion_ = 0L;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:Login)
+    }
+
+    // @@protoc_insertion_point(class_scope:Login)
+    private static final com.example.demo.datagram.DatagramProto.Login DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.example.demo.datagram.DatagramProto.Login();
+    }
+
+    public static com.example.demo.datagram.DatagramProto.Login getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Login>
+        PARSER = new com.google.protobuf.AbstractParser<Login>() {
+      @java.lang.Override
+      public Login parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Login(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Login> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Login> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.Login getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface CourseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Course)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string id = 1;</code>
+     * @return The id.
+     */
+    java.lang.String getId();
+    /**
+     * <code>string id = 1;</code>
+     * @return The bytes for id.
+     */
+    com.google.protobuf.ByteString
+        getIdBytes();
+
+    /**
+     * <code>string name = 2;</code>
+     * @return The name.
+     */
+    java.lang.String getName();
+    /**
+     * <code>string name = 2;</code>
+     * @return The bytes for name.
+     */
+    com.google.protobuf.ByteString
+        getNameBytes();
+
+    /**
+     * <code>string classroom = 3;</code>
+     * @return The classroom.
+     */
+    java.lang.String getClassroom();
+    /**
+     * <code>string classroom = 3;</code>
+     * @return The bytes for classroom.
+     */
+    com.google.protobuf.ByteString
+        getClassroomBytes();
+
+    /**
+     * <code>string time = 4;</code>
+     * @return The time.
+     */
+    java.lang.String getTime();
+    /**
+     * <code>string time = 4;</code>
+     * @return The bytes for time.
+     */
+    com.google.protobuf.ByteString
+        getTimeBytes();
+
+    /**
+     * <code>int32 semester = 5;</code>
+     * @return The semester.
+     */
+    int getSemester();
+
+    /**
+     * <code>string remarks = 6;</code>
+     * @return The remarks.
+     */
+    java.lang.String getRemarks();
+    /**
+     * <code>string remarks = 6;</code>
+     * @return The bytes for remarks.
+     */
+    com.google.protobuf.ByteString
+        getRemarksBytes();
+
+    /**
+     * <code>bool hasGroup = 7;</code>
+     * @return The hasGroup.
+     */
+    boolean getHasGroup();
+
+    /**
+     * <code>int64 last_modified = 10;</code>
+     * @return The lastModified.
+     */
+    long getLastModified();
+  }
+  /**
+   * Protobuf type {@code Course}
+   */
+  public static final class Course extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:Course)
+      CourseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use Course.newBuilder() to construct.
+    private Course(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Course() {
+      id_ = "";
+      name_ = "";
+      classroom_ = "";
+      time_ = "";
+      remarks_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new Course();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Course(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              id_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              name_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              classroom_ = s;
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              time_ = s;
+              break;
+            }
+            case 40: {
+
+              semester_ = input.readInt32();
+              break;
+            }
+            case 50: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              remarks_ = s;
+              break;
+            }
+            case 56: {
+
+              hasGroup_ = input.readBool();
+              break;
+            }
+            case 80: {
+
+              lastModified_ = input.readInt64();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.example.demo.datagram.DatagramProto.internal_static_Course_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.example.demo.datagram.DatagramProto.internal_static_Course_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.example.demo.datagram.DatagramProto.Course.class, com.example.demo.datagram.DatagramProto.Course.Builder.class);
+    }
+
+    public static final int ID_FIELD_NUMBER = 1;
+    private volatile java.lang.Object id_;
+    /**
+     * <code>string id = 1;</code>
+     * @return The id.
+     */
+    @java.lang.Override
+    public java.lang.String getId() {
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        id_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string id = 1;</code>
+     * @return The bytes for id.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getIdBytes() {
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        id_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int NAME_FIELD_NUMBER = 2;
+    private volatile java.lang.Object name_;
+    /**
+     * <code>string name = 2;</code>
+     * @return The name.
+     */
+    @java.lang.Override
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        name_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string name = 2;</code>
+     * @return The bytes for name.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int CLASSROOM_FIELD_NUMBER = 3;
+    private volatile java.lang.Object classroom_;
+    /**
+     * <code>string classroom = 3;</code>
+     * @return The classroom.
+     */
+    @java.lang.Override
+    public java.lang.String getClassroom() {
+      java.lang.Object ref = classroom_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        classroom_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string classroom = 3;</code>
+     * @return The bytes for classroom.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getClassroomBytes() {
+      java.lang.Object ref = classroom_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        classroom_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TIME_FIELD_NUMBER = 4;
+    private volatile java.lang.Object time_;
+    /**
+     * <code>string time = 4;</code>
+     * @return The time.
+     */
+    @java.lang.Override
+    public java.lang.String getTime() {
+      java.lang.Object ref = time_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        time_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string time = 4;</code>
+     * @return The bytes for time.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getTimeBytes() {
+      java.lang.Object ref = time_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        time_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int SEMESTER_FIELD_NUMBER = 5;
+    private int semester_;
+    /**
+     * <code>int32 semester = 5;</code>
+     * @return The semester.
+     */
+    @java.lang.Override
+    public int getSemester() {
+      return semester_;
+    }
+
+    public static final int REMARKS_FIELD_NUMBER = 6;
+    private volatile java.lang.Object remarks_;
+    /**
+     * <code>string remarks = 6;</code>
+     * @return The remarks.
+     */
+    @java.lang.Override
+    public java.lang.String getRemarks() {
+      java.lang.Object ref = remarks_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        remarks_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string remarks = 6;</code>
+     * @return The bytes for remarks.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getRemarksBytes() {
+      java.lang.Object ref = remarks_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        remarks_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int HASGROUP_FIELD_NUMBER = 7;
+    private boolean hasGroup_;
+    /**
+     * <code>bool hasGroup = 7;</code>
+     * @return The hasGroup.
+     */
+    @java.lang.Override
+    public boolean getHasGroup() {
+      return hasGroup_;
+    }
+
+    public static final int LAST_MODIFIED_FIELD_NUMBER = 10;
+    private long lastModified_;
+    /**
+     * <code>int64 last_modified = 10;</code>
+     * @return The lastModified.
+     */
+    @java.lang.Override
+    public long getLastModified() {
+      return lastModified_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, id_);
+      }
+      if (!getNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
+      }
+      if (!getClassroomBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, classroom_);
+      }
+      if (!getTimeBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, time_);
+      }
+      if (semester_ != 0) {
+        output.writeInt32(5, semester_);
+      }
+      if (!getRemarksBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, remarks_);
+      }
+      if (hasGroup_ != false) {
+        output.writeBool(7, hasGroup_);
+      }
+      if (lastModified_ != 0L) {
+        output.writeInt64(10, lastModified_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, id_);
+      }
+      if (!getNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
+      }
+      if (!getClassroomBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, classroom_);
+      }
+      if (!getTimeBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, time_);
+      }
+      if (semester_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(5, semester_);
+      }
+      if (!getRemarksBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, remarks_);
+      }
+      if (hasGroup_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(7, hasGroup_);
+      }
+      if (lastModified_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(10, lastModified_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.example.demo.datagram.DatagramProto.Course)) {
+        return super.equals(obj);
+      }
+      com.example.demo.datagram.DatagramProto.Course other = (com.example.demo.datagram.DatagramProto.Course) obj;
+
+      if (!getId()
+          .equals(other.getId())) return false;
+      if (!getName()
+          .equals(other.getName())) return false;
+      if (!getClassroom()
+          .equals(other.getClassroom())) return false;
+      if (!getTime()
+          .equals(other.getTime())) return false;
+      if (getSemester()
+          != other.getSemester()) return false;
+      if (!getRemarks()
+          .equals(other.getRemarks())) return false;
+      if (getHasGroup()
+          != other.getHasGroup()) return false;
+      if (getLastModified()
+          != other.getLastModified()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + getId().hashCode();
+      hash = (37 * hash) + NAME_FIELD_NUMBER;
+      hash = (53 * hash) + getName().hashCode();
+      hash = (37 * hash) + CLASSROOM_FIELD_NUMBER;
+      hash = (53 * hash) + getClassroom().hashCode();
+      hash = (37 * hash) + TIME_FIELD_NUMBER;
+      hash = (53 * hash) + getTime().hashCode();
+      hash = (37 * hash) + SEMESTER_FIELD_NUMBER;
+      hash = (53 * hash) + getSemester();
+      hash = (37 * hash) + REMARKS_FIELD_NUMBER;
+      hash = (53 * hash) + getRemarks().hashCode();
+      hash = (37 * hash) + HASGROUP_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getHasGroup());
+      hash = (37 * hash) + LAST_MODIFIED_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getLastModified());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.example.demo.datagram.DatagramProto.Course parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.demo.datagram.DatagramProto.Course parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.demo.datagram.DatagramProto.Course parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.demo.datagram.DatagramProto.Course parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.demo.datagram.DatagramProto.Course parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.demo.datagram.DatagramProto.Course parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.demo.datagram.DatagramProto.Course parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.demo.datagram.DatagramProto.Course parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.demo.datagram.DatagramProto.Course parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.example.demo.datagram.DatagramProto.Course parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.demo.datagram.DatagramProto.Course parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.demo.datagram.DatagramProto.Course parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.example.demo.datagram.DatagramProto.Course prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code Course}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Course)
+        com.example.demo.datagram.DatagramProto.CourseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.example.demo.datagram.DatagramProto.internal_static_Course_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.example.demo.datagram.DatagramProto.internal_static_Course_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.example.demo.datagram.DatagramProto.Course.class, com.example.demo.datagram.DatagramProto.Course.Builder.class);
+      }
+
+      // Construct using com.example.demo.datagram.DatagramProto.Course.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        id_ = "";
+
+        name_ = "";
+
+        classroom_ = "";
+
+        time_ = "";
+
+        semester_ = 0;
+
+        remarks_ = "";
+
+        hasGroup_ = false;
+
+        lastModified_ = 0L;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.example.demo.datagram.DatagramProto.internal_static_Course_descriptor;
+      }
+
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.Course getDefaultInstanceForType() {
+        return com.example.demo.datagram.DatagramProto.Course.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.Course build() {
+        com.example.demo.datagram.DatagramProto.Course result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.Course buildPartial() {
+        com.example.demo.datagram.DatagramProto.Course result = new com.example.demo.datagram.DatagramProto.Course(this);
+        result.id_ = id_;
+        result.name_ = name_;
+        result.classroom_ = classroom_;
+        result.time_ = time_;
+        result.semester_ = semester_;
+        result.remarks_ = remarks_;
+        result.hasGroup_ = hasGroup_;
+        result.lastModified_ = lastModified_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.example.demo.datagram.DatagramProto.Course) {
+          return mergeFrom((com.example.demo.datagram.DatagramProto.Course)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.example.demo.datagram.DatagramProto.Course other) {
+        if (other == com.example.demo.datagram.DatagramProto.Course.getDefaultInstance()) return this;
+        if (!other.getId().isEmpty()) {
+          id_ = other.id_;
+          onChanged();
+        }
+        if (!other.getName().isEmpty()) {
+          name_ = other.name_;
+          onChanged();
+        }
+        if (!other.getClassroom().isEmpty()) {
+          classroom_ = other.classroom_;
+          onChanged();
+        }
+        if (!other.getTime().isEmpty()) {
+          time_ = other.time_;
+          onChanged();
+        }
+        if (other.getSemester() != 0) {
+          setSemester(other.getSemester());
+        }
+        if (!other.getRemarks().isEmpty()) {
+          remarks_ = other.remarks_;
+          onChanged();
+        }
+        if (other.getHasGroup() != false) {
+          setHasGroup(other.getHasGroup());
+        }
+        if (other.getLastModified() != 0L) {
+          setLastModified(other.getLastModified());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.example.demo.datagram.DatagramProto.Course parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.example.demo.datagram.DatagramProto.Course) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object id_ = "";
+      /**
+       * <code>string id = 1;</code>
+       * @return The id.
+       */
+      public java.lang.String getId() {
+        java.lang.Object ref = id_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          id_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string id = 1;</code>
+       * @return The bytes for id.
+       */
+      public com.google.protobuf.ByteString
+          getIdBytes() {
+        java.lang.Object ref = id_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          id_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string id = 1;</code>
+       * @param value The id to set.
+       * @return This builder for chaining.
+       */
+      public Builder setId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        id_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string id = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearId() {
+        
+        id_ = getDefaultInstance().getId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string id = 1;</code>
+       * @param value The bytes for id to set.
+       * @return This builder for chaining.
+       */
+      public Builder setIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        id_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object name_ = "";
+      /**
+       * <code>string name = 2;</code>
+       * @return The name.
+       */
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          name_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string name = 2;</code>
+       * @return The bytes for name.
+       */
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        java.lang.Object ref = name_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          name_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string name = 2;</code>
+       * @param value The name to set.
+       * @return This builder for chaining.
+       */
+      public Builder setName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        name_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string name = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearName() {
+        
+        name_ = getDefaultInstance().getName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string name = 2;</code>
+       * @param value The bytes for name to set.
+       * @return This builder for chaining.
+       */
+      public Builder setNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        name_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object classroom_ = "";
+      /**
+       * <code>string classroom = 3;</code>
+       * @return The classroom.
+       */
+      public java.lang.String getClassroom() {
+        java.lang.Object ref = classroom_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          classroom_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string classroom = 3;</code>
+       * @return The bytes for classroom.
+       */
+      public com.google.protobuf.ByteString
+          getClassroomBytes() {
+        java.lang.Object ref = classroom_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          classroom_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string classroom = 3;</code>
+       * @param value The classroom to set.
+       * @return This builder for chaining.
+       */
+      public Builder setClassroom(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        classroom_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string classroom = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearClassroom() {
+        
+        classroom_ = getDefaultInstance().getClassroom();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string classroom = 3;</code>
+       * @param value The bytes for classroom to set.
+       * @return This builder for chaining.
+       */
+      public Builder setClassroomBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        classroom_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object time_ = "";
+      /**
+       * <code>string time = 4;</code>
+       * @return The time.
+       */
+      public java.lang.String getTime() {
+        java.lang.Object ref = time_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          time_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string time = 4;</code>
+       * @return The bytes for time.
+       */
+      public com.google.protobuf.ByteString
+          getTimeBytes() {
+        java.lang.Object ref = time_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          time_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string time = 4;</code>
+       * @param value The time to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTime(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        time_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string time = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTime() {
+        
+        time_ = getDefaultInstance().getTime();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string time = 4;</code>
+       * @param value The bytes for time to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTimeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        time_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int semester_ ;
+      /**
+       * <code>int32 semester = 5;</code>
+       * @return The semester.
+       */
+      @java.lang.Override
+      public int getSemester() {
+        return semester_;
+      }
+      /**
+       * <code>int32 semester = 5;</code>
+       * @param value The semester to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSemester(int value) {
+        
+        semester_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 semester = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearSemester() {
+        
+        semester_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object remarks_ = "";
+      /**
+       * <code>string remarks = 6;</code>
+       * @return The remarks.
+       */
+      public java.lang.String getRemarks() {
+        java.lang.Object ref = remarks_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          remarks_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string remarks = 6;</code>
+       * @return The bytes for remarks.
+       */
+      public com.google.protobuf.ByteString
+          getRemarksBytes() {
+        java.lang.Object ref = remarks_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          remarks_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string remarks = 6;</code>
+       * @param value The remarks to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRemarks(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        remarks_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string remarks = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearRemarks() {
+        
+        remarks_ = getDefaultInstance().getRemarks();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string remarks = 6;</code>
+       * @param value The bytes for remarks to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRemarksBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        remarks_ = value;
+        onChanged();
+        return this;
+      }
+
+      private boolean hasGroup_ ;
+      /**
+       * <code>bool hasGroup = 7;</code>
+       * @return The hasGroup.
+       */
+      @java.lang.Override
+      public boolean getHasGroup() {
+        return hasGroup_;
+      }
+      /**
+       * <code>bool hasGroup = 7;</code>
+       * @param value The hasGroup to set.
+       * @return This builder for chaining.
+       */
+      public Builder setHasGroup(boolean value) {
+        
+        hasGroup_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool hasGroup = 7;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearHasGroup() {
+        
+        hasGroup_ = false;
+        onChanged();
+        return this;
+      }
+
+      private long lastModified_ ;
+      /**
+       * <code>int64 last_modified = 10;</code>
+       * @return The lastModified.
+       */
+      @java.lang.Override
+      public long getLastModified() {
+        return lastModified_;
+      }
+      /**
+       * <code>int64 last_modified = 10;</code>
+       * @param value The lastModified to set.
+       * @return This builder for chaining.
+       */
+      public Builder setLastModified(long value) {
+        
+        lastModified_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 last_modified = 10;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearLastModified() {
+        
+        lastModified_ = 0L;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:Course)
+    }
+
+    // @@protoc_insertion_point(class_scope:Course)
+    private static final com.example.demo.datagram.DatagramProto.Course DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.example.demo.datagram.DatagramProto.Course();
+    }
+
+    public static com.example.demo.datagram.DatagramProto.Course getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Course>
+        PARSER = new com.google.protobuf.AbstractParser<Course>() {
+      @java.lang.Override
+      public Course parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Course(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Course> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Course> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.Course getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface CoursesOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Courses)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated .Course courses = 1;</code>
+     */
+    java.util.List<com.example.demo.datagram.DatagramProto.Course> 
+        getCoursesList();
+    /**
+     * <code>repeated .Course courses = 1;</code>
+     */
+    com.example.demo.datagram.DatagramProto.Course getCourses(int index);
+    /**
+     * <code>repeated .Course courses = 1;</code>
+     */
+    int getCoursesCount();
+    /**
+     * <code>repeated .Course courses = 1;</code>
+     */
+    java.util.List<? extends com.example.demo.datagram.DatagramProto.CourseOrBuilder> 
+        getCoursesOrBuilderList();
+    /**
+     * <code>repeated .Course courses = 1;</code>
+     */
+    com.example.demo.datagram.DatagramProto.CourseOrBuilder getCoursesOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code Courses}
+   */
+  public static final class Courses extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:Courses)
+      CoursesOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use Courses.newBuilder() to construct.
+    private Courses(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Courses() {
+      courses_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new Courses();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Courses(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                courses_ = new java.util.ArrayList<com.example.demo.datagram.DatagramProto.Course>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              courses_.add(
+                  input.readMessage(com.example.demo.datagram.DatagramProto.Course.parser(), extensionRegistry));
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
+          courses_ = java.util.Collections.unmodifiableList(courses_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.example.demo.datagram.DatagramProto.internal_static_Courses_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.example.demo.datagram.DatagramProto.internal_static_Courses_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.example.demo.datagram.DatagramProto.Courses.class, com.example.demo.datagram.DatagramProto.Courses.Builder.class);
+    }
+
+    public static final int COURSES_FIELD_NUMBER = 1;
+    private java.util.List<com.example.demo.datagram.DatagramProto.Course> courses_;
+    /**
+     * <code>repeated .Course courses = 1;</code>
+     */
+    @java.lang.Override
+    public java.util.List<com.example.demo.datagram.DatagramProto.Course> getCoursesList() {
+      return courses_;
+    }
+    /**
+     * <code>repeated .Course courses = 1;</code>
+     */
+    @java.lang.Override
+    public java.util.List<? extends com.example.demo.datagram.DatagramProto.CourseOrBuilder> 
+        getCoursesOrBuilderList() {
+      return courses_;
+    }
+    /**
+     * <code>repeated .Course courses = 1;</code>
+     */
+    @java.lang.Override
+    public int getCoursesCount() {
+      return courses_.size();
+    }
+    /**
+     * <code>repeated .Course courses = 1;</code>
+     */
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.Course getCourses(int index) {
+      return courses_.get(index);
+    }
+    /**
+     * <code>repeated .Course courses = 1;</code>
+     */
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.CourseOrBuilder getCoursesOrBuilder(
+        int index) {
+      return courses_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < courses_.size(); i++) {
+        output.writeMessage(1, courses_.get(i));
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < courses_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, courses_.get(i));
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.example.demo.datagram.DatagramProto.Courses)) {
+        return super.equals(obj);
+      }
+      com.example.demo.datagram.DatagramProto.Courses other = (com.example.demo.datagram.DatagramProto.Courses) obj;
+
+      if (!getCoursesList()
+          .equals(other.getCoursesList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getCoursesCount() > 0) {
+        hash = (37 * hash) + COURSES_FIELD_NUMBER;
+        hash = (53 * hash) + getCoursesList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.example.demo.datagram.DatagramProto.Courses parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.demo.datagram.DatagramProto.Courses parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.demo.datagram.DatagramProto.Courses parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.demo.datagram.DatagramProto.Courses parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.demo.datagram.DatagramProto.Courses parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.demo.datagram.DatagramProto.Courses parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.demo.datagram.DatagramProto.Courses parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.demo.datagram.DatagramProto.Courses parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.demo.datagram.DatagramProto.Courses parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.example.demo.datagram.DatagramProto.Courses parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.demo.datagram.DatagramProto.Courses parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.demo.datagram.DatagramProto.Courses parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.example.demo.datagram.DatagramProto.Courses prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code Courses}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Courses)
+        com.example.demo.datagram.DatagramProto.CoursesOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.example.demo.datagram.DatagramProto.internal_static_Courses_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.example.demo.datagram.DatagramProto.internal_static_Courses_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.example.demo.datagram.DatagramProto.Courses.class, com.example.demo.datagram.DatagramProto.Courses.Builder.class);
+      }
+
+      // Construct using com.example.demo.datagram.DatagramProto.Courses.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getCoursesFieldBuilder();
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (coursesBuilder_ == null) {
+          courses_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          coursesBuilder_.clear();
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.example.demo.datagram.DatagramProto.internal_static_Courses_descriptor;
+      }
+
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.Courses getDefaultInstanceForType() {
+        return com.example.demo.datagram.DatagramProto.Courses.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.Courses build() {
+        com.example.demo.datagram.DatagramProto.Courses result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.Courses buildPartial() {
+        com.example.demo.datagram.DatagramProto.Courses result = new com.example.demo.datagram.DatagramProto.Courses(this);
+        int from_bitField0_ = bitField0_;
+        if (coursesBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            courses_ = java.util.Collections.unmodifiableList(courses_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.courses_ = courses_;
+        } else {
+          result.courses_ = coursesBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.example.demo.datagram.DatagramProto.Courses) {
+          return mergeFrom((com.example.demo.datagram.DatagramProto.Courses)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.example.demo.datagram.DatagramProto.Courses other) {
+        if (other == com.example.demo.datagram.DatagramProto.Courses.getDefaultInstance()) return this;
+        if (coursesBuilder_ == null) {
+          if (!other.courses_.isEmpty()) {
+            if (courses_.isEmpty()) {
+              courses_ = other.courses_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureCoursesIsMutable();
+              courses_.addAll(other.courses_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.courses_.isEmpty()) {
+            if (coursesBuilder_.isEmpty()) {
+              coursesBuilder_.dispose();
+              coursesBuilder_ = null;
+              courses_ = other.courses_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              coursesBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getCoursesFieldBuilder() : null;
+            } else {
+              coursesBuilder_.addAllMessages(other.courses_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.example.demo.datagram.DatagramProto.Courses parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.example.demo.datagram.DatagramProto.Courses) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<com.example.demo.datagram.DatagramProto.Course> courses_ =
+        java.util.Collections.emptyList();
+      private void ensureCoursesIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          courses_ = new java.util.ArrayList<com.example.demo.datagram.DatagramProto.Course>(courses_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.example.demo.datagram.DatagramProto.Course, com.example.demo.datagram.DatagramProto.Course.Builder, com.example.demo.datagram.DatagramProto.CourseOrBuilder> coursesBuilder_;
+
+      /**
+       * <code>repeated .Course courses = 1;</code>
+       */
+      public java.util.List<com.example.demo.datagram.DatagramProto.Course> getCoursesList() {
+        if (coursesBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(courses_);
+        } else {
+          return coursesBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .Course courses = 1;</code>
+       */
+      public int getCoursesCount() {
+        if (coursesBuilder_ == null) {
+          return courses_.size();
+        } else {
+          return coursesBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .Course courses = 1;</code>
+       */
+      public com.example.demo.datagram.DatagramProto.Course getCourses(int index) {
+        if (coursesBuilder_ == null) {
+          return courses_.get(index);
+        } else {
+          return coursesBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .Course courses = 1;</code>
+       */
+      public Builder setCourses(
+          int index, com.example.demo.datagram.DatagramProto.Course value) {
+        if (coursesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureCoursesIsMutable();
+          courses_.set(index, value);
+          onChanged();
+        } else {
+          coursesBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Course courses = 1;</code>
+       */
+      public Builder setCourses(
+          int index, com.example.demo.datagram.DatagramProto.Course.Builder builderForValue) {
+        if (coursesBuilder_ == null) {
+          ensureCoursesIsMutable();
+          courses_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          coursesBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Course courses = 1;</code>
+       */
+      public Builder addCourses(com.example.demo.datagram.DatagramProto.Course value) {
+        if (coursesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureCoursesIsMutable();
+          courses_.add(value);
+          onChanged();
+        } else {
+          coursesBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Course courses = 1;</code>
+       */
+      public Builder addCourses(
+          int index, com.example.demo.datagram.DatagramProto.Course value) {
+        if (coursesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureCoursesIsMutable();
+          courses_.add(index, value);
+          onChanged();
+        } else {
+          coursesBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Course courses = 1;</code>
+       */
+      public Builder addCourses(
+          com.example.demo.datagram.DatagramProto.Course.Builder builderForValue) {
+        if (coursesBuilder_ == null) {
+          ensureCoursesIsMutable();
+          courses_.add(builderForValue.build());
+          onChanged();
+        } else {
+          coursesBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Course courses = 1;</code>
+       */
+      public Builder addCourses(
+          int index, com.example.demo.datagram.DatagramProto.Course.Builder builderForValue) {
+        if (coursesBuilder_ == null) {
+          ensureCoursesIsMutable();
+          courses_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          coursesBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Course courses = 1;</code>
+       */
+      public Builder addAllCourses(
+          java.lang.Iterable<? extends com.example.demo.datagram.DatagramProto.Course> values) {
+        if (coursesBuilder_ == null) {
+          ensureCoursesIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, courses_);
+          onChanged();
+        } else {
+          coursesBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Course courses = 1;</code>
+       */
+      public Builder clearCourses() {
+        if (coursesBuilder_ == null) {
+          courses_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          coursesBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Course courses = 1;</code>
+       */
+      public Builder removeCourses(int index) {
+        if (coursesBuilder_ == null) {
+          ensureCoursesIsMutable();
+          courses_.remove(index);
+          onChanged();
+        } else {
+          coursesBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Course courses = 1;</code>
+       */
+      public com.example.demo.datagram.DatagramProto.Course.Builder getCoursesBuilder(
+          int index) {
+        return getCoursesFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .Course courses = 1;</code>
+       */
+      public com.example.demo.datagram.DatagramProto.CourseOrBuilder getCoursesOrBuilder(
+          int index) {
+        if (coursesBuilder_ == null) {
+          return courses_.get(index);  } else {
+          return coursesBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .Course courses = 1;</code>
+       */
+      public java.util.List<? extends com.example.demo.datagram.DatagramProto.CourseOrBuilder> 
+           getCoursesOrBuilderList() {
+        if (coursesBuilder_ != null) {
+          return coursesBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(courses_);
+        }
+      }
+      /**
+       * <code>repeated .Course courses = 1;</code>
+       */
+      public com.example.demo.datagram.DatagramProto.Course.Builder addCoursesBuilder() {
+        return getCoursesFieldBuilder().addBuilder(
+            com.example.demo.datagram.DatagramProto.Course.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .Course courses = 1;</code>
+       */
+      public com.example.demo.datagram.DatagramProto.Course.Builder addCoursesBuilder(
+          int index) {
+        return getCoursesFieldBuilder().addBuilder(
+            index, com.example.demo.datagram.DatagramProto.Course.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .Course courses = 1;</code>
+       */
+      public java.util.List<com.example.demo.datagram.DatagramProto.Course.Builder> 
+           getCoursesBuilderList() {
+        return getCoursesFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.example.demo.datagram.DatagramProto.Course, com.example.demo.datagram.DatagramProto.Course.Builder, com.example.demo.datagram.DatagramProto.CourseOrBuilder> 
+          getCoursesFieldBuilder() {
+        if (coursesBuilder_ == null) {
+          coursesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.example.demo.datagram.DatagramProto.Course, com.example.demo.datagram.DatagramProto.Course.Builder, com.example.demo.datagram.DatagramProto.CourseOrBuilder>(
+                  courses_,
+                  ((bitField0_ & 0x00000001) != 0),
+                  getParentForChildren(),
+                  isClean());
+          courses_ = null;
+        }
+        return coursesBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:Courses)
+    }
+
+    // @@protoc_insertion_point(class_scope:Courses)
+    private static final com.example.demo.datagram.DatagramProto.Courses DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.example.demo.datagram.DatagramProto.Courses();
+    }
+
+    public static com.example.demo.datagram.DatagramProto.Courses getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Courses>
+        PARSER = new com.google.protobuf.AbstractParser<Courses>() {
+      @java.lang.Override
+      public Courses parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Courses(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Courses> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Courses> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.Courses getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3736,6 +8520,12 @@ public final class DatagramProto {
      */
     com.example.demo.datagram.DatagramProto.TeacherOrBuilder getTeacherOrBuilder();
 
+    /**
+     * <code>int64 last_modified = 10;</code>
+     * @return The lastModified.
+     */
+    long getLastModified();
+
     public com.example.demo.datagram.DatagramProto.User.DataCase getDataCase();
   }
   /**
@@ -3860,6 +8650,11 @@ public final class DatagramProto {
               dataCase_ = 9;
               break;
             }
+            case 80: {
+
+              lastModified_ = input.readInt64();
+              break;
+            }
             default: {
               if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
@@ -3890,6 +8685,123 @@ public final class DatagramProto {
       return com.example.demo.datagram.DatagramProto.internal_static_User_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.example.demo.datagram.DatagramProto.User.class, com.example.demo.datagram.DatagramProto.User.Builder.class);
+    }
+
+    /**
+     * Protobuf enum {@code User.Gender}
+     */
+    public enum Gender
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>SECURITY = 0;</code>
+       */
+      SECURITY(0),
+      /**
+       * <code>FEMALE = 1;</code>
+       */
+      FEMALE(1),
+      /**
+       * <code>MALE = 2;</code>
+       */
+      MALE(2),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>SECURITY = 0;</code>
+       */
+      public static final int SECURITY_VALUE = 0;
+      /**
+       * <code>FEMALE = 1;</code>
+       */
+      public static final int FEMALE_VALUE = 1;
+      /**
+       * <code>MALE = 2;</code>
+       */
+      public static final int MALE_VALUE = 2;
+
+
+      public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalArgumentException(
+              "Can't get the number of an unknown enum value.");
+        }
+        return value;
+      }
+
+      /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static Gender valueOf(int value) {
+        return forNumber(value);
+      }
+
+      /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
+       */
+      public static Gender forNumber(int value) {
+        switch (value) {
+          case 0: return SECURITY;
+          case 1: return FEMALE;
+          case 2: return MALE;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<Gender>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          Gender> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<Gender>() {
+              public Gender findValueByNumber(int number) {
+                return Gender.forNumber(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalStateException(
+              "Can't get the descriptor of an unrecognized enum value.");
+        }
+        return getDescriptor().getValues().get(ordinal());
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return com.example.demo.datagram.DatagramProto.User.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final Gender[] VALUES = values();
+
+      public static Gender valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        if (desc.getIndex() == -1) {
+          return UNRECOGNIZED;
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int value;
+
+      private Gender(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:User.Gender)
     }
 
     /**
@@ -3974,7 +8886,7 @@ public final class DatagramProto {
       }
       public static final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
-        return com.example.demo.datagram.DatagramProto.User.getDescriptor().getEnumTypes().get(0);
+        return com.example.demo.datagram.DatagramProto.User.getDescriptor().getEnumTypes().get(1);
       }
 
       private static final UserType[] VALUES = values();
@@ -3998,123 +8910,6 @@ public final class DatagramProto {
       }
 
       // @@protoc_insertion_point(enum_scope:User.UserType)
-    }
-
-    /**
-     * Protobuf enum {@code User.Gender}
-     */
-    public enum Gender
-        implements com.google.protobuf.ProtocolMessageEnum {
-      /**
-       * <code>MALE = 0;</code>
-       */
-      MALE(0),
-      /**
-       * <code>FEMALE = 1;</code>
-       */
-      FEMALE(1),
-      /**
-       * <code>SECURITY = 2;</code>
-       */
-      SECURITY(2),
-      UNRECOGNIZED(-1),
-      ;
-
-      /**
-       * <code>MALE = 0;</code>
-       */
-      public static final int MALE_VALUE = 0;
-      /**
-       * <code>FEMALE = 1;</code>
-       */
-      public static final int FEMALE_VALUE = 1;
-      /**
-       * <code>SECURITY = 2;</code>
-       */
-      public static final int SECURITY_VALUE = 2;
-
-
-      public final int getNumber() {
-        if (this == UNRECOGNIZED) {
-          throw new java.lang.IllegalArgumentException(
-              "Can't get the number of an unknown enum value.");
-        }
-        return value;
-      }
-
-      /**
-       * @param value The numeric wire value of the corresponding enum entry.
-       * @return The enum associated with the given numeric wire value.
-       * @deprecated Use {@link #forNumber(int)} instead.
-       */
-      @java.lang.Deprecated
-      public static Gender valueOf(int value) {
-        return forNumber(value);
-      }
-
-      /**
-       * @param value The numeric wire value of the corresponding enum entry.
-       * @return The enum associated with the given numeric wire value.
-       */
-      public static Gender forNumber(int value) {
-        switch (value) {
-          case 0: return MALE;
-          case 1: return FEMALE;
-          case 2: return SECURITY;
-          default: return null;
-        }
-      }
-
-      public static com.google.protobuf.Internal.EnumLiteMap<Gender>
-          internalGetValueMap() {
-        return internalValueMap;
-      }
-      private static final com.google.protobuf.Internal.EnumLiteMap<
-          Gender> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<Gender>() {
-              public Gender findValueByNumber(int number) {
-                return Gender.forNumber(number);
-              }
-            };
-
-      public final com.google.protobuf.Descriptors.EnumValueDescriptor
-          getValueDescriptor() {
-        if (this == UNRECOGNIZED) {
-          throw new java.lang.IllegalStateException(
-              "Can't get the descriptor of an unrecognized enum value.");
-        }
-        return getDescriptor().getValues().get(ordinal());
-      }
-      public final com.google.protobuf.Descriptors.EnumDescriptor
-          getDescriptorForType() {
-        return getDescriptor();
-      }
-      public static final com.google.protobuf.Descriptors.EnumDescriptor
-          getDescriptor() {
-        return com.example.demo.datagram.DatagramProto.User.getDescriptor().getEnumTypes().get(1);
-      }
-
-      private static final Gender[] VALUES = values();
-
-      public static Gender valueOf(
-          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-        if (desc.getType() != getDescriptor()) {
-          throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
-        }
-        if (desc.getIndex() == -1) {
-          return UNRECOGNIZED;
-        }
-        return VALUES[desc.getIndex()];
-      }
-
-      private final int value;
-
-      private Gender(int value) {
-        this.value = value;
-      }
-
-      // @@protoc_insertion_point(enum_scope:User.Gender)
     }
 
     private int dataCase_ = 0;
@@ -4448,6 +9243,17 @@ public final class DatagramProto {
       return com.example.demo.datagram.DatagramProto.Teacher.getDefaultInstance();
     }
 
+    public static final int LAST_MODIFIED_FIELD_NUMBER = 10;
+    private long lastModified_;
+    /**
+     * <code>int64 last_modified = 10;</code>
+     * @return The lastModified.
+     */
+    @java.lang.Override
+    public long getLastModified() {
+      return lastModified_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -4477,7 +9283,7 @@ public final class DatagramProto {
       if (!getEmailBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, email_);
       }
-      if (gender_ != com.example.demo.datagram.DatagramProto.User.Gender.MALE.getNumber()) {
+      if (gender_ != com.example.demo.datagram.DatagramProto.User.Gender.SECURITY.getNumber()) {
         output.writeEnum(6, gender_);
       }
       if (type_ != com.example.demo.datagram.DatagramProto.User.UserType.STUDENT.getNumber()) {
@@ -4488,6 +9294,9 @@ public final class DatagramProto {
       }
       if (dataCase_ == 9) {
         output.writeMessage(9, (com.example.demo.datagram.DatagramProto.Teacher) data_);
+      }
+      if (lastModified_ != 0L) {
+        output.writeInt64(10, lastModified_);
       }
       unknownFields.writeTo(output);
     }
@@ -4513,7 +9322,7 @@ public final class DatagramProto {
       if (!getEmailBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, email_);
       }
-      if (gender_ != com.example.demo.datagram.DatagramProto.User.Gender.MALE.getNumber()) {
+      if (gender_ != com.example.demo.datagram.DatagramProto.User.Gender.SECURITY.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(6, gender_);
       }
@@ -4528,6 +9337,10 @@ public final class DatagramProto {
       if (dataCase_ == 9) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(9, (com.example.demo.datagram.DatagramProto.Teacher) data_);
+      }
+      if (lastModified_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(10, lastModified_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -4556,6 +9369,8 @@ public final class DatagramProto {
           .equals(other.getEmail())) return false;
       if (gender_ != other.gender_) return false;
       if (type_ != other.type_) return false;
+      if (getLastModified()
+          != other.getLastModified()) return false;
       if (!getDataCase().equals(other.getDataCase())) return false;
       switch (dataCase_) {
         case 8:
@@ -4594,6 +9409,9 @@ public final class DatagramProto {
       hash = (53 * hash) + gender_;
       hash = (37 * hash) + TYPE_FIELD_NUMBER;
       hash = (53 * hash) + type_;
+      hash = (37 * hash) + LAST_MODIFIED_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getLastModified());
       switch (dataCase_) {
         case 8:
           hash = (37 * hash) + STUDENT_FIELD_NUMBER;
@@ -4753,6 +9571,8 @@ public final class DatagramProto {
 
         type_ = 0;
 
+        lastModified_ = 0L;
+
         dataCase_ = 0;
         data_ = null;
         return this;
@@ -4802,6 +9622,7 @@ public final class DatagramProto {
             result.data_ = teacherBuilder_.build();
           }
         }
+        result.lastModified_ = lastModified_;
         result.dataCase_ = dataCase_;
         onBuilt();
         return result;
@@ -4876,6 +9697,9 @@ public final class DatagramProto {
         }
         if (other.type_ != 0) {
           setTypeValue(other.getTypeValue());
+        }
+        if (other.getLastModified() != 0L) {
+          setLastModified(other.getLastModified());
         }
         switch (other.getDataCase()) {
           case STUDENT: {
@@ -5703,6 +10527,37 @@ public final class DatagramProto {
         onChanged();;
         return teacherBuilder_;
       }
+
+      private long lastModified_ ;
+      /**
+       * <code>int64 last_modified = 10;</code>
+       * @return The lastModified.
+       */
+      @java.lang.Override
+      public long getLastModified() {
+        return lastModified_;
+      }
+      /**
+       * <code>int64 last_modified = 10;</code>
+       * @param value The lastModified to set.
+       * @return This builder for chaining.
+       */
+      public Builder setLastModified(long value) {
+        
+        lastModified_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 last_modified = 10;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearLastModified() {
+        
+        lastModified_ = 0L;
+        onChanged();
+        return this;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -5756,56 +10611,55 @@ public final class DatagramProto {
 
   }
 
-  public interface LoginOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Login)
+  public interface UsersOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Users)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string username = 1;</code>
-     * @return The username.
+     * <code>repeated .User users = 1;</code>
      */
-    java.lang.String getUsername();
+    java.util.List<com.example.demo.datagram.DatagramProto.User> 
+        getUsersList();
     /**
-     * <code>string username = 1;</code>
-     * @return The bytes for username.
+     * <code>repeated .User users = 1;</code>
      */
-    com.google.protobuf.ByteString
-        getUsernameBytes();
-
+    com.example.demo.datagram.DatagramProto.User getUsers(int index);
     /**
-     * <code>string password = 2;</code>
-     * @return The password.
+     * <code>repeated .User users = 1;</code>
      */
-    java.lang.String getPassword();
+    int getUsersCount();
     /**
-     * <code>string password = 2;</code>
-     * @return The bytes for password.
+     * <code>repeated .User users = 1;</code>
      */
-    com.google.protobuf.ByteString
-        getPasswordBytes();
+    java.util.List<? extends com.example.demo.datagram.DatagramProto.UserOrBuilder> 
+        getUsersOrBuilderList();
+    /**
+     * <code>repeated .User users = 1;</code>
+     */
+    com.example.demo.datagram.DatagramProto.UserOrBuilder getUsersOrBuilder(
+        int index);
   }
   /**
-   * Protobuf type {@code Login}
+   * Protobuf type {@code Users}
    */
-  public static final class Login extends
+  public static final class Users extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Login)
-      LoginOrBuilder {
+      // @@protoc_insertion_point(message_implements:Users)
+      UsersOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use Login.newBuilder() to construct.
-    private Login(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use Users.newBuilder() to construct.
+    private Users(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private Login() {
-      username_ = "";
-      password_ = "";
+    private Users() {
+      users_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new Login();
+      return new Users();
     }
 
     @java.lang.Override
@@ -5813,7 +10667,7 @@ public final class DatagramProto {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private Login(
+    private Users(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -5821,6 +10675,7 @@ public final class DatagramProto {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
+      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -5832,15 +10687,12 @@ public final class DatagramProto {
               done = true;
               break;
             case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              username_ = s;
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              password_ = s;
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                users_ = new java.util.ArrayList<com.example.demo.datagram.DatagramProto.User>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              users_.add(
+                  input.readMessage(com.example.demo.datagram.DatagramProto.User.parser(), extensionRegistry));
               break;
             }
             default: {
@@ -5858,97 +10710,64 @@ public final class DatagramProto {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
+          users_ = java.util.Collections.unmodifiableList(users_);
+        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.example.demo.datagram.DatagramProto.internal_static_Login_descriptor;
+      return com.example.demo.datagram.DatagramProto.internal_static_Users_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.example.demo.datagram.DatagramProto.internal_static_Login_fieldAccessorTable
+      return com.example.demo.datagram.DatagramProto.internal_static_Users_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.example.demo.datagram.DatagramProto.Login.class, com.example.demo.datagram.DatagramProto.Login.Builder.class);
+              com.example.demo.datagram.DatagramProto.Users.class, com.example.demo.datagram.DatagramProto.Users.Builder.class);
     }
 
-    public static final int USERNAME_FIELD_NUMBER = 1;
-    private volatile java.lang.Object username_;
+    public static final int USERS_FIELD_NUMBER = 1;
+    private java.util.List<com.example.demo.datagram.DatagramProto.User> users_;
     /**
-     * <code>string username = 1;</code>
-     * @return The username.
+     * <code>repeated .User users = 1;</code>
      */
     @java.lang.Override
-    public java.lang.String getUsername() {
-      java.lang.Object ref = username_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        username_ = s;
-        return s;
-      }
+    public java.util.List<com.example.demo.datagram.DatagramProto.User> getUsersList() {
+      return users_;
     }
     /**
-     * <code>string username = 1;</code>
-     * @return The bytes for username.
+     * <code>repeated .User users = 1;</code>
      */
     @java.lang.Override
-    public com.google.protobuf.ByteString
-        getUsernameBytes() {
-      java.lang.Object ref = username_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        username_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int PASSWORD_FIELD_NUMBER = 2;
-    private volatile java.lang.Object password_;
-    /**
-     * <code>string password = 2;</code>
-     * @return The password.
-     */
-    @java.lang.Override
-    public java.lang.String getPassword() {
-      java.lang.Object ref = password_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        password_ = s;
-        return s;
-      }
+    public java.util.List<? extends com.example.demo.datagram.DatagramProto.UserOrBuilder> 
+        getUsersOrBuilderList() {
+      return users_;
     }
     /**
-     * <code>string password = 2;</code>
-     * @return The bytes for password.
+     * <code>repeated .User users = 1;</code>
      */
     @java.lang.Override
-    public com.google.protobuf.ByteString
-        getPasswordBytes() {
-      java.lang.Object ref = password_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        password_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public int getUsersCount() {
+      return users_.size();
+    }
+    /**
+     * <code>repeated .User users = 1;</code>
+     */
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.User getUsers(int index) {
+      return users_.get(index);
+    }
+    /**
+     * <code>repeated .User users = 1;</code>
+     */
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.UserOrBuilder getUsersOrBuilder(
+        int index) {
+      return users_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -5965,11 +10784,8 @@ public final class DatagramProto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getUsernameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, username_);
-      }
-      if (!getPasswordBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, password_);
+      for (int i = 0; i < users_.size(); i++) {
+        output.writeMessage(1, users_.get(i));
       }
       unknownFields.writeTo(output);
     }
@@ -5980,11 +10796,9 @@ public final class DatagramProto {
       if (size != -1) return size;
 
       size = 0;
-      if (!getUsernameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, username_);
-      }
-      if (!getPasswordBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, password_);
+      for (int i = 0; i < users_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, users_.get(i));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -5996,15 +10810,13 @@ public final class DatagramProto {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.example.demo.datagram.DatagramProto.Login)) {
+      if (!(obj instanceof com.example.demo.datagram.DatagramProto.Users)) {
         return super.equals(obj);
       }
-      com.example.demo.datagram.DatagramProto.Login other = (com.example.demo.datagram.DatagramProto.Login) obj;
+      com.example.demo.datagram.DatagramProto.Users other = (com.example.demo.datagram.DatagramProto.Users) obj;
 
-      if (!getUsername()
-          .equals(other.getUsername())) return false;
-      if (!getPassword()
-          .equals(other.getPassword())) return false;
+      if (!getUsersList()
+          .equals(other.getUsersList())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -6016,78 +10828,78 @@ public final class DatagramProto {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + USERNAME_FIELD_NUMBER;
-      hash = (53 * hash) + getUsername().hashCode();
-      hash = (37 * hash) + PASSWORD_FIELD_NUMBER;
-      hash = (53 * hash) + getPassword().hashCode();
+      if (getUsersCount() > 0) {
+        hash = (37 * hash) + USERS_FIELD_NUMBER;
+        hash = (53 * hash) + getUsersList().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static com.example.demo.datagram.DatagramProto.Login parseFrom(
+    public static com.example.demo.datagram.DatagramProto.Users parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.example.demo.datagram.DatagramProto.Login parseFrom(
+    public static com.example.demo.datagram.DatagramProto.Users parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.example.demo.datagram.DatagramProto.Login parseFrom(
+    public static com.example.demo.datagram.DatagramProto.Users parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.example.demo.datagram.DatagramProto.Login parseFrom(
+    public static com.example.demo.datagram.DatagramProto.Users parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.example.demo.datagram.DatagramProto.Login parseFrom(byte[] data)
+    public static com.example.demo.datagram.DatagramProto.Users parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.example.demo.datagram.DatagramProto.Login parseFrom(
+    public static com.example.demo.datagram.DatagramProto.Users parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.example.demo.datagram.DatagramProto.Login parseFrom(java.io.InputStream input)
+    public static com.example.demo.datagram.DatagramProto.Users parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.example.demo.datagram.DatagramProto.Login parseFrom(
+    public static com.example.demo.datagram.DatagramProto.Users parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.example.demo.datagram.DatagramProto.Login parseDelimitedFrom(java.io.InputStream input)
+    public static com.example.demo.datagram.DatagramProto.Users parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.example.demo.datagram.DatagramProto.Login parseDelimitedFrom(
+    public static com.example.demo.datagram.DatagramProto.Users parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.example.demo.datagram.DatagramProto.Login parseFrom(
+    public static com.example.demo.datagram.DatagramProto.Users parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.example.demo.datagram.DatagramProto.Login parseFrom(
+    public static com.example.demo.datagram.DatagramProto.Users parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -6100,7 +10912,7 @@ public final class DatagramProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.example.demo.datagram.DatagramProto.Login prototype) {
+    public static Builder newBuilder(com.example.demo.datagram.DatagramProto.Users prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -6116,26 +10928,26 @@ public final class DatagramProto {
       return builder;
     }
     /**
-     * Protobuf type {@code Login}
+     * Protobuf type {@code Users}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Login)
-        com.example.demo.datagram.DatagramProto.LoginOrBuilder {
+        // @@protoc_insertion_point(builder_implements:Users)
+        com.example.demo.datagram.DatagramProto.UsersOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.example.demo.datagram.DatagramProto.internal_static_Login_descriptor;
+        return com.example.demo.datagram.DatagramProto.internal_static_Users_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.example.demo.datagram.DatagramProto.internal_static_Login_fieldAccessorTable
+        return com.example.demo.datagram.DatagramProto.internal_static_Users_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.example.demo.datagram.DatagramProto.Login.class, com.example.demo.datagram.DatagramProto.Login.Builder.class);
+                com.example.demo.datagram.DatagramProto.Users.class, com.example.demo.datagram.DatagramProto.Users.Builder.class);
       }
 
-      // Construct using com.example.demo.datagram.DatagramProto.Login.newBuilder()
+      // Construct using com.example.demo.datagram.DatagramProto.Users.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -6148,32 +10960,35 @@ public final class DatagramProto {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
+          getUsersFieldBuilder();
         }
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        username_ = "";
-
-        password_ = "";
-
+        if (usersBuilder_ == null) {
+          users_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          usersBuilder_.clear();
+        }
         return this;
       }
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.example.demo.datagram.DatagramProto.internal_static_Login_descriptor;
+        return com.example.demo.datagram.DatagramProto.internal_static_Users_descriptor;
       }
 
       @java.lang.Override
-      public com.example.demo.datagram.DatagramProto.Login getDefaultInstanceForType() {
-        return com.example.demo.datagram.DatagramProto.Login.getDefaultInstance();
+      public com.example.demo.datagram.DatagramProto.Users getDefaultInstanceForType() {
+        return com.example.demo.datagram.DatagramProto.Users.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.example.demo.datagram.DatagramProto.Login build() {
-        com.example.demo.datagram.DatagramProto.Login result = buildPartial();
+      public com.example.demo.datagram.DatagramProto.Users build() {
+        com.example.demo.datagram.DatagramProto.Users result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -6181,10 +10996,18 @@ public final class DatagramProto {
       }
 
       @java.lang.Override
-      public com.example.demo.datagram.DatagramProto.Login buildPartial() {
-        com.example.demo.datagram.DatagramProto.Login result = new com.example.demo.datagram.DatagramProto.Login(this);
-        result.username_ = username_;
-        result.password_ = password_;
+      public com.example.demo.datagram.DatagramProto.Users buildPartial() {
+        com.example.demo.datagram.DatagramProto.Users result = new com.example.demo.datagram.DatagramProto.Users(this);
+        int from_bitField0_ = bitField0_;
+        if (usersBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            users_ = java.util.Collections.unmodifiableList(users_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.users_ = users_;
+        } else {
+          result.users_ = usersBuilder_.build();
+        }
         onBuilt();
         return result;
       }
@@ -6223,23 +11046,41 @@ public final class DatagramProto {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.example.demo.datagram.DatagramProto.Login) {
-          return mergeFrom((com.example.demo.datagram.DatagramProto.Login)other);
+        if (other instanceof com.example.demo.datagram.DatagramProto.Users) {
+          return mergeFrom((com.example.demo.datagram.DatagramProto.Users)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.example.demo.datagram.DatagramProto.Login other) {
-        if (other == com.example.demo.datagram.DatagramProto.Login.getDefaultInstance()) return this;
-        if (!other.getUsername().isEmpty()) {
-          username_ = other.username_;
-          onChanged();
-        }
-        if (!other.getPassword().isEmpty()) {
-          password_ = other.password_;
-          onChanged();
+      public Builder mergeFrom(com.example.demo.datagram.DatagramProto.Users other) {
+        if (other == com.example.demo.datagram.DatagramProto.Users.getDefaultInstance()) return this;
+        if (usersBuilder_ == null) {
+          if (!other.users_.isEmpty()) {
+            if (users_.isEmpty()) {
+              users_ = other.users_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureUsersIsMutable();
+              users_.addAll(other.users_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.users_.isEmpty()) {
+            if (usersBuilder_.isEmpty()) {
+              usersBuilder_.dispose();
+              usersBuilder_ = null;
+              users_ = other.users_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              usersBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getUsersFieldBuilder() : null;
+            } else {
+              usersBuilder_.addAllMessages(other.users_);
+            }
+          }
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -6256,11 +11097,11 @@ public final class DatagramProto {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.example.demo.datagram.DatagramProto.Login parsedMessage = null;
+        com.example.demo.datagram.DatagramProto.Users parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.example.demo.datagram.DatagramProto.Login) e.getUnfinishedMessage();
+          parsedMessage = (com.example.demo.datagram.DatagramProto.Users) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -6269,157 +11110,246 @@ public final class DatagramProto {
         }
         return this;
       }
+      private int bitField0_;
 
-      private java.lang.Object username_ = "";
-      /**
-       * <code>string username = 1;</code>
-       * @return The username.
-       */
-      public java.lang.String getUsername() {
-        java.lang.Object ref = username_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          username_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string username = 1;</code>
-       * @return The bytes for username.
-       */
-      public com.google.protobuf.ByteString
-          getUsernameBytes() {
-        java.lang.Object ref = username_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          username_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string username = 1;</code>
-       * @param value The username to set.
-       * @return This builder for chaining.
-       */
-      public Builder setUsername(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        username_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string username = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearUsername() {
-        
-        username_ = getDefaultInstance().getUsername();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string username = 1;</code>
-       * @param value The bytes for username to set.
-       * @return This builder for chaining.
-       */
-      public Builder setUsernameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        username_ = value;
-        onChanged();
-        return this;
+      private java.util.List<com.example.demo.datagram.DatagramProto.User> users_ =
+        java.util.Collections.emptyList();
+      private void ensureUsersIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          users_ = new java.util.ArrayList<com.example.demo.datagram.DatagramProto.User>(users_);
+          bitField0_ |= 0x00000001;
+         }
       }
 
-      private java.lang.Object password_ = "";
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.example.demo.datagram.DatagramProto.User, com.example.demo.datagram.DatagramProto.User.Builder, com.example.demo.datagram.DatagramProto.UserOrBuilder> usersBuilder_;
+
       /**
-       * <code>string password = 2;</code>
-       * @return The password.
+       * <code>repeated .User users = 1;</code>
        */
-      public java.lang.String getPassword() {
-        java.lang.Object ref = password_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          password_ = s;
-          return s;
+      public java.util.List<com.example.demo.datagram.DatagramProto.User> getUsersList() {
+        if (usersBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(users_);
         } else {
-          return (java.lang.String) ref;
+          return usersBuilder_.getMessageList();
         }
       }
       /**
-       * <code>string password = 2;</code>
-       * @return The bytes for password.
+       * <code>repeated .User users = 1;</code>
        */
-      public com.google.protobuf.ByteString
-          getPasswordBytes() {
-        java.lang.Object ref = password_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          password_ = b;
-          return b;
+      public int getUsersCount() {
+        if (usersBuilder_ == null) {
+          return users_.size();
         } else {
-          return (com.google.protobuf.ByteString) ref;
+          return usersBuilder_.getCount();
         }
       }
       /**
-       * <code>string password = 2;</code>
-       * @param value The password to set.
-       * @return This builder for chaining.
+       * <code>repeated .User users = 1;</code>
        */
-      public Builder setPassword(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        password_ = value;
-        onChanged();
+      public com.example.demo.datagram.DatagramProto.User getUsers(int index) {
+        if (usersBuilder_ == null) {
+          return users_.get(index);
+        } else {
+          return usersBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .User users = 1;</code>
+       */
+      public Builder setUsers(
+          int index, com.example.demo.datagram.DatagramProto.User value) {
+        if (usersBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureUsersIsMutable();
+          users_.set(index, value);
+          onChanged();
+        } else {
+          usersBuilder_.setMessage(index, value);
+        }
         return this;
       }
       /**
-       * <code>string password = 2;</code>
-       * @return This builder for chaining.
+       * <code>repeated .User users = 1;</code>
        */
-      public Builder clearPassword() {
-        
-        password_ = getDefaultInstance().getPassword();
-        onChanged();
+      public Builder setUsers(
+          int index, com.example.demo.datagram.DatagramProto.User.Builder builderForValue) {
+        if (usersBuilder_ == null) {
+          ensureUsersIsMutable();
+          users_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          usersBuilder_.setMessage(index, builderForValue.build());
+        }
         return this;
       }
       /**
-       * <code>string password = 2;</code>
-       * @param value The bytes for password to set.
-       * @return This builder for chaining.
+       * <code>repeated .User users = 1;</code>
        */
-      public Builder setPasswordBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        password_ = value;
-        onChanged();
+      public Builder addUsers(com.example.demo.datagram.DatagramProto.User value) {
+        if (usersBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureUsersIsMutable();
+          users_.add(value);
+          onChanged();
+        } else {
+          usersBuilder_.addMessage(value);
+        }
         return this;
+      }
+      /**
+       * <code>repeated .User users = 1;</code>
+       */
+      public Builder addUsers(
+          int index, com.example.demo.datagram.DatagramProto.User value) {
+        if (usersBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureUsersIsMutable();
+          users_.add(index, value);
+          onChanged();
+        } else {
+          usersBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .User users = 1;</code>
+       */
+      public Builder addUsers(
+          com.example.demo.datagram.DatagramProto.User.Builder builderForValue) {
+        if (usersBuilder_ == null) {
+          ensureUsersIsMutable();
+          users_.add(builderForValue.build());
+          onChanged();
+        } else {
+          usersBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .User users = 1;</code>
+       */
+      public Builder addUsers(
+          int index, com.example.demo.datagram.DatagramProto.User.Builder builderForValue) {
+        if (usersBuilder_ == null) {
+          ensureUsersIsMutable();
+          users_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          usersBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .User users = 1;</code>
+       */
+      public Builder addAllUsers(
+          java.lang.Iterable<? extends com.example.demo.datagram.DatagramProto.User> values) {
+        if (usersBuilder_ == null) {
+          ensureUsersIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, users_);
+          onChanged();
+        } else {
+          usersBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .User users = 1;</code>
+       */
+      public Builder clearUsers() {
+        if (usersBuilder_ == null) {
+          users_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          usersBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .User users = 1;</code>
+       */
+      public Builder removeUsers(int index) {
+        if (usersBuilder_ == null) {
+          ensureUsersIsMutable();
+          users_.remove(index);
+          onChanged();
+        } else {
+          usersBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .User users = 1;</code>
+       */
+      public com.example.demo.datagram.DatagramProto.User.Builder getUsersBuilder(
+          int index) {
+        return getUsersFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .User users = 1;</code>
+       */
+      public com.example.demo.datagram.DatagramProto.UserOrBuilder getUsersOrBuilder(
+          int index) {
+        if (usersBuilder_ == null) {
+          return users_.get(index);  } else {
+          return usersBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .User users = 1;</code>
+       */
+      public java.util.List<? extends com.example.demo.datagram.DatagramProto.UserOrBuilder> 
+           getUsersOrBuilderList() {
+        if (usersBuilder_ != null) {
+          return usersBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(users_);
+        }
+      }
+      /**
+       * <code>repeated .User users = 1;</code>
+       */
+      public com.example.demo.datagram.DatagramProto.User.Builder addUsersBuilder() {
+        return getUsersFieldBuilder().addBuilder(
+            com.example.demo.datagram.DatagramProto.User.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .User users = 1;</code>
+       */
+      public com.example.demo.datagram.DatagramProto.User.Builder addUsersBuilder(
+          int index) {
+        return getUsersFieldBuilder().addBuilder(
+            index, com.example.demo.datagram.DatagramProto.User.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .User users = 1;</code>
+       */
+      public java.util.List<com.example.demo.datagram.DatagramProto.User.Builder> 
+           getUsersBuilderList() {
+        return getUsersFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.example.demo.datagram.DatagramProto.User, com.example.demo.datagram.DatagramProto.User.Builder, com.example.demo.datagram.DatagramProto.UserOrBuilder> 
+          getUsersFieldBuilder() {
+        if (usersBuilder_ == null) {
+          usersBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.example.demo.datagram.DatagramProto.User, com.example.demo.datagram.DatagramProto.User.Builder, com.example.demo.datagram.DatagramProto.UserOrBuilder>(
+                  users_,
+                  ((bitField0_ & 0x00000001) != 0),
+                  getParentForChildren(),
+                  isClean());
+          users_ = null;
+        }
+        return usersBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -6434,41 +11364,41 @@ public final class DatagramProto {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:Login)
+      // @@protoc_insertion_point(builder_scope:Users)
     }
 
-    // @@protoc_insertion_point(class_scope:Login)
-    private static final com.example.demo.datagram.DatagramProto.Login DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:Users)
+    private static final com.example.demo.datagram.DatagramProto.Users DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.example.demo.datagram.DatagramProto.Login();
+      DEFAULT_INSTANCE = new com.example.demo.datagram.DatagramProto.Users();
     }
 
-    public static com.example.demo.datagram.DatagramProto.Login getDefaultInstance() {
+    public static com.example.demo.datagram.DatagramProto.Users getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<Login>
-        PARSER = new com.google.protobuf.AbstractParser<Login>() {
+    private static final com.google.protobuf.Parser<Users>
+        PARSER = new com.google.protobuf.AbstractParser<Users>() {
       @java.lang.Override
-      public Login parsePartialFrom(
+      public Users parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Login(input, extensionRegistry);
+        return new Users(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<Login> parser() {
+    public static com.google.protobuf.Parser<Users> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<Login> getParserForType() {
+    public com.google.protobuf.Parser<Users> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.example.demo.datagram.DatagramProto.Login getDefaultInstanceForType() {
+    public com.example.demo.datagram.DatagramProto.Users getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -6501,6 +11431,12 @@ public final class DatagramProto {
      */
     com.google.protobuf.ByteString
         getPasswordBytes();
+
+    /**
+     * <code>int32 identity = 3;</code>
+     * @return The identity.
+     */
+    int getIdentity();
   }
   /**
    * Protobuf type {@code Register}
@@ -6559,6 +11495,11 @@ public final class DatagramProto {
               java.lang.String s = input.readStringRequireUtf8();
 
               password_ = s;
+              break;
+            }
+            case 24: {
+
+              identity_ = input.readInt32();
               break;
             }
             default: {
@@ -6669,6 +11610,17 @@ public final class DatagramProto {
       }
     }
 
+    public static final int IDENTITY_FIELD_NUMBER = 3;
+    private int identity_;
+    /**
+     * <code>int32 identity = 3;</code>
+     * @return The identity.
+     */
+    @java.lang.Override
+    public int getIdentity() {
+      return identity_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -6689,6 +11641,9 @@ public final class DatagramProto {
       if (!getPasswordBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, password_);
       }
+      if (identity_ != 0) {
+        output.writeInt32(3, identity_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -6703,6 +11658,10 @@ public final class DatagramProto {
       }
       if (!getPasswordBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, password_);
+      }
+      if (identity_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, identity_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -6723,6 +11682,8 @@ public final class DatagramProto {
           .equals(other.getUsername())) return false;
       if (!getPassword()
           .equals(other.getPassword())) return false;
+      if (getIdentity()
+          != other.getIdentity()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -6738,6 +11699,8 @@ public final class DatagramProto {
       hash = (53 * hash) + getUsername().hashCode();
       hash = (37 * hash) + PASSWORD_FIELD_NUMBER;
       hash = (53 * hash) + getPassword().hashCode();
+      hash = (37 * hash) + IDENTITY_FIELD_NUMBER;
+      hash = (53 * hash) + getIdentity();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -6875,6 +11838,8 @@ public final class DatagramProto {
 
         password_ = "";
 
+        identity_ = 0;
+
         return this;
       }
 
@@ -6903,6 +11868,7 @@ public final class DatagramProto {
         com.example.demo.datagram.DatagramProto.Register result = new com.example.demo.datagram.DatagramProto.Register(this);
         result.username_ = username_;
         result.password_ = password_;
+        result.identity_ = identity_;
         onBuilt();
         return result;
       }
@@ -6958,6 +11924,9 @@ public final class DatagramProto {
         if (!other.getPassword().isEmpty()) {
           password_ = other.password_;
           onChanged();
+        }
+        if (other.getIdentity() != 0) {
+          setIdentity(other.getIdentity());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -7139,6 +12108,37 @@ public final class DatagramProto {
         onChanged();
         return this;
       }
+
+      private int identity_ ;
+      /**
+       * <code>int32 identity = 3;</code>
+       * @return The identity.
+       */
+      @java.lang.Override
+      public int getIdentity() {
+        return identity_;
+      }
+      /**
+       * <code>int32 identity = 3;</code>
+       * @param value The identity to set.
+       * @return This builder for chaining.
+       */
+      public Builder setIdentity(int value) {
+        
+        identity_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 identity = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearIdentity() {
+        
+        identity_ = 0;
+        onChanged();
+        return this;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -7187,1315 +12187,6 @@ public final class DatagramProto {
 
     @java.lang.Override
     public com.example.demo.datagram.DatagramProto.Register getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface CourseOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Course)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>string id = 1;</code>
-     * @return The id.
-     */
-    java.lang.String getId();
-    /**
-     * <code>string id = 1;</code>
-     * @return The bytes for id.
-     */
-    com.google.protobuf.ByteString
-        getIdBytes();
-
-    /**
-     * <code>string name = 2;</code>
-     * @return The name.
-     */
-    java.lang.String getName();
-    /**
-     * <code>string name = 2;</code>
-     * @return The bytes for name.
-     */
-    com.google.protobuf.ByteString
-        getNameBytes();
-
-    /**
-     * <code>string classroom = 3;</code>
-     * @return The classroom.
-     */
-    java.lang.String getClassroom();
-    /**
-     * <code>string classroom = 3;</code>
-     * @return The bytes for classroom.
-     */
-    com.google.protobuf.ByteString
-        getClassroomBytes();
-
-    /**
-     * <code>string time = 4;</code>
-     * @return The time.
-     */
-    java.lang.String getTime();
-    /**
-     * <code>string time = 4;</code>
-     * @return The bytes for time.
-     */
-    com.google.protobuf.ByteString
-        getTimeBytes();
-
-    /**
-     * <code>int32 semester = 5;</code>
-     * @return The semester.
-     */
-    int getSemester();
-
-    /**
-     * <code>string remarks = 6;</code>
-     * @return The remarks.
-     */
-    java.lang.String getRemarks();
-    /**
-     * <code>string remarks = 6;</code>
-     * @return The bytes for remarks.
-     */
-    com.google.protobuf.ByteString
-        getRemarksBytes();
-
-    /**
-     * <code>bool hasGroup = 7;</code>
-     * @return The hasGroup.
-     */
-    boolean getHasGroup();
-  }
-  /**
-   * Protobuf type {@code Course}
-   */
-  public static final class Course extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Course)
-      CourseOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use Course.newBuilder() to construct.
-    private Course(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private Course() {
-      id_ = "";
-      name_ = "";
-      classroom_ = "";
-      time_ = "";
-      remarks_ = "";
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new Course();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private Course(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              id_ = s;
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              name_ = s;
-              break;
-            }
-            case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              classroom_ = s;
-              break;
-            }
-            case 34: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              time_ = s;
-              break;
-            }
-            case 40: {
-
-              semester_ = input.readInt32();
-              break;
-            }
-            case 50: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              remarks_ = s;
-              break;
-            }
-            case 56: {
-
-              hasGroup_ = input.readBool();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.example.demo.datagram.DatagramProto.internal_static_Course_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.example.demo.datagram.DatagramProto.internal_static_Course_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.example.demo.datagram.DatagramProto.Course.class, com.example.demo.datagram.DatagramProto.Course.Builder.class);
-    }
-
-    public static final int ID_FIELD_NUMBER = 1;
-    private volatile java.lang.Object id_;
-    /**
-     * <code>string id = 1;</code>
-     * @return The id.
-     */
-    @java.lang.Override
-    public java.lang.String getId() {
-      java.lang.Object ref = id_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        id_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string id = 1;</code>
-     * @return The bytes for id.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getIdBytes() {
-      java.lang.Object ref = id_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        id_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int NAME_FIELD_NUMBER = 2;
-    private volatile java.lang.Object name_;
-    /**
-     * <code>string name = 2;</code>
-     * @return The name.
-     */
-    @java.lang.Override
-    public java.lang.String getName() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        name_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string name = 2;</code>
-     * @return The bytes for name.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getNameBytes() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        name_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int CLASSROOM_FIELD_NUMBER = 3;
-    private volatile java.lang.Object classroom_;
-    /**
-     * <code>string classroom = 3;</code>
-     * @return The classroom.
-     */
-    @java.lang.Override
-    public java.lang.String getClassroom() {
-      java.lang.Object ref = classroom_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        classroom_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string classroom = 3;</code>
-     * @return The bytes for classroom.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getClassroomBytes() {
-      java.lang.Object ref = classroom_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        classroom_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int TIME_FIELD_NUMBER = 4;
-    private volatile java.lang.Object time_;
-    /**
-     * <code>string time = 4;</code>
-     * @return The time.
-     */
-    @java.lang.Override
-    public java.lang.String getTime() {
-      java.lang.Object ref = time_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        time_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string time = 4;</code>
-     * @return The bytes for time.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getTimeBytes() {
-      java.lang.Object ref = time_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        time_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int SEMESTER_FIELD_NUMBER = 5;
-    private int semester_;
-    /**
-     * <code>int32 semester = 5;</code>
-     * @return The semester.
-     */
-    @java.lang.Override
-    public int getSemester() {
-      return semester_;
-    }
-
-    public static final int REMARKS_FIELD_NUMBER = 6;
-    private volatile java.lang.Object remarks_;
-    /**
-     * <code>string remarks = 6;</code>
-     * @return The remarks.
-     */
-    @java.lang.Override
-    public java.lang.String getRemarks() {
-      java.lang.Object ref = remarks_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        remarks_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string remarks = 6;</code>
-     * @return The bytes for remarks.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getRemarksBytes() {
-      java.lang.Object ref = remarks_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        remarks_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int HASGROUP_FIELD_NUMBER = 7;
-    private boolean hasGroup_;
-    /**
-     * <code>bool hasGroup = 7;</code>
-     * @return The hasGroup.
-     */
-    @java.lang.Override
-    public boolean getHasGroup() {
-      return hasGroup_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!getIdBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, id_);
-      }
-      if (!getNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
-      }
-      if (!getClassroomBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, classroom_);
-      }
-      if (!getTimeBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, time_);
-      }
-      if (semester_ != 0) {
-        output.writeInt32(5, semester_);
-      }
-      if (!getRemarksBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, remarks_);
-      }
-      if (hasGroup_ != false) {
-        output.writeBool(7, hasGroup_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!getIdBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, id_);
-      }
-      if (!getNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
-      }
-      if (!getClassroomBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, classroom_);
-      }
-      if (!getTimeBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, time_);
-      }
-      if (semester_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(5, semester_);
-      }
-      if (!getRemarksBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, remarks_);
-      }
-      if (hasGroup_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(7, hasGroup_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.example.demo.datagram.DatagramProto.Course)) {
-        return super.equals(obj);
-      }
-      com.example.demo.datagram.DatagramProto.Course other = (com.example.demo.datagram.DatagramProto.Course) obj;
-
-      if (!getId()
-          .equals(other.getId())) return false;
-      if (!getName()
-          .equals(other.getName())) return false;
-      if (!getClassroom()
-          .equals(other.getClassroom())) return false;
-      if (!getTime()
-          .equals(other.getTime())) return false;
-      if (getSemester()
-          != other.getSemester()) return false;
-      if (!getRemarks()
-          .equals(other.getRemarks())) return false;
-      if (getHasGroup()
-          != other.getHasGroup()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + ID_FIELD_NUMBER;
-      hash = (53 * hash) + getId().hashCode();
-      hash = (37 * hash) + NAME_FIELD_NUMBER;
-      hash = (53 * hash) + getName().hashCode();
-      hash = (37 * hash) + CLASSROOM_FIELD_NUMBER;
-      hash = (53 * hash) + getClassroom().hashCode();
-      hash = (37 * hash) + TIME_FIELD_NUMBER;
-      hash = (53 * hash) + getTime().hashCode();
-      hash = (37 * hash) + SEMESTER_FIELD_NUMBER;
-      hash = (53 * hash) + getSemester();
-      hash = (37 * hash) + REMARKS_FIELD_NUMBER;
-      hash = (53 * hash) + getRemarks().hashCode();
-      hash = (37 * hash) + HASGROUP_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getHasGroup());
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.example.demo.datagram.DatagramProto.Course parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.example.demo.datagram.DatagramProto.Course parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.example.demo.datagram.DatagramProto.Course parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.example.demo.datagram.DatagramProto.Course parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.example.demo.datagram.DatagramProto.Course parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.example.demo.datagram.DatagramProto.Course parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.example.demo.datagram.DatagramProto.Course parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.example.demo.datagram.DatagramProto.Course parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.example.demo.datagram.DatagramProto.Course parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.example.demo.datagram.DatagramProto.Course parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.example.demo.datagram.DatagramProto.Course parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.example.demo.datagram.DatagramProto.Course parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.example.demo.datagram.DatagramProto.Course prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code Course}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Course)
-        com.example.demo.datagram.DatagramProto.CourseOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.example.demo.datagram.DatagramProto.internal_static_Course_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.example.demo.datagram.DatagramProto.internal_static_Course_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.example.demo.datagram.DatagramProto.Course.class, com.example.demo.datagram.DatagramProto.Course.Builder.class);
-      }
-
-      // Construct using com.example.demo.datagram.DatagramProto.Course.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        id_ = "";
-
-        name_ = "";
-
-        classroom_ = "";
-
-        time_ = "";
-
-        semester_ = 0;
-
-        remarks_ = "";
-
-        hasGroup_ = false;
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.example.demo.datagram.DatagramProto.internal_static_Course_descriptor;
-      }
-
-      @java.lang.Override
-      public com.example.demo.datagram.DatagramProto.Course getDefaultInstanceForType() {
-        return com.example.demo.datagram.DatagramProto.Course.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.example.demo.datagram.DatagramProto.Course build() {
-        com.example.demo.datagram.DatagramProto.Course result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.example.demo.datagram.DatagramProto.Course buildPartial() {
-        com.example.demo.datagram.DatagramProto.Course result = new com.example.demo.datagram.DatagramProto.Course(this);
-        result.id_ = id_;
-        result.name_ = name_;
-        result.classroom_ = classroom_;
-        result.time_ = time_;
-        result.semester_ = semester_;
-        result.remarks_ = remarks_;
-        result.hasGroup_ = hasGroup_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.example.demo.datagram.DatagramProto.Course) {
-          return mergeFrom((com.example.demo.datagram.DatagramProto.Course)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.example.demo.datagram.DatagramProto.Course other) {
-        if (other == com.example.demo.datagram.DatagramProto.Course.getDefaultInstance()) return this;
-        if (!other.getId().isEmpty()) {
-          id_ = other.id_;
-          onChanged();
-        }
-        if (!other.getName().isEmpty()) {
-          name_ = other.name_;
-          onChanged();
-        }
-        if (!other.getClassroom().isEmpty()) {
-          classroom_ = other.classroom_;
-          onChanged();
-        }
-        if (!other.getTime().isEmpty()) {
-          time_ = other.time_;
-          onChanged();
-        }
-        if (other.getSemester() != 0) {
-          setSemester(other.getSemester());
-        }
-        if (!other.getRemarks().isEmpty()) {
-          remarks_ = other.remarks_;
-          onChanged();
-        }
-        if (other.getHasGroup() != false) {
-          setHasGroup(other.getHasGroup());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.example.demo.datagram.DatagramProto.Course parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.example.demo.datagram.DatagramProto.Course) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private java.lang.Object id_ = "";
-      /**
-       * <code>string id = 1;</code>
-       * @return The id.
-       */
-      public java.lang.String getId() {
-        java.lang.Object ref = id_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          id_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string id = 1;</code>
-       * @return The bytes for id.
-       */
-      public com.google.protobuf.ByteString
-          getIdBytes() {
-        java.lang.Object ref = id_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          id_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string id = 1;</code>
-       * @param value The id to set.
-       * @return This builder for chaining.
-       */
-      public Builder setId(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        id_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string id = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearId() {
-        
-        id_ = getDefaultInstance().getId();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string id = 1;</code>
-       * @param value The bytes for id to set.
-       * @return This builder for chaining.
-       */
-      public Builder setIdBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        id_ = value;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object name_ = "";
-      /**
-       * <code>string name = 2;</code>
-       * @return The name.
-       */
-      public java.lang.String getName() {
-        java.lang.Object ref = name_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          name_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string name = 2;</code>
-       * @return The bytes for name.
-       */
-      public com.google.protobuf.ByteString
-          getNameBytes() {
-        java.lang.Object ref = name_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          name_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string name = 2;</code>
-       * @param value The name to set.
-       * @return This builder for chaining.
-       */
-      public Builder setName(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        name_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string name = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearName() {
-        
-        name_ = getDefaultInstance().getName();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string name = 2;</code>
-       * @param value The bytes for name to set.
-       * @return This builder for chaining.
-       */
-      public Builder setNameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        name_ = value;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object classroom_ = "";
-      /**
-       * <code>string classroom = 3;</code>
-       * @return The classroom.
-       */
-      public java.lang.String getClassroom() {
-        java.lang.Object ref = classroom_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          classroom_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string classroom = 3;</code>
-       * @return The bytes for classroom.
-       */
-      public com.google.protobuf.ByteString
-          getClassroomBytes() {
-        java.lang.Object ref = classroom_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          classroom_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string classroom = 3;</code>
-       * @param value The classroom to set.
-       * @return This builder for chaining.
-       */
-      public Builder setClassroom(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        classroom_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string classroom = 3;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearClassroom() {
-        
-        classroom_ = getDefaultInstance().getClassroom();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string classroom = 3;</code>
-       * @param value The bytes for classroom to set.
-       * @return This builder for chaining.
-       */
-      public Builder setClassroomBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        classroom_ = value;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object time_ = "";
-      /**
-       * <code>string time = 4;</code>
-       * @return The time.
-       */
-      public java.lang.String getTime() {
-        java.lang.Object ref = time_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          time_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string time = 4;</code>
-       * @return The bytes for time.
-       */
-      public com.google.protobuf.ByteString
-          getTimeBytes() {
-        java.lang.Object ref = time_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          time_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string time = 4;</code>
-       * @param value The time to set.
-       * @return This builder for chaining.
-       */
-      public Builder setTime(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        time_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string time = 4;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearTime() {
-        
-        time_ = getDefaultInstance().getTime();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string time = 4;</code>
-       * @param value The bytes for time to set.
-       * @return This builder for chaining.
-       */
-      public Builder setTimeBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        time_ = value;
-        onChanged();
-        return this;
-      }
-
-      private int semester_ ;
-      /**
-       * <code>int32 semester = 5;</code>
-       * @return The semester.
-       */
-      @java.lang.Override
-      public int getSemester() {
-        return semester_;
-      }
-      /**
-       * <code>int32 semester = 5;</code>
-       * @param value The semester to set.
-       * @return This builder for chaining.
-       */
-      public Builder setSemester(int value) {
-        
-        semester_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 semester = 5;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearSemester() {
-        
-        semester_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object remarks_ = "";
-      /**
-       * <code>string remarks = 6;</code>
-       * @return The remarks.
-       */
-      public java.lang.String getRemarks() {
-        java.lang.Object ref = remarks_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          remarks_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string remarks = 6;</code>
-       * @return The bytes for remarks.
-       */
-      public com.google.protobuf.ByteString
-          getRemarksBytes() {
-        java.lang.Object ref = remarks_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          remarks_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string remarks = 6;</code>
-       * @param value The remarks to set.
-       * @return This builder for chaining.
-       */
-      public Builder setRemarks(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        remarks_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string remarks = 6;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearRemarks() {
-        
-        remarks_ = getDefaultInstance().getRemarks();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string remarks = 6;</code>
-       * @param value The bytes for remarks to set.
-       * @return This builder for chaining.
-       */
-      public Builder setRemarksBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        remarks_ = value;
-        onChanged();
-        return this;
-      }
-
-      private boolean hasGroup_ ;
-      /**
-       * <code>bool hasGroup = 7;</code>
-       * @return The hasGroup.
-       */
-      @java.lang.Override
-      public boolean getHasGroup() {
-        return hasGroup_;
-      }
-      /**
-       * <code>bool hasGroup = 7;</code>
-       * @param value The hasGroup to set.
-       * @return This builder for chaining.
-       */
-      public Builder setHasGroup(boolean value) {
-        
-        hasGroup_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>bool hasGroup = 7;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearHasGroup() {
-        
-        hasGroup_ = false;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:Course)
-    }
-
-    // @@protoc_insertion_point(class_scope:Course)
-    private static final com.example.demo.datagram.DatagramProto.Course DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.example.demo.datagram.DatagramProto.Course();
-    }
-
-    public static com.example.demo.datagram.DatagramProto.Course getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<Course>
-        PARSER = new com.google.protobuf.AbstractParser<Course>() {
-      @java.lang.Override
-      public Course parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Course(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<Course> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Course> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.example.demo.datagram.DatagramProto.Course getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -9435,6 +13126,799 @@ public final class DatagramProto {
 
     @java.lang.Override
     public com.example.demo.datagram.DatagramProto.Message getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface MessagesOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Messages)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated .Message messages = 1;</code>
+     */
+    java.util.List<com.example.demo.datagram.DatagramProto.Message> 
+        getMessagesList();
+    /**
+     * <code>repeated .Message messages = 1;</code>
+     */
+    com.example.demo.datagram.DatagramProto.Message getMessages(int index);
+    /**
+     * <code>repeated .Message messages = 1;</code>
+     */
+    int getMessagesCount();
+    /**
+     * <code>repeated .Message messages = 1;</code>
+     */
+    java.util.List<? extends com.example.demo.datagram.DatagramProto.MessageOrBuilder> 
+        getMessagesOrBuilderList();
+    /**
+     * <code>repeated .Message messages = 1;</code>
+     */
+    com.example.demo.datagram.DatagramProto.MessageOrBuilder getMessagesOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code Messages}
+   */
+  public static final class Messages extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:Messages)
+      MessagesOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use Messages.newBuilder() to construct.
+    private Messages(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Messages() {
+      messages_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new Messages();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Messages(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                messages_ = new java.util.ArrayList<com.example.demo.datagram.DatagramProto.Message>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              messages_.add(
+                  input.readMessage(com.example.demo.datagram.DatagramProto.Message.parser(), extensionRegistry));
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
+          messages_ = java.util.Collections.unmodifiableList(messages_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.example.demo.datagram.DatagramProto.internal_static_Messages_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.example.demo.datagram.DatagramProto.internal_static_Messages_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.example.demo.datagram.DatagramProto.Messages.class, com.example.demo.datagram.DatagramProto.Messages.Builder.class);
+    }
+
+    public static final int MESSAGES_FIELD_NUMBER = 1;
+    private java.util.List<com.example.demo.datagram.DatagramProto.Message> messages_;
+    /**
+     * <code>repeated .Message messages = 1;</code>
+     */
+    @java.lang.Override
+    public java.util.List<com.example.demo.datagram.DatagramProto.Message> getMessagesList() {
+      return messages_;
+    }
+    /**
+     * <code>repeated .Message messages = 1;</code>
+     */
+    @java.lang.Override
+    public java.util.List<? extends com.example.demo.datagram.DatagramProto.MessageOrBuilder> 
+        getMessagesOrBuilderList() {
+      return messages_;
+    }
+    /**
+     * <code>repeated .Message messages = 1;</code>
+     */
+    @java.lang.Override
+    public int getMessagesCount() {
+      return messages_.size();
+    }
+    /**
+     * <code>repeated .Message messages = 1;</code>
+     */
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.Message getMessages(int index) {
+      return messages_.get(index);
+    }
+    /**
+     * <code>repeated .Message messages = 1;</code>
+     */
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.MessageOrBuilder getMessagesOrBuilder(
+        int index) {
+      return messages_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < messages_.size(); i++) {
+        output.writeMessage(1, messages_.get(i));
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < messages_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, messages_.get(i));
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.example.demo.datagram.DatagramProto.Messages)) {
+        return super.equals(obj);
+      }
+      com.example.demo.datagram.DatagramProto.Messages other = (com.example.demo.datagram.DatagramProto.Messages) obj;
+
+      if (!getMessagesList()
+          .equals(other.getMessagesList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getMessagesCount() > 0) {
+        hash = (37 * hash) + MESSAGES_FIELD_NUMBER;
+        hash = (53 * hash) + getMessagesList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.example.demo.datagram.DatagramProto.Messages parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.demo.datagram.DatagramProto.Messages parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.demo.datagram.DatagramProto.Messages parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.demo.datagram.DatagramProto.Messages parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.demo.datagram.DatagramProto.Messages parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.demo.datagram.DatagramProto.Messages parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.demo.datagram.DatagramProto.Messages parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.demo.datagram.DatagramProto.Messages parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.demo.datagram.DatagramProto.Messages parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.example.demo.datagram.DatagramProto.Messages parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.demo.datagram.DatagramProto.Messages parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.demo.datagram.DatagramProto.Messages parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.example.demo.datagram.DatagramProto.Messages prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code Messages}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Messages)
+        com.example.demo.datagram.DatagramProto.MessagesOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.example.demo.datagram.DatagramProto.internal_static_Messages_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.example.demo.datagram.DatagramProto.internal_static_Messages_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.example.demo.datagram.DatagramProto.Messages.class, com.example.demo.datagram.DatagramProto.Messages.Builder.class);
+      }
+
+      // Construct using com.example.demo.datagram.DatagramProto.Messages.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getMessagesFieldBuilder();
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (messagesBuilder_ == null) {
+          messages_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          messagesBuilder_.clear();
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.example.demo.datagram.DatagramProto.internal_static_Messages_descriptor;
+      }
+
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.Messages getDefaultInstanceForType() {
+        return com.example.demo.datagram.DatagramProto.Messages.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.Messages build() {
+        com.example.demo.datagram.DatagramProto.Messages result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.Messages buildPartial() {
+        com.example.demo.datagram.DatagramProto.Messages result = new com.example.demo.datagram.DatagramProto.Messages(this);
+        int from_bitField0_ = bitField0_;
+        if (messagesBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            messages_ = java.util.Collections.unmodifiableList(messages_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.messages_ = messages_;
+        } else {
+          result.messages_ = messagesBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.example.demo.datagram.DatagramProto.Messages) {
+          return mergeFrom((com.example.demo.datagram.DatagramProto.Messages)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.example.demo.datagram.DatagramProto.Messages other) {
+        if (other == com.example.demo.datagram.DatagramProto.Messages.getDefaultInstance()) return this;
+        if (messagesBuilder_ == null) {
+          if (!other.messages_.isEmpty()) {
+            if (messages_.isEmpty()) {
+              messages_ = other.messages_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureMessagesIsMutable();
+              messages_.addAll(other.messages_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.messages_.isEmpty()) {
+            if (messagesBuilder_.isEmpty()) {
+              messagesBuilder_.dispose();
+              messagesBuilder_ = null;
+              messages_ = other.messages_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              messagesBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getMessagesFieldBuilder() : null;
+            } else {
+              messagesBuilder_.addAllMessages(other.messages_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.example.demo.datagram.DatagramProto.Messages parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.example.demo.datagram.DatagramProto.Messages) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<com.example.demo.datagram.DatagramProto.Message> messages_ =
+        java.util.Collections.emptyList();
+      private void ensureMessagesIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          messages_ = new java.util.ArrayList<com.example.demo.datagram.DatagramProto.Message>(messages_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.example.demo.datagram.DatagramProto.Message, com.example.demo.datagram.DatagramProto.Message.Builder, com.example.demo.datagram.DatagramProto.MessageOrBuilder> messagesBuilder_;
+
+      /**
+       * <code>repeated .Message messages = 1;</code>
+       */
+      public java.util.List<com.example.demo.datagram.DatagramProto.Message> getMessagesList() {
+        if (messagesBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(messages_);
+        } else {
+          return messagesBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .Message messages = 1;</code>
+       */
+      public int getMessagesCount() {
+        if (messagesBuilder_ == null) {
+          return messages_.size();
+        } else {
+          return messagesBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .Message messages = 1;</code>
+       */
+      public com.example.demo.datagram.DatagramProto.Message getMessages(int index) {
+        if (messagesBuilder_ == null) {
+          return messages_.get(index);
+        } else {
+          return messagesBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .Message messages = 1;</code>
+       */
+      public Builder setMessages(
+          int index, com.example.demo.datagram.DatagramProto.Message value) {
+        if (messagesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureMessagesIsMutable();
+          messages_.set(index, value);
+          onChanged();
+        } else {
+          messagesBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Message messages = 1;</code>
+       */
+      public Builder setMessages(
+          int index, com.example.demo.datagram.DatagramProto.Message.Builder builderForValue) {
+        if (messagesBuilder_ == null) {
+          ensureMessagesIsMutable();
+          messages_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          messagesBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Message messages = 1;</code>
+       */
+      public Builder addMessages(com.example.demo.datagram.DatagramProto.Message value) {
+        if (messagesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureMessagesIsMutable();
+          messages_.add(value);
+          onChanged();
+        } else {
+          messagesBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Message messages = 1;</code>
+       */
+      public Builder addMessages(
+          int index, com.example.demo.datagram.DatagramProto.Message value) {
+        if (messagesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureMessagesIsMutable();
+          messages_.add(index, value);
+          onChanged();
+        } else {
+          messagesBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Message messages = 1;</code>
+       */
+      public Builder addMessages(
+          com.example.demo.datagram.DatagramProto.Message.Builder builderForValue) {
+        if (messagesBuilder_ == null) {
+          ensureMessagesIsMutable();
+          messages_.add(builderForValue.build());
+          onChanged();
+        } else {
+          messagesBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Message messages = 1;</code>
+       */
+      public Builder addMessages(
+          int index, com.example.demo.datagram.DatagramProto.Message.Builder builderForValue) {
+        if (messagesBuilder_ == null) {
+          ensureMessagesIsMutable();
+          messages_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          messagesBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Message messages = 1;</code>
+       */
+      public Builder addAllMessages(
+          java.lang.Iterable<? extends com.example.demo.datagram.DatagramProto.Message> values) {
+        if (messagesBuilder_ == null) {
+          ensureMessagesIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, messages_);
+          onChanged();
+        } else {
+          messagesBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Message messages = 1;</code>
+       */
+      public Builder clearMessages() {
+        if (messagesBuilder_ == null) {
+          messages_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          messagesBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Message messages = 1;</code>
+       */
+      public Builder removeMessages(int index) {
+        if (messagesBuilder_ == null) {
+          ensureMessagesIsMutable();
+          messages_.remove(index);
+          onChanged();
+        } else {
+          messagesBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Message messages = 1;</code>
+       */
+      public com.example.demo.datagram.DatagramProto.Message.Builder getMessagesBuilder(
+          int index) {
+        return getMessagesFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .Message messages = 1;</code>
+       */
+      public com.example.demo.datagram.DatagramProto.MessageOrBuilder getMessagesOrBuilder(
+          int index) {
+        if (messagesBuilder_ == null) {
+          return messages_.get(index);  } else {
+          return messagesBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .Message messages = 1;</code>
+       */
+      public java.util.List<? extends com.example.demo.datagram.DatagramProto.MessageOrBuilder> 
+           getMessagesOrBuilderList() {
+        if (messagesBuilder_ != null) {
+          return messagesBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(messages_);
+        }
+      }
+      /**
+       * <code>repeated .Message messages = 1;</code>
+       */
+      public com.example.demo.datagram.DatagramProto.Message.Builder addMessagesBuilder() {
+        return getMessagesFieldBuilder().addBuilder(
+            com.example.demo.datagram.DatagramProto.Message.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .Message messages = 1;</code>
+       */
+      public com.example.demo.datagram.DatagramProto.Message.Builder addMessagesBuilder(
+          int index) {
+        return getMessagesFieldBuilder().addBuilder(
+            index, com.example.demo.datagram.DatagramProto.Message.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .Message messages = 1;</code>
+       */
+      public java.util.List<com.example.demo.datagram.DatagramProto.Message.Builder> 
+           getMessagesBuilderList() {
+        return getMessagesFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.example.demo.datagram.DatagramProto.Message, com.example.demo.datagram.DatagramProto.Message.Builder, com.example.demo.datagram.DatagramProto.MessageOrBuilder> 
+          getMessagesFieldBuilder() {
+        if (messagesBuilder_ == null) {
+          messagesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.example.demo.datagram.DatagramProto.Message, com.example.demo.datagram.DatagramProto.Message.Builder, com.example.demo.datagram.DatagramProto.MessageOrBuilder>(
+                  messages_,
+                  ((bitField0_ & 0x00000001) != 0),
+                  getParentForChildren(),
+                  isClean());
+          messages_ = null;
+        }
+        return messagesBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:Messages)
+    }
+
+    // @@protoc_insertion_point(class_scope:Messages)
+    private static final com.example.demo.datagram.DatagramProto.Messages DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.example.demo.datagram.DatagramProto.Messages();
+    }
+
+    public static com.example.demo.datagram.DatagramProto.Messages getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Messages>
+        PARSER = new com.google.protobuf.AbstractParser<Messages>() {
+      @java.lang.Override
+      public Messages parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Messages(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Messages> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Messages> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.Messages getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -10529,799 +15013,6 @@ public final class DatagramProto {
 
   }
 
-  public interface MessagesOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Messages)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>repeated .Message messages = 1;</code>
-     */
-    java.util.List<com.example.demo.datagram.DatagramProto.Message> 
-        getMessagesList();
-    /**
-     * <code>repeated .Message messages = 1;</code>
-     */
-    com.example.demo.datagram.DatagramProto.Message getMessages(int index);
-    /**
-     * <code>repeated .Message messages = 1;</code>
-     */
-    int getMessagesCount();
-    /**
-     * <code>repeated .Message messages = 1;</code>
-     */
-    java.util.List<? extends com.example.demo.datagram.DatagramProto.MessageOrBuilder> 
-        getMessagesOrBuilderList();
-    /**
-     * <code>repeated .Message messages = 1;</code>
-     */
-    com.example.demo.datagram.DatagramProto.MessageOrBuilder getMessagesOrBuilder(
-        int index);
-  }
-  /**
-   * Protobuf type {@code Messages}
-   */
-  public static final class Messages extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Messages)
-      MessagesOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use Messages.newBuilder() to construct.
-    private Messages(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private Messages() {
-      messages_ = java.util.Collections.emptyList();
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new Messages();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private Messages(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                messages_ = new java.util.ArrayList<com.example.demo.datagram.DatagramProto.Message>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              messages_.add(
-                  input.readMessage(com.example.demo.datagram.DatagramProto.Message.parser(), extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          messages_ = java.util.Collections.unmodifiableList(messages_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.example.demo.datagram.DatagramProto.internal_static_Messages_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.example.demo.datagram.DatagramProto.internal_static_Messages_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.example.demo.datagram.DatagramProto.Messages.class, com.example.demo.datagram.DatagramProto.Messages.Builder.class);
-    }
-
-    public static final int MESSAGES_FIELD_NUMBER = 1;
-    private java.util.List<com.example.demo.datagram.DatagramProto.Message> messages_;
-    /**
-     * <code>repeated .Message messages = 1;</code>
-     */
-    @java.lang.Override
-    public java.util.List<com.example.demo.datagram.DatagramProto.Message> getMessagesList() {
-      return messages_;
-    }
-    /**
-     * <code>repeated .Message messages = 1;</code>
-     */
-    @java.lang.Override
-    public java.util.List<? extends com.example.demo.datagram.DatagramProto.MessageOrBuilder> 
-        getMessagesOrBuilderList() {
-      return messages_;
-    }
-    /**
-     * <code>repeated .Message messages = 1;</code>
-     */
-    @java.lang.Override
-    public int getMessagesCount() {
-      return messages_.size();
-    }
-    /**
-     * <code>repeated .Message messages = 1;</code>
-     */
-    @java.lang.Override
-    public com.example.demo.datagram.DatagramProto.Message getMessages(int index) {
-      return messages_.get(index);
-    }
-    /**
-     * <code>repeated .Message messages = 1;</code>
-     */
-    @java.lang.Override
-    public com.example.demo.datagram.DatagramProto.MessageOrBuilder getMessagesOrBuilder(
-        int index) {
-      return messages_.get(index);
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      for (int i = 0; i < messages_.size(); i++) {
-        output.writeMessage(1, messages_.get(i));
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      for (int i = 0; i < messages_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, messages_.get(i));
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.example.demo.datagram.DatagramProto.Messages)) {
-        return super.equals(obj);
-      }
-      com.example.demo.datagram.DatagramProto.Messages other = (com.example.demo.datagram.DatagramProto.Messages) obj;
-
-      if (!getMessagesList()
-          .equals(other.getMessagesList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      if (getMessagesCount() > 0) {
-        hash = (37 * hash) + MESSAGES_FIELD_NUMBER;
-        hash = (53 * hash) + getMessagesList().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.example.demo.datagram.DatagramProto.Messages parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.example.demo.datagram.DatagramProto.Messages parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.example.demo.datagram.DatagramProto.Messages parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.example.demo.datagram.DatagramProto.Messages parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.example.demo.datagram.DatagramProto.Messages parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.example.demo.datagram.DatagramProto.Messages parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.example.demo.datagram.DatagramProto.Messages parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.example.demo.datagram.DatagramProto.Messages parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.example.demo.datagram.DatagramProto.Messages parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.example.demo.datagram.DatagramProto.Messages parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.example.demo.datagram.DatagramProto.Messages parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.example.demo.datagram.DatagramProto.Messages parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.example.demo.datagram.DatagramProto.Messages prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code Messages}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Messages)
-        com.example.demo.datagram.DatagramProto.MessagesOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.example.demo.datagram.DatagramProto.internal_static_Messages_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.example.demo.datagram.DatagramProto.internal_static_Messages_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.example.demo.datagram.DatagramProto.Messages.class, com.example.demo.datagram.DatagramProto.Messages.Builder.class);
-      }
-
-      // Construct using com.example.demo.datagram.DatagramProto.Messages.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getMessagesFieldBuilder();
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        if (messagesBuilder_ == null) {
-          messages_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        } else {
-          messagesBuilder_.clear();
-        }
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.example.demo.datagram.DatagramProto.internal_static_Messages_descriptor;
-      }
-
-      @java.lang.Override
-      public com.example.demo.datagram.DatagramProto.Messages getDefaultInstanceForType() {
-        return com.example.demo.datagram.DatagramProto.Messages.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.example.demo.datagram.DatagramProto.Messages build() {
-        com.example.demo.datagram.DatagramProto.Messages result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.example.demo.datagram.DatagramProto.Messages buildPartial() {
-        com.example.demo.datagram.DatagramProto.Messages result = new com.example.demo.datagram.DatagramProto.Messages(this);
-        int from_bitField0_ = bitField0_;
-        if (messagesBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
-            messages_ = java.util.Collections.unmodifiableList(messages_);
-            bitField0_ = (bitField0_ & ~0x00000001);
-          }
-          result.messages_ = messages_;
-        } else {
-          result.messages_ = messagesBuilder_.build();
-        }
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.example.demo.datagram.DatagramProto.Messages) {
-          return mergeFrom((com.example.demo.datagram.DatagramProto.Messages)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.example.demo.datagram.DatagramProto.Messages other) {
-        if (other == com.example.demo.datagram.DatagramProto.Messages.getDefaultInstance()) return this;
-        if (messagesBuilder_ == null) {
-          if (!other.messages_.isEmpty()) {
-            if (messages_.isEmpty()) {
-              messages_ = other.messages_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensureMessagesIsMutable();
-              messages_.addAll(other.messages_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.messages_.isEmpty()) {
-            if (messagesBuilder_.isEmpty()) {
-              messagesBuilder_.dispose();
-              messagesBuilder_ = null;
-              messages_ = other.messages_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-              messagesBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getMessagesFieldBuilder() : null;
-            } else {
-              messagesBuilder_.addAllMessages(other.messages_);
-            }
-          }
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.example.demo.datagram.DatagramProto.Messages parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.example.demo.datagram.DatagramProto.Messages) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private java.util.List<com.example.demo.datagram.DatagramProto.Message> messages_ =
-        java.util.Collections.emptyList();
-      private void ensureMessagesIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          messages_ = new java.util.ArrayList<com.example.demo.datagram.DatagramProto.Message>(messages_);
-          bitField0_ |= 0x00000001;
-         }
-      }
-
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.example.demo.datagram.DatagramProto.Message, com.example.demo.datagram.DatagramProto.Message.Builder, com.example.demo.datagram.DatagramProto.MessageOrBuilder> messagesBuilder_;
-
-      /**
-       * <code>repeated .Message messages = 1;</code>
-       */
-      public java.util.List<com.example.demo.datagram.DatagramProto.Message> getMessagesList() {
-        if (messagesBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(messages_);
-        } else {
-          return messagesBuilder_.getMessageList();
-        }
-      }
-      /**
-       * <code>repeated .Message messages = 1;</code>
-       */
-      public int getMessagesCount() {
-        if (messagesBuilder_ == null) {
-          return messages_.size();
-        } else {
-          return messagesBuilder_.getCount();
-        }
-      }
-      /**
-       * <code>repeated .Message messages = 1;</code>
-       */
-      public com.example.demo.datagram.DatagramProto.Message getMessages(int index) {
-        if (messagesBuilder_ == null) {
-          return messages_.get(index);
-        } else {
-          return messagesBuilder_.getMessage(index);
-        }
-      }
-      /**
-       * <code>repeated .Message messages = 1;</code>
-       */
-      public Builder setMessages(
-          int index, com.example.demo.datagram.DatagramProto.Message value) {
-        if (messagesBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureMessagesIsMutable();
-          messages_.set(index, value);
-          onChanged();
-        } else {
-          messagesBuilder_.setMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Message messages = 1;</code>
-       */
-      public Builder setMessages(
-          int index, com.example.demo.datagram.DatagramProto.Message.Builder builderForValue) {
-        if (messagesBuilder_ == null) {
-          ensureMessagesIsMutable();
-          messages_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          messagesBuilder_.setMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Message messages = 1;</code>
-       */
-      public Builder addMessages(com.example.demo.datagram.DatagramProto.Message value) {
-        if (messagesBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureMessagesIsMutable();
-          messages_.add(value);
-          onChanged();
-        } else {
-          messagesBuilder_.addMessage(value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Message messages = 1;</code>
-       */
-      public Builder addMessages(
-          int index, com.example.demo.datagram.DatagramProto.Message value) {
-        if (messagesBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureMessagesIsMutable();
-          messages_.add(index, value);
-          onChanged();
-        } else {
-          messagesBuilder_.addMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Message messages = 1;</code>
-       */
-      public Builder addMessages(
-          com.example.demo.datagram.DatagramProto.Message.Builder builderForValue) {
-        if (messagesBuilder_ == null) {
-          ensureMessagesIsMutable();
-          messages_.add(builderForValue.build());
-          onChanged();
-        } else {
-          messagesBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Message messages = 1;</code>
-       */
-      public Builder addMessages(
-          int index, com.example.demo.datagram.DatagramProto.Message.Builder builderForValue) {
-        if (messagesBuilder_ == null) {
-          ensureMessagesIsMutable();
-          messages_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          messagesBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Message messages = 1;</code>
-       */
-      public Builder addAllMessages(
-          java.lang.Iterable<? extends com.example.demo.datagram.DatagramProto.Message> values) {
-        if (messagesBuilder_ == null) {
-          ensureMessagesIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, messages_);
-          onChanged();
-        } else {
-          messagesBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Message messages = 1;</code>
-       */
-      public Builder clearMessages() {
-        if (messagesBuilder_ == null) {
-          messages_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          onChanged();
-        } else {
-          messagesBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Message messages = 1;</code>
-       */
-      public Builder removeMessages(int index) {
-        if (messagesBuilder_ == null) {
-          ensureMessagesIsMutable();
-          messages_.remove(index);
-          onChanged();
-        } else {
-          messagesBuilder_.remove(index);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Message messages = 1;</code>
-       */
-      public com.example.demo.datagram.DatagramProto.Message.Builder getMessagesBuilder(
-          int index) {
-        return getMessagesFieldBuilder().getBuilder(index);
-      }
-      /**
-       * <code>repeated .Message messages = 1;</code>
-       */
-      public com.example.demo.datagram.DatagramProto.MessageOrBuilder getMessagesOrBuilder(
-          int index) {
-        if (messagesBuilder_ == null) {
-          return messages_.get(index);  } else {
-          return messagesBuilder_.getMessageOrBuilder(index);
-        }
-      }
-      /**
-       * <code>repeated .Message messages = 1;</code>
-       */
-      public java.util.List<? extends com.example.demo.datagram.DatagramProto.MessageOrBuilder> 
-           getMessagesOrBuilderList() {
-        if (messagesBuilder_ != null) {
-          return messagesBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(messages_);
-        }
-      }
-      /**
-       * <code>repeated .Message messages = 1;</code>
-       */
-      public com.example.demo.datagram.DatagramProto.Message.Builder addMessagesBuilder() {
-        return getMessagesFieldBuilder().addBuilder(
-            com.example.demo.datagram.DatagramProto.Message.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .Message messages = 1;</code>
-       */
-      public com.example.demo.datagram.DatagramProto.Message.Builder addMessagesBuilder(
-          int index) {
-        return getMessagesFieldBuilder().addBuilder(
-            index, com.example.demo.datagram.DatagramProto.Message.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .Message messages = 1;</code>
-       */
-      public java.util.List<com.example.demo.datagram.DatagramProto.Message.Builder> 
-           getMessagesBuilderList() {
-        return getMessagesFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.example.demo.datagram.DatagramProto.Message, com.example.demo.datagram.DatagramProto.Message.Builder, com.example.demo.datagram.DatagramProto.MessageOrBuilder> 
-          getMessagesFieldBuilder() {
-        if (messagesBuilder_ == null) {
-          messagesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.example.demo.datagram.DatagramProto.Message, com.example.demo.datagram.DatagramProto.Message.Builder, com.example.demo.datagram.DatagramProto.MessageOrBuilder>(
-                  messages_,
-                  ((bitField0_ & 0x00000001) != 0),
-                  getParentForChildren(),
-                  isClean());
-          messages_ = null;
-        }
-        return messagesBuilder_;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:Messages)
-    }
-
-    // @@protoc_insertion_point(class_scope:Messages)
-    private static final com.example.demo.datagram.DatagramProto.Messages DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.example.demo.datagram.DatagramProto.Messages();
-    }
-
-    public static com.example.demo.datagram.DatagramProto.Messages getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<Messages>
-        PARSER = new com.google.protobuf.AbstractParser<Messages>() {
-      @java.lang.Override
-      public Messages parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Messages(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<Messages> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Messages> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.example.demo.datagram.DatagramProto.Messages getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   public interface NotificationsOrBuilder extends
       // @@protoc_insertion_point(interface_extends:Notifications)
       com.google.protobuf.MessageOrBuilder {
@@ -12115,55 +15806,75 @@ public final class DatagramProto {
 
   }
 
-  public interface CoursesOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Courses)
+  public interface GroupOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Group)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated .Course courses = 1;</code>
+     * <code>.Course course = 1;</code>
+     * @return Whether the course field is set.
      */
-    java.util.List<com.example.demo.datagram.DatagramProto.Course> 
-        getCoursesList();
+    boolean hasCourse();
     /**
-     * <code>repeated .Course courses = 1;</code>
+     * <code>.Course course = 1;</code>
+     * @return The course.
      */
-    com.example.demo.datagram.DatagramProto.Course getCourses(int index);
+    com.example.demo.datagram.DatagramProto.Course getCourse();
     /**
-     * <code>repeated .Course courses = 1;</code>
+     * <code>.Course course = 1;</code>
      */
-    int getCoursesCount();
+    com.example.demo.datagram.DatagramProto.CourseOrBuilder getCourseOrBuilder();
+
     /**
-     * <code>repeated .Course courses = 1;</code>
+     * <code>.Users teachers = 2;</code>
+     * @return Whether the teachers field is set.
      */
-    java.util.List<? extends com.example.demo.datagram.DatagramProto.CourseOrBuilder> 
-        getCoursesOrBuilderList();
+    boolean hasTeachers();
     /**
-     * <code>repeated .Course courses = 1;</code>
+     * <code>.Users teachers = 2;</code>
+     * @return The teachers.
      */
-    com.example.demo.datagram.DatagramProto.CourseOrBuilder getCoursesOrBuilder(
-        int index);
+    com.example.demo.datagram.DatagramProto.Users getTeachers();
+    /**
+     * <code>.Users teachers = 2;</code>
+     */
+    com.example.demo.datagram.DatagramProto.UsersOrBuilder getTeachersOrBuilder();
+
+    /**
+     * <code>.Users students = 3;</code>
+     * @return Whether the students field is set.
+     */
+    boolean hasStudents();
+    /**
+     * <code>.Users students = 3;</code>
+     * @return The students.
+     */
+    com.example.demo.datagram.DatagramProto.Users getStudents();
+    /**
+     * <code>.Users students = 3;</code>
+     */
+    com.example.demo.datagram.DatagramProto.UsersOrBuilder getStudentsOrBuilder();
   }
   /**
-   * Protobuf type {@code Courses}
+   * Protobuf type {@code Group}
    */
-  public static final class Courses extends
+  public static final class Group extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Courses)
-      CoursesOrBuilder {
+      // @@protoc_insertion_point(message_implements:Group)
+      GroupOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use Courses.newBuilder() to construct.
-    private Courses(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use Group.newBuilder() to construct.
+    private Group(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private Courses() {
-      courses_ = java.util.Collections.emptyList();
+    private Group() {
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new Courses();
+      return new Group();
     }
 
     @java.lang.Override
@@ -12171,7 +15882,7 @@ public final class DatagramProto {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private Courses(
+    private Group(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -12179,7 +15890,6 @@ public final class DatagramProto {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -12191,12 +15901,42 @@ public final class DatagramProto {
               done = true;
               break;
             case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                courses_ = new java.util.ArrayList<com.example.demo.datagram.DatagramProto.Course>();
-                mutable_bitField0_ |= 0x00000001;
+              com.example.demo.datagram.DatagramProto.Course.Builder subBuilder = null;
+              if (course_ != null) {
+                subBuilder = course_.toBuilder();
               }
-              courses_.add(
-                  input.readMessage(com.example.demo.datagram.DatagramProto.Course.parser(), extensionRegistry));
+              course_ = input.readMessage(com.example.demo.datagram.DatagramProto.Course.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(course_);
+                course_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 18: {
+              com.example.demo.datagram.DatagramProto.Users.Builder subBuilder = null;
+              if (teachers_ != null) {
+                subBuilder = teachers_.toBuilder();
+              }
+              teachers_ = input.readMessage(com.example.demo.datagram.DatagramProto.Users.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(teachers_);
+                teachers_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 26: {
+              com.example.demo.datagram.DatagramProto.Users.Builder subBuilder = null;
+              if (students_ != null) {
+                subBuilder = students_.toBuilder();
+              }
+              students_ = input.readMessage(com.example.demo.datagram.DatagramProto.Users.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(students_);
+                students_ = subBuilder.buildPartial();
+              }
+
               break;
             }
             default: {
@@ -12214,64 +15954,99 @@ public final class DatagramProto {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          courses_ = java.util.Collections.unmodifiableList(courses_);
-        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.example.demo.datagram.DatagramProto.internal_static_Courses_descriptor;
+      return com.example.demo.datagram.DatagramProto.internal_static_Group_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.example.demo.datagram.DatagramProto.internal_static_Courses_fieldAccessorTable
+      return com.example.demo.datagram.DatagramProto.internal_static_Group_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.example.demo.datagram.DatagramProto.Courses.class, com.example.demo.datagram.DatagramProto.Courses.Builder.class);
+              com.example.demo.datagram.DatagramProto.Group.class, com.example.demo.datagram.DatagramProto.Group.Builder.class);
     }
 
-    public static final int COURSES_FIELD_NUMBER = 1;
-    private java.util.List<com.example.demo.datagram.DatagramProto.Course> courses_;
+    public static final int COURSE_FIELD_NUMBER = 1;
+    private com.example.demo.datagram.DatagramProto.Course course_;
     /**
-     * <code>repeated .Course courses = 1;</code>
+     * <code>.Course course = 1;</code>
+     * @return Whether the course field is set.
      */
     @java.lang.Override
-    public java.util.List<com.example.demo.datagram.DatagramProto.Course> getCoursesList() {
-      return courses_;
+    public boolean hasCourse() {
+      return course_ != null;
     }
     /**
-     * <code>repeated .Course courses = 1;</code>
+     * <code>.Course course = 1;</code>
+     * @return The course.
      */
     @java.lang.Override
-    public java.util.List<? extends com.example.demo.datagram.DatagramProto.CourseOrBuilder> 
-        getCoursesOrBuilderList() {
-      return courses_;
+    public com.example.demo.datagram.DatagramProto.Course getCourse() {
+      return course_ == null ? com.example.demo.datagram.DatagramProto.Course.getDefaultInstance() : course_;
     }
     /**
-     * <code>repeated .Course courses = 1;</code>
+     * <code>.Course course = 1;</code>
      */
     @java.lang.Override
-    public int getCoursesCount() {
-      return courses_.size();
+    public com.example.demo.datagram.DatagramProto.CourseOrBuilder getCourseOrBuilder() {
+      return getCourse();
+    }
+
+    public static final int TEACHERS_FIELD_NUMBER = 2;
+    private com.example.demo.datagram.DatagramProto.Users teachers_;
+    /**
+     * <code>.Users teachers = 2;</code>
+     * @return Whether the teachers field is set.
+     */
+    @java.lang.Override
+    public boolean hasTeachers() {
+      return teachers_ != null;
     }
     /**
-     * <code>repeated .Course courses = 1;</code>
+     * <code>.Users teachers = 2;</code>
+     * @return The teachers.
      */
     @java.lang.Override
-    public com.example.demo.datagram.DatagramProto.Course getCourses(int index) {
-      return courses_.get(index);
+    public com.example.demo.datagram.DatagramProto.Users getTeachers() {
+      return teachers_ == null ? com.example.demo.datagram.DatagramProto.Users.getDefaultInstance() : teachers_;
     }
     /**
-     * <code>repeated .Course courses = 1;</code>
+     * <code>.Users teachers = 2;</code>
      */
     @java.lang.Override
-    public com.example.demo.datagram.DatagramProto.CourseOrBuilder getCoursesOrBuilder(
-        int index) {
-      return courses_.get(index);
+    public com.example.demo.datagram.DatagramProto.UsersOrBuilder getTeachersOrBuilder() {
+      return getTeachers();
+    }
+
+    public static final int STUDENTS_FIELD_NUMBER = 3;
+    private com.example.demo.datagram.DatagramProto.Users students_;
+    /**
+     * <code>.Users students = 3;</code>
+     * @return Whether the students field is set.
+     */
+    @java.lang.Override
+    public boolean hasStudents() {
+      return students_ != null;
+    }
+    /**
+     * <code>.Users students = 3;</code>
+     * @return The students.
+     */
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.Users getStudents() {
+      return students_ == null ? com.example.demo.datagram.DatagramProto.Users.getDefaultInstance() : students_;
+    }
+    /**
+     * <code>.Users students = 3;</code>
+     */
+    @java.lang.Override
+    public com.example.demo.datagram.DatagramProto.UsersOrBuilder getStudentsOrBuilder() {
+      return getStudents();
     }
 
     private byte memoizedIsInitialized = -1;
@@ -12288,8 +16063,14 @@ public final class DatagramProto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      for (int i = 0; i < courses_.size(); i++) {
-        output.writeMessage(1, courses_.get(i));
+      if (course_ != null) {
+        output.writeMessage(1, getCourse());
+      }
+      if (teachers_ != null) {
+        output.writeMessage(2, getTeachers());
+      }
+      if (students_ != null) {
+        output.writeMessage(3, getStudents());
       }
       unknownFields.writeTo(output);
     }
@@ -12300,9 +16081,17 @@ public final class DatagramProto {
       if (size != -1) return size;
 
       size = 0;
-      for (int i = 0; i < courses_.size(); i++) {
+      if (course_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, courses_.get(i));
+          .computeMessageSize(1, getCourse());
+      }
+      if (teachers_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getTeachers());
+      }
+      if (students_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, getStudents());
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -12314,13 +16103,26 @@ public final class DatagramProto {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.example.demo.datagram.DatagramProto.Courses)) {
+      if (!(obj instanceof com.example.demo.datagram.DatagramProto.Group)) {
         return super.equals(obj);
       }
-      com.example.demo.datagram.DatagramProto.Courses other = (com.example.demo.datagram.DatagramProto.Courses) obj;
+      com.example.demo.datagram.DatagramProto.Group other = (com.example.demo.datagram.DatagramProto.Group) obj;
 
-      if (!getCoursesList()
-          .equals(other.getCoursesList())) return false;
+      if (hasCourse() != other.hasCourse()) return false;
+      if (hasCourse()) {
+        if (!getCourse()
+            .equals(other.getCourse())) return false;
+      }
+      if (hasTeachers() != other.hasTeachers()) return false;
+      if (hasTeachers()) {
+        if (!getTeachers()
+            .equals(other.getTeachers())) return false;
+      }
+      if (hasStudents() != other.hasStudents()) return false;
+      if (hasStudents()) {
+        if (!getStudents()
+            .equals(other.getStudents())) return false;
+      }
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -12332,78 +16134,86 @@ public final class DatagramProto {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (getCoursesCount() > 0) {
-        hash = (37 * hash) + COURSES_FIELD_NUMBER;
-        hash = (53 * hash) + getCoursesList().hashCode();
+      if (hasCourse()) {
+        hash = (37 * hash) + COURSE_FIELD_NUMBER;
+        hash = (53 * hash) + getCourse().hashCode();
+      }
+      if (hasTeachers()) {
+        hash = (37 * hash) + TEACHERS_FIELD_NUMBER;
+        hash = (53 * hash) + getTeachers().hashCode();
+      }
+      if (hasStudents()) {
+        hash = (37 * hash) + STUDENTS_FIELD_NUMBER;
+        hash = (53 * hash) + getStudents().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static com.example.demo.datagram.DatagramProto.Courses parseFrom(
+    public static com.example.demo.datagram.DatagramProto.Group parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.example.demo.datagram.DatagramProto.Courses parseFrom(
+    public static com.example.demo.datagram.DatagramProto.Group parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.example.demo.datagram.DatagramProto.Courses parseFrom(
+    public static com.example.demo.datagram.DatagramProto.Group parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.example.demo.datagram.DatagramProto.Courses parseFrom(
+    public static com.example.demo.datagram.DatagramProto.Group parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.example.demo.datagram.DatagramProto.Courses parseFrom(byte[] data)
+    public static com.example.demo.datagram.DatagramProto.Group parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.example.demo.datagram.DatagramProto.Courses parseFrom(
+    public static com.example.demo.datagram.DatagramProto.Group parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.example.demo.datagram.DatagramProto.Courses parseFrom(java.io.InputStream input)
+    public static com.example.demo.datagram.DatagramProto.Group parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.example.demo.datagram.DatagramProto.Courses parseFrom(
+    public static com.example.demo.datagram.DatagramProto.Group parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.example.demo.datagram.DatagramProto.Courses parseDelimitedFrom(java.io.InputStream input)
+    public static com.example.demo.datagram.DatagramProto.Group parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.example.demo.datagram.DatagramProto.Courses parseDelimitedFrom(
+    public static com.example.demo.datagram.DatagramProto.Group parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.example.demo.datagram.DatagramProto.Courses parseFrom(
+    public static com.example.demo.datagram.DatagramProto.Group parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.example.demo.datagram.DatagramProto.Courses parseFrom(
+    public static com.example.demo.datagram.DatagramProto.Group parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -12416,7 +16226,7 @@ public final class DatagramProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.example.demo.datagram.DatagramProto.Courses prototype) {
+    public static Builder newBuilder(com.example.demo.datagram.DatagramProto.Group prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -12432,26 +16242,26 @@ public final class DatagramProto {
       return builder;
     }
     /**
-     * Protobuf type {@code Courses}
+     * Protobuf type {@code Group}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Courses)
-        com.example.demo.datagram.DatagramProto.CoursesOrBuilder {
+        // @@protoc_insertion_point(builder_implements:Group)
+        com.example.demo.datagram.DatagramProto.GroupOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.example.demo.datagram.DatagramProto.internal_static_Courses_descriptor;
+        return com.example.demo.datagram.DatagramProto.internal_static_Group_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.example.demo.datagram.DatagramProto.internal_static_Courses_fieldAccessorTable
+        return com.example.demo.datagram.DatagramProto.internal_static_Group_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.example.demo.datagram.DatagramProto.Courses.class, com.example.demo.datagram.DatagramProto.Courses.Builder.class);
+                com.example.demo.datagram.DatagramProto.Group.class, com.example.demo.datagram.DatagramProto.Group.Builder.class);
       }
 
-      // Construct using com.example.demo.datagram.DatagramProto.Courses.newBuilder()
+      // Construct using com.example.demo.datagram.DatagramProto.Group.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -12464,17 +16274,28 @@ public final class DatagramProto {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
-          getCoursesFieldBuilder();
         }
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (coursesBuilder_ == null) {
-          courses_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
+        if (courseBuilder_ == null) {
+          course_ = null;
         } else {
-          coursesBuilder_.clear();
+          course_ = null;
+          courseBuilder_ = null;
+        }
+        if (teachersBuilder_ == null) {
+          teachers_ = null;
+        } else {
+          teachers_ = null;
+          teachersBuilder_ = null;
+        }
+        if (studentsBuilder_ == null) {
+          students_ = null;
+        } else {
+          students_ = null;
+          studentsBuilder_ = null;
         }
         return this;
       }
@@ -12482,17 +16303,17 @@ public final class DatagramProto {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.example.demo.datagram.DatagramProto.internal_static_Courses_descriptor;
+        return com.example.demo.datagram.DatagramProto.internal_static_Group_descriptor;
       }
 
       @java.lang.Override
-      public com.example.demo.datagram.DatagramProto.Courses getDefaultInstanceForType() {
-        return com.example.demo.datagram.DatagramProto.Courses.getDefaultInstance();
+      public com.example.demo.datagram.DatagramProto.Group getDefaultInstanceForType() {
+        return com.example.demo.datagram.DatagramProto.Group.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.example.demo.datagram.DatagramProto.Courses build() {
-        com.example.demo.datagram.DatagramProto.Courses result = buildPartial();
+      public com.example.demo.datagram.DatagramProto.Group build() {
+        com.example.demo.datagram.DatagramProto.Group result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -12500,17 +16321,22 @@ public final class DatagramProto {
       }
 
       @java.lang.Override
-      public com.example.demo.datagram.DatagramProto.Courses buildPartial() {
-        com.example.demo.datagram.DatagramProto.Courses result = new com.example.demo.datagram.DatagramProto.Courses(this);
-        int from_bitField0_ = bitField0_;
-        if (coursesBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
-            courses_ = java.util.Collections.unmodifiableList(courses_);
-            bitField0_ = (bitField0_ & ~0x00000001);
-          }
-          result.courses_ = courses_;
+      public com.example.demo.datagram.DatagramProto.Group buildPartial() {
+        com.example.demo.datagram.DatagramProto.Group result = new com.example.demo.datagram.DatagramProto.Group(this);
+        if (courseBuilder_ == null) {
+          result.course_ = course_;
         } else {
-          result.courses_ = coursesBuilder_.build();
+          result.course_ = courseBuilder_.build();
+        }
+        if (teachersBuilder_ == null) {
+          result.teachers_ = teachers_;
+        } else {
+          result.teachers_ = teachersBuilder_.build();
+        }
+        if (studentsBuilder_ == null) {
+          result.students_ = students_;
+        } else {
+          result.students_ = studentsBuilder_.build();
         }
         onBuilt();
         return result;
@@ -12550,41 +16376,24 @@ public final class DatagramProto {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.example.demo.datagram.DatagramProto.Courses) {
-          return mergeFrom((com.example.demo.datagram.DatagramProto.Courses)other);
+        if (other instanceof com.example.demo.datagram.DatagramProto.Group) {
+          return mergeFrom((com.example.demo.datagram.DatagramProto.Group)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.example.demo.datagram.DatagramProto.Courses other) {
-        if (other == com.example.demo.datagram.DatagramProto.Courses.getDefaultInstance()) return this;
-        if (coursesBuilder_ == null) {
-          if (!other.courses_.isEmpty()) {
-            if (courses_.isEmpty()) {
-              courses_ = other.courses_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensureCoursesIsMutable();
-              courses_.addAll(other.courses_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.courses_.isEmpty()) {
-            if (coursesBuilder_.isEmpty()) {
-              coursesBuilder_.dispose();
-              coursesBuilder_ = null;
-              courses_ = other.courses_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-              coursesBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getCoursesFieldBuilder() : null;
-            } else {
-              coursesBuilder_.addAllMessages(other.courses_);
-            }
-          }
+      public Builder mergeFrom(com.example.demo.datagram.DatagramProto.Group other) {
+        if (other == com.example.demo.datagram.DatagramProto.Group.getDefaultInstance()) return this;
+        if (other.hasCourse()) {
+          mergeCourse(other.getCourse());
+        }
+        if (other.hasTeachers()) {
+          mergeTeachers(other.getTeachers());
+        }
+        if (other.hasStudents()) {
+          mergeStudents(other.getStudents());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -12601,11 +16410,11 @@ public final class DatagramProto {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.example.demo.datagram.DatagramProto.Courses parsedMessage = null;
+        com.example.demo.datagram.DatagramProto.Group parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.example.demo.datagram.DatagramProto.Courses) e.getUnfinishedMessage();
+          parsedMessage = (com.example.demo.datagram.DatagramProto.Group) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -12614,246 +16423,362 @@ public final class DatagramProto {
         }
         return this;
       }
-      private int bitField0_;
 
-      private java.util.List<com.example.demo.datagram.DatagramProto.Course> courses_ =
-        java.util.Collections.emptyList();
-      private void ensureCoursesIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          courses_ = new java.util.ArrayList<com.example.demo.datagram.DatagramProto.Course>(courses_);
-          bitField0_ |= 0x00000001;
-         }
-      }
-
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.example.demo.datagram.DatagramProto.Course, com.example.demo.datagram.DatagramProto.Course.Builder, com.example.demo.datagram.DatagramProto.CourseOrBuilder> coursesBuilder_;
-
+      private com.example.demo.datagram.DatagramProto.Course course_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.demo.datagram.DatagramProto.Course, com.example.demo.datagram.DatagramProto.Course.Builder, com.example.demo.datagram.DatagramProto.CourseOrBuilder> courseBuilder_;
       /**
-       * <code>repeated .Course courses = 1;</code>
+       * <code>.Course course = 1;</code>
+       * @return Whether the course field is set.
        */
-      public java.util.List<com.example.demo.datagram.DatagramProto.Course> getCoursesList() {
-        if (coursesBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(courses_);
+      public boolean hasCourse() {
+        return courseBuilder_ != null || course_ != null;
+      }
+      /**
+       * <code>.Course course = 1;</code>
+       * @return The course.
+       */
+      public com.example.demo.datagram.DatagramProto.Course getCourse() {
+        if (courseBuilder_ == null) {
+          return course_ == null ? com.example.demo.datagram.DatagramProto.Course.getDefaultInstance() : course_;
         } else {
-          return coursesBuilder_.getMessageList();
+          return courseBuilder_.getMessage();
         }
       }
       /**
-       * <code>repeated .Course courses = 1;</code>
+       * <code>.Course course = 1;</code>
        */
-      public int getCoursesCount() {
-        if (coursesBuilder_ == null) {
-          return courses_.size();
-        } else {
-          return coursesBuilder_.getCount();
-        }
-      }
-      /**
-       * <code>repeated .Course courses = 1;</code>
-       */
-      public com.example.demo.datagram.DatagramProto.Course getCourses(int index) {
-        if (coursesBuilder_ == null) {
-          return courses_.get(index);
-        } else {
-          return coursesBuilder_.getMessage(index);
-        }
-      }
-      /**
-       * <code>repeated .Course courses = 1;</code>
-       */
-      public Builder setCourses(
-          int index, com.example.demo.datagram.DatagramProto.Course value) {
-        if (coursesBuilder_ == null) {
+      public Builder setCourse(com.example.demo.datagram.DatagramProto.Course value) {
+        if (courseBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureCoursesIsMutable();
-          courses_.set(index, value);
+          course_ = value;
           onChanged();
         } else {
-          coursesBuilder_.setMessage(index, value);
+          courseBuilder_.setMessage(value);
         }
+
         return this;
       }
       /**
-       * <code>repeated .Course courses = 1;</code>
+       * <code>.Course course = 1;</code>
        */
-      public Builder setCourses(
-          int index, com.example.demo.datagram.DatagramProto.Course.Builder builderForValue) {
-        if (coursesBuilder_ == null) {
-          ensureCoursesIsMutable();
-          courses_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          coursesBuilder_.setMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Course courses = 1;</code>
-       */
-      public Builder addCourses(com.example.demo.datagram.DatagramProto.Course value) {
-        if (coursesBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureCoursesIsMutable();
-          courses_.add(value);
-          onChanged();
-        } else {
-          coursesBuilder_.addMessage(value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Course courses = 1;</code>
-       */
-      public Builder addCourses(
-          int index, com.example.demo.datagram.DatagramProto.Course value) {
-        if (coursesBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureCoursesIsMutable();
-          courses_.add(index, value);
-          onChanged();
-        } else {
-          coursesBuilder_.addMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Course courses = 1;</code>
-       */
-      public Builder addCourses(
+      public Builder setCourse(
           com.example.demo.datagram.DatagramProto.Course.Builder builderForValue) {
-        if (coursesBuilder_ == null) {
-          ensureCoursesIsMutable();
-          courses_.add(builderForValue.build());
+        if (courseBuilder_ == null) {
+          course_ = builderForValue.build();
           onChanged();
         } else {
-          coursesBuilder_.addMessage(builderForValue.build());
+          courseBuilder_.setMessage(builderForValue.build());
         }
+
         return this;
       }
       /**
-       * <code>repeated .Course courses = 1;</code>
+       * <code>.Course course = 1;</code>
        */
-      public Builder addCourses(
-          int index, com.example.demo.datagram.DatagramProto.Course.Builder builderForValue) {
-        if (coursesBuilder_ == null) {
-          ensureCoursesIsMutable();
-          courses_.add(index, builderForValue.build());
+      public Builder mergeCourse(com.example.demo.datagram.DatagramProto.Course value) {
+        if (courseBuilder_ == null) {
+          if (course_ != null) {
+            course_ =
+              com.example.demo.datagram.DatagramProto.Course.newBuilder(course_).mergeFrom(value).buildPartial();
+          } else {
+            course_ = value;
+          }
           onChanged();
         } else {
-          coursesBuilder_.addMessage(index, builderForValue.build());
+          courseBuilder_.mergeFrom(value);
         }
+
         return this;
       }
       /**
-       * <code>repeated .Course courses = 1;</code>
+       * <code>.Course course = 1;</code>
        */
-      public Builder addAllCourses(
-          java.lang.Iterable<? extends com.example.demo.datagram.DatagramProto.Course> values) {
-        if (coursesBuilder_ == null) {
-          ensureCoursesIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, courses_);
+      public Builder clearCourse() {
+        if (courseBuilder_ == null) {
+          course_ = null;
           onChanged();
         } else {
-          coursesBuilder_.addAllMessages(values);
+          course_ = null;
+          courseBuilder_ = null;
         }
+
         return this;
       }
       /**
-       * <code>repeated .Course courses = 1;</code>
+       * <code>.Course course = 1;</code>
        */
-      public Builder clearCourses() {
-        if (coursesBuilder_ == null) {
-          courses_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          onChanged();
+      public com.example.demo.datagram.DatagramProto.Course.Builder getCourseBuilder() {
+        
+        onChanged();
+        return getCourseFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.Course course = 1;</code>
+       */
+      public com.example.demo.datagram.DatagramProto.CourseOrBuilder getCourseOrBuilder() {
+        if (courseBuilder_ != null) {
+          return courseBuilder_.getMessageOrBuilder();
         } else {
-          coursesBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Course courses = 1;</code>
-       */
-      public Builder removeCourses(int index) {
-        if (coursesBuilder_ == null) {
-          ensureCoursesIsMutable();
-          courses_.remove(index);
-          onChanged();
-        } else {
-          coursesBuilder_.remove(index);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Course courses = 1;</code>
-       */
-      public com.example.demo.datagram.DatagramProto.Course.Builder getCoursesBuilder(
-          int index) {
-        return getCoursesFieldBuilder().getBuilder(index);
-      }
-      /**
-       * <code>repeated .Course courses = 1;</code>
-       */
-      public com.example.demo.datagram.DatagramProto.CourseOrBuilder getCoursesOrBuilder(
-          int index) {
-        if (coursesBuilder_ == null) {
-          return courses_.get(index);  } else {
-          return coursesBuilder_.getMessageOrBuilder(index);
+          return course_ == null ?
+              com.example.demo.datagram.DatagramProto.Course.getDefaultInstance() : course_;
         }
       }
       /**
-       * <code>repeated .Course courses = 1;</code>
+       * <code>.Course course = 1;</code>
        */
-      public java.util.List<? extends com.example.demo.datagram.DatagramProto.CourseOrBuilder> 
-           getCoursesOrBuilderList() {
-        if (coursesBuilder_ != null) {
-          return coursesBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(courses_);
-        }
-      }
-      /**
-       * <code>repeated .Course courses = 1;</code>
-       */
-      public com.example.demo.datagram.DatagramProto.Course.Builder addCoursesBuilder() {
-        return getCoursesFieldBuilder().addBuilder(
-            com.example.demo.datagram.DatagramProto.Course.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .Course courses = 1;</code>
-       */
-      public com.example.demo.datagram.DatagramProto.Course.Builder addCoursesBuilder(
-          int index) {
-        return getCoursesFieldBuilder().addBuilder(
-            index, com.example.demo.datagram.DatagramProto.Course.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .Course courses = 1;</code>
-       */
-      public java.util.List<com.example.demo.datagram.DatagramProto.Course.Builder> 
-           getCoursesBuilderList() {
-        return getCoursesFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilderV3<
           com.example.demo.datagram.DatagramProto.Course, com.example.demo.datagram.DatagramProto.Course.Builder, com.example.demo.datagram.DatagramProto.CourseOrBuilder> 
-          getCoursesFieldBuilder() {
-        if (coursesBuilder_ == null) {
-          coursesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+          getCourseFieldBuilder() {
+        if (courseBuilder_ == null) {
+          courseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
               com.example.demo.datagram.DatagramProto.Course, com.example.demo.datagram.DatagramProto.Course.Builder, com.example.demo.datagram.DatagramProto.CourseOrBuilder>(
-                  courses_,
-                  ((bitField0_ & 0x00000001) != 0),
+                  getCourse(),
                   getParentForChildren(),
                   isClean());
-          courses_ = null;
+          course_ = null;
         }
-        return coursesBuilder_;
+        return courseBuilder_;
+      }
+
+      private com.example.demo.datagram.DatagramProto.Users teachers_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.demo.datagram.DatagramProto.Users, com.example.demo.datagram.DatagramProto.Users.Builder, com.example.demo.datagram.DatagramProto.UsersOrBuilder> teachersBuilder_;
+      /**
+       * <code>.Users teachers = 2;</code>
+       * @return Whether the teachers field is set.
+       */
+      public boolean hasTeachers() {
+        return teachersBuilder_ != null || teachers_ != null;
+      }
+      /**
+       * <code>.Users teachers = 2;</code>
+       * @return The teachers.
+       */
+      public com.example.demo.datagram.DatagramProto.Users getTeachers() {
+        if (teachersBuilder_ == null) {
+          return teachers_ == null ? com.example.demo.datagram.DatagramProto.Users.getDefaultInstance() : teachers_;
+        } else {
+          return teachersBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.Users teachers = 2;</code>
+       */
+      public Builder setTeachers(com.example.demo.datagram.DatagramProto.Users value) {
+        if (teachersBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          teachers_ = value;
+          onChanged();
+        } else {
+          teachersBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Users teachers = 2;</code>
+       */
+      public Builder setTeachers(
+          com.example.demo.datagram.DatagramProto.Users.Builder builderForValue) {
+        if (teachersBuilder_ == null) {
+          teachers_ = builderForValue.build();
+          onChanged();
+        } else {
+          teachersBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Users teachers = 2;</code>
+       */
+      public Builder mergeTeachers(com.example.demo.datagram.DatagramProto.Users value) {
+        if (teachersBuilder_ == null) {
+          if (teachers_ != null) {
+            teachers_ =
+              com.example.demo.datagram.DatagramProto.Users.newBuilder(teachers_).mergeFrom(value).buildPartial();
+          } else {
+            teachers_ = value;
+          }
+          onChanged();
+        } else {
+          teachersBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Users teachers = 2;</code>
+       */
+      public Builder clearTeachers() {
+        if (teachersBuilder_ == null) {
+          teachers_ = null;
+          onChanged();
+        } else {
+          teachers_ = null;
+          teachersBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Users teachers = 2;</code>
+       */
+      public com.example.demo.datagram.DatagramProto.Users.Builder getTeachersBuilder() {
+        
+        onChanged();
+        return getTeachersFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.Users teachers = 2;</code>
+       */
+      public com.example.demo.datagram.DatagramProto.UsersOrBuilder getTeachersOrBuilder() {
+        if (teachersBuilder_ != null) {
+          return teachersBuilder_.getMessageOrBuilder();
+        } else {
+          return teachers_ == null ?
+              com.example.demo.datagram.DatagramProto.Users.getDefaultInstance() : teachers_;
+        }
+      }
+      /**
+       * <code>.Users teachers = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.demo.datagram.DatagramProto.Users, com.example.demo.datagram.DatagramProto.Users.Builder, com.example.demo.datagram.DatagramProto.UsersOrBuilder> 
+          getTeachersFieldBuilder() {
+        if (teachersBuilder_ == null) {
+          teachersBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.example.demo.datagram.DatagramProto.Users, com.example.demo.datagram.DatagramProto.Users.Builder, com.example.demo.datagram.DatagramProto.UsersOrBuilder>(
+                  getTeachers(),
+                  getParentForChildren(),
+                  isClean());
+          teachers_ = null;
+        }
+        return teachersBuilder_;
+      }
+
+      private com.example.demo.datagram.DatagramProto.Users students_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.demo.datagram.DatagramProto.Users, com.example.demo.datagram.DatagramProto.Users.Builder, com.example.demo.datagram.DatagramProto.UsersOrBuilder> studentsBuilder_;
+      /**
+       * <code>.Users students = 3;</code>
+       * @return Whether the students field is set.
+       */
+      public boolean hasStudents() {
+        return studentsBuilder_ != null || students_ != null;
+      }
+      /**
+       * <code>.Users students = 3;</code>
+       * @return The students.
+       */
+      public com.example.demo.datagram.DatagramProto.Users getStudents() {
+        if (studentsBuilder_ == null) {
+          return students_ == null ? com.example.demo.datagram.DatagramProto.Users.getDefaultInstance() : students_;
+        } else {
+          return studentsBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.Users students = 3;</code>
+       */
+      public Builder setStudents(com.example.demo.datagram.DatagramProto.Users value) {
+        if (studentsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          students_ = value;
+          onChanged();
+        } else {
+          studentsBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Users students = 3;</code>
+       */
+      public Builder setStudents(
+          com.example.demo.datagram.DatagramProto.Users.Builder builderForValue) {
+        if (studentsBuilder_ == null) {
+          students_ = builderForValue.build();
+          onChanged();
+        } else {
+          studentsBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Users students = 3;</code>
+       */
+      public Builder mergeStudents(com.example.demo.datagram.DatagramProto.Users value) {
+        if (studentsBuilder_ == null) {
+          if (students_ != null) {
+            students_ =
+              com.example.demo.datagram.DatagramProto.Users.newBuilder(students_).mergeFrom(value).buildPartial();
+          } else {
+            students_ = value;
+          }
+          onChanged();
+        } else {
+          studentsBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Users students = 3;</code>
+       */
+      public Builder clearStudents() {
+        if (studentsBuilder_ == null) {
+          students_ = null;
+          onChanged();
+        } else {
+          students_ = null;
+          studentsBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Users students = 3;</code>
+       */
+      public com.example.demo.datagram.DatagramProto.Users.Builder getStudentsBuilder() {
+        
+        onChanged();
+        return getStudentsFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.Users students = 3;</code>
+       */
+      public com.example.demo.datagram.DatagramProto.UsersOrBuilder getStudentsOrBuilder() {
+        if (studentsBuilder_ != null) {
+          return studentsBuilder_.getMessageOrBuilder();
+        } else {
+          return students_ == null ?
+              com.example.demo.datagram.DatagramProto.Users.getDefaultInstance() : students_;
+        }
+      }
+      /**
+       * <code>.Users students = 3;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.demo.datagram.DatagramProto.Users, com.example.demo.datagram.DatagramProto.Users.Builder, com.example.demo.datagram.DatagramProto.UsersOrBuilder> 
+          getStudentsFieldBuilder() {
+        if (studentsBuilder_ == null) {
+          studentsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.example.demo.datagram.DatagramProto.Users, com.example.demo.datagram.DatagramProto.Users.Builder, com.example.demo.datagram.DatagramProto.UsersOrBuilder>(
+                  getStudents(),
+                  getParentForChildren(),
+                  isClean());
+          students_ = null;
+        }
+        return studentsBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -12868,41 +16793,41 @@ public final class DatagramProto {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:Courses)
+      // @@protoc_insertion_point(builder_scope:Group)
     }
 
-    // @@protoc_insertion_point(class_scope:Courses)
-    private static final com.example.demo.datagram.DatagramProto.Courses DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:Group)
+    private static final com.example.demo.datagram.DatagramProto.Group DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.example.demo.datagram.DatagramProto.Courses();
+      DEFAULT_INSTANCE = new com.example.demo.datagram.DatagramProto.Group();
     }
 
-    public static com.example.demo.datagram.DatagramProto.Courses getDefaultInstance() {
+    public static com.example.demo.datagram.DatagramProto.Group getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<Courses>
-        PARSER = new com.google.protobuf.AbstractParser<Courses>() {
+    private static final com.google.protobuf.Parser<Group>
+        PARSER = new com.google.protobuf.AbstractParser<Group>() {
       @java.lang.Override
-      public Courses parsePartialFrom(
+      public Group parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Courses(input, extensionRegistry);
+        return new Group(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<Courses> parser() {
+    public static com.google.protobuf.Parser<Group> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<Courses> getParserForType() {
+    public com.google.protobuf.Parser<Group> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.example.demo.datagram.DatagramProto.Courses getDefaultInstanceForType() {
+    public com.example.demo.datagram.DatagramProto.Group getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -12913,6 +16838,26 @@ public final class DatagramProto {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Datagram_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_DatagramVersion1_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_DatagramVersion1_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Login_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Login_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Course_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Course_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Courses_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Courses_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Student_descriptor;
   private static final 
@@ -12929,45 +16874,40 @@ public final class DatagramProto {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_User_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Login_descriptor;
+    internal_static_Users_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Login_fieldAccessorTable;
+      internal_static_Users_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Register_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Register_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Course_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Course_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Message_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Message_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Notification_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Notification_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Messages_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Messages_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Notification_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Notification_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Notifications_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Notifications_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Courses_descriptor;
+    internal_static_Group_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Courses_fieldAccessorTable;
+      internal_static_Group_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -12977,38 +16917,53 @@ public final class DatagramProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\016datagram.proto\"\212\002\n\010Datagram\022\017\n\007version" +
-      "\030\001 \001(\005\022\014\n\004type\030\002 \001(\005\022\017\n\007subtype\030\003 \001(\005\022\025\n" +
-      "\004user\030\004 \001(\0132\005.UserH\000\022\035\n\010messages\030\005 \001(\0132\t" +
-      ".MessagesH\000\022\033\n\007courses\030\006 \001(\0132\010.CoursesH\000" +
-      "\022\'\n\rnotifications\030\007 \001(\0132\016.NotificationsH" +
-      "\000\022\027\n\005login\030\010 \001(\0132\006.LoginH\000\022\035\n\010register\030\t" +
-      " \001(\0132\t.RegisterH\000\022\014\n\002id\030\n \001(\tH\000B\006\n\004dataJ" +
-      "\004\010\013\020\020\">\n\007Student\022\020\n\010class_no\030\001 \001(\005\022\r\n\005ma" +
-      "jor\030\002 \001(\t\022\022\n\ndepartment\030\003 \001(\t\"\035\n\007Teacher" +
-      "\022\022\n\ndepartment\030\001 \001(\t\"\250\002\n\004User\022\n\n\002id\030\001 \001(" +
-      "\t\022\020\n\010password\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022\r\n\005pho" +
-      "ne\030\004 \001(\t\022\r\n\005email\030\005 \001(\t\022\034\n\006gender\030\006 \001(\0162" +
-      "\014.User.Gender\022\034\n\004type\030\007 \001(\0162\016.User.UserT" +
-      "ype\022\033\n\007student\030\010 \001(\0132\010.StudentH\000\022\033\n\007teac" +
-      "her\030\t \001(\0132\010.TeacherH\000\"$\n\010UserType\022\013\n\007STU" +
-      "DENT\020\000\022\013\n\007TEACHER\020\001\",\n\006Gender\022\010\n\004MALE\020\000\022" +
-      "\n\n\006FEMALE\020\001\022\014\n\010SECURITY\020\002B\006\n\004dataJ\004\010\n\020\020\"" +
-      "+\n\005Login\022\020\n\010username\030\001 \001(\t\022\020\n\010password\030\002" +
-      " \001(\t\".\n\010Register\022\020\n\010username\030\001 \001(\t\022\020\n\010pa" +
-      "ssword\030\002 \001(\t\"x\n\006Course\022\n\n\002id\030\001 \001(\t\022\014\n\004na" +
-      "me\030\002 \001(\t\022\021\n\tclassroom\030\003 \001(\t\022\014\n\004time\030\004 \001(" +
-      "\t\022\020\n\010semester\030\005 \001(\005\022\017\n\007remarks\030\006 \001(\t\022\020\n\010" +
-      "hasGroup\030\007 \001(\010\"P\n\007Message\022\021\n\tsender_id\030\001" +
-      " \001(\t\022\023\n\013receiver_id\030\002 \001(\t\022\017\n\007content\030\003 \001" +
-      "(\t\022\014\n\004time\030\004 \001(\003\"d\n\014Notification\022\021\n\tsend" +
-      "er_id\030\001 \001(\t\022\023\n\013receiver_id\030\002 \001(\t\022\r\n\005titl" +
-      "e\030\003 \001(\t\022\017\n\007content\030\004 \001(\t\022\014\n\004time\030\005 \001(\003\"&" +
-      "\n\010Messages\022\032\n\010messages\030\001 \003(\0132\010.Message\"5" +
-      "\n\rNotifications\022$\n\rnotifications\030\001 \003(\0132\r" +
-      ".Notification\"#\n\007Courses\022\030\n\007courses\030\001 \003(" +
-      "\0132\007.CourseB*\n\031com.example.demo.datagramB" +
-      "\rDatagramProtob\006proto3"
+      "\n\016datagram.proto\"-\n\010Datagram\022\017\n\007version\030" +
+      "\001 \001(\005\022\020\n\010datagram\030\002 \001(\014\"\351\004\n\020DatagramVers" +
+      "ion1\022$\n\004type\030\001 \001(\0162\026.DatagramVersion1.Ty" +
+      "pe\022*\n\007subtype\030\002 \001(\0162\031.DatagramVersion1.S" +
+      "ubtype\022\r\n\005token\030\003 \001(\t\022\n\n\002ok\030\004 \001(\005\022\033\n\007mes" +
+      "sage\030\005 \001(\0132\010.MessageH\000\022\035\n\010messages\030\006 \001(\013" +
+      "2\t.MessagesH\000\022\027\n\005login\030\007 \001(\0132\006.LoginH\000\022\031" +
+      "\n\006course\030\010 \001(\0132\007.CourseH\000\022\033\n\007courses\030\t \001" +
+      "(\0132\010.CoursesH\000\022%\n\014notification\030\n \001(\0132\r.N" +
+      "otificationH\000\022\'\n\rnotifications\030\013 \001(\0132\016.N" +
+      "otificationsH\000\022\035\n\010register\030\014 \001(\0132\t.Regis" +
+      "terH\000\022\025\n\004user\030\r \001(\0132\005.UserH\000\022\027\n\005group\030\016 " +
+      "\001(\0132\006.GroupH\000\"{\n\004Type\022\016\n\nKEEP_ALIVE\020\000\022\013\n" +
+      "\007MESSAGE\020\001\022\010\n\004USER\020\002\022\t\n\005LOGIN\020\003\022\020\n\014NOTIF" +
+      "ICATION\020\004\022\n\n\006COURSE\020\005\022\014\n\010REGISTER\020\006\022\n\n\006L" +
+      "OGOUT\020\007\022\t\n\005GROUP\020\010\"7\n\007Subtype\022\010\n\004PUSH\020\000\022" +
+      "\007\n\003ACK\020\001\022\013\n\007REQUEST\020\002\022\014\n\010RESPONSE\020\003B\006\n\004d" +
+      "ata\"?\n\005Login\022\020\n\010username\030\001 \001(\t\022\020\n\010passwo" +
+      "rd\030\002 \001(\t\022\022\n\ndb_version\030\003 \001(\003\"\217\001\n\006Course\022" +
+      "\n\n\002id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\021\n\tclassroom\030\003" +
+      " \001(\t\022\014\n\004time\030\004 \001(\t\022\020\n\010semester\030\005 \001(\005\022\017\n\007" +
+      "remarks\030\006 \001(\t\022\020\n\010hasGroup\030\007 \001(\010\022\025\n\rlast_" +
+      "modified\030\n \001(\003\"#\n\007Courses\022\030\n\007courses\030\001 \003" +
+      "(\0132\007.Course\">\n\007Student\022\020\n\010class_no\030\001 \001(\005" +
+      "\022\r\n\005major\030\002 \001(\t\022\022\n\ndepartment\030\003 \001(\t\"\035\n\007T" +
+      "eacher\022\022\n\ndepartment\030\001 \001(\t\"\271\002\n\004User\022\n\n\002i" +
+      "d\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022" +
+      "\r\n\005phone\030\004 \001(\t\022\r\n\005email\030\005 \001(\t\022\034\n\006gender\030" +
+      "\006 \001(\0162\014.User.Gender\022\034\n\004type\030\007 \001(\0162\016.User" +
+      ".UserType\022\033\n\007student\030\010 \001(\0132\010.StudentH\000\022\033" +
+      "\n\007teacher\030\t \001(\0132\010.TeacherH\000\022\025\n\rlast_modi" +
+      "fied\030\n \001(\003\",\n\006Gender\022\014\n\010SECURITY\020\000\022\n\n\006FE" +
+      "MALE\020\001\022\010\n\004MALE\020\002\"$\n\010UserType\022\013\n\007STUDENT\020" +
+      "\000\022\013\n\007TEACHER\020\001B\006\n\004data\"\035\n\005Users\022\024\n\005users" +
+      "\030\001 \003(\0132\005.User\"@\n\010Register\022\020\n\010username\030\001 " +
+      "\001(\t\022\020\n\010password\030\002 \001(\t\022\020\n\010identity\030\003 \001(\005\"" +
+      "P\n\007Message\022\021\n\tsender_id\030\001 \001(\t\022\023\n\013receive" +
+      "r_id\030\002 \001(\t\022\017\n\007content\030\003 \001(\t\022\014\n\004time\030\004 \001(" +
+      "\003\"&\n\010Messages\022\032\n\010messages\030\001 \003(\0132\010.Messag" +
+      "e\"d\n\014Notification\022\021\n\tsender_id\030\001 \001(\t\022\023\n\013" +
+      "receiver_id\030\002 \001(\t\022\r\n\005title\030\003 \001(\t\022\017\n\007cont" +
+      "ent\030\004 \001(\t\022\014\n\004time\030\005 \001(\003\"5\n\rNotifications" +
+      "\022$\n\rnotifications\030\001 \003(\0132\r.Notification\"T" +
+      "\n\005Group\022\027\n\006course\030\001 \001(\0132\007.Course\022\030\n\010teac" +
+      "hers\030\002 \001(\0132\006.Users\022\030\n\010students\030\003 \001(\0132\006.U" +
+      "sersB*\n\031com.example.demo.datagramB\rDatag" +
+      "ramProtob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -13019,73 +16974,91 @@ public final class DatagramProto {
     internal_static_Datagram_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Datagram_descriptor,
-        new java.lang.String[] { "Version", "Type", "Subtype", "User", "Messages", "Courses", "Notifications", "Login", "Register", "Id", "Data", });
-    internal_static_Student_descriptor =
+        new java.lang.String[] { "Version", "Datagram", });
+    internal_static_DatagramVersion1_descriptor =
       getDescriptor().getMessageTypes().get(1);
+    internal_static_DatagramVersion1_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_DatagramVersion1_descriptor,
+        new java.lang.String[] { "Type", "Subtype", "Token", "Ok", "Message", "Messages", "Login", "Course", "Courses", "Notification", "Notifications", "Register", "User", "Group", "Data", });
+    internal_static_Login_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_Login_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Login_descriptor,
+        new java.lang.String[] { "Username", "Password", "DbVersion", });
+    internal_static_Course_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_Course_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Course_descriptor,
+        new java.lang.String[] { "Id", "Name", "Classroom", "Time", "Semester", "Remarks", "HasGroup", "LastModified", });
+    internal_static_Courses_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_Courses_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Courses_descriptor,
+        new java.lang.String[] { "Courses", });
+    internal_static_Student_descriptor =
+      getDescriptor().getMessageTypes().get(5);
     internal_static_Student_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Student_descriptor,
         new java.lang.String[] { "ClassNo", "Major", "Department", });
     internal_static_Teacher_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_Teacher_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Teacher_descriptor,
         new java.lang.String[] { "Department", });
     internal_static_User_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_User_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_User_descriptor,
-        new java.lang.String[] { "Id", "Password", "Name", "Phone", "Email", "Gender", "Type", "Student", "Teacher", "Data", });
-    internal_static_Login_descriptor =
-      getDescriptor().getMessageTypes().get(4);
-    internal_static_Login_fieldAccessorTable = new
+        new java.lang.String[] { "Id", "Password", "Name", "Phone", "Email", "Gender", "Type", "Student", "Teacher", "LastModified", "Data", });
+    internal_static_Users_descriptor =
+      getDescriptor().getMessageTypes().get(8);
+    internal_static_Users_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Login_descriptor,
-        new java.lang.String[] { "Username", "Password", });
+        internal_static_Users_descriptor,
+        new java.lang.String[] { "Users", });
     internal_static_Register_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_Register_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Register_descriptor,
-        new java.lang.String[] { "Username", "Password", });
-    internal_static_Course_descriptor =
-      getDescriptor().getMessageTypes().get(6);
-    internal_static_Course_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Course_descriptor,
-        new java.lang.String[] { "Id", "Name", "Classroom", "Time", "Semester", "Remarks", "HasGroup", });
+        new java.lang.String[] { "Username", "Password", "Identity", });
     internal_static_Message_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_Message_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Message_descriptor,
         new java.lang.String[] { "SenderId", "ReceiverId", "Content", "Time", });
-    internal_static_Notification_descriptor =
-      getDescriptor().getMessageTypes().get(8);
-    internal_static_Notification_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Notification_descriptor,
-        new java.lang.String[] { "SenderId", "ReceiverId", "Title", "Content", "Time", });
     internal_static_Messages_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_Messages_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Messages_descriptor,
         new java.lang.String[] { "Messages", });
+    internal_static_Notification_descriptor =
+      getDescriptor().getMessageTypes().get(12);
+    internal_static_Notification_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Notification_descriptor,
+        new java.lang.String[] { "SenderId", "ReceiverId", "Title", "Content", "Time", });
     internal_static_Notifications_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(13);
     internal_static_Notifications_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Notifications_descriptor,
         new java.lang.String[] { "Notifications", });
-    internal_static_Courses_descriptor =
-      getDescriptor().getMessageTypes().get(11);
-    internal_static_Courses_fieldAccessorTable = new
+    internal_static_Group_descriptor =
+      getDescriptor().getMessageTypes().get(14);
+    internal_static_Group_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Courses_descriptor,
-        new java.lang.String[] { "Courses", });
+        internal_static_Group_descriptor,
+        new java.lang.String[] { "Course", "Teachers", "Students", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

@@ -16,7 +16,14 @@ public class Client {
             bootstrap.group(eventExecutors).channel(NioSocketChannel.class).handler(new ClientInitializer());
             ChannelFuture channelFuture = bootstrap.connect("localhost", 8888).sync();
             Channel channel = channelFuture.channel();
-            channel.writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setType(1).setSubtype(0).setId("1").build());
+            System.out.println("---登录---");
+            channel.writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
+                    DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.LOGIN)
+                        .setSubtype(DatagramProto.DatagramVersion1.Subtype.REQUEST).setLogin(
+                                DatagramProto.Login.newBuilder().setUsername("testuser").setPassword("testuser")
+                            .setDbVersion(0).build()
+                    ).build().toByteString()
+            ).build());
             channel.closeFuture().sync();
         } finally {
             eventExecutors.shutdownGracefully();

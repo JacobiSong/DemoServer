@@ -4,18 +4,64 @@ option java_outer_classname = "DatagramProto";
 
 message Datagram {
   int32 version = 1;
-  int32 type = 2;
-  int32 subtype = 3;
-  oneof data {
-    User user = 4;
-    Messages messages = 5;
-    Courses courses = 6;
-    Notifications notifications = 7;
-    Login login = 8;
-    Register register = 9;
-    string id = 10;
+  bytes datagram = 2;
+}
+
+message DatagramVersion1 {
+  enum Type {
+    KEEP_ALIVE = 0;
+    MESSAGE = 1;
+    USER = 2;
+    LOGIN = 3;
+    NOTIFICATION = 4;
+    COURSE = 5;
+    REGISTER = 6;
+    LOGOUT = 7;
+    GROUP = 8;
   }
-  reserved 11 to 15;
+  Type type = 1;
+  enum Subtype {
+    PUSH = 0;
+    ACK = 1;
+    REQUEST = 2;
+    RESPONSE = 3;
+  }
+  Subtype subtype = 2;
+  string token = 3;
+  int32 ok = 4;
+  oneof data {
+    Message message = 5;
+    Messages messages = 6;
+    Login login = 7;
+    Course course = 8;
+    Courses courses = 9;
+    Notification notification = 10;
+    Notifications notifications = 11;
+    Register register = 12;
+    User user = 13;
+    Group group = 14;
+  }
+}
+
+message Login {
+  string username = 1;
+  string password = 2;
+  int64 db_version = 3;
+}
+
+message Course {
+  string id = 1;
+  string name = 2;
+  string classroom = 3;
+  string time = 4;
+  int32 semester = 5;
+  string remarks = 6;
+  bool hasGroup = 7;
+  int64 last_modified = 10;
+}
+
+message Courses {
+  repeated Course courses = 1;
 }
 
 message Student {
@@ -29,47 +75,37 @@ message Teacher {
 }
 
 message User {
-  enum UserType {
-    STUDENT = 0;
-    TEACHER = 1;
-  }
   string id = 1;
   string password = 2;
   string name = 3;
   string phone = 4;
   string email = 5;
   enum Gender {
-    MALE = 0;
+    SECURITY = 0;
     FEMALE = 1;
-    SECURITY = 2;
+    MALE = 2;
   }
   Gender gender = 6;
+  enum UserType {
+    STUDENT = 0;
+    TEACHER = 1;
+  }
   UserType type = 7;
   oneof data {
     Student student = 8;
     Teacher teacher = 9;
   }
-  reserved 10 to 15;
+  int64 last_modified = 10;
 }
 
-message Login {
-  string username = 1;
-  string password = 2;
+message Users {
+  repeated User users = 1;
 }
 
 message Register {
   string username = 1;
   string password = 2;
-}
-
-message Course {
-  string id = 1;
-  string name = 2;
-  string classroom = 3;
-  string time = 4;
-  int32 semester = 5;
-  string remarks = 6;
-  bool hasGroup = 7;
+  int32 identity = 3;
 }
 
 message Message {
@@ -77,6 +113,10 @@ message Message {
   string receiver_id = 2;
   string content = 3;
   int64 time = 4;
+}
+
+message Messages {
+  repeated Message messages = 1;
 }
 
 message Notification {
@@ -87,14 +127,12 @@ message Notification {
   int64 time = 5;
 }
 
-message Messages {
-  repeated Message messages = 1;
-}
-
 message Notifications {
   repeated Notification notifications = 1;
 }
 
-message Courses {
-  repeated Course courses = 1;
+message Group {
+  Course course = 1;
+  Users teachers = 2;
+  Users students = 3;
 }

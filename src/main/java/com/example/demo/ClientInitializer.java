@@ -24,10 +24,4 @@ public class ClientInitializer extends ChannelInitializer<SocketChannel> {
         pipeline.addLast(new ProtobufEncoder());
         pipeline.addLast(new ClientHandler());
     }
-
-    @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        cause.printStackTrace();
-        ctx.close();
-    }
 }
