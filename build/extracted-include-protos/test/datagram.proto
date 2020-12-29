@@ -56,8 +56,7 @@ message Course {
   string time = 4;
   int32 semester = 5;
   string remarks = 6;
-  bool hasGroup = 7;
-  int64 last_modified = 10;
+  int64 last_modified = 7;
 }
 
 message Courses {
@@ -65,7 +64,7 @@ message Courses {
 }
 
 message Student {
-  int32 class_no = 1;
+  string class_no = 1;
   string major = 2;
   string department = 3;
 }
@@ -81,7 +80,7 @@ message User {
   string phone = 4;
   string email = 5;
   enum Gender {
-    SECURITY = 0;
+    SECRETE = 0;
     FEMALE = 1;
     MALE = 2;
   }

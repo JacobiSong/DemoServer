@@ -4946,13 +4946,7 @@ public final class DatagramProto {
         getRemarksBytes();
 
     /**
-     * <code>bool hasGroup = 7;</code>
-     * @return The hasGroup.
-     */
-    boolean getHasGroup();
-
-    /**
-     * <code>int64 last_modified = 10;</code>
+     * <code>int64 last_modified = 7;</code>
      * @return The lastModified.
      */
     long getLastModified();
@@ -5043,11 +5037,6 @@ public final class DatagramProto {
               break;
             }
             case 56: {
-
-              hasGroup_ = input.readBool();
-              break;
-            }
-            case 80: {
 
               lastModified_ = input.readInt64();
               break;
@@ -5285,21 +5274,10 @@ public final class DatagramProto {
       }
     }
 
-    public static final int HASGROUP_FIELD_NUMBER = 7;
-    private boolean hasGroup_;
-    /**
-     * <code>bool hasGroup = 7;</code>
-     * @return The hasGroup.
-     */
-    @java.lang.Override
-    public boolean getHasGroup() {
-      return hasGroup_;
-    }
-
-    public static final int LAST_MODIFIED_FIELD_NUMBER = 10;
+    public static final int LAST_MODIFIED_FIELD_NUMBER = 7;
     private long lastModified_;
     /**
-     * <code>int64 last_modified = 10;</code>
+     * <code>int64 last_modified = 7;</code>
      * @return The lastModified.
      */
     @java.lang.Override
@@ -5339,11 +5317,8 @@ public final class DatagramProto {
       if (!getRemarksBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 6, remarks_);
       }
-      if (hasGroup_ != false) {
-        output.writeBool(7, hasGroup_);
-      }
       if (lastModified_ != 0L) {
-        output.writeInt64(10, lastModified_);
+        output.writeInt64(7, lastModified_);
       }
       unknownFields.writeTo(output);
     }
@@ -5373,13 +5348,9 @@ public final class DatagramProto {
       if (!getRemarksBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, remarks_);
       }
-      if (hasGroup_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(7, hasGroup_);
-      }
       if (lastModified_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(10, lastModified_);
+          .computeInt64Size(7, lastModified_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -5408,8 +5379,6 @@ public final class DatagramProto {
           != other.getSemester()) return false;
       if (!getRemarks()
           .equals(other.getRemarks())) return false;
-      if (getHasGroup()
-          != other.getHasGroup()) return false;
       if (getLastModified()
           != other.getLastModified()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
@@ -5435,9 +5404,6 @@ public final class DatagramProto {
       hash = (53 * hash) + getSemester();
       hash = (37 * hash) + REMARKS_FIELD_NUMBER;
       hash = (53 * hash) + getRemarks().hashCode();
-      hash = (37 * hash) + HASGROUP_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getHasGroup());
       hash = (37 * hash) + LAST_MODIFIED_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getLastModified());
@@ -5586,8 +5552,6 @@ public final class DatagramProto {
 
         remarks_ = "";
 
-        hasGroup_ = false;
-
         lastModified_ = 0L;
 
         return this;
@@ -5622,7 +5586,6 @@ public final class DatagramProto {
         result.time_ = time_;
         result.semester_ = semester_;
         result.remarks_ = remarks_;
-        result.hasGroup_ = hasGroup_;
         result.lastModified_ = lastModified_;
         onBuilt();
         return result;
@@ -5694,9 +5657,6 @@ public final class DatagramProto {
         if (!other.getRemarks().isEmpty()) {
           remarks_ = other.remarks_;
           onChanged();
-        }
-        if (other.getHasGroup() != false) {
-          setHasGroup(other.getHasGroup());
         }
         if (other.getLastModified() != 0L) {
           setLastModified(other.getLastModified());
@@ -6141,40 +6101,9 @@ public final class DatagramProto {
         return this;
       }
 
-      private boolean hasGroup_ ;
-      /**
-       * <code>bool hasGroup = 7;</code>
-       * @return The hasGroup.
-       */
-      @java.lang.Override
-      public boolean getHasGroup() {
-        return hasGroup_;
-      }
-      /**
-       * <code>bool hasGroup = 7;</code>
-       * @param value The hasGroup to set.
-       * @return This builder for chaining.
-       */
-      public Builder setHasGroup(boolean value) {
-        
-        hasGroup_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>bool hasGroup = 7;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearHasGroup() {
-        
-        hasGroup_ = false;
-        onChanged();
-        return this;
-      }
-
       private long lastModified_ ;
       /**
-       * <code>int64 last_modified = 10;</code>
+       * <code>int64 last_modified = 7;</code>
        * @return The lastModified.
        */
       @java.lang.Override
@@ -6182,7 +6111,7 @@ public final class DatagramProto {
         return lastModified_;
       }
       /**
-       * <code>int64 last_modified = 10;</code>
+       * <code>int64 last_modified = 7;</code>
        * @param value The lastModified to set.
        * @return This builder for chaining.
        */
@@ -6193,7 +6122,7 @@ public final class DatagramProto {
         return this;
       }
       /**
-       * <code>int64 last_modified = 10;</code>
+       * <code>int64 last_modified = 7;</code>
        * @return This builder for chaining.
        */
       public Builder clearLastModified() {
@@ -7053,10 +6982,16 @@ public final class DatagramProto {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>int32 class_no = 1;</code>
+     * <code>string class_no = 1;</code>
      * @return The classNo.
      */
-    int getClassNo();
+    java.lang.String getClassNo();
+    /**
+     * <code>string class_no = 1;</code>
+     * @return The bytes for classNo.
+     */
+    com.google.protobuf.ByteString
+        getClassNoBytes();
 
     /**
      * <code>string major = 2;</code>
@@ -7095,6 +7030,7 @@ public final class DatagramProto {
       super(builder);
     }
     private Student() {
+      classNo_ = "";
       major_ = "";
       department_ = "";
     }
@@ -7129,9 +7065,10 @@ public final class DatagramProto {
             case 0:
               done = true;
               break;
-            case 8: {
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
 
-              classNo_ = input.readInt32();
+              classNo_ = s;
               break;
             }
             case 18: {
@@ -7179,14 +7116,41 @@ public final class DatagramProto {
     }
 
     public static final int CLASS_NO_FIELD_NUMBER = 1;
-    private int classNo_;
+    private volatile java.lang.Object classNo_;
     /**
-     * <code>int32 class_no = 1;</code>
+     * <code>string class_no = 1;</code>
      * @return The classNo.
      */
     @java.lang.Override
-    public int getClassNo() {
-      return classNo_;
+    public java.lang.String getClassNo() {
+      java.lang.Object ref = classNo_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        classNo_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string class_no = 1;</code>
+     * @return The bytes for classNo.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getClassNoBytes() {
+      java.lang.Object ref = classNo_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        classNo_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int MAJOR_FIELD_NUMBER = 2;
@@ -7279,8 +7243,8 @@ public final class DatagramProto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (classNo_ != 0) {
-        output.writeInt32(1, classNo_);
+      if (!getClassNoBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, classNo_);
       }
       if (!getMajorBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, major_);
@@ -7297,9 +7261,8 @@ public final class DatagramProto {
       if (size != -1) return size;
 
       size = 0;
-      if (classNo_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, classNo_);
+      if (!getClassNoBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, classNo_);
       }
       if (!getMajorBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, major_);
@@ -7322,8 +7285,8 @@ public final class DatagramProto {
       }
       com.example.demo.datagram.DatagramProto.Student other = (com.example.demo.datagram.DatagramProto.Student) obj;
 
-      if (getClassNo()
-          != other.getClassNo()) return false;
+      if (!getClassNo()
+          .equals(other.getClassNo())) return false;
       if (!getMajor()
           .equals(other.getMajor())) return false;
       if (!getDepartment()
@@ -7340,7 +7303,7 @@ public final class DatagramProto {
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + CLASS_NO_FIELD_NUMBER;
-      hash = (53 * hash) + getClassNo();
+      hash = (53 * hash) + getClassNo().hashCode();
       hash = (37 * hash) + MAJOR_FIELD_NUMBER;
       hash = (53 * hash) + getMajor().hashCode();
       hash = (37 * hash) + DEPARTMENT_FIELD_NUMBER;
@@ -7478,7 +7441,7 @@ public final class DatagramProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        classNo_ = 0;
+        classNo_ = "";
 
         major_ = "";
 
@@ -7561,8 +7524,9 @@ public final class DatagramProto {
 
       public Builder mergeFrom(com.example.demo.datagram.DatagramProto.Student other) {
         if (other == com.example.demo.datagram.DatagramProto.Student.getDefaultInstance()) return this;
-        if (other.getClassNo() != 0) {
-          setClassNo(other.getClassNo());
+        if (!other.getClassNo().isEmpty()) {
+          classNo_ = other.classNo_;
+          onChanged();
         }
         if (!other.getMajor().isEmpty()) {
           major_ = other.major_;
@@ -7601,33 +7565,78 @@ public final class DatagramProto {
         return this;
       }
 
-      private int classNo_ ;
+      private java.lang.Object classNo_ = "";
       /**
-       * <code>int32 class_no = 1;</code>
+       * <code>string class_no = 1;</code>
        * @return The classNo.
        */
-      @java.lang.Override
-      public int getClassNo() {
-        return classNo_;
+      public java.lang.String getClassNo() {
+        java.lang.Object ref = classNo_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          classNo_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
-       * <code>int32 class_no = 1;</code>
+       * <code>string class_no = 1;</code>
+       * @return The bytes for classNo.
+       */
+      public com.google.protobuf.ByteString
+          getClassNoBytes() {
+        java.lang.Object ref = classNo_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          classNo_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string class_no = 1;</code>
        * @param value The classNo to set.
        * @return This builder for chaining.
        */
-      public Builder setClassNo(int value) {
-        
+      public Builder setClassNo(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
         classNo_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>int32 class_no = 1;</code>
+       * <code>string class_no = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearClassNo() {
         
-        classNo_ = 0;
+        classNo_ = getDefaultInstance().getClassNo();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string class_no = 1;</code>
+       * @param value The bytes for classNo to set.
+       * @return This builder for chaining.
+       */
+      public Builder setClassNoBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        classNo_ = value;
         onChanged();
         return this;
       }
@@ -8693,9 +8702,9 @@ public final class DatagramProto {
     public enum Gender
         implements com.google.protobuf.ProtocolMessageEnum {
       /**
-       * <code>SECURITY = 0;</code>
+       * <code>SECRETE = 0;</code>
        */
-      SECURITY(0),
+      SECRETE(0),
       /**
        * <code>FEMALE = 1;</code>
        */
@@ -8708,9 +8717,9 @@ public final class DatagramProto {
       ;
 
       /**
-       * <code>SECURITY = 0;</code>
+       * <code>SECRETE = 0;</code>
        */
-      public static final int SECURITY_VALUE = 0;
+      public static final int SECRETE_VALUE = 0;
       /**
        * <code>FEMALE = 1;</code>
        */
@@ -8745,7 +8754,7 @@ public final class DatagramProto {
        */
       public static Gender forNumber(int value) {
         switch (value) {
-          case 0: return SECURITY;
+          case 0: return SECRETE;
           case 1: return FEMALE;
           case 2: return MALE;
           default: return null;
@@ -9283,7 +9292,7 @@ public final class DatagramProto {
       if (!getEmailBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, email_);
       }
-      if (gender_ != com.example.demo.datagram.DatagramProto.User.Gender.SECURITY.getNumber()) {
+      if (gender_ != com.example.demo.datagram.DatagramProto.User.Gender.SECRETE.getNumber()) {
         output.writeEnum(6, gender_);
       }
       if (type_ != com.example.demo.datagram.DatagramProto.User.UserType.STUDENT.getNumber()) {
@@ -9322,7 +9331,7 @@ public final class DatagramProto {
       if (!getEmailBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, email_);
       }
-      if (gender_ != com.example.demo.datagram.DatagramProto.User.Gender.SECURITY.getNumber()) {
+      if (gender_ != com.example.demo.datagram.DatagramProto.User.Gender.SECRETE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(6, gender_);
       }
@@ -16935,35 +16944,34 @@ public final class DatagramProto {
       "OGOUT\020\007\022\t\n\005GROUP\020\010\"7\n\007Subtype\022\010\n\004PUSH\020\000\022" +
       "\007\n\003ACK\020\001\022\013\n\007REQUEST\020\002\022\014\n\010RESPONSE\020\003B\006\n\004d" +
       "ata\"?\n\005Login\022\020\n\010username\030\001 \001(\t\022\020\n\010passwo" +
-      "rd\030\002 \001(\t\022\022\n\ndb_version\030\003 \001(\003\"\217\001\n\006Course\022" +
-      "\n\n\002id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\021\n\tclassroom\030\003" +
-      " \001(\t\022\014\n\004time\030\004 \001(\t\022\020\n\010semester\030\005 \001(\005\022\017\n\007" +
-      "remarks\030\006 \001(\t\022\020\n\010hasGroup\030\007 \001(\010\022\025\n\rlast_" +
-      "modified\030\n \001(\003\"#\n\007Courses\022\030\n\007courses\030\001 \003" +
-      "(\0132\007.Course\">\n\007Student\022\020\n\010class_no\030\001 \001(\005" +
-      "\022\r\n\005major\030\002 \001(\t\022\022\n\ndepartment\030\003 \001(\t\"\035\n\007T" +
-      "eacher\022\022\n\ndepartment\030\001 \001(\t\"\271\002\n\004User\022\n\n\002i" +
-      "d\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022" +
-      "\r\n\005phone\030\004 \001(\t\022\r\n\005email\030\005 \001(\t\022\034\n\006gender\030" +
-      "\006 \001(\0162\014.User.Gender\022\034\n\004type\030\007 \001(\0162\016.User" +
-      ".UserType\022\033\n\007student\030\010 \001(\0132\010.StudentH\000\022\033" +
-      "\n\007teacher\030\t \001(\0132\010.TeacherH\000\022\025\n\rlast_modi" +
-      "fied\030\n \001(\003\",\n\006Gender\022\014\n\010SECURITY\020\000\022\n\n\006FE" +
-      "MALE\020\001\022\010\n\004MALE\020\002\"$\n\010UserType\022\013\n\007STUDENT\020" +
-      "\000\022\013\n\007TEACHER\020\001B\006\n\004data\"\035\n\005Users\022\024\n\005users" +
-      "\030\001 \003(\0132\005.User\"@\n\010Register\022\020\n\010username\030\001 " +
-      "\001(\t\022\020\n\010password\030\002 \001(\t\022\020\n\010identity\030\003 \001(\005\"" +
-      "P\n\007Message\022\021\n\tsender_id\030\001 \001(\t\022\023\n\013receive" +
-      "r_id\030\002 \001(\t\022\017\n\007content\030\003 \001(\t\022\014\n\004time\030\004 \001(" +
-      "\003\"&\n\010Messages\022\032\n\010messages\030\001 \003(\0132\010.Messag" +
-      "e\"d\n\014Notification\022\021\n\tsender_id\030\001 \001(\t\022\023\n\013" +
-      "receiver_id\030\002 \001(\t\022\r\n\005title\030\003 \001(\t\022\017\n\007cont" +
-      "ent\030\004 \001(\t\022\014\n\004time\030\005 \001(\003\"5\n\rNotifications" +
-      "\022$\n\rnotifications\030\001 \003(\0132\r.Notification\"T" +
-      "\n\005Group\022\027\n\006course\030\001 \001(\0132\007.Course\022\030\n\010teac" +
-      "hers\030\002 \001(\0132\006.Users\022\030\n\010students\030\003 \001(\0132\006.U" +
-      "sersB*\n\031com.example.demo.datagramB\rDatag" +
-      "ramProtob\006proto3"
+      "rd\030\002 \001(\t\022\022\n\ndb_version\030\003 \001(\003\"}\n\006Course\022\n" +
+      "\n\002id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\021\n\tclassroom\030\003 " +
+      "\001(\t\022\014\n\004time\030\004 \001(\t\022\020\n\010semester\030\005 \001(\005\022\017\n\007r" +
+      "emarks\030\006 \001(\t\022\025\n\rlast_modified\030\007 \001(\003\"#\n\007C" +
+      "ourses\022\030\n\007courses\030\001 \003(\0132\007.Course\">\n\007Stud" +
+      "ent\022\020\n\010class_no\030\001 \001(\t\022\r\n\005major\030\002 \001(\t\022\022\n\n" +
+      "department\030\003 \001(\t\"\035\n\007Teacher\022\022\n\ndepartmen" +
+      "t\030\001 \001(\t\"\270\002\n\004User\022\n\n\002id\030\001 \001(\t\022\020\n\010password" +
+      "\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022\r\n\005phone\030\004 \001(\t\022\r\n\005e" +
+      "mail\030\005 \001(\t\022\034\n\006gender\030\006 \001(\0162\014.User.Gender" +
+      "\022\034\n\004type\030\007 \001(\0162\016.User.UserType\022\033\n\007studen" +
+      "t\030\010 \001(\0132\010.StudentH\000\022\033\n\007teacher\030\t \001(\0132\010.T" +
+      "eacherH\000\022\025\n\rlast_modified\030\n \001(\003\"+\n\006Gende" +
+      "r\022\013\n\007SECRETE\020\000\022\n\n\006FEMALE\020\001\022\010\n\004MALE\020\002\"$\n\010" +
+      "UserType\022\013\n\007STUDENT\020\000\022\013\n\007TEACHER\020\001B\006\n\004da" +
+      "ta\"\035\n\005Users\022\024\n\005users\030\001 \003(\0132\005.User\"@\n\010Reg" +
+      "ister\022\020\n\010username\030\001 \001(\t\022\020\n\010password\030\002 \001(" +
+      "\t\022\020\n\010identity\030\003 \001(\005\"P\n\007Message\022\021\n\tsender" +
+      "_id\030\001 \001(\t\022\023\n\013receiver_id\030\002 \001(\t\022\017\n\007conten" +
+      "t\030\003 \001(\t\022\014\n\004time\030\004 \001(\003\"&\n\010Messages\022\032\n\010mes" +
+      "sages\030\001 \003(\0132\010.Message\"d\n\014Notification\022\021\n" +
+      "\tsender_id\030\001 \001(\t\022\023\n\013receiver_id\030\002 \001(\t\022\r\n" +
+      "\005title\030\003 \001(\t\022\017\n\007content\030\004 \001(\t\022\014\n\004time\030\005 " +
+      "\001(\003\"5\n\rNotifications\022$\n\rnotifications\030\001 " +
+      "\003(\0132\r.Notification\"T\n\005Group\022\027\n\006course\030\001 " +
+      "\001(\0132\007.Course\022\030\n\010teachers\030\002 \001(\0132\006.Users\022\030" +
+      "\n\010students\030\003 \001(\0132\006.UsersB*\n\031com.example." +
+      "demo.datagramB\rDatagramProtob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -16992,7 +17000,7 @@ public final class DatagramProto {
     internal_static_Course_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Course_descriptor,
-        new java.lang.String[] { "Id", "Name", "Classroom", "Time", "Semester", "Remarks", "HasGroup", "LastModified", });
+        new java.lang.String[] { "Id", "Name", "Classroom", "Time", "Semester", "Remarks", "LastModified", });
     internal_static_Courses_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_Courses_fieldAccessorTable = new
