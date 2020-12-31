@@ -38,9 +38,8 @@ message DatagramVersion1 {
     Courses courses = 10;
     Register register = 11;
     Group group = 12;
-    Join join = 13;
   }
-  int64 push = 14;
+  int64 push = 13;
 }
 
 message Login {
