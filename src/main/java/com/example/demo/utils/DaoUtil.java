@@ -9,15 +9,15 @@ import java.util.List;
 public class DaoUtil {
 
     public static List<DatagramProto.Course> findCoursesByTeacherId(String teacherId) {
-        List<DatagramProto.Course> list = new ArrayList<DatagramProto.Course>();
+        List<DatagramProto.Course> list = new ArrayList<>();
         if (teacherId == null) {
             return list;
         }
         Connection conn = ConnectionUtil.getConn();
         Connection conn1 = ConnectionUtil.getConn1();
         try {
-            String sql = "select id, name, classroom, time, semester, remarks from course c" +
-                    "inner join t_join j on c.id = j.course_id where j.user_id = ?";
+            String sql = "select id, name, classroom, time, semester, remarks from course " +
+                    "inner join t_join on id = course_id where user_id = ?";
             PreparedStatement ps1 = conn1.prepareStatement(sql);
             ps1.setString(1, teacherId);
             ResultSet rs1 = ps1.executeQuery();
@@ -43,7 +43,7 @@ public class DaoUtil {
                     DatagramProto.Course.Builder builder = DatagramProto.Course.newBuilder().setId(id).setName(name)
                             .setClassroom(classroom).setTime(time).setSemester(semester);
                     if (remarks != null) {
-                        builder = builder.setRemarks(remarks);
+                        builder.setRemarks(remarks);
                     }
                     list.add(builder.build());
                 }
@@ -176,7 +176,7 @@ public class DaoUtil {
         return false;
     }
 
-    private static DatagramProto.User findUserById(String id) {
+    public static DatagramProto.User findUserById(String id) {
         Connection conn = ConnectionUtil.getConn();
         String sql = "select name, identity, phone, email, gender, last_modified from user where id = ?";
         DatagramProto.User.Builder builder = DatagramProto.User.newBuilder();
@@ -191,12 +191,12 @@ public class DaoUtil {
                 String email = rs.getString(4);
                 int gender = rs.getInt(5);
                 long last_modified = rs.getLong(6);
-                builder = builder.setId(id).setName(name).setLastModified(last_modified);
+                builder.setId(id).setName(name).setLastModified(last_modified);
                 ps.close();
                 rs.close();
                 switch (identity) {
                     case 0: {
-                        builder = builder.setType(DatagramProto.User.Identity.STUDENT);
+                        builder.setType(DatagramProto.User.Identity.STUDENT);
                         sql = "select class_no, major, department from student where id = ?";
                         ps = conn.prepareStatement(sql);
                         ps.setString(1, id);
@@ -215,14 +215,14 @@ public class DaoUtil {
                             if (department != null) {
                                 stuBuilder = stuBuilder.setDepartment(department);
                             }
-                            builder = builder.setStudent(stuBuilder.build());
+                            builder.setStudent(stuBuilder.build());
                         }
                         ps.close();
                         rs.close();
                         break;
                     }
                     case 1: {
-                        builder = builder.setType(DatagramProto.User.Identity.TEACHER);
+                        builder.setType(DatagramProto.User.Identity.TEACHER);
                         sql = "select department from teacher where id = ?";
                         ps = conn.prepareStatement(sql);
                         ps.setString(1, id);
@@ -233,7 +233,7 @@ public class DaoUtil {
                             if (department != null) {
                                 tchBuilder = tchBuilder.setDepartment(department);
                             }
-                            builder = builder.setTeacher(tchBuilder.build());
+                            builder.setTeacher(tchBuilder.build());
                         }
                         ps.close();
                         rs.close();
@@ -244,22 +244,22 @@ public class DaoUtil {
                 }
                 switch (gender) {
                     case 0:
-                        builder = builder.setGender(DatagramProto.User.Gender.SECRETE);
+                        builder.setGender(DatagramProto.User.Gender.SECRETE);
                         break;
                     case 1:
-                        builder = builder.setGender(DatagramProto.User.Gender.FEMALE);
+                        builder.setGender(DatagramProto.User.Gender.FEMALE);
                         break;
                     case 2:
-                        builder = builder.setGender(DatagramProto.User.Gender.MALE);
+                        builder.setGender(DatagramProto.User.Gender.MALE);
                         break;
                     default:
                         break;
                 }
                 if (phone != null) {
-                    builder = builder.setPhone(phone);
+                    builder.setPhone(phone);
                 }
                 if (email != null) {
-                    builder = builder.setEmail(email);
+                    builder.setEmail(email);
                 }
                 return builder.build();
             }
@@ -306,12 +306,8 @@ public class DaoUtil {
         String id = register.getUsername();
         String password = register.getPassword();
         int identity = 0;
-        switch (register.getIdentity()) {
-            case TEACHER:
-                identity = 1;
-                break;
-            default:
-                break;
+        if (register.getIdentity() == DatagramProto.Register.Identity.TEACHER) {
+            identity = 1;
         }
         try {
             String sql = "select identity, name from user where id = ?";
@@ -538,7 +534,6 @@ public class DaoUtil {
         if (major == null) {
             return false;
         }
-        boolean ret = false;
         Connection conn = ConnectionUtil.getConn();
         String sql = "update student set major = ? where id = ?";
         try {
@@ -546,7 +541,6 @@ public class DaoUtil {
             ps.setString(1, major);
             ps.setString(2, id);
             if (ps.executeUpdate() == 1) {
-                ret = true;
                 ps.close();
                 sql = "update user set last_modified = ? where id = ?";
                 ps = conn.prepareStatement(sql);
@@ -554,13 +548,16 @@ public class DaoUtil {
                 ps.setString(2, id);
                 ps.executeUpdate();
                 ps.close();
+                return true;
             }
+            ps.close();
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         } finally {
             ConnectionUtil.closeConn();
-            return ret;
         }
+        return false;
     }
 
     public static boolean updateClassNoById(String id, String classNo) {
@@ -598,7 +595,7 @@ public class DaoUtil {
         }
         Connection conn = ConnectionUtil.getConn();
         Connection conn1 = ConnectionUtil.getConn1();
-        String sql = "select count(*) from t_join where userId = ?, course_id = ?";
+        String sql = "select count(*) from t_join where user_Id = ? and course_id = ?";
         try {
             PreparedStatement ps1 = conn1.prepareStatement(sql);
             ps1.setString(1, userId);
@@ -622,7 +619,7 @@ public class DaoUtil {
                 }
                 ps1.close();
                 rs1.close();
-                sql = "select name, classroom, time, semester, remarks from course where course_id = ?";
+                sql = "select name, classroom, time, semester, remarks from course where id = ?";
                 ps1 = conn1.prepareStatement(sql);
                 ps1.setString(1, courseId);
                 rs1 = ps1.executeQuery();
@@ -631,7 +628,7 @@ public class DaoUtil {
                     String classroom = rs1.getString(2);
                     String time = rs1.getString(3);
                     int semester = rs1.getInt(4);
-                    sql = "insert into course (id, name, classroom, time, semester, last_modified) values (?, ?, ?, ?, ?)";
+                    sql = "insert into course (id, name, classroom, time, semester, last_modified) values (?, ?, ?, ?, ?, ?)";
                     PreparedStatement ps = conn.prepareStatement(sql);
                     ps.setString(1, courseId);
                     ps.setString(2, name);
@@ -643,7 +640,7 @@ public class DaoUtil {
                     ps.close();
                     String remarks = rs1.getString(5);
                     if (remarks != null) {
-                        sql = "update course set remarks = ? where course_id = ?";
+                        sql = "update course set remarks = ? where id = ?";
                         ps = conn.prepareStatement(sql);
                         ps.setString(1, remarks);
                         ps.setString(2, courseId);
@@ -679,7 +676,42 @@ public class DaoUtil {
     }
 
     public static DatagramProto.Group findGroupById(String id) {
-        // TODO
+        Connection conn = ConnectionUtil.getConn();
+        String sql = "select name, classroom, time, semester, last_modified, remarks from course where id = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                DatagramProto.Course.Builder courseBuilder = DatagramProto.Course.newBuilder().setName(rs.getString(1))
+                        .setClassroom(rs.getString(2)).setTime(rs.getString(3))
+                        .setSemester(rs.getInt(4)).setLastModified(rs.getLong(5));
+                String remarks = rs.getString(6);
+                if (remarks != null) {
+                    courseBuilder.setRemarks(remarks);
+                }
+                DatagramProto.Group.Builder groupBuilder = DatagramProto.Group.newBuilder().setCourse(courseBuilder.build());
+                ps.close();
+                rs.close();
+                sql = "select t_join.user_id, user.name from t_join inner join user on t_join.user_id = user.id where t_join.course_id = ?";
+                ps = conn.prepareStatement(sql);
+                ps.setString(1, id);
+                rs = ps.executeQuery();
+                DatagramProto.Users.Builder usersBuilder = DatagramProto.Users.newBuilder();
+                while (rs.next()) {
+                    usersBuilder.addUsers(DatagramProto.User.newBuilder().setId(rs.getString(1)).setName(rs.getString(2)).build());
+                }
+                groupBuilder.setUsers(usersBuilder.build());
+                ps.close();
+                rs.close();
+                return groupBuilder.build();
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
         return null;
     }
 
@@ -779,7 +811,33 @@ public class DaoUtil {
         return null;
     }
 
-    public static long insertPushItem(String token, int type, String id1, long id2) {
+    public static long insertPushItem(String token, int type, long last_modified, String id1) {
+        Connection conn = ConnectionUtil.getConn();
+        String sql = "insert into t_push (token, type, id1, time) values (?, ?, ?, ?)";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, token);
+            ps.setInt(2, type);
+            ps.setString(3, id1);
+            ps.setLong(4, last_modified);
+            if (ps.executeUpdate() == 1) {
+                ResultSet rs = ps.getGeneratedKeys();
+                if (rs.next()) {
+                    return rs.getLong(1);
+                }
+                rs.close();
+            }
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        } finally {
+            ConnectionUtil.closeConn();
+        }
+        return 0;
+    }
+
+    public static long insertPushItem(String token, int type, long last_modified, String id1, long id2) {
         Connection conn = ConnectionUtil.getConn();
         String sql = "insert into t_push (token, type, id1, id2, time) values (?, ?, ?, ?, ?)";
         try {
@@ -788,7 +846,7 @@ public class DaoUtil {
             ps.setInt(2, type);
             ps.setString(3, id1);
             ps.setLong(4, id2);
-            ps.setLong(5, System.currentTimeMillis());
+            ps.setLong(5, last_modified);
             if (ps.executeUpdate() == 1) {
                 ResultSet rs = ps.getGeneratedKeys();
                 if (rs.next()) {
@@ -830,5 +888,51 @@ public class DaoUtil {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public static List<String> findGroupIdsByUserId(String userId) {
+        Connection conn = ConnectionUtil.getConn();
+        String sql = "select course_id from t_join where user_id = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, userId);
+            ResultSet rs = ps.executeQuery();
+            List<String> list = new ArrayList<>();
+            while (rs.next()) {
+                list.add(rs.getString(1));
+            }
+            ps.close();
+            rs.close();
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        } finally {
+            ConnectionUtil.closeConn();
+        }
+    }
+
+    public static DatagramProto.User findUserByIdSimply(String userId) {
+        Connection conn = ConnectionUtil.getConn();
+        String sql = "select last_modified, name from user where id = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, userId);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                ps.close();
+                rs.close();
+                return DatagramProto.User.newBuilder().setId(userId).setName(rs.getString(2))
+                        .setLastModified(rs.getLong(1)).build();
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            ConnectionUtil.closeConn();
+        }
+        return null;
     }
 }

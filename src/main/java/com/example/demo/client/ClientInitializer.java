@@ -14,7 +14,7 @@ import io.netty.handler.timeout.IdleStateHandler;
 public class ClientInitializer extends ChannelInitializer<SocketChannel> {
 
     @Override
-    protected void initChannel(SocketChannel ch) throws Exception {
+    protected void initChannel(SocketChannel ch) {
         ChannelPipeline pipeline = ch.pipeline();
         pipeline.addLast(new IdleStateHandler(0, 0, 5));
         pipeline.addLast(new ProtobufVarint32FrameDecoder());

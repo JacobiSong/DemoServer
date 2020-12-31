@@ -31,16 +31,16 @@ message DatagramVersion1 {
   int32 ok = 4;
   oneof data {
     Message message = 5;
+    User user = 6;
     Login login = 7;
-    Course course = 8;
-    Courses courses = 9;
-    Notification notification = 10;
-    Join join = 11;
-    Register register = 12;
-    User user = 13;
-    Group group = 14;
+    Notification notification = 8;
+    Course course = 9;
+    Courses courses = 10;
+    Register register = 11;
+    Group group = 12;
+    Join join = 13;
   }
-  int64 push = 15;
+  int64 push = 14;
 }
 
 message Login {
@@ -140,6 +140,5 @@ message Notifications {
 
 message Group {
   Course course = 1;
-  Users teachers = 2;
-  Users students = 3;
+  Users users = 2;
 }

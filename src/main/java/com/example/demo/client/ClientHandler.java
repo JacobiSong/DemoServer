@@ -58,6 +58,11 @@ public class ClientHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                     case 100: // 登录成功
                         token = msg.getToken();
                         System.out.println("---登录成功---");
+                        ctx.channel().writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
+                                DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.COURSE)
+                                .setToken(token).setOk(100).setSubtype(DatagramProto.DatagramVersion1.Subtype.REQUEST)
+                                .build().toByteString()
+                        ).build());
                         // TODO : 通知UI线程登录成功
                         break;
                     case 201: // 密码错误
@@ -105,10 +110,16 @@ public class ClientHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
             case COURSE: {
                 switch (msg.getOk()) {
                     case 100:
+                        System.out.println("---获取成功---");
                         List<DatagramProto.Course> list = msg.getCourses().getCoursesList();
+                        for (DatagramProto.Course course : list) {
+                            System.out.println(course);
+                        }
                         // TODO : 向UI线程传递可添加课程信息
                         break;
                     case 101:
+                        System.out.println("---添加成功---");
+
                         // TODO : 添加课程群信息
                         // TODO : 通知UI线程课程群添加成功
                         break;
