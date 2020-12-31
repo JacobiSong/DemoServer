@@ -2,10 +2,7 @@ package com.example.demo.utils;
 
 import com.example.demo.datagram.DatagramProto;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,138 +14,169 @@ public class DaoUtil {
             return list;
         }
         Connection conn = ConnectionUtil.getConn();
+        Connection conn1 = ConnectionUtil.getConn1();
         try {
-            String sql = "select c.id, c.name, c.classroom, c.time, c.semester, c.remarks, c.has_group from course c " +
-                    "inner join join_users_with_courses j on c.id = j.course_id where j.user_id = ?";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, teacherId);
-            ResultSet rs = ps.executeQuery();
-            long hasGroup;
-            while (rs.next()) {
-                hasGroup = rs.getLong(7);
-                if (hasGroup != 0) {
-                    continue;
-                }
+            String sql = "select id, name, classroom, time, semester, remarks from course c" +
+                    "inner join t_join j on c.id = j.course_id where j.user_id = ?";
+            PreparedStatement ps1 = conn1.prepareStatement(sql);
+            ps1.setString(1, teacherId);
+            ResultSet rs1 = ps1.executeQuery();
+            sql = "select count(id) from course where id = ?";
+            while (rs1.next()) {
                 String id;
-                String name;
-                String classroom;
-                String time;
-                int semester;
-                String remarks;
-                DatagramProto.Course.Builder builder = DatagramProto.Course.newBuilder();
-                id = rs.getString(1);
-                name = rs.getString(2);
-                classroom = rs.getString(3);
-                time = rs.getString(4);
-                semester = rs.getInt(5);
-                remarks = rs.getString(6);
-                builder = builder.setId(id).setName(name).setClassroom(classroom).setTime(time).setSemester(semester);
-                if (remarks != null) {
-                    builder = builder.setRemarks(remarks);
+                id = rs1.getString(1);
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setString(1, id);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next() && rs.getInt(1) == 0) {
+                    String name;
+                    String classroom;
+                    String time;
+                    int semester;
+                    String remarks;
+                    name = rs1.getString(2);
+                    classroom = rs1.getString(3);
+                    time = rs1.getString(4);
+                    semester = rs1.getInt(5);
+                    remarks = rs1.getString(6);
+
+                    DatagramProto.Course.Builder builder = DatagramProto.Course.newBuilder().setId(id).setName(name)
+                            .setClassroom(classroom).setTime(time).setSemester(semester);
+                    if (remarks != null) {
+                        builder = builder.setRemarks(remarks);
+                    }
+                    list.add(builder.build());
                 }
-                list.add(builder.build());
+                ps.close();
+                rs.close();
             }
-            ps.close();
-            rs.close();
+            ps1.close();
+            rs1.close();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             ConnectionUtil.closeConn();
-            return list;
+            ConnectionUtil.closeConn1();
         }
+        return list;
     }
 
     public static boolean loginCheck(String username, String password) {
         Connection conn = ConnectionUtil.getConn();
-        boolean ret = false;
         try {
             String sql = "select password from user where id = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                if (rs.getString(1).equals(password)) {
-                    ret = true;
-                }
+            if (rs.next() && rs.getString(1).equals(password)) {
+                ps.close();
+                rs.close();
+                return true;
             }
             ps.close();
             rs.close();
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         } finally {
             ConnectionUtil.closeConn();
-            return ret;
         }
+        return false;
     }
 
     public static boolean teacherCheck(String id) {
         Connection conn = ConnectionUtil.getConn();
-        boolean ret = false;
         try {
             String sql = "select identity from user where id = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, id);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                if (rs.getInt(1) == 1) {
-                    ret = true;
-                }
+            if (rs.next() && rs.getInt(1) == 1) {
+                ps.close();
+                rs.close();
+                return true;
             }
             ps.close();
             rs.close();
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         } finally {
             ConnectionUtil.closeConn();
-            return false;
         }
+        return false;
     }
 
     public static boolean studentCheck(String id) {
         Connection conn = ConnectionUtil.getConn();
-        boolean ret = false;
         try {
             String sql = "select identity from user where id = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, id);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                if (rs.getInt(1) == 0) {
-                    ret = true;
-                }
+            if (rs.next() && rs.getInt(1) == 0) {
+                ps.close();
+                rs.close();
+                return true;
             }
             ps.close();
             rs.close();
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         } finally {
             ConnectionUtil.closeConn();
-            return false;
         }
+        return false;
     }
 
     public static boolean hasUserId(String id) {
         Connection conn = ConnectionUtil.getConn();
-        boolean ret = false;
         try {
-            String sql = "select id from user where id = ?";
+            String sql = "select count(id) from user where id = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, id);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                ret = true;
+            if (rs.next() && rs.getInt(1) == 1) {
+                ps.close();
+                rs.close();
+                return true;
             }
             ps.close();
             rs.close();
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         } finally {
             ConnectionUtil.closeConn();
-            return ret;
         }
+        return false;
     }
 
-    private static DatagramProto.User findUserById (String id) {
+    public static boolean hasGroupId(String id) {
+        Connection conn = ConnectionUtil.getConn();
+        String sql = "select count(id) from course where id = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next() && rs.getInt(1) == 1) {
+                ps.close();
+                rs.close();
+                return true;
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            ConnectionUtil.closeConn();
+        }
+        return false;
+    }
+
+    private static DatagramProto.User findUserById(String id) {
         Connection conn = ConnectionUtil.getConn();
         String sql = "select name, identity, phone, email, gender, last_modified from user where id = ?";
         DatagramProto.User.Builder builder = DatagramProto.User.newBuilder();
@@ -164,45 +192,51 @@ public class DaoUtil {
                 int gender = rs.getInt(5);
                 long last_modified = rs.getLong(6);
                 builder = builder.setId(id).setName(name).setLastModified(last_modified);
+                ps.close();
+                rs.close();
                 switch (identity) {
                     case 0: {
-                        builder = builder.setType(DatagramProto.User.UserType.STUDENT);
+                        builder = builder.setType(DatagramProto.User.Identity.STUDENT);
                         sql = "select class_no, major, department from student where id = ?";
-                        ps.close();
                         ps = conn.prepareStatement(sql);
                         ps.setString(1, id);
-                        rs.close();
                         rs = ps.executeQuery();
-                        String class_no = rs.getString(1);
-                        String major = rs.getString(2);
-                        String department = rs.getString(3);
-                        DatagramProto.Student.Builder stuBuilder = DatagramProto.Student.newBuilder();
-                        if (class_no != null) {
-                            stuBuilder = stuBuilder.setClassNo(class_no);
+                        if (rs.next()) {
+                            String class_no = rs.getString(1);
+                            String major = rs.getString(2);
+                            String department = rs.getString(3);
+                            DatagramProto.Student.Builder stuBuilder = DatagramProto.Student.newBuilder();
+                            if (class_no != null) {
+                                stuBuilder = stuBuilder.setClassNo(class_no);
+                            }
+                            if (major != null) {
+                                stuBuilder = stuBuilder.setMajor(major);
+                            }
+                            if (department != null) {
+                                stuBuilder = stuBuilder.setDepartment(department);
+                            }
+                            builder = builder.setStudent(stuBuilder.build());
                         }
-                        if (major != null) {
-                            stuBuilder = stuBuilder.setMajor(major);
-                        }
-                        if (department != null) {
-                            stuBuilder = stuBuilder.setDepartment(department);
-                        }
-                        builder = builder.setStudent(stuBuilder.build());
+                        ps.close();
+                        rs.close();
                         break;
                     }
                     case 1: {
-                        builder = builder.setType(DatagramProto.User.UserType.TEACHER);
+                        builder = builder.setType(DatagramProto.User.Identity.TEACHER);
                         sql = "select department from teacher where id = ?";
-                        ps.close();
                         ps = conn.prepareStatement(sql);
                         ps.setString(1, id);
-                        rs.close();
                         rs = ps.executeQuery();
-                        String department = rs.getString(1);
-                        DatagramProto.Teacher.Builder tchBuilder = DatagramProto.Teacher.newBuilder();
-                        if (department != null) {
-                            tchBuilder = tchBuilder.setDepartment(department);
+                        if (rs.next()) {
+                            String department = rs.getString(1);
+                            DatagramProto.Teacher.Builder tchBuilder = DatagramProto.Teacher.newBuilder();
+                            if (department != null) {
+                                tchBuilder = tchBuilder.setDepartment(department);
+                            }
+                            builder = builder.setTeacher(tchBuilder.build());
                         }
-                        builder = builder.setTeacher(tchBuilder.build());
+                        ps.close();
+                        rs.close();
                         break;
                     }
                     default:
@@ -227,19 +261,20 @@ public class DaoUtil {
                 if (email != null) {
                     builder = builder.setEmail(email);
                 }
+                return builder.build();
             }
             ps.close();
             rs.close();
         } catch (SQLException e) {
             e.printStackTrace();
+            return null;
         } finally {
             ConnectionUtil.closeConn();
-            return builder.build();
         }
+        return null;
     }
 
     public static DatagramProto.User findUserById(String id, long time) {
-        DatagramProto.User user = null;
         Connection conn = ConnectionUtil.getConn();
         String sql= "select last_modified from user where id = ?";
         try {
@@ -248,61 +283,90 @@ public class DaoUtil {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 if (rs.getLong(1) == time) {
-                    user = DatagramProto.User.newBuilder().build();
+                    return DatagramProto.User.newBuilder().build();
                 } else {
                     ConnectionUtil.closeConn();
-                    user = findUserById(id);
+                    return findUserById(id);
                 }
             }
             ps.close();
             rs.close();
-        } finally {
-            ConnectionUtil.closeConn();
-            return user;
-        }
-    }
-
-    public static boolean insertUser(DatagramProto.Register register) { // TODO : 需要修改
-        Connection conn = ConnectionUtil.getConn1();
-        String id = register.getUsername();
-        String password = register.getPassword();
-        int identity = register.getIdentity();
-        String sql;
-        PreparedStatement ps;
-        boolean ret = false;
-        try {
-            sql = "select identity, name from user where id = ?";
-            ps = conn.prepareStatement(sql);
-            ps.setString(1, id);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next() && identity == rs.getInt(1)) {
-                String name = rs.getString(2);
-                ConnectionUtil.closeConn();
-                conn = ConnectionUtil.getConn();
-                sql = "insert into user (id, password, identity, name, last_modified) values (?, ?, ?, ?, ?)";
-                ps = conn.prepareStatement(sql);
-                ps.setString(1, id);
-                ps.setString(2,password);
-                ps.setInt(3, identity);
-                ps.setString(4, name);
-                ps.setLong(5, System.currentTimeMillis());
-                if (ps.executeUpdate() == 1) {
-                    ret = true;
-                }
-            }
         } catch (SQLException e) {
             e.printStackTrace();
+            return null;
         } finally {
             ConnectionUtil.closeConn();
-            return ret;
         }
+        return null;
+    }
+
+    public static boolean insertUser(DatagramProto.Register register) {
+        Connection conn = ConnectionUtil.getConn();
+        Connection conn1 = ConnectionUtil.getConn1();
+        String id = register.getUsername();
+        String password = register.getPassword();
+        int identity = 0;
+        switch (register.getIdentity()) {
+            case TEACHER:
+                identity = 1;
+                break;
+            default:
+                break;
+        }
+        try {
+            String sql = "select identity, name from user where id = ?";
+            PreparedStatement ps1 = conn1.prepareStatement(sql);
+            ps1.setString(1, id);
+            ResultSet rs1 = ps1.executeQuery();
+            if (rs1.next() && identity == rs1.getInt(1)) {
+                String name = rs1.getString(2);
+                sql = "insert into user (id, name, identity, password, last_modified) values (?, ?, ?, ?, ?)";
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setString(1, id);
+                ps.setString(2, name);
+                ps.setInt(3, identity);
+                ps.setString(4, password);
+                ps.setLong(5, System.currentTimeMillis());
+                if (ps.executeUpdate() == 1) {
+                    ps.close();
+                    switch (identity) {
+                        case 0:
+                            sql = "insert into student (id) values (?)";
+                            ps = conn.prepareStatement(sql);
+                            ps.setString(1, id);
+                            ps.executeUpdate();
+                            ps.close();
+                            break;
+                        case 1:
+                            sql = "insert into teacher (id) values (?)";
+                            ps = conn.prepareStatement(sql);
+                            ps.setString(1, id);
+                            ps.executeUpdate();
+                            ps.close();
+                            break;
+                        default:
+                            break;
+                    }
+                    return true;
+                }
+                ps.close();
+            }
+            ps1.close();
+            rs1.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            ConnectionUtil.closeConn();
+            ConnectionUtil.closeConn1();
+        }
+        return false;
     }
 
     public static boolean updatePhoneById(String id, String phone) {
         if (phone == null) {
             return false;
         }
-        boolean ret = false;
         Connection conn = ConnectionUtil.getConn();
         String sql = "update user set phone = ?, last_modified = ? where id = ?";
         try {
@@ -311,22 +375,23 @@ public class DaoUtil {
             ps.setLong(2, System.currentTimeMillis());
             ps.setString(3, id);
             if (ps.executeUpdate() == 1) {
-                ret = true;
+                ps.close();
+                return true;
             }
             ps.close();
-        } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         } finally {
             ConnectionUtil.closeConn();
-            return ret;
         }
+        return false;
     }
 
     public static boolean updateEmailById(String id, String email) {
         if (email == null) {
             return false;
         }
-        boolean ret = false;
         Connection conn = ConnectionUtil.getConn();
         String sql = "update user set email = ?, last_modified = ? where id = ?";
         try {
@@ -335,15 +400,17 @@ public class DaoUtil {
             ps.setLong(2, System.currentTimeMillis());
             ps.setString(3, id);
             if (ps.executeUpdate() == 1) {
-                ret = true;
+                ps.close();
+                return true;
             }
             ps.close();
-        } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         } finally {
             ConnectionUtil.closeConn();
-            return ret;
         }
+        return false;
     }
 
     public static boolean updateGenderById(String id, DatagramProto.User.Gender gender) {
@@ -361,55 +428,56 @@ public class DaoUtil {
             default:
                 break;
         }
-        boolean ret = false;
         Connection conn = ConnectionUtil.getConn();
-        String sql = "update user set gender = ? last_modified = ? where id = ?";
+        String sql = "update user set gender = ?, last_modified = ? where id = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, g);
             ps.setLong(2, System.currentTimeMillis());
             ps.setString(3, id);
             if (ps.executeUpdate() == 1) {
-                ret = true;
+                ps.close();
+                return true;
             }
             ps.close();
-        } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         } finally {
             ConnectionUtil.closeConn();
-            return ret;
         }
+        return false;
     }
 
     public static boolean updatePasswordById(String id, String password) {
         if (password == null) {
             return false;
         }
-        boolean ret = false;
         Connection conn = ConnectionUtil.getConn();
-        String sql = "update user set password = ? last_modified = ? where id = ?";
+        String sql = "update user set password = ?, last_modified = ? where id = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, password);
             ps.setLong(2, System.currentTimeMillis());
             ps.setString(3, id);
             if (ps.executeUpdate() == 1) {
-                ret = true;
+                ps.close();
+                return true;
             }
             ps.close();
-        } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         } finally {
             ConnectionUtil.closeConn();
-            return ret;
         }
+        return false;
     }
 
     public static boolean updateDepartmentByStudentId(String id, String department) {
         if (department == null) {
             return false;
         }
-        boolean ret = false;
         Connection conn = ConnectionUtil.getConn();
         String sql = "update student set department = ? where id = ?";
         try {
@@ -417,28 +485,29 @@ public class DaoUtil {
             ps.setString(1, department);
             ps.setString(2, id);
             if (ps.executeUpdate() == 1) {
-                ret = true;
                 ps.close();
                 sql = "update user set last_modified = ? where id = ?";
                 ps = conn.prepareStatement(sql);
                 ps.setLong(1, System.currentTimeMillis());
                 ps.setString(2, id);
-                ps.executeQuery();
+                ps.executeUpdate();
                 ps.close();
+                return true;
             }
-        } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         } finally {
             ConnectionUtil.closeConn();
-            return ret;
         }
+        return false;
     }
 
     public static boolean updateDepartmentByTeacherId(String id, String department) {
         if (department == null) {
             return false;
         }
-        boolean ret = false;
         Connection conn = ConnectionUtil.getConn();
         String sql = "update teacher set department = ? where id = ?";
         try {
@@ -446,21 +515,23 @@ public class DaoUtil {
             ps.setString(1, department);
             ps.setString(2, id);
             if (ps.executeUpdate() == 1) {
-                ret = true;
                 ps.close();
                 sql = "update user set last_modified = ? where id = ?";
                 ps = conn.prepareStatement(sql);
                 ps.setLong(1, System.currentTimeMillis());
                 ps.setString(2, id);
-                ps.executeQuery();
+                ps.executeUpdate();
                 ps.close();
+                return true;
             }
-        } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         } finally {
             ConnectionUtil.closeConn();
-            return ret;
         }
+        return false;
     }
 
     public static boolean updateMajorById(String id, String major) {
@@ -481,11 +552,11 @@ public class DaoUtil {
                 ps = conn.prepareStatement(sql);
                 ps.setLong(1, System.currentTimeMillis());
                 ps.setString(2, id);
-                ps.executeQuery();
+                ps.executeUpdate();
                 ps.close();
             }
-        } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         } finally {
             ConnectionUtil.closeConn();
             return ret;
@@ -496,7 +567,6 @@ public class DaoUtil {
         if (classNo == null) {
             return false;
         }
-        boolean ret = false;
         Connection conn = ConnectionUtil.getConn();
         String sql = "update student set class_no = ? where id = ?";
         try {
@@ -504,20 +574,261 @@ public class DaoUtil {
             ps.setString(1, classNo);
             ps.setString(2, id);
             if (ps.executeUpdate() == 1) {
-                ret = true;
                 ps.close();
                 sql = "update user set last_modified = ? where id = ?";
                 ps = conn.prepareStatement(sql);
                 ps.setLong(1, System.currentTimeMillis());
                 ps.setString(2, id);
-                ps.executeQuery();
+                ps.executeUpdate();
                 ps.close();
+                return true;
             }
-        } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         } finally {
             ConnectionUtil.closeConn();
-            return ret;
+        }
+        return true;
+    }
+
+    public static boolean insertGroup(String userId, String courseId) {
+        if (userId == null || courseId == null) {
+            return false;
+        }
+        Connection conn = ConnectionUtil.getConn();
+        Connection conn1 = ConnectionUtil.getConn1();
+        String sql = "select count(*) from t_join where userId = ?, course_id = ?";
+        try {
+            PreparedStatement ps1 = conn1.prepareStatement(sql);
+            ps1.setString(1, userId);
+            ps1.setString(2, courseId);
+            ResultSet rs1 = ps1.executeQuery();
+            if (rs1.next() && rs1.getInt(1) == 1) {
+                ps1.close();
+                rs1.close();
+                sql = "select user_id from t_join where course_id = ?";
+                ps1 = conn1.prepareStatement(sql);
+                ps1.setString(1, courseId);
+                rs1 = ps1.executeQuery();
+                while (rs1.next()) {
+                    String uid = rs1.getString(1);
+                    sql = "insert into t_join (user_id, course_id) values (?, ?)";
+                    PreparedStatement ps = conn.prepareStatement(sql);
+                    ps.setString(1, uid);
+                    ps.setString(2, courseId);
+                    ps.executeUpdate();
+                    ps.close();
+                }
+                ps1.close();
+                rs1.close();
+                sql = "select name, classroom, time, semester, remarks from course where course_id = ?";
+                ps1 = conn1.prepareStatement(sql);
+                ps1.setString(1, courseId);
+                rs1 = ps1.executeQuery();
+                if (rs1.next()) {
+                    String name = rs1.getString(1);
+                    String classroom = rs1.getString(2);
+                    String time = rs1.getString(3);
+                    int semester = rs1.getInt(4);
+                    sql = "insert into course (id, name, classroom, time, semester, last_modified) values (?, ?, ?, ?, ?)";
+                    PreparedStatement ps = conn.prepareStatement(sql);
+                    ps.setString(1, courseId);
+                    ps.setString(2, name);
+                    ps.setString(3, classroom);
+                    ps.setString(4, time);
+                    ps.setInt(5, semester);
+                    ps.setLong(6, System.currentTimeMillis());
+                    ps.executeUpdate();
+                    ps.close();
+                    String remarks = rs1.getString(5);
+                    if (remarks != null) {
+                        sql = "update course set remarks = ? where course_id = ?";
+                        ps = conn.prepareStatement(sql);
+                        ps.setString(1, remarks);
+                        ps.setString(2, courseId);
+                        ps.executeUpdate();
+                        ps.close();
+                    }
+                    sql = "create table " + courseId + "_m (id bigint primary key not null auto_increment, sender_id varchar(10) not null, " +
+                            "receiver_id varchar(10) not null, content varchar(1000) not null, time bigint not null, temporary_id int)";
+                    ps = conn.prepareStatement(sql);
+                    ps.executeUpdate();
+                    ps.close();
+                    sql = "create table " + courseId + "_n (id bigint primary key not null auto_increment, " +
+                            "sender_id varchar(10) not null, receiver_id varchar(10) not null, title varchar(20) not null, " +
+                            "content varchar(1000) not null, time bigint not null, temporary_id int)";
+                    ps = conn.prepareStatement(sql);
+                    ps.executeUpdate();
+                    ps.close();
+                }
+                ps1.close();
+                rs1.close();
+                return true;
+            }
+            ps1.close();
+            rs1.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            ConnectionUtil.closeConn();
+            ConnectionUtil.closeConn1();
+        }
+        return false;
+    }
+
+    public static DatagramProto.Group findGroupById(String id) {
+        // TODO
+        return null;
+    }
+
+    public static List<String> findUserIdsByGroupId(String id) {
+        Connection conn = ConnectionUtil.getConn();
+        String sql = "select user_id from t_join where course_id = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, id);
+            ResultSet rs = ps.executeQuery();
+            List<String> list = new ArrayList<>();
+            while (rs.next()) {
+                list.add(rs.getString(1));
+            }
+            ps.close();
+            rs.close();
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        } finally {
+            ConnectionUtil.closeConn();
+        }
+    }
+
+    public static void DbSynchronization(String id, String token, long dbversion) {
+        // TODO
+    }
+
+    public static DatagramProto.Notification insertNotification(DatagramProto.Notification notification) {
+        int temporaryId = notification.getTemporaryId();
+        String senderId = notification.getSenderId();
+        String receiverId = notification.getReceiverId();
+        String title = notification.getTitle();
+        String content = notification.getContent();
+        Connection conn = ConnectionUtil.getConn();
+        String sql = "insert into " + receiverId + "_n (sender_id, receiver_id, title, content, time, temporary_id) " +
+                "values (?, ?, ?, ?, ?, ?)";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, senderId);
+            ps.setString(2, receiverId);
+            ps.setString(3, title);
+            ps.setString(4, content);
+            long time = System.currentTimeMillis();
+            ps.setLong(5, time);
+            ps.setInt(6, temporaryId);
+            if (ps.executeUpdate() == 1) {
+                ResultSet rs = ps.getGeneratedKeys();
+                if (rs.next()) {
+                    return DatagramProto.Notification.newBuilder().setId(rs.getLong(1)).setSenderId(senderId)
+                            .setTime(time).setContent(content).setTitle(title).setReceiverId(receiverId).setTemporaryId(temporaryId)
+                            .build();
+                }
+                rs.close();
+            }
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            ConnectionUtil.closeConn();
+        }
+        return null;
+    }
+
+    public static DatagramProto.Message insertMessage(DatagramProto.Message message) {
+        int temporaryId = message.getTemporaryId();
+        String senderId = message.getSenderId();
+        String receiverId = message.getReceiverId();
+        String content = message.getContent();
+        Connection conn = ConnectionUtil.getConn();
+        String sql = "insert into " + receiverId + "_m (sender_id, receiver_id, content, time, temporary_id) values (?, ?, ?, ?, ?)";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, senderId);
+            ps.setString(2, receiverId);
+            ps.setString(3, content);
+            long time = System.currentTimeMillis();
+            ps.setLong(4, time);
+            ps.setInt(5, temporaryId);
+            if (ps.executeUpdate() == 1) {
+                ResultSet rs = ps.getGeneratedKeys();
+                if (rs.next()) {
+                    return DatagramProto.Message.newBuilder().setId(rs.getInt(1)).setSenderId(senderId)
+                            .setTime(time).setContent(content).setReceiverId(receiverId).setTemporaryId(temporaryId).build();
+                }
+                rs.close();
+            }
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            ConnectionUtil.closeConn();
+        }
+        return null;
+    }
+
+    public static long insertPushItem(String token, int type, String id1, long id2) {
+        Connection conn = ConnectionUtil.getConn();
+        String sql = "insert into t_push (token, type, id1, id2, time) values (?, ?, ?, ?, ?)";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, token);
+            ps.setInt(2, type);
+            ps.setString(3, id1);
+            ps.setLong(4, id2);
+            ps.setLong(5, System.currentTimeMillis());
+            if (ps.executeUpdate() == 1) {
+                ResultSet rs = ps.getGeneratedKeys();
+                if (rs.next()) {
+                    return rs.getLong(1);
+                }
+                rs.close();
+            }
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        } finally {
+            ConnectionUtil.closeConn();
+        }
+        return 0;
+    }
+
+    public static void deletePushItem(long pushId) {
+        Connection conn = ConnectionUtil.getConn();
+        String sql = "delete from t_push where id = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setLong(1, pushId);
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void deletePushItemByToken(String token) {
+        Connection conn = ConnectionUtil.getConn();
+        String sql = "delete from t_push where token = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, token);
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

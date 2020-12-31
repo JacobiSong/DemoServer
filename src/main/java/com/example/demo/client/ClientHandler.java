@@ -29,7 +29,8 @@ public class ClientHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
      */
     private void version1Handler(ChannelHandlerContext ctx, DatagramProto.DatagramVersion1 msg) {
         // 检查token是否合法
-        if (msg.getType() != DatagramProto.DatagramVersion1.Type.LOGIN && token != msg.getToken()) {
+        if (msg.getType() != DatagramProto.DatagramVersion1.Type.LOGIN && msg.getType() != DatagramProto.DatagramVersion1.Type.REGISTER
+                && !token.equals(msg.getToken())) {
             return;
         }
         // 获取报文子类型
@@ -56,9 +57,11 @@ public class ClientHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                 switch (msg.getOk()) {
                     case 100: // 登录成功
                         token = msg.getToken();
+                        System.out.println("---登录成功---");
                         // TODO : 通知UI线程登录成功
                         break;
                     case 201: // 密码错误
+                        System.out.println("---密码错误---");
                         // TODO : 通知UI线程密码错误
                         break;
                     default:
@@ -69,22 +72,29 @@ public class ClientHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
             case REGISTER: {
                 switch (msg.getOk()) {
                     case 100:
+                        System.out.println("---注册成功---");
                         // TODO : 通知UI线程注册成功
                         break;
-                    case 203:
+                    case 200:
+                        System.out.println("---已被注册---");
                         // TODO : 通知UI线程账号已被注册
                         break;
-                    case 204:
+                    case 201:
+                        System.out.println("---注册失败---");
                         // TODO : 通知UI线程注册失败（查无此人或身份错误，也有可能是其他未知原因）
                         break;
                     default:
                         break;
                 }
+                ctx.close();
                 break;
             }
             case LOGOUT: {
                 switch (msg.getOk()) {
                     case 100:
+                        System.out.println("---登出成功---");
+                        token = "";
+                        ctx.close();
                         // TODO : 通知UI线程登出成功
                         break;
                     default:
@@ -111,27 +121,35 @@ public class ClientHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                 switch (msg.getOk()) {
                     case 100:
                         DatagramProto.User user = msg.getUser();
+                        System.out.println(user);
                         // TODO : 更新本地数据库, 通知UI线程更新
                         break;
                     case 101:
+                        System.out.println("---电话号修改成功---");
                         // TODO : 更新本地数据库, 通知UI线程更新
                         break;
                     case 102:
+                        System.out.println("---电子邮箱修改成功---");
                         // TODO : 更新本地数据库, 通知UI线程更新
                         break;
                     case 103:
+                        System.out.println("---性别修改成功---");
                         // TODO : 更新本地数据库, 通知UI线程更新
                         break;
                     case 104:
+                        System.out.println("---密码修改成功---");
                         // TODO : 更新本地数据库, 通知UI线程更新
                         break;
                     case 105:
+                        System.out.println("---院系修改成功---");
                         // TODO : 更新本地数据库, 通知UI线程更新
                         break;
                     case 106:
+                        System.out.println("---专业修改成功---");
                         // TODO : 更新本地数据库, 通知UI线程更新
                         break;
                     case 107:
+                        System.out.println("---班级修改成功---");
                         // TODO : 更新本地数据库, 通知UI线程更新
                         break;
                     case 200:
@@ -162,6 +180,7 @@ public class ClientHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                         // TODO : 身份错误
                         break;
                     case 300:
+                        System.out.println("---无需更新---");
                         // TODO : 无需更新
                         break;
                     default:
@@ -188,6 +207,15 @@ public class ClientHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
     private void version1Push(ChannelHandlerContext ctx, DatagramProto.DatagramVersion1 msg) {
         final DatagramProto.DatagramVersion1.Type type = msg.getType();
         switch (type) {
+            case GROUP:
+                DatagramProto.Group group = msg.getGroup();
+                // TODO : 更新本地缓存, 向UI线程推送群信息
+                // 发送Ack报文, 返回正确码100
+                ctx.channel().writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
+                        DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.GROUP)
+                                .setSubtype(DatagramProto.DatagramVersion1.Subtype.ACK).setToken(token).setOk(100).build().toByteString()
+                ).build());
+                break;
             case MESSAGE:
                 DatagramProto.Message message = msg.getMessage();
                 // TODO : 更新本地缓存, 向UI线程推送消息

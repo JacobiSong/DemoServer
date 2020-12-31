@@ -636,21 +636,6 @@ public final class DatagramProto {
     com.example.demo.datagram.DatagramProto.MessageOrBuilder getMessageOrBuilder();
 
     /**
-     * <code>.Messages messages = 6;</code>
-     * @return Whether the messages field is set.
-     */
-    boolean hasMessages();
-    /**
-     * <code>.Messages messages = 6;</code>
-     * @return The messages.
-     */
-    com.example.demo.datagram.DatagramProto.Messages getMessages();
-    /**
-     * <code>.Messages messages = 6;</code>
-     */
-    com.example.demo.datagram.DatagramProto.MessagesOrBuilder getMessagesOrBuilder();
-
-    /**
      * <code>.Login login = 7;</code>
      * @return Whether the login field is set.
      */
@@ -711,21 +696,6 @@ public final class DatagramProto {
     com.example.demo.datagram.DatagramProto.NotificationOrBuilder getNotificationOrBuilder();
 
     /**
-     * <code>.Notifications notifications = 11;</code>
-     * @return Whether the notifications field is set.
-     */
-    boolean hasNotifications();
-    /**
-     * <code>.Notifications notifications = 11;</code>
-     * @return The notifications.
-     */
-    com.example.demo.datagram.DatagramProto.Notifications getNotifications();
-    /**
-     * <code>.Notifications notifications = 11;</code>
-     */
-    com.example.demo.datagram.DatagramProto.NotificationsOrBuilder getNotificationsOrBuilder();
-
-    /**
      * <code>.Register register = 12;</code>
      * @return Whether the register field is set.
      */
@@ -769,6 +739,12 @@ public final class DatagramProto {
      * <code>.Group group = 14;</code>
      */
     com.example.demo.datagram.DatagramProto.GroupOrBuilder getGroupOrBuilder();
+
+    /**
+     * <code>int64 push = 15;</code>
+     * @return The push.
+     */
+    long getPush();
 
     public com.example.demo.datagram.DatagramProto.DatagramVersion1.DataCase getDataCase();
   }
@@ -857,20 +833,6 @@ public final class DatagramProto {
               dataCase_ = 5;
               break;
             }
-            case 50: {
-              com.example.demo.datagram.DatagramProto.Messages.Builder subBuilder = null;
-              if (dataCase_ == 6) {
-                subBuilder = ((com.example.demo.datagram.DatagramProto.Messages) data_).toBuilder();
-              }
-              data_ =
-                  input.readMessage(com.example.demo.datagram.DatagramProto.Messages.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom((com.example.demo.datagram.DatagramProto.Messages) data_);
-                data_ = subBuilder.buildPartial();
-              }
-              dataCase_ = 6;
-              break;
-            }
             case 58: {
               com.example.demo.datagram.DatagramProto.Login.Builder subBuilder = null;
               if (dataCase_ == 7) {
@@ -927,20 +889,6 @@ public final class DatagramProto {
               dataCase_ = 10;
               break;
             }
-            case 90: {
-              com.example.demo.datagram.DatagramProto.Notifications.Builder subBuilder = null;
-              if (dataCase_ == 11) {
-                subBuilder = ((com.example.demo.datagram.DatagramProto.Notifications) data_).toBuilder();
-              }
-              data_ =
-                  input.readMessage(com.example.demo.datagram.DatagramProto.Notifications.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom((com.example.demo.datagram.DatagramProto.Notifications) data_);
-                data_ = subBuilder.buildPartial();
-              }
-              dataCase_ = 11;
-              break;
-            }
             case 98: {
               com.example.demo.datagram.DatagramProto.Register.Builder subBuilder = null;
               if (dataCase_ == 12) {
@@ -981,6 +929,11 @@ public final class DatagramProto {
                 data_ = subBuilder.buildPartial();
               }
               dataCase_ = 14;
+              break;
+            }
+            case 120: {
+
+              push_ = input.readInt64();
               break;
             }
             default: {
@@ -1318,12 +1271,10 @@ public final class DatagramProto {
         implements com.google.protobuf.Internal.EnumLite,
             com.google.protobuf.AbstractMessage.InternalOneOfEnum {
       MESSAGE(5),
-      MESSAGES(6),
       LOGIN(7),
       COURSE(8),
       COURSES(9),
       NOTIFICATION(10),
-      NOTIFICATIONS(11),
       REGISTER(12),
       USER(13),
       GROUP(14),
@@ -1345,12 +1296,10 @@ public final class DatagramProto {
       public static DataCase forNumber(int value) {
         switch (value) {
           case 5: return MESSAGE;
-          case 6: return MESSAGES;
           case 7: return LOGIN;
           case 8: return COURSE;
           case 9: return COURSES;
           case 10: return NOTIFICATION;
-          case 11: return NOTIFICATIONS;
           case 12: return REGISTER;
           case 13: return USER;
           case 14: return GROUP;
@@ -1487,37 +1436,6 @@ public final class DatagramProto {
       return com.example.demo.datagram.DatagramProto.Message.getDefaultInstance();
     }
 
-    public static final int MESSAGES_FIELD_NUMBER = 6;
-    /**
-     * <code>.Messages messages = 6;</code>
-     * @return Whether the messages field is set.
-     */
-    @java.lang.Override
-    public boolean hasMessages() {
-      return dataCase_ == 6;
-    }
-    /**
-     * <code>.Messages messages = 6;</code>
-     * @return The messages.
-     */
-    @java.lang.Override
-    public com.example.demo.datagram.DatagramProto.Messages getMessages() {
-      if (dataCase_ == 6) {
-         return (com.example.demo.datagram.DatagramProto.Messages) data_;
-      }
-      return com.example.demo.datagram.DatagramProto.Messages.getDefaultInstance();
-    }
-    /**
-     * <code>.Messages messages = 6;</code>
-     */
-    @java.lang.Override
-    public com.example.demo.datagram.DatagramProto.MessagesOrBuilder getMessagesOrBuilder() {
-      if (dataCase_ == 6) {
-         return (com.example.demo.datagram.DatagramProto.Messages) data_;
-      }
-      return com.example.demo.datagram.DatagramProto.Messages.getDefaultInstance();
-    }
-
     public static final int LOGIN_FIELD_NUMBER = 7;
     /**
      * <code>.Login login = 7;</code>
@@ -1642,37 +1560,6 @@ public final class DatagramProto {
       return com.example.demo.datagram.DatagramProto.Notification.getDefaultInstance();
     }
 
-    public static final int NOTIFICATIONS_FIELD_NUMBER = 11;
-    /**
-     * <code>.Notifications notifications = 11;</code>
-     * @return Whether the notifications field is set.
-     */
-    @java.lang.Override
-    public boolean hasNotifications() {
-      return dataCase_ == 11;
-    }
-    /**
-     * <code>.Notifications notifications = 11;</code>
-     * @return The notifications.
-     */
-    @java.lang.Override
-    public com.example.demo.datagram.DatagramProto.Notifications getNotifications() {
-      if (dataCase_ == 11) {
-         return (com.example.demo.datagram.DatagramProto.Notifications) data_;
-      }
-      return com.example.demo.datagram.DatagramProto.Notifications.getDefaultInstance();
-    }
-    /**
-     * <code>.Notifications notifications = 11;</code>
-     */
-    @java.lang.Override
-    public com.example.demo.datagram.DatagramProto.NotificationsOrBuilder getNotificationsOrBuilder() {
-      if (dataCase_ == 11) {
-         return (com.example.demo.datagram.DatagramProto.Notifications) data_;
-      }
-      return com.example.demo.datagram.DatagramProto.Notifications.getDefaultInstance();
-    }
-
     public static final int REGISTER_FIELD_NUMBER = 12;
     /**
      * <code>.Register register = 12;</code>
@@ -1766,6 +1653,17 @@ public final class DatagramProto {
       return com.example.demo.datagram.DatagramProto.Group.getDefaultInstance();
     }
 
+    public static final int PUSH_FIELD_NUMBER = 15;
+    private long push_;
+    /**
+     * <code>int64 push = 15;</code>
+     * @return The push.
+     */
+    @java.lang.Override
+    public long getPush() {
+      return push_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -1795,9 +1693,6 @@ public final class DatagramProto {
       if (dataCase_ == 5) {
         output.writeMessage(5, (com.example.demo.datagram.DatagramProto.Message) data_);
       }
-      if (dataCase_ == 6) {
-        output.writeMessage(6, (com.example.demo.datagram.DatagramProto.Messages) data_);
-      }
       if (dataCase_ == 7) {
         output.writeMessage(7, (com.example.demo.datagram.DatagramProto.Login) data_);
       }
@@ -1810,9 +1705,6 @@ public final class DatagramProto {
       if (dataCase_ == 10) {
         output.writeMessage(10, (com.example.demo.datagram.DatagramProto.Notification) data_);
       }
-      if (dataCase_ == 11) {
-        output.writeMessage(11, (com.example.demo.datagram.DatagramProto.Notifications) data_);
-      }
       if (dataCase_ == 12) {
         output.writeMessage(12, (com.example.demo.datagram.DatagramProto.Register) data_);
       }
@@ -1821,6 +1713,9 @@ public final class DatagramProto {
       }
       if (dataCase_ == 14) {
         output.writeMessage(14, (com.example.demo.datagram.DatagramProto.Group) data_);
+      }
+      if (push_ != 0L) {
+        output.writeInt64(15, push_);
       }
       unknownFields.writeTo(output);
     }
@@ -1850,10 +1745,6 @@ public final class DatagramProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(5, (com.example.demo.datagram.DatagramProto.Message) data_);
       }
-      if (dataCase_ == 6) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(6, (com.example.demo.datagram.DatagramProto.Messages) data_);
-      }
       if (dataCase_ == 7) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(7, (com.example.demo.datagram.DatagramProto.Login) data_);
@@ -1870,10 +1761,6 @@ public final class DatagramProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(10, (com.example.demo.datagram.DatagramProto.Notification) data_);
       }
-      if (dataCase_ == 11) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(11, (com.example.demo.datagram.DatagramProto.Notifications) data_);
-      }
       if (dataCase_ == 12) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(12, (com.example.demo.datagram.DatagramProto.Register) data_);
@@ -1885,6 +1772,10 @@ public final class DatagramProto {
       if (dataCase_ == 14) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(14, (com.example.demo.datagram.DatagramProto.Group) data_);
+      }
+      if (push_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(15, push_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1907,15 +1798,13 @@ public final class DatagramProto {
           .equals(other.getToken())) return false;
       if (getOk()
           != other.getOk()) return false;
+      if (getPush()
+          != other.getPush()) return false;
       if (!getDataCase().equals(other.getDataCase())) return false;
       switch (dataCase_) {
         case 5:
           if (!getMessage()
               .equals(other.getMessage())) return false;
-          break;
-        case 6:
-          if (!getMessages()
-              .equals(other.getMessages())) return false;
           break;
         case 7:
           if (!getLogin()
@@ -1932,10 +1821,6 @@ public final class DatagramProto {
         case 10:
           if (!getNotification()
               .equals(other.getNotification())) return false;
-          break;
-        case 11:
-          if (!getNotifications()
-              .equals(other.getNotifications())) return false;
           break;
         case 12:
           if (!getRegister()
@@ -1971,14 +1856,13 @@ public final class DatagramProto {
       hash = (53 * hash) + getToken().hashCode();
       hash = (37 * hash) + OK_FIELD_NUMBER;
       hash = (53 * hash) + getOk();
+      hash = (37 * hash) + PUSH_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getPush());
       switch (dataCase_) {
         case 5:
           hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
           hash = (53 * hash) + getMessage().hashCode();
-          break;
-        case 6:
-          hash = (37 * hash) + MESSAGES_FIELD_NUMBER;
-          hash = (53 * hash) + getMessages().hashCode();
           break;
         case 7:
           hash = (37 * hash) + LOGIN_FIELD_NUMBER;
@@ -1995,10 +1879,6 @@ public final class DatagramProto {
         case 10:
           hash = (37 * hash) + NOTIFICATION_FIELD_NUMBER;
           hash = (53 * hash) + getNotification().hashCode();
-          break;
-        case 11:
-          hash = (37 * hash) + NOTIFICATIONS_FIELD_NUMBER;
-          hash = (53 * hash) + getNotifications().hashCode();
           break;
         case 12:
           hash = (37 * hash) + REGISTER_FIELD_NUMBER;
@@ -2156,6 +2036,8 @@ public final class DatagramProto {
 
         ok_ = 0;
 
+        push_ = 0L;
+
         dataCase_ = 0;
         data_ = null;
         return this;
@@ -2195,13 +2077,6 @@ public final class DatagramProto {
             result.data_ = messageBuilder_.build();
           }
         }
-        if (dataCase_ == 6) {
-          if (messagesBuilder_ == null) {
-            result.data_ = data_;
-          } else {
-            result.data_ = messagesBuilder_.build();
-          }
-        }
         if (dataCase_ == 7) {
           if (loginBuilder_ == null) {
             result.data_ = data_;
@@ -2230,13 +2105,6 @@ public final class DatagramProto {
             result.data_ = notificationBuilder_.build();
           }
         }
-        if (dataCase_ == 11) {
-          if (notificationsBuilder_ == null) {
-            result.data_ = data_;
-          } else {
-            result.data_ = notificationsBuilder_.build();
-          }
-        }
         if (dataCase_ == 12) {
           if (registerBuilder_ == null) {
             result.data_ = data_;
@@ -2258,6 +2126,7 @@ public final class DatagramProto {
             result.data_ = groupBuilder_.build();
           }
         }
+        result.push_ = push_;
         result.dataCase_ = dataCase_;
         onBuilt();
         return result;
@@ -2320,13 +2189,12 @@ public final class DatagramProto {
         if (other.getOk() != 0) {
           setOk(other.getOk());
         }
+        if (other.getPush() != 0L) {
+          setPush(other.getPush());
+        }
         switch (other.getDataCase()) {
           case MESSAGE: {
             mergeMessage(other.getMessage());
-            break;
-          }
-          case MESSAGES: {
-            mergeMessages(other.getMessages());
             break;
           }
           case LOGIN: {
@@ -2343,10 +2211,6 @@ public final class DatagramProto {
           }
           case NOTIFICATION: {
             mergeNotification(other.getNotification());
-            break;
-          }
-          case NOTIFICATIONS: {
-            mergeNotifications(other.getNotifications());
             break;
           }
           case REGISTER: {
@@ -2763,147 +2627,6 @@ public final class DatagramProto {
         dataCase_ = 5;
         onChanged();;
         return messageBuilder_;
-      }
-
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.example.demo.datagram.DatagramProto.Messages, com.example.demo.datagram.DatagramProto.Messages.Builder, com.example.demo.datagram.DatagramProto.MessagesOrBuilder> messagesBuilder_;
-      /**
-       * <code>.Messages messages = 6;</code>
-       * @return Whether the messages field is set.
-       */
-      @java.lang.Override
-      public boolean hasMessages() {
-        return dataCase_ == 6;
-      }
-      /**
-       * <code>.Messages messages = 6;</code>
-       * @return The messages.
-       */
-      @java.lang.Override
-      public com.example.demo.datagram.DatagramProto.Messages getMessages() {
-        if (messagesBuilder_ == null) {
-          if (dataCase_ == 6) {
-            return (com.example.demo.datagram.DatagramProto.Messages) data_;
-          }
-          return com.example.demo.datagram.DatagramProto.Messages.getDefaultInstance();
-        } else {
-          if (dataCase_ == 6) {
-            return messagesBuilder_.getMessage();
-          }
-          return com.example.demo.datagram.DatagramProto.Messages.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>.Messages messages = 6;</code>
-       */
-      public Builder setMessages(com.example.demo.datagram.DatagramProto.Messages value) {
-        if (messagesBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          data_ = value;
-          onChanged();
-        } else {
-          messagesBuilder_.setMessage(value);
-        }
-        dataCase_ = 6;
-        return this;
-      }
-      /**
-       * <code>.Messages messages = 6;</code>
-       */
-      public Builder setMessages(
-          com.example.demo.datagram.DatagramProto.Messages.Builder builderForValue) {
-        if (messagesBuilder_ == null) {
-          data_ = builderForValue.build();
-          onChanged();
-        } else {
-          messagesBuilder_.setMessage(builderForValue.build());
-        }
-        dataCase_ = 6;
-        return this;
-      }
-      /**
-       * <code>.Messages messages = 6;</code>
-       */
-      public Builder mergeMessages(com.example.demo.datagram.DatagramProto.Messages value) {
-        if (messagesBuilder_ == null) {
-          if (dataCase_ == 6 &&
-              data_ != com.example.demo.datagram.DatagramProto.Messages.getDefaultInstance()) {
-            data_ = com.example.demo.datagram.DatagramProto.Messages.newBuilder((com.example.demo.datagram.DatagramProto.Messages) data_)
-                .mergeFrom(value).buildPartial();
-          } else {
-            data_ = value;
-          }
-          onChanged();
-        } else {
-          if (dataCase_ == 6) {
-            messagesBuilder_.mergeFrom(value);
-          }
-          messagesBuilder_.setMessage(value);
-        }
-        dataCase_ = 6;
-        return this;
-      }
-      /**
-       * <code>.Messages messages = 6;</code>
-       */
-      public Builder clearMessages() {
-        if (messagesBuilder_ == null) {
-          if (dataCase_ == 6) {
-            dataCase_ = 0;
-            data_ = null;
-            onChanged();
-          }
-        } else {
-          if (dataCase_ == 6) {
-            dataCase_ = 0;
-            data_ = null;
-          }
-          messagesBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>.Messages messages = 6;</code>
-       */
-      public com.example.demo.datagram.DatagramProto.Messages.Builder getMessagesBuilder() {
-        return getMessagesFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.Messages messages = 6;</code>
-       */
-      @java.lang.Override
-      public com.example.demo.datagram.DatagramProto.MessagesOrBuilder getMessagesOrBuilder() {
-        if ((dataCase_ == 6) && (messagesBuilder_ != null)) {
-          return messagesBuilder_.getMessageOrBuilder();
-        } else {
-          if (dataCase_ == 6) {
-            return (com.example.demo.datagram.DatagramProto.Messages) data_;
-          }
-          return com.example.demo.datagram.DatagramProto.Messages.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>.Messages messages = 6;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.example.demo.datagram.DatagramProto.Messages, com.example.demo.datagram.DatagramProto.Messages.Builder, com.example.demo.datagram.DatagramProto.MessagesOrBuilder> 
-          getMessagesFieldBuilder() {
-        if (messagesBuilder_ == null) {
-          if (!(dataCase_ == 6)) {
-            data_ = com.example.demo.datagram.DatagramProto.Messages.getDefaultInstance();
-          }
-          messagesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.example.demo.datagram.DatagramProto.Messages, com.example.demo.datagram.DatagramProto.Messages.Builder, com.example.demo.datagram.DatagramProto.MessagesOrBuilder>(
-                  (com.example.demo.datagram.DatagramProto.Messages) data_,
-                  getParentForChildren(),
-                  isClean());
-          data_ = null;
-        }
-        dataCase_ = 6;
-        onChanged();;
-        return messagesBuilder_;
       }
 
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -3471,147 +3194,6 @@ public final class DatagramProto {
       }
 
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.example.demo.datagram.DatagramProto.Notifications, com.example.demo.datagram.DatagramProto.Notifications.Builder, com.example.demo.datagram.DatagramProto.NotificationsOrBuilder> notificationsBuilder_;
-      /**
-       * <code>.Notifications notifications = 11;</code>
-       * @return Whether the notifications field is set.
-       */
-      @java.lang.Override
-      public boolean hasNotifications() {
-        return dataCase_ == 11;
-      }
-      /**
-       * <code>.Notifications notifications = 11;</code>
-       * @return The notifications.
-       */
-      @java.lang.Override
-      public com.example.demo.datagram.DatagramProto.Notifications getNotifications() {
-        if (notificationsBuilder_ == null) {
-          if (dataCase_ == 11) {
-            return (com.example.demo.datagram.DatagramProto.Notifications) data_;
-          }
-          return com.example.demo.datagram.DatagramProto.Notifications.getDefaultInstance();
-        } else {
-          if (dataCase_ == 11) {
-            return notificationsBuilder_.getMessage();
-          }
-          return com.example.demo.datagram.DatagramProto.Notifications.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>.Notifications notifications = 11;</code>
-       */
-      public Builder setNotifications(com.example.demo.datagram.DatagramProto.Notifications value) {
-        if (notificationsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          data_ = value;
-          onChanged();
-        } else {
-          notificationsBuilder_.setMessage(value);
-        }
-        dataCase_ = 11;
-        return this;
-      }
-      /**
-       * <code>.Notifications notifications = 11;</code>
-       */
-      public Builder setNotifications(
-          com.example.demo.datagram.DatagramProto.Notifications.Builder builderForValue) {
-        if (notificationsBuilder_ == null) {
-          data_ = builderForValue.build();
-          onChanged();
-        } else {
-          notificationsBuilder_.setMessage(builderForValue.build());
-        }
-        dataCase_ = 11;
-        return this;
-      }
-      /**
-       * <code>.Notifications notifications = 11;</code>
-       */
-      public Builder mergeNotifications(com.example.demo.datagram.DatagramProto.Notifications value) {
-        if (notificationsBuilder_ == null) {
-          if (dataCase_ == 11 &&
-              data_ != com.example.demo.datagram.DatagramProto.Notifications.getDefaultInstance()) {
-            data_ = com.example.demo.datagram.DatagramProto.Notifications.newBuilder((com.example.demo.datagram.DatagramProto.Notifications) data_)
-                .mergeFrom(value).buildPartial();
-          } else {
-            data_ = value;
-          }
-          onChanged();
-        } else {
-          if (dataCase_ == 11) {
-            notificationsBuilder_.mergeFrom(value);
-          }
-          notificationsBuilder_.setMessage(value);
-        }
-        dataCase_ = 11;
-        return this;
-      }
-      /**
-       * <code>.Notifications notifications = 11;</code>
-       */
-      public Builder clearNotifications() {
-        if (notificationsBuilder_ == null) {
-          if (dataCase_ == 11) {
-            dataCase_ = 0;
-            data_ = null;
-            onChanged();
-          }
-        } else {
-          if (dataCase_ == 11) {
-            dataCase_ = 0;
-            data_ = null;
-          }
-          notificationsBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>.Notifications notifications = 11;</code>
-       */
-      public com.example.demo.datagram.DatagramProto.Notifications.Builder getNotificationsBuilder() {
-        return getNotificationsFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.Notifications notifications = 11;</code>
-       */
-      @java.lang.Override
-      public com.example.demo.datagram.DatagramProto.NotificationsOrBuilder getNotificationsOrBuilder() {
-        if ((dataCase_ == 11) && (notificationsBuilder_ != null)) {
-          return notificationsBuilder_.getMessageOrBuilder();
-        } else {
-          if (dataCase_ == 11) {
-            return (com.example.demo.datagram.DatagramProto.Notifications) data_;
-          }
-          return com.example.demo.datagram.DatagramProto.Notifications.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>.Notifications notifications = 11;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.example.demo.datagram.DatagramProto.Notifications, com.example.demo.datagram.DatagramProto.Notifications.Builder, com.example.demo.datagram.DatagramProto.NotificationsOrBuilder> 
-          getNotificationsFieldBuilder() {
-        if (notificationsBuilder_ == null) {
-          if (!(dataCase_ == 11)) {
-            data_ = com.example.demo.datagram.DatagramProto.Notifications.getDefaultInstance();
-          }
-          notificationsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.example.demo.datagram.DatagramProto.Notifications, com.example.demo.datagram.DatagramProto.Notifications.Builder, com.example.demo.datagram.DatagramProto.NotificationsOrBuilder>(
-                  (com.example.demo.datagram.DatagramProto.Notifications) data_,
-                  getParentForChildren(),
-                  isClean());
-          data_ = null;
-        }
-        dataCase_ = 11;
-        onChanged();;
-        return notificationsBuilder_;
-      }
-
-      private com.google.protobuf.SingleFieldBuilderV3<
           com.example.demo.datagram.DatagramProto.Register, com.example.demo.datagram.DatagramProto.Register.Builder, com.example.demo.datagram.DatagramProto.RegisterOrBuilder> registerBuilder_;
       /**
        * <code>.Register register = 12;</code>
@@ -4032,6 +3614,37 @@ public final class DatagramProto {
         dataCase_ = 14;
         onChanged();;
         return groupBuilder_;
+      }
+
+      private long push_ ;
+      /**
+       * <code>int64 push = 15;</code>
+       * @return The push.
+       */
+      @java.lang.Override
+      public long getPush() {
+        return push_;
+      }
+      /**
+       * <code>int64 push = 15;</code>
+       * @param value The push to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPush(long value) {
+        
+        push_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 push = 15;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPush() {
+        
+        push_ = 0L;
+        onChanged();
+        return this;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -8489,15 +8102,15 @@ public final class DatagramProto {
     com.example.demo.datagram.DatagramProto.User.Gender getGender();
 
     /**
-     * <code>.User.UserType type = 7;</code>
+     * <code>.User.Identity type = 7;</code>
      * @return The enum numeric value on the wire for type.
      */
     int getTypeValue();
     /**
-     * <code>.User.UserType type = 7;</code>
+     * <code>.User.Identity type = 7;</code>
      * @return The type.
      */
-    com.example.demo.datagram.DatagramProto.User.UserType getType();
+    com.example.demo.datagram.DatagramProto.User.Identity getType();
 
     /**
      * <code>.Student student = 8;</code>
@@ -8814,9 +8427,9 @@ public final class DatagramProto {
     }
 
     /**
-     * Protobuf enum {@code User.UserType}
+     * Protobuf enum {@code User.Identity}
      */
-    public enum UserType
+    public enum Identity
         implements com.google.protobuf.ProtocolMessageEnum {
       /**
        * <code>STUDENT = 0;</code>
@@ -8853,7 +8466,7 @@ public final class DatagramProto {
        * @deprecated Use {@link #forNumber(int)} instead.
        */
       @java.lang.Deprecated
-      public static UserType valueOf(int value) {
+      public static Identity valueOf(int value) {
         return forNumber(value);
       }
 
@@ -8861,7 +8474,7 @@ public final class DatagramProto {
        * @param value The numeric wire value of the corresponding enum entry.
        * @return The enum associated with the given numeric wire value.
        */
-      public static UserType forNumber(int value) {
+      public static Identity forNumber(int value) {
         switch (value) {
           case 0: return STUDENT;
           case 1: return TEACHER;
@@ -8869,15 +8482,15 @@ public final class DatagramProto {
         }
       }
 
-      public static com.google.protobuf.Internal.EnumLiteMap<UserType>
+      public static com.google.protobuf.Internal.EnumLiteMap<Identity>
           internalGetValueMap() {
         return internalValueMap;
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
-          UserType> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<UserType>() {
-              public UserType findValueByNumber(int number) {
-                return UserType.forNumber(number);
+          Identity> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<Identity>() {
+              public Identity findValueByNumber(int number) {
+                return Identity.forNumber(number);
               }
             };
 
@@ -8898,9 +8511,9 @@ public final class DatagramProto {
         return com.example.demo.datagram.DatagramProto.User.getDescriptor().getEnumTypes().get(1);
       }
 
-      private static final UserType[] VALUES = values();
+      private static final Identity[] VALUES = values();
 
-      public static UserType valueOf(
+      public static Identity valueOf(
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
           throw new java.lang.IllegalArgumentException(
@@ -8914,11 +8527,11 @@ public final class DatagramProto {
 
       private final int value;
 
-      private UserType(int value) {
+      private Identity(int value) {
         this.value = value;
       }
 
-      // @@protoc_insertion_point(enum_scope:User.UserType)
+      // @@protoc_insertion_point(enum_scope:User.Identity)
     }
 
     private int dataCase_ = 0;
@@ -9174,20 +8787,20 @@ public final class DatagramProto {
     public static final int TYPE_FIELD_NUMBER = 7;
     private int type_;
     /**
-     * <code>.User.UserType type = 7;</code>
+     * <code>.User.Identity type = 7;</code>
      * @return The enum numeric value on the wire for type.
      */
     @java.lang.Override public int getTypeValue() {
       return type_;
     }
     /**
-     * <code>.User.UserType type = 7;</code>
+     * <code>.User.Identity type = 7;</code>
      * @return The type.
      */
-    @java.lang.Override public com.example.demo.datagram.DatagramProto.User.UserType getType() {
+    @java.lang.Override public com.example.demo.datagram.DatagramProto.User.Identity getType() {
       @SuppressWarnings("deprecation")
-      com.example.demo.datagram.DatagramProto.User.UserType result = com.example.demo.datagram.DatagramProto.User.UserType.valueOf(type_);
-      return result == null ? com.example.demo.datagram.DatagramProto.User.UserType.UNRECOGNIZED : result;
+      com.example.demo.datagram.DatagramProto.User.Identity result = com.example.demo.datagram.DatagramProto.User.Identity.valueOf(type_);
+      return result == null ? com.example.demo.datagram.DatagramProto.User.Identity.UNRECOGNIZED : result;
     }
 
     public static final int STUDENT_FIELD_NUMBER = 8;
@@ -9295,7 +8908,7 @@ public final class DatagramProto {
       if (gender_ != com.example.demo.datagram.DatagramProto.User.Gender.SECRETE.getNumber()) {
         output.writeEnum(6, gender_);
       }
-      if (type_ != com.example.demo.datagram.DatagramProto.User.UserType.STUDENT.getNumber()) {
+      if (type_ != com.example.demo.datagram.DatagramProto.User.Identity.STUDENT.getNumber()) {
         output.writeEnum(7, type_);
       }
       if (dataCase_ == 8) {
@@ -9335,7 +8948,7 @@ public final class DatagramProto {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(6, gender_);
       }
-      if (type_ != com.example.demo.datagram.DatagramProto.User.UserType.STUDENT.getNumber()) {
+      if (type_ != com.example.demo.datagram.DatagramProto.User.Identity.STUDENT.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(7, type_);
       }
@@ -10203,14 +9816,14 @@ public final class DatagramProto {
 
       private int type_ = 0;
       /**
-       * <code>.User.UserType type = 7;</code>
+       * <code>.User.Identity type = 7;</code>
        * @return The enum numeric value on the wire for type.
        */
       @java.lang.Override public int getTypeValue() {
         return type_;
       }
       /**
-       * <code>.User.UserType type = 7;</code>
+       * <code>.User.Identity type = 7;</code>
        * @param value The enum numeric value on the wire for type to set.
        * @return This builder for chaining.
        */
@@ -10221,21 +9834,21 @@ public final class DatagramProto {
         return this;
       }
       /**
-       * <code>.User.UserType type = 7;</code>
+       * <code>.User.Identity type = 7;</code>
        * @return The type.
        */
       @java.lang.Override
-      public com.example.demo.datagram.DatagramProto.User.UserType getType() {
+      public com.example.demo.datagram.DatagramProto.User.Identity getType() {
         @SuppressWarnings("deprecation")
-        com.example.demo.datagram.DatagramProto.User.UserType result = com.example.demo.datagram.DatagramProto.User.UserType.valueOf(type_);
-        return result == null ? com.example.demo.datagram.DatagramProto.User.UserType.UNRECOGNIZED : result;
+        com.example.demo.datagram.DatagramProto.User.Identity result = com.example.demo.datagram.DatagramProto.User.Identity.valueOf(type_);
+        return result == null ? com.example.demo.datagram.DatagramProto.User.Identity.UNRECOGNIZED : result;
       }
       /**
-       * <code>.User.UserType type = 7;</code>
+       * <code>.User.Identity type = 7;</code>
        * @param value The type to set.
        * @return This builder for chaining.
        */
-      public Builder setType(com.example.demo.datagram.DatagramProto.User.UserType value) {
+      public Builder setType(com.example.demo.datagram.DatagramProto.User.Identity value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -10245,7 +9858,7 @@ public final class DatagramProto {
         return this;
       }
       /**
-       * <code>.User.UserType type = 7;</code>
+       * <code>.User.Identity type = 7;</code>
        * @return This builder for chaining.
        */
       public Builder clearType() {
@@ -11442,10 +11055,15 @@ public final class DatagramProto {
         getPasswordBytes();
 
     /**
-     * <code>int32 identity = 3;</code>
+     * <code>.Register.Identity identity = 3;</code>
+     * @return The enum numeric value on the wire for identity.
+     */
+    int getIdentityValue();
+    /**
+     * <code>.Register.Identity identity = 3;</code>
      * @return The identity.
      */
-    int getIdentity();
+    com.example.demo.datagram.DatagramProto.Register.Identity getIdentity();
   }
   /**
    * Protobuf type {@code Register}
@@ -11462,6 +11080,7 @@ public final class DatagramProto {
     private Register() {
       username_ = "";
       password_ = "";
+      identity_ = 0;
     }
 
     @java.lang.Override
@@ -11507,8 +11126,9 @@ public final class DatagramProto {
               break;
             }
             case 24: {
+              int rawValue = input.readEnum();
 
-              identity_ = input.readInt32();
+              identity_ = rawValue;
               break;
             }
             default: {
@@ -11541,6 +11161,114 @@ public final class DatagramProto {
       return com.example.demo.datagram.DatagramProto.internal_static_Register_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.example.demo.datagram.DatagramProto.Register.class, com.example.demo.datagram.DatagramProto.Register.Builder.class);
+    }
+
+    /**
+     * Protobuf enum {@code Register.Identity}
+     */
+    public enum Identity
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>STUDENT = 0;</code>
+       */
+      STUDENT(0),
+      /**
+       * <code>TEACHER = 1;</code>
+       */
+      TEACHER(1),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>STUDENT = 0;</code>
+       */
+      public static final int STUDENT_VALUE = 0;
+      /**
+       * <code>TEACHER = 1;</code>
+       */
+      public static final int TEACHER_VALUE = 1;
+
+
+      public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalArgumentException(
+              "Can't get the number of an unknown enum value.");
+        }
+        return value;
+      }
+
+      /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static Identity valueOf(int value) {
+        return forNumber(value);
+      }
+
+      /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
+       */
+      public static Identity forNumber(int value) {
+        switch (value) {
+          case 0: return STUDENT;
+          case 1: return TEACHER;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<Identity>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          Identity> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<Identity>() {
+              public Identity findValueByNumber(int number) {
+                return Identity.forNumber(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalStateException(
+              "Can't get the descriptor of an unrecognized enum value.");
+        }
+        return getDescriptor().getValues().get(ordinal());
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return com.example.demo.datagram.DatagramProto.Register.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final Identity[] VALUES = values();
+
+      public static Identity valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        if (desc.getIndex() == -1) {
+          return UNRECOGNIZED;
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int value;
+
+      private Identity(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:Register.Identity)
     }
 
     public static final int USERNAME_FIELD_NUMBER = 1;
@@ -11622,12 +11350,20 @@ public final class DatagramProto {
     public static final int IDENTITY_FIELD_NUMBER = 3;
     private int identity_;
     /**
-     * <code>int32 identity = 3;</code>
+     * <code>.Register.Identity identity = 3;</code>
+     * @return The enum numeric value on the wire for identity.
+     */
+    @java.lang.Override public int getIdentityValue() {
+      return identity_;
+    }
+    /**
+     * <code>.Register.Identity identity = 3;</code>
      * @return The identity.
      */
-    @java.lang.Override
-    public int getIdentity() {
-      return identity_;
+    @java.lang.Override public com.example.demo.datagram.DatagramProto.Register.Identity getIdentity() {
+      @SuppressWarnings("deprecation")
+      com.example.demo.datagram.DatagramProto.Register.Identity result = com.example.demo.datagram.DatagramProto.Register.Identity.valueOf(identity_);
+      return result == null ? com.example.demo.datagram.DatagramProto.Register.Identity.UNRECOGNIZED : result;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -11650,8 +11386,8 @@ public final class DatagramProto {
       if (!getPasswordBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, password_);
       }
-      if (identity_ != 0) {
-        output.writeInt32(3, identity_);
+      if (identity_ != com.example.demo.datagram.DatagramProto.Register.Identity.STUDENT.getNumber()) {
+        output.writeEnum(3, identity_);
       }
       unknownFields.writeTo(output);
     }
@@ -11668,9 +11404,9 @@ public final class DatagramProto {
       if (!getPasswordBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, password_);
       }
-      if (identity_ != 0) {
+      if (identity_ != com.example.demo.datagram.DatagramProto.Register.Identity.STUDENT.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, identity_);
+          .computeEnumSize(3, identity_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -11691,8 +11427,7 @@ public final class DatagramProto {
           .equals(other.getUsername())) return false;
       if (!getPassword()
           .equals(other.getPassword())) return false;
-      if (getIdentity()
-          != other.getIdentity()) return false;
+      if (identity_ != other.identity_) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -11709,7 +11444,7 @@ public final class DatagramProto {
       hash = (37 * hash) + PASSWORD_FIELD_NUMBER;
       hash = (53 * hash) + getPassword().hashCode();
       hash = (37 * hash) + IDENTITY_FIELD_NUMBER;
-      hash = (53 * hash) + getIdentity();
+      hash = (53 * hash) + identity_;
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -11934,8 +11669,8 @@ public final class DatagramProto {
           password_ = other.password_;
           onChanged();
         }
-        if (other.getIdentity() != 0) {
-          setIdentity(other.getIdentity());
+        if (other.identity_ != 0) {
+          setIdentityValue(other.getIdentityValue());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -12118,28 +11853,51 @@ public final class DatagramProto {
         return this;
       }
 
-      private int identity_ ;
+      private int identity_ = 0;
       /**
-       * <code>int32 identity = 3;</code>
-       * @return The identity.
+       * <code>.Register.Identity identity = 3;</code>
+       * @return The enum numeric value on the wire for identity.
        */
-      @java.lang.Override
-      public int getIdentity() {
+      @java.lang.Override public int getIdentityValue() {
         return identity_;
       }
       /**
-       * <code>int32 identity = 3;</code>
-       * @param value The identity to set.
+       * <code>.Register.Identity identity = 3;</code>
+       * @param value The enum numeric value on the wire for identity to set.
        * @return This builder for chaining.
        */
-      public Builder setIdentity(int value) {
+      public Builder setIdentityValue(int value) {
         
         identity_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>int32 identity = 3;</code>
+       * <code>.Register.Identity identity = 3;</code>
+       * @return The identity.
+       */
+      @java.lang.Override
+      public com.example.demo.datagram.DatagramProto.Register.Identity getIdentity() {
+        @SuppressWarnings("deprecation")
+        com.example.demo.datagram.DatagramProto.Register.Identity result = com.example.demo.datagram.DatagramProto.Register.Identity.valueOf(identity_);
+        return result == null ? com.example.demo.datagram.DatagramProto.Register.Identity.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.Register.Identity identity = 3;</code>
+       * @param value The identity to set.
+       * @return This builder for chaining.
+       */
+      public Builder setIdentity(com.example.demo.datagram.DatagramProto.Register.Identity value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        identity_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.Register.Identity identity = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearIdentity() {
@@ -12246,6 +12004,18 @@ public final class DatagramProto {
      * @return The time.
      */
     long getTime();
+
+    /**
+     * <code>int64 id = 5;</code>
+     * @return The id.
+     */
+    long getId();
+
+    /**
+     * <code>int32 temporary_id = 6;</code>
+     * @return The temporaryId.
+     */
+    int getTemporaryId();
   }
   /**
    * Protobuf type {@code Message}
@@ -12316,6 +12086,16 @@ public final class DatagramProto {
             case 32: {
 
               time_ = input.readInt64();
+              break;
+            }
+            case 40: {
+
+              id_ = input.readInt64();
+              break;
+            }
+            case 48: {
+
+              temporaryId_ = input.readInt32();
               break;
             }
             default: {
@@ -12475,6 +12255,28 @@ public final class DatagramProto {
       return time_;
     }
 
+    public static final int ID_FIELD_NUMBER = 5;
+    private long id_;
+    /**
+     * <code>int64 id = 5;</code>
+     * @return The id.
+     */
+    @java.lang.Override
+    public long getId() {
+      return id_;
+    }
+
+    public static final int TEMPORARY_ID_FIELD_NUMBER = 6;
+    private int temporaryId_;
+    /**
+     * <code>int32 temporary_id = 6;</code>
+     * @return The temporaryId.
+     */
+    @java.lang.Override
+    public int getTemporaryId() {
+      return temporaryId_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -12501,6 +12303,12 @@ public final class DatagramProto {
       if (time_ != 0L) {
         output.writeInt64(4, time_);
       }
+      if (id_ != 0L) {
+        output.writeInt64(5, id_);
+      }
+      if (temporaryId_ != 0) {
+        output.writeInt32(6, temporaryId_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -12522,6 +12330,14 @@ public final class DatagramProto {
       if (time_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(4, time_);
+      }
+      if (id_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(5, id_);
+      }
+      if (temporaryId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(6, temporaryId_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -12546,6 +12362,10 @@ public final class DatagramProto {
           .equals(other.getContent())) return false;
       if (getTime()
           != other.getTime()) return false;
+      if (getId()
+          != other.getId()) return false;
+      if (getTemporaryId()
+          != other.getTemporaryId()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -12566,6 +12386,11 @@ public final class DatagramProto {
       hash = (37 * hash) + TIME_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getTime());
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getId());
+      hash = (37 * hash) + TEMPORARY_ID_FIELD_NUMBER;
+      hash = (53 * hash) + getTemporaryId();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -12707,6 +12532,10 @@ public final class DatagramProto {
 
         time_ = 0L;
 
+        id_ = 0L;
+
+        temporaryId_ = 0;
+
         return this;
       }
 
@@ -12737,6 +12566,8 @@ public final class DatagramProto {
         result.receiverId_ = receiverId_;
         result.content_ = content_;
         result.time_ = time_;
+        result.id_ = id_;
+        result.temporaryId_ = temporaryId_;
         onBuilt();
         return result;
       }
@@ -12799,6 +12630,12 @@ public final class DatagramProto {
         }
         if (other.getTime() != 0L) {
           setTime(other.getTime());
+        }
+        if (other.getId() != 0L) {
+          setId(other.getId());
+        }
+        if (other.getTemporaryId() != 0) {
+          setTemporaryId(other.getTemporaryId());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -13084,6 +12921,68 @@ public final class DatagramProto {
       public Builder clearTime() {
         
         time_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long id_ ;
+      /**
+       * <code>int64 id = 5;</code>
+       * @return The id.
+       */
+      @java.lang.Override
+      public long getId() {
+        return id_;
+      }
+      /**
+       * <code>int64 id = 5;</code>
+       * @param value The id to set.
+       * @return This builder for chaining.
+       */
+      public Builder setId(long value) {
+        
+        id_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 id = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearId() {
+        
+        id_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private int temporaryId_ ;
+      /**
+       * <code>int32 temporary_id = 6;</code>
+       * @return The temporaryId.
+       */
+      @java.lang.Override
+      public int getTemporaryId() {
+        return temporaryId_;
+      }
+      /**
+       * <code>int32 temporary_id = 6;</code>
+       * @param value The temporaryId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTemporaryId(int value) {
+        
+        temporaryId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 temporary_id = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTemporaryId() {
+        
+        temporaryId_ = 0;
         onChanged();
         return this;
       }
@@ -13990,6 +13889,18 @@ public final class DatagramProto {
      * @return The time.
      */
     long getTime();
+
+    /**
+     * <code>int64 id = 6;</code>
+     * @return The id.
+     */
+    long getId();
+
+    /**
+     * <code>int32 temporary_id = 7;</code>
+     * @return The temporaryId.
+     */
+    int getTemporaryId();
   }
   /**
    * Protobuf type {@code Notification}
@@ -14067,6 +13978,16 @@ public final class DatagramProto {
             case 40: {
 
               time_ = input.readInt64();
+              break;
+            }
+            case 48: {
+
+              id_ = input.readInt64();
+              break;
+            }
+            case 56: {
+
+              temporaryId_ = input.readInt32();
               break;
             }
             default: {
@@ -14264,6 +14185,28 @@ public final class DatagramProto {
       return time_;
     }
 
+    public static final int ID_FIELD_NUMBER = 6;
+    private long id_;
+    /**
+     * <code>int64 id = 6;</code>
+     * @return The id.
+     */
+    @java.lang.Override
+    public long getId() {
+      return id_;
+    }
+
+    public static final int TEMPORARY_ID_FIELD_NUMBER = 7;
+    private int temporaryId_;
+    /**
+     * <code>int32 temporary_id = 7;</code>
+     * @return The temporaryId.
+     */
+    @java.lang.Override
+    public int getTemporaryId() {
+      return temporaryId_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -14293,6 +14236,12 @@ public final class DatagramProto {
       if (time_ != 0L) {
         output.writeInt64(5, time_);
       }
+      if (id_ != 0L) {
+        output.writeInt64(6, id_);
+      }
+      if (temporaryId_ != 0) {
+        output.writeInt32(7, temporaryId_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -14317,6 +14266,14 @@ public final class DatagramProto {
       if (time_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(5, time_);
+      }
+      if (id_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(6, id_);
+      }
+      if (temporaryId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(7, temporaryId_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -14343,6 +14300,10 @@ public final class DatagramProto {
           .equals(other.getContent())) return false;
       if (getTime()
           != other.getTime()) return false;
+      if (getId()
+          != other.getId()) return false;
+      if (getTemporaryId()
+          != other.getTemporaryId()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -14365,6 +14326,11 @@ public final class DatagramProto {
       hash = (37 * hash) + TIME_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getTime());
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getId());
+      hash = (37 * hash) + TEMPORARY_ID_FIELD_NUMBER;
+      hash = (53 * hash) + getTemporaryId();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -14508,6 +14474,10 @@ public final class DatagramProto {
 
         time_ = 0L;
 
+        id_ = 0L;
+
+        temporaryId_ = 0;
+
         return this;
       }
 
@@ -14539,6 +14509,8 @@ public final class DatagramProto {
         result.title_ = title_;
         result.content_ = content_;
         result.time_ = time_;
+        result.id_ = id_;
+        result.temporaryId_ = temporaryId_;
         onBuilt();
         return result;
       }
@@ -14605,6 +14577,12 @@ public final class DatagramProto {
         }
         if (other.getTime() != 0L) {
           setTime(other.getTime());
+        }
+        if (other.getId() != 0L) {
+          setId(other.getId());
+        }
+        if (other.getTemporaryId() != 0) {
+          setTemporaryId(other.getTemporaryId());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -14966,6 +14944,68 @@ public final class DatagramProto {
       public Builder clearTime() {
         
         time_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long id_ ;
+      /**
+       * <code>int64 id = 6;</code>
+       * @return The id.
+       */
+      @java.lang.Override
+      public long getId() {
+        return id_;
+      }
+      /**
+       * <code>int64 id = 6;</code>
+       * @param value The id to set.
+       * @return This builder for chaining.
+       */
+      public Builder setId(long value) {
+        
+        id_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 id = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearId() {
+        
+        id_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private int temporaryId_ ;
+      /**
+       * <code>int32 temporary_id = 7;</code>
+       * @return The temporaryId.
+       */
+      @java.lang.Override
+      public int getTemporaryId() {
+        return temporaryId_;
+      }
+      /**
+       * <code>int32 temporary_id = 7;</code>
+       * @param value The temporaryId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTemporaryId(int value) {
+        
+        temporaryId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 temporary_id = 7;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTemporaryId() {
+        
+        temporaryId_ = 0;
         onChanged();
         return this;
       }
@@ -16927,51 +16967,53 @@ public final class DatagramProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\016datagram.proto\"-\n\010Datagram\022\017\n\007version\030" +
-      "\001 \001(\005\022\020\n\010datagram\030\002 \001(\014\"\351\004\n\020DatagramVers" +
+      "\001 \001(\005\022\020\n\010datagram\030\002 \001(\014\"\257\004\n\020DatagramVers" +
       "ion1\022$\n\004type\030\001 \001(\0162\026.DatagramVersion1.Ty" +
       "pe\022*\n\007subtype\030\002 \001(\0162\031.DatagramVersion1.S" +
       "ubtype\022\r\n\005token\030\003 \001(\t\022\n\n\002ok\030\004 \001(\005\022\033\n\007mes" +
-      "sage\030\005 \001(\0132\010.MessageH\000\022\035\n\010messages\030\006 \001(\013" +
-      "2\t.MessagesH\000\022\027\n\005login\030\007 \001(\0132\006.LoginH\000\022\031" +
-      "\n\006course\030\010 \001(\0132\007.CourseH\000\022\033\n\007courses\030\t \001" +
-      "(\0132\010.CoursesH\000\022%\n\014notification\030\n \001(\0132\r.N" +
-      "otificationH\000\022\'\n\rnotifications\030\013 \001(\0132\016.N" +
-      "otificationsH\000\022\035\n\010register\030\014 \001(\0132\t.Regis" +
-      "terH\000\022\025\n\004user\030\r \001(\0132\005.UserH\000\022\027\n\005group\030\016 " +
-      "\001(\0132\006.GroupH\000\"{\n\004Type\022\016\n\nKEEP_ALIVE\020\000\022\013\n" +
-      "\007MESSAGE\020\001\022\010\n\004USER\020\002\022\t\n\005LOGIN\020\003\022\020\n\014NOTIF" +
-      "ICATION\020\004\022\n\n\006COURSE\020\005\022\014\n\010REGISTER\020\006\022\n\n\006L" +
-      "OGOUT\020\007\022\t\n\005GROUP\020\010\"7\n\007Subtype\022\010\n\004PUSH\020\000\022" +
-      "\007\n\003ACK\020\001\022\013\n\007REQUEST\020\002\022\014\n\010RESPONSE\020\003B\006\n\004d" +
-      "ata\"?\n\005Login\022\020\n\010username\030\001 \001(\t\022\020\n\010passwo" +
-      "rd\030\002 \001(\t\022\022\n\ndb_version\030\003 \001(\003\"}\n\006Course\022\n" +
-      "\n\002id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\021\n\tclassroom\030\003 " +
-      "\001(\t\022\014\n\004time\030\004 \001(\t\022\020\n\010semester\030\005 \001(\005\022\017\n\007r" +
-      "emarks\030\006 \001(\t\022\025\n\rlast_modified\030\007 \001(\003\"#\n\007C" +
-      "ourses\022\030\n\007courses\030\001 \003(\0132\007.Course\">\n\007Stud" +
-      "ent\022\020\n\010class_no\030\001 \001(\t\022\r\n\005major\030\002 \001(\t\022\022\n\n" +
-      "department\030\003 \001(\t\"\035\n\007Teacher\022\022\n\ndepartmen" +
-      "t\030\001 \001(\t\"\270\002\n\004User\022\n\n\002id\030\001 \001(\t\022\020\n\010password" +
-      "\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022\r\n\005phone\030\004 \001(\t\022\r\n\005e" +
-      "mail\030\005 \001(\t\022\034\n\006gender\030\006 \001(\0162\014.User.Gender" +
-      "\022\034\n\004type\030\007 \001(\0162\016.User.UserType\022\033\n\007studen" +
-      "t\030\010 \001(\0132\010.StudentH\000\022\033\n\007teacher\030\t \001(\0132\010.T" +
-      "eacherH\000\022\025\n\rlast_modified\030\n \001(\003\"+\n\006Gende" +
-      "r\022\013\n\007SECRETE\020\000\022\n\n\006FEMALE\020\001\022\010\n\004MALE\020\002\"$\n\010" +
-      "UserType\022\013\n\007STUDENT\020\000\022\013\n\007TEACHER\020\001B\006\n\004da" +
-      "ta\"\035\n\005Users\022\024\n\005users\030\001 \003(\0132\005.User\"@\n\010Reg" +
-      "ister\022\020\n\010username\030\001 \001(\t\022\020\n\010password\030\002 \001(" +
-      "\t\022\020\n\010identity\030\003 \001(\005\"P\n\007Message\022\021\n\tsender" +
+      "sage\030\005 \001(\0132\010.MessageH\000\022\027\n\005login\030\007 \001(\0132\006." +
+      "LoginH\000\022\031\n\006course\030\010 \001(\0132\007.CourseH\000\022\033\n\007co" +
+      "urses\030\t \001(\0132\010.CoursesH\000\022%\n\014notification\030" +
+      "\n \001(\0132\r.NotificationH\000\022\035\n\010register\030\014 \001(\013" +
+      "2\t.RegisterH\000\022\025\n\004user\030\r \001(\0132\005.UserH\000\022\027\n\005" +
+      "group\030\016 \001(\0132\006.GroupH\000\022\014\n\004push\030\017 \001(\003\"{\n\004T" +
+      "ype\022\016\n\nKEEP_ALIVE\020\000\022\013\n\007MESSAGE\020\001\022\010\n\004USER" +
+      "\020\002\022\t\n\005LOGIN\020\003\022\020\n\014NOTIFICATION\020\004\022\n\n\006COURS" +
+      "E\020\005\022\014\n\010REGISTER\020\006\022\n\n\006LOGOUT\020\007\022\t\n\005GROUP\020\010" +
+      "\"7\n\007Subtype\022\010\n\004PUSH\020\000\022\007\n\003ACK\020\001\022\013\n\007REQUES" +
+      "T\020\002\022\014\n\010RESPONSE\020\003B\006\n\004data\"?\n\005Login\022\020\n\010us" +
+      "ername\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\022\022\n\ndb_ver" +
+      "sion\030\003 \001(\003\"}\n\006Course\022\n\n\002id\030\001 \001(\t\022\014\n\004name" +
+      "\030\002 \001(\t\022\021\n\tclassroom\030\003 \001(\t\022\014\n\004time\030\004 \001(\t\022" +
+      "\020\n\010semester\030\005 \001(\005\022\017\n\007remarks\030\006 \001(\t\022\025\n\rla" +
+      "st_modified\030\007 \001(\003\"#\n\007Courses\022\030\n\007courses\030" +
+      "\001 \003(\0132\007.Course\">\n\007Student\022\020\n\010class_no\030\001 " +
+      "\001(\t\022\r\n\005major\030\002 \001(\t\022\022\n\ndepartment\030\003 \001(\t\"\035" +
+      "\n\007Teacher\022\022\n\ndepartment\030\001 \001(\t\"\270\002\n\004User\022\n" +
+      "\n\002id\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\022\014\n\004name\030\003 \001" +
+      "(\t\022\r\n\005phone\030\004 \001(\t\022\r\n\005email\030\005 \001(\t\022\034\n\006gend" +
+      "er\030\006 \001(\0162\014.User.Gender\022\034\n\004type\030\007 \001(\0162\016.U" +
+      "ser.Identity\022\033\n\007student\030\010 \001(\0132\010.StudentH" +
+      "\000\022\033\n\007teacher\030\t \001(\0132\010.TeacherH\000\022\025\n\rlast_m" +
+      "odified\030\n \001(\003\"+\n\006Gender\022\013\n\007SECRETE\020\000\022\n\n\006" +
+      "FEMALE\020\001\022\010\n\004MALE\020\002\"$\n\010Identity\022\013\n\007STUDEN" +
+      "T\020\000\022\013\n\007TEACHER\020\001B\006\n\004data\"\035\n\005Users\022\024\n\005use" +
+      "rs\030\001 \003(\0132\005.User\"z\n\010Register\022\020\n\010username\030" +
+      "\001 \001(\t\022\020\n\010password\030\002 \001(\t\022$\n\010identity\030\003 \001(" +
+      "\0162\022.Register.Identity\"$\n\010Identity\022\013\n\007STU" +
+      "DENT\020\000\022\013\n\007TEACHER\020\001\"r\n\007Message\022\021\n\tsender" +
       "_id\030\001 \001(\t\022\023\n\013receiver_id\030\002 \001(\t\022\017\n\007conten" +
-      "t\030\003 \001(\t\022\014\n\004time\030\004 \001(\003\"&\n\010Messages\022\032\n\010mes" +
-      "sages\030\001 \003(\0132\010.Message\"d\n\014Notification\022\021\n" +
-      "\tsender_id\030\001 \001(\t\022\023\n\013receiver_id\030\002 \001(\t\022\r\n" +
-      "\005title\030\003 \001(\t\022\017\n\007content\030\004 \001(\t\022\014\n\004time\030\005 " +
-      "\001(\003\"5\n\rNotifications\022$\n\rnotifications\030\001 " +
-      "\003(\0132\r.Notification\"T\n\005Group\022\027\n\006course\030\001 " +
-      "\001(\0132\007.Course\022\030\n\010teachers\030\002 \001(\0132\006.Users\022\030" +
-      "\n\010students\030\003 \001(\0132\006.UsersB*\n\031com.example." +
-      "demo.datagramB\rDatagramProtob\006proto3"
+      "t\030\003 \001(\t\022\014\n\004time\030\004 \001(\003\022\n\n\002id\030\005 \001(\003\022\024\n\014tem" +
+      "porary_id\030\006 \001(\005\"&\n\010Messages\022\032\n\010messages\030" +
+      "\001 \003(\0132\010.Message\"\206\001\n\014Notification\022\021\n\tsend" +
+      "er_id\030\001 \001(\t\022\023\n\013receiver_id\030\002 \001(\t\022\r\n\005titl" +
+      "e\030\003 \001(\t\022\017\n\007content\030\004 \001(\t\022\014\n\004time\030\005 \001(\003\022\n" +
+      "\n\002id\030\006 \001(\003\022\024\n\014temporary_id\030\007 \001(\005\"5\n\rNoti" +
+      "fications\022$\n\rnotifications\030\001 \003(\0132\r.Notif" +
+      "ication\"T\n\005Group\022\027\n\006course\030\001 \001(\0132\007.Cours" +
+      "e\022\030\n\010teachers\030\002 \001(\0132\006.Users\022\030\n\010students\030" +
+      "\003 \001(\0132\006.UsersB*\n\031com.example.demo.datagr" +
+      "amB\rDatagramProtob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -16988,7 +17030,7 @@ public final class DatagramProto {
     internal_static_DatagramVersion1_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_DatagramVersion1_descriptor,
-        new java.lang.String[] { "Type", "Subtype", "Token", "Ok", "Message", "Messages", "Login", "Course", "Courses", "Notification", "Notifications", "Register", "User", "Group", "Data", });
+        new java.lang.String[] { "Type", "Subtype", "Token", "Ok", "Message", "Login", "Course", "Courses", "Notification", "Register", "User", "Group", "Push", "Data", });
     internal_static_Login_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_Login_fieldAccessorTable = new
@@ -17042,7 +17084,7 @@ public final class DatagramProto {
     internal_static_Message_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Message_descriptor,
-        new java.lang.String[] { "SenderId", "ReceiverId", "Content", "Time", });
+        new java.lang.String[] { "SenderId", "ReceiverId", "Content", "Time", "Id", "TemporaryId", });
     internal_static_Messages_descriptor =
       getDescriptor().getMessageTypes().get(11);
     internal_static_Messages_fieldAccessorTable = new
@@ -17054,7 +17096,7 @@ public final class DatagramProto {
     internal_static_Notification_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Notification_descriptor,
-        new java.lang.String[] { "SenderId", "ReceiverId", "Title", "Content", "Time", });
+        new java.lang.String[] { "SenderId", "ReceiverId", "Title", "Content", "Time", "Id", "TemporaryId", });
     internal_static_Notifications_descriptor =
       getDescriptor().getMessageTypes().get(13);
     internal_static_Notifications_fieldAccessorTable = new

@@ -31,16 +31,15 @@ message DatagramVersion1 {
   int32 ok = 4;
   oneof data {
     Message message = 5;
-    Messages messages = 6;
     Login login = 7;
     Course course = 8;
     Courses courses = 9;
     Notification notification = 10;
-    Notifications notifications = 11;
     Register register = 12;
     User user = 13;
     Group group = 14;
   }
+  int64 push = 15;
 }
 
 message Login {
@@ -85,11 +84,11 @@ message User {
     MALE = 2;
   }
   Gender gender = 6;
-  enum UserType {
+  enum Identity {
     STUDENT = 0;
     TEACHER = 1;
   }
-  UserType type = 7;
+  Identity type = 7;
   oneof data {
     Student student = 8;
     Teacher teacher = 9;
@@ -104,7 +103,11 @@ message Users {
 message Register {
   string username = 1;
   string password = 2;
-  int32 identity = 3;
+  enum Identity {
+    STUDENT = 0;
+    TEACHER = 1;
+  }
+  Identity identity = 3;
 }
 
 message Message {
@@ -112,6 +115,8 @@ message Message {
   string receiver_id = 2;
   string content = 3;
   int64 time = 4;
+  int64 id = 5;
+  int32 temporary_id = 6;
 }
 
 message Messages {
@@ -124,6 +129,8 @@ message Notification {
   string title = 3;
   string content = 4;
   int64 time = 5;
+  int64 id = 6;
+  int32 temporary_id = 7;
 }
 
 message Notifications {

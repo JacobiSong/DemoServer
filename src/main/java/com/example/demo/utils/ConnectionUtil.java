@@ -15,6 +15,7 @@ public class ConnectionUtil {
     private static String password;
     private static Properties pros = new Properties();
     private static ThreadLocal<Connection> tl = new ThreadLocal<>();
+    private static ThreadLocal<Connection> tl1 = new ThreadLocal<>();
 
     static {
         InputStream in = ConnectionUtil.class.getClassLoader().getResourceAsStream("db.properties");
@@ -57,15 +58,27 @@ public class ConnectionUtil {
     }
 
     public static Connection getConn1() {
-        Connection conn = tl.get();
+        Connection conn = tl1.get();
         if (conn == null) {
             try {
                 conn = DriverManager.getConnection(url1, username, password);
-                tl.set(conn);
+                tl1.set(conn);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
         return conn;
+    }
+
+    public static void closeConn1() {
+        Connection conn = tl1.get();
+        if(conn != null){
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        tl1.set(null);
     }
 }

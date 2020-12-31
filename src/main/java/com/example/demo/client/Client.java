@@ -16,19 +16,23 @@ public class Client {
             bootstrap.group(eventExecutors).channel(NioSocketChannel.class).handler(new ClientInitializer());
             ChannelFuture channelFuture = bootstrap.connect("localhost", 8888).sync();
             Channel channel = channelFuture.channel();
-            System.out.println("---登录---");
             channel.writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
                     DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.LOGIN)
-                        .setSubtype(DatagramProto.DatagramVersion1.Subtype.REQUEST).setLogin(
-                                DatagramProto.Login.newBuilder().setUsername("testuser").setPassword("testuser")
-                            .setDbVersion(0).build()
+                        .setSubtype(DatagramProto.DatagramVersion1.Subtype.REQUEST).setLogin(DatagramProto.Login.newBuilder()
+                            .setUsername("teacher").setPassword("teacher").setDbVersion(0).build()
                     ).build().toByteString()
             ).build());
+            /*
+            channel.writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
+                    DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.LOGIN)
+                            .setSubtype(DatagramProto.DatagramVersion1.Subtype.REQUEST).setLogin(DatagramProto.Login.newBuilder()
+                            .setUsername("student").setPassword("student").setDbVersion(0).build()
+                    ).build().toByteString()
+            ).build());
+             */
             channel.closeFuture().sync();
         } finally {
             eventExecutors.shutdownGracefully();
         }
-        DatagramProto.Messages messages = DatagramProto.Messages.newBuilder().setMessages(0, DatagramProto.Message.newBuilder().setContent("")
-        .setReceiverId("").setSenderId("").setTime(41).build()).setMessages(1, DatagramProto.Message.newBuilder().build()).build();
     }
 }
