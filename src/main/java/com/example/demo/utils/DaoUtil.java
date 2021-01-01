@@ -1,6 +1,7 @@
 package com.example.demo.utils;
 
 import com.example.demo.datagram.DatagramProto;
+import com.example.demo.server.PushItem;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -285,7 +286,6 @@ public class DaoUtil {
                 if (rs.getLong(1) == time) {
                     return DatagramProto.User.newBuilder().build();
                 } else {
-                    ConnectionUtil.closeConn();
                     return findUserById(id);
                 }
             }
@@ -300,7 +300,7 @@ public class DaoUtil {
         return null;
     }
 
-    public static boolean insertUser(DatagramProto.Register register) {
+    public static DatagramProto.User insertUser(DatagramProto.Register register) {
         Connection conn = ConnectionUtil.getConn();
         Connection conn1 = ConnectionUtil.getConn1();
         String id = register.getUsername();
@@ -316,13 +316,15 @@ public class DaoUtil {
             ResultSet rs1 = ps1.executeQuery();
             if (rs1.next() && identity == rs1.getInt(1)) {
                 String name = rs1.getString(2);
-                sql = "insert into user (id, name, identity, password, last_modified) values (?, ?, ?, ?, ?)";
+                sql = "insert into user (id, name, identity, password, last_modified, create_time) values (?, ?, ?, ?, ?, ?)";
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ps.setString(1, id);
                 ps.setString(2, name);
                 ps.setInt(3, identity);
                 ps.setString(4, password);
-                ps.setLong(5, System.currentTimeMillis());
+                long time = System.currentTimeMillis();
+                ps.setLong(5, time);
+                ps.setLong(6, time);
                 if (ps.executeUpdate() == 1) {
                     ps.close();
                     switch (identity) {
@@ -343,7 +345,7 @@ public class DaoUtil {
                         default:
                             break;
                     }
-                    return true;
+                    return DatagramProto.User.newBuilder().setId(id).setName(name).setCreateTime(time).build();
                 }
                 ps.close();
             }
@@ -351,12 +353,12 @@ public class DaoUtil {
             rs1.close();
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
+            return null;
         } finally {
             ConnectionUtil.closeConn();
             ConnectionUtil.closeConn1();
         }
-        return false;
+        return null;
     }
 
     public static boolean updatePhoneById(String id, String phone) {
@@ -693,13 +695,18 @@ public class DaoUtil {
                 DatagramProto.Group.Builder groupBuilder = DatagramProto.Group.newBuilder().setCourse(courseBuilder.build());
                 ps.close();
                 rs.close();
-                sql = "select t_join.user_id, user.name from t_join inner join user on t_join.user_id = user.id where t_join.course_id = ?";
+                sql = "select user_id, name from t_join left join user on user_id = id where course_id = ?";
                 ps = conn.prepareStatement(sql);
                 ps.setString(1, id);
                 rs = ps.executeQuery();
                 DatagramProto.Users.Builder usersBuilder = DatagramProto.Users.newBuilder();
                 while (rs.next()) {
-                    usersBuilder.addUsers(DatagramProto.User.newBuilder().setId(rs.getString(1)).setName(rs.getString(2)).build());
+                    String name = rs.getString(2);
+                    if (name == null) {
+                        usersBuilder.addUsers(DatagramProto.User.newBuilder().setId(rs.getString(1)).build());
+                    } else {
+                        usersBuilder.addUsers(DatagramProto.User.newBuilder().setId(rs.getString(1)).setName(rs.getString(2)).build());
+                    }
                 }
                 groupBuilder.setUsers(usersBuilder.build());
                 ps.close();
@@ -737,8 +744,105 @@ public class DaoUtil {
         }
     }
 
-    public static void DbSynchronization(String id, String token, long dbversion) {
-        // TODO
+    public static void DbSynchronization(String id, String token, long dbVersion) {
+        Connection conn = ConnectionUtil.getConn();
+        String sql = "select id from course inner join t_join on course_id = id where user_id = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, id);
+            ResultSet rs = ps.executeQuery();
+            List<String> list = new ArrayList<>();
+            while (rs.next()) {
+                list.add(rs.getString(1));
+            }
+            ps.close();
+            rs.close();
+            if (list.size() == 0) {
+                return;
+            }
+            for (String courseId : list) {
+                sql = "select last_modified from course where id = ? and last_modified > ?";
+                ps = conn.prepareStatement(sql);
+                ps.setString(1, courseId);
+                ps.setLong(2, dbVersion);
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    sql = "insert into t_push (type, token, id1, time) values (?, ?, ?, ?)";
+                    PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                    preparedStatement.setInt(1, 4);
+                    preparedStatement.setString(2, token);
+                    preparedStatement.setString(3, courseId);
+                    preparedStatement.setLong(4, rs.getLong(1));
+                    preparedStatement.executeUpdate();
+                    preparedStatement.close();
+                }
+                ps.close();
+                rs.close();
+                sql = "select id, time from " + courseId + "_m where time > ?";
+                ps = conn.prepareStatement(sql);
+                ps.setLong(1, dbVersion);
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    sql = "insert into t_push (type, token, id1, id2, time) values (?, ?, ?, ?, ?)";
+                    PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                    preparedStatement.setInt(1, 1);
+                    preparedStatement.setString(2, token);
+                    preparedStatement.setString(3, courseId);
+                    preparedStatement.setLong(4, rs.getLong(1));
+                    preparedStatement.setLong(5, rs.getLong(2));
+                    preparedStatement.executeUpdate();
+                    preparedStatement.close();
+                }
+                ps.close();
+                rs.close();
+                sql = "select id, time from " + courseId + "_n where time > ?";
+                ps = conn.prepareStatement(sql);
+                ps.setLong(1, dbVersion);
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    sql = "insert into t_push (type, token, id1, id2, time) values (?, ?, ?, ?, ?)";
+                    PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                    preparedStatement.setInt(1, 2);
+                    preparedStatement.setString(2, token);
+                    preparedStatement.setString(3, courseId);
+                    preparedStatement.setLong(4, rs.getLong(1));
+                    preparedStatement.setLong(5, rs.getLong(2));
+                    preparedStatement.executeUpdate();
+                    preparedStatement.close();
+                }
+                ps.close();
+                rs.close();
+            }
+            StringBuilder stringBuilder = new StringBuilder("select id, create_time from user inner join t_join on id = user_id " +
+                    "where create_time > ? and course_id in (");
+            int size = list.size();
+            stringBuilder.append("?, ".repeat(Math.max(0, size - 1)));
+            stringBuilder.append("?");
+            stringBuilder.append(") group by id");
+            System.out.println(stringBuilder.toString());
+            ps = conn.prepareStatement(stringBuilder.toString());
+            ps.setLong(1, dbVersion);
+            for (int i = 1; i <= size; i++) {
+                ps.setString(i + 1, list.get(i));
+            }
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                sql = "insert into t_push (type, token, id1, time) values (?, ?, ?, ?)";
+                PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                preparedStatement.setInt(1, 3);
+                preparedStatement.setString(2, token);
+                preparedStatement.setString(3, rs.getString(1));
+                preparedStatement.setLong(4, rs.getLong(2));
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionUtil.closeConn();
+        }
     }
 
     public static DatagramProto.Notification insertNotification(DatagramProto.Notification notification) {
@@ -811,7 +915,7 @@ public class DaoUtil {
         return null;
     }
 
-    public static long insertPushItem(String token, int type, long last_modified, String id1) {
+    public static void insertPushItem(String token, int type, long time, String id1) {
         Connection conn = ConnectionUtil.getConn();
         String sql = "insert into t_push (token, type, id1, time) values (?, ?, ?, ?)";
         try {
@@ -819,25 +923,24 @@ public class DaoUtil {
             ps.setString(1, token);
             ps.setInt(2, type);
             ps.setString(3, id1);
-            ps.setLong(4, last_modified);
+            ps.setLong(4, time);
             if (ps.executeUpdate() == 1) {
                 ResultSet rs = ps.getGeneratedKeys();
                 if (rs.next()) {
-                    return rs.getLong(1);
+                    rs.getLong(1);
+                    return;
                 }
                 rs.close();
             }
             ps.close();
         } catch (SQLException e) {
             e.printStackTrace();
-            return 0;
         } finally {
             ConnectionUtil.closeConn();
         }
-        return 0;
     }
 
-    public static long insertPushItem(String token, int type, long last_modified, String id1, long id2) {
+    public static void insertPushItem(String token, int type, long time, String id1, long id2) {
         Connection conn = ConnectionUtil.getConn();
         String sql = "insert into t_push (token, type, id1, id2, time) values (?, ?, ?, ?, ?)";
         try {
@@ -846,22 +949,21 @@ public class DaoUtil {
             ps.setInt(2, type);
             ps.setString(3, id1);
             ps.setLong(4, id2);
-            ps.setLong(5, last_modified);
+            ps.setLong(5, time);
             if (ps.executeUpdate() == 1) {
                 ResultSet rs = ps.getGeneratedKeys();
                 if (rs.next()) {
-                    return rs.getLong(1);
+                    rs.getLong(1);
+                    return;
                 }
                 rs.close();
             }
             ps.close();
         } catch (SQLException e) {
             e.printStackTrace();
-            return 0;
         } finally {
             ConnectionUtil.closeConn();
         }
-        return 0;
     }
 
     public static void deletePushItem(long pushId) {
@@ -914,7 +1016,7 @@ public class DaoUtil {
 
     public static DatagramProto.User findUserByIdSimply(String userId) {
         Connection conn = ConnectionUtil.getConn();
-        String sql = "select last_modified, name from user where id = ?";
+        String sql = "select create_time, name from user where id = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, userId);
@@ -923,10 +1025,73 @@ public class DaoUtil {
                 ps.close();
                 rs.close();
                 return DatagramProto.User.newBuilder().setId(userId).setName(rs.getString(2))
-                        .setLastModified(rs.getLong(1)).build();
+                        .setCreateTime(rs.getLong(1)).build();
             }
             ps.close();
             rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            ConnectionUtil.closeConn();
+        }
+        return null;
+    }
+
+    public static PushItem findPushItemByToken(String token) {
+        Connection conn = ConnectionUtil.getConn();
+        String sql = "select id, type, id1, id2 from t_push where token = ? order by time limit 1";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, token);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return new PushItem(token, rs.getLong(1), rs.getInt(2), rs.getString(3),
+                        rs.getLong(4));
+            }
+            return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            ConnectionUtil.closeConn();
+        }
+    }
+
+    public static DatagramProto.Message findMessageById(String courseId, long messageId) {
+        Connection conn = ConnectionUtil.getConn();
+        String sql = "select sender_id, receiver_id, content, time, temporary_id from " + courseId + "_m where id = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setLong(1, messageId);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return DatagramProto.Message.newBuilder().setId(messageId).setSenderId(rs.getString(1))
+                        .setReceiverId(rs.getString(2)).setContent(rs.getString(3))
+                        .setTime(rs.getLong(4)).setTemporaryId(rs.getInt(5)).build();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            ConnectionUtil.closeConn();
+        }
+        return null;
+    }
+
+    public static DatagramProto.Notification findNotificationById(String courseId, long notificationId) {
+        Connection conn = ConnectionUtil.getConn();
+        String sql = "select sender_id, receiver_id, title, content, time, temporary_id from " + courseId + "_n where id = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setLong(1, notificationId);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return DatagramProto.Notification.newBuilder().setId(notificationId).setSenderId(rs.getString(1))
+                        .setReceiverId(rs.getString(2)).setTitle(rs.getString(3))
+                        .setContent(rs.getString(4)).setTime(rs.getLong(5))
+                        .setTemporaryId(rs.getInt(6)).build();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

@@ -94,6 +94,7 @@ message User {
     Teacher teacher = 9;
   }
   int64 last_modified = 10;
+  int64 create_time = 11;
 }
 
 message Users {

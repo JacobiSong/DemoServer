@@ -59,9 +59,8 @@ public class ClientHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                         token = msg.getToken();
                         System.out.println("---登录成功---");
                         ctx.channel().writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
-                                DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.COURSE)
-                                .setToken(token).setOk(100).setSubtype(DatagramProto.DatagramVersion1.Subtype.REQUEST)
-                                .build().toByteString()
+                                DatagramProto.DatagramVersion1.newBuilder().setSubtype(DatagramProto.DatagramVersion1.Subtype.REQUEST)
+                                .setToken(token).setOk(100).setType(DatagramProto.DatagramVersion1.Type.LOGOUT).build().toByteString()
                         ).build());
                         // TODO : 通知UI线程登录成功
                         break;

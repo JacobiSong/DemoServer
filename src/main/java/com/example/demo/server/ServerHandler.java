@@ -20,10 +20,92 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Datagram> {
     // 线程安全的连接池, 保存当前所有与服务器建立的连接, 连接建立时需要手动添加, 连接关闭时会自动移除
     private static final ChannelGroup channels = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
+    private static final ThreadPoolExecutor threadPoolExecutor =  new ThreadPoolExecutor(0,
+            10000, 15, TimeUnit.SECONDS, new SynchronousQueue<>());
+
+    private static class PushTask implements Runnable {
+        private final String token;
+        private final ChannelId channelId;
+        public PushTask(String token, ChannelId channelId) {
+            this.token = token;
+            this.channelId = channelId;
+        }
+
+        @Override
+        public void run() {
+            while (true) {
+                PushItem pushItem = DaoUtil.findPushItemByToken(token);
+                if (pushItem == null) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                        continue;
+                    }
+                    continue;
+                }
+                Channel channel = channels.find(channelId);
+                if (channel != null) {
+                    switch (pushItem.getType()) {
+                        case 1:
+                            DatagramProto.Message message = DaoUtil.findMessageById(pushItem.getId1(), pushItem.getId2());
+                            if (message != null) {
+                                channel.writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
+                                        DatagramProto.DatagramVersion1.newBuilder().setToken(token).setPush(pushItem.getId())
+                                                .setOk(100).setSubtype(DatagramProto.DatagramVersion1.Subtype.PUSH)
+                                                .setType(DatagramProto.DatagramVersion1.Type.MESSAGE)
+                                                .setMessage(message).build().toByteString()
+                                ).build());
+                            }
+                            break;
+                        case 2:
+                            DatagramProto.Notification notification = DaoUtil.findNotificationById(pushItem.getId1(), pushItem.getId2());
+                            if (notification != null) {
+                                channel.writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
+                                        DatagramProto.DatagramVersion1.newBuilder().setToken(token).setPush(pushItem.getId())
+                                                .setOk(100).setSubtype(DatagramProto.DatagramVersion1.Subtype.PUSH)
+                                                .setType(DatagramProto.DatagramVersion1.Type.NOTIFICATION)
+                                                .setNotification(notification).build().toByteString()
+                                ).build());
+                            }
+                            break;
+                        case 3:
+                            DatagramProto.User user = DaoUtil.findUserByIdSimply(pushItem.getId1());
+                            if (user != null) {
+                                channel.writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
+                                        DatagramProto.DatagramVersion1.newBuilder().setToken(token).setPush(pushItem.getId())
+                                                .setOk(100).setSubtype(DatagramProto.DatagramVersion1.Subtype.PUSH)
+                                                .setType(DatagramProto.DatagramVersion1.Type.USER)
+                                                .setUser(user).build().toByteString()
+                                ).build());
+                            }
+                            break;
+                        case 4:
+                            DatagramProto.Group group = DaoUtil.findGroupById(pushItem.getId1());
+                            if (group != null) {
+                                channel.writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
+                                        DatagramProto.DatagramVersion1.newBuilder().setToken(token).setPush(pushItem.getId())
+                                                .setOk(100).setSubtype(DatagramProto.DatagramVersion1.Subtype.PUSH)
+                                                .setType(DatagramProto.DatagramVersion1.Type.GROUP)
+                                                .setGroup(group).build().toByteString()
+                                ).build());
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+
+                }
+            }
+        }
+    }
 
     /*
      * token池, 保存所有连接的token
@@ -33,9 +115,11 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
         INSTANCE;
         private final BiMap<String, String> token2Id;
         private final BiMap<String, ChannelId> id2ChannelId;
+        private final BiMap<String, PushTask> token2PushTask;
         TokenPool() {
             token2Id = HashBiMap.create();
             id2ChannelId = HashBiMap.create();
+            token2PushTask = HashBiMap.create();
         }
 
         /**
@@ -45,8 +129,13 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
          * @param channelId 对应的连接id
          */
         public void insert(String token, String id, ChannelId channelId) {
+            if (token2Id.containsKey(token)) {
+                threadPoolExecutor.remove(token2PushTask.get(token));
+                token2PushTask.remove(token);
+            }
             token2Id.forcePut(token, id);
             id2ChannelId.forcePut(id, channelId);
+            token2PushTask.forcePut(token, new PushTask(token, channelId));
         }
 
         /**
@@ -115,6 +204,10 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
             String id = id2ChannelId.inverse().getOrDefault(channelId, null);
             return token2Id.inverse().getOrDefault(id, null);
         }
+
+        public PushTask findPushTaskByToken(String token) {
+            return token2PushTask.getOrDefault(token, null);
+        }
     }
 
     @Override
@@ -166,12 +259,12 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                     try { // 生成token
                         final String token = Arrays.toString(MessageDigest.getInstance("md5").digest(UUId.getInstance().getUniqID().getBytes()));
                         TokenPool.INSTANCE.insert(token, username, ctx.channel().id());
-                        // 发送Response报文, 返回token和正确码100
+                        DaoUtil.DbSynchronization(username, token, message.getDbVersion());
                         ctx.channel().writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
                                 DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.LOGIN)
                                         .setSubtype(DatagramProto.DatagramVersion1.Subtype.RESPONSE).setOk(100).setToken(token).build().toByteString()
                         ).build());
-                        DaoUtil.DbSynchronization(username, token, message.getDbVersion());
+                        threadPoolExecutor.execute(TokenPool.INSTANCE.findPushTaskByToken(token));
                     } catch (NoSuchAlgorithmException e) {
                         e.printStackTrace();
                         break;
@@ -240,17 +333,8 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                                         token = TokenPool.INSTANCE.findTokenById(userId);
                                         ChannelId channelId = TokenPool.INSTANCE.findChannelIdById(userId);
                                         if (token != null && channelId != null) { // 如果群中某成员在线, 则推送课程群群
-                                            Channel channel = channels.find(channelId);
-                                            if (channel != null) {
                                                 // 在数据库中添加推送条目
-                                                long push = DaoUtil.insertPushItem(token, 4, time, courseId);
-                                                channel.writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
-                                                        DatagramProto.DatagramVersion1.newBuilder().setToken(token).setOk(100)
-                                                                .setType(DatagramProto.DatagramVersion1.Type.COURSE)
-                                                                .setSubtype(DatagramProto.DatagramVersion1.Subtype.PUSH)
-                                                                .setGroup(group).setPush(push).build().toByteString()
-                                                ).build());
-                                            }
+                                            DaoUtil.insertPushItem(token, 4, time, courseId);
                                         }
                                     }
                                 }
@@ -278,39 +362,36 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                             DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.REGISTER)
                                     .setSubtype(DatagramProto.DatagramVersion1.Subtype.RESPONSE).setOk(200).build().toByteString()
                     ).build());
-                } else if (DaoUtil.insertUser(msg.getRegister())){ // 注册成功
-                    // 发送Response报文, 返回正确码100
-                    ctx.channel().writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
-                            DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.REGISTER)
-                                    .setOk(100).setSubtype(DatagramProto.DatagramVersion1.Subtype.RESPONSE).build().toByteString()
-                    ).build());
-                    // 新用户推送
-                    for (String courseId : DaoUtil.findGroupIdsByUserId(id)) {
-                        for (String userId : DaoUtil.findUserIdsByGroupId(courseId)) {
-                            String token = TokenPool.INSTANCE.findTokenById(userId);
-                            ChannelId channelId = TokenPool.INSTANCE.findChannelIdById(userId);
-                            if (token != null && channelId != null) { // 如果群中某成员在线, 则推送课程群群
-                                Channel channel = channels.find(channelId);
-                                if (channel != null) {
-                                    // 在数据库中添加推送条目
-                                    DatagramProto.User user = DaoUtil.findUserByIdSimply(userId);
-                                    long push = DaoUtil.insertPushItem(token, 3, user.getLastModified(), userId);
-                                    channel.writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
-                                            DatagramProto.DatagramVersion1.newBuilder().setToken(token).setOk(100)
-                                                    .setType(DatagramProto.DatagramVersion1.Type.USER)
-                                                    .setSubtype(DatagramProto.DatagramVersion1.Subtype.PUSH)
-                                                    .setUser(user).setPush(push).build().toByteString()
-                                    ).build());
+                } else {
+                    DatagramProto.User user = DaoUtil.insertUser(msg.getRegister());
+                    if (user != null) { // 注册成功
+                        // 发送Response报文, 返回正确码100
+                        ctx.channel().writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
+                                DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.REGISTER)
+                                        .setOk(100).setSubtype(DatagramProto.DatagramVersion1.Subtype.RESPONSE).build().toByteString()
+                        ).build());
+                        // 新用户推送
+                        for (String courseId : DaoUtil.findGroupIdsByUserId(id)) {
+                            for (String userId : DaoUtil.findUserIdsByGroupId(courseId)) {
+                                String token = TokenPool.INSTANCE.findTokenById(userId);
+                                ChannelId channelId = TokenPool.INSTANCE.findChannelIdById(userId);
+                                if (token != null && channelId != null) { // 如果群中某成员在线, 则推送新用户
+                                    Channel channel = channels.find(channelId);
+                                    if (channel != null) {
+                                        // 在数据库中添加推送条目
+                                        DaoUtil.insertPushItem(token, 3, user.getCreateTime(), userId);
+                                    }
                                 }
                             }
                         }
                     }
-                } else { // 注册失败, 可能是身份与学工号不对应, 或学校数据库中查无此人, 或其他原因
-                    // 发送Response报文, 返回错误码201
-                    ctx.channel().writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
-                            DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.REGISTER)
-                                    .setSubtype(DatagramProto.DatagramVersion1.Subtype.RESPONSE).setOk(201).build().toByteString()
-                    ).build());
+                    else { // 注册失败, 可能是身份与学工号不对应, 或学校数据库中查无此人, 或其他原因
+                        // 发送Response报文, 返回错误码201
+                        ctx.channel().writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
+                                DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.REGISTER)
+                                        .setSubtype(DatagramProto.DatagramVersion1.Subtype.RESPONSE).setOk(201).build().toByteString()
+                        ).build());
+                    }
                 }
                 break;
             }
@@ -545,16 +626,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                         String token = TokenPool.INSTANCE.findTokenById(userId);
                         ChannelId channelId = TokenPool.INSTANCE.findChannelIdById(userId);
                         if (token != null && channelId != null) { // 如果群中某成员在线, 则推送消息
-                            Channel channel = channels.find(channelId);
-                            if (channel != null) {
-                                // 在数据库中添加推送条目
-                                long push = DaoUtil.insertPushItem(token, 1, time, rId, mId);
-                                channel.writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
-                                        DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.MESSAGE)
-                                                .setSubtype(DatagramProto.DatagramVersion1.Subtype.PUSH).setToken(token).setOk(100)
-                                                .setMessage(message).setPush(push).build().toByteString()
-                                ).build());
-                            }
+                            DaoUtil.insertPushItem(token, 1, time, rId, mId);
                         }
                     }
                 } else { // 因未知原因发送失败
@@ -587,17 +659,9 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                     for (String userId : list) { // 循环其余所有的用户
                         String token = TokenPool.INSTANCE.findTokenById(userId);
                         ChannelId channelId = TokenPool.INSTANCE.findChannelIdById(userId);
-                        if (token != null && channelId != null) { // 如果群中某成员在线, 则推送消息
-                            Channel channel = channels.find(channelId);
-                            if (channel != null) {
-                                // 在数据库中添加推送条目
-                                long push = DaoUtil.insertPushItem(token, 2, time, rId, nId);
-                                channel.writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
-                                        DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.MESSAGE)
-                                                .setSubtype(DatagramProto.DatagramVersion1.Subtype.PUSH).setToken(token).setOk(100)
-                                                .setNotification(notification).setPush(push).build().toByteString()
-                                ).build());
-                            }
+                        if (token != null && channelId != null) { // 如果群中某成员在线
+                            // 在数据库中添加推送条目
+                            DaoUtil.insertPushItem(token, 2, time, rId, nId);
                         }
                     }
                 }
@@ -624,9 +688,40 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
     }
 
     @Override
-    public void handlerAdded(ChannelHandlerContext ctx) {
+    public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
         // 连接建立时, 向连接池中添加该连接
         channels.add(ctx.channel());
+        super.handlerAdded(ctx);
+    }
+
+    @Override
+    public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
+        String token = TokenPool.INSTANCE.findTokenByChannelId(ctx.channel().id());
+        if (token != null) {
+            TokenPool.INSTANCE.remove(ctx.channel().id());
+            DaoUtil.deletePushItemByToken(token);
+        }
+        super.handlerRemoved(ctx);
+    }
+
+    @Override
+    public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
+        super.channelRegistered(ctx);
+    }
+
+    @Override
+    public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
+        super.channelUnregistered(ctx);
+    }
+
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        super.channelActive(ctx);
+    }
+
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        super.channelInactive(ctx);
     }
 
     @Override
@@ -634,9 +729,6 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
         if (evt instanceof IdleStateEvent) {
             IdleStateEvent idleStateEvent = (IdleStateEvent)evt;
             if (idleStateEvent.state() == IdleState.WRITER_IDLE) { // 一段时间内服务器没有向客户端发送数据, 则关闭连接
-                String token = TokenPool.INSTANCE.findTokenByChannelId(ctx.channel().id());
-                DaoUtil.deletePushItemByToken(token);
-                TokenPool.INSTANCE.remove(ctx.channel().id());
                 ctx.close();
             }
         }
@@ -646,9 +738,6 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         cause.printStackTrace();
         // 出现异常, 连接关闭
-        String token = TokenPool.INSTANCE.findTokenByChannelId(ctx.channel().id());
-        DaoUtil.deletePushItemByToken(token);
-        TokenPool.INSTANCE.remove(ctx.channel().id());
         ctx.close();
     }
 }
