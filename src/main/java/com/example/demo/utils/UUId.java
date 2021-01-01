@@ -10,13 +10,9 @@ import java.util.Date;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
 
-/**
- * @ClassName: UniqId
- * @Description: 生成32位全局唯一id
- */
 public class UUId {
 
-    private static UUId me = new UUId();
+    private static final UUId me = new UUId();
     private String hostAddr;
     private final Random random = new SecureRandom();
     private final UniqTimer timer = new UniqTimer();
@@ -55,17 +51,6 @@ public class UUId {
         me.isOutputInfo = false;
         return me;
     }
-
-    /**
-     * 获取UniqID实例
-     *
-     * @return UniqId
-     */
-    public static UUId getInstanceWithLog() {
-        me.isOutputInfo = true;
-        return me;
-    }
-
 
     /**
      * 获得不会重复的毫秒数
@@ -124,8 +109,8 @@ public class UUId {
 
     /**
      * 规范化日期，规范成yyyy-MM-dd
-     * @param timestamp
-     * @return
+     * @param timestamp 时间戳
+     * @return 规范化后的日期
      */
     public static String timestamp2Date(long timestamp){
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

@@ -1046,7 +1046,7 @@ public class DaoUtil {
             ps.setString(1, token);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                return new PushItem(token, rs.getLong(1), rs.getInt(2), rs.getString(3),
+                return new PushItem(rs.getLong(1), rs.getInt(2), rs.getString(3),
                         rs.getLong(4));
             }
             return null;

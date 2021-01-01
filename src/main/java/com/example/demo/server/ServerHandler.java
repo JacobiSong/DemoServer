@@ -31,24 +31,23 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
             10000, 15, TimeUnit.SECONDS, new SynchronousQueue<>());
 
     private static class PushTask implements Runnable {
+
         private final String token;
         private final ChannelId channelId;
-        public PushTask(String token, ChannelId channelId) {
+        private final PushResource resource;
+
+        public PushTask(String token, ChannelId channelId, PushResource resource) {
             this.token = token;
             this.channelId = channelId;
+            this.resource = resource;
         }
 
         @Override
         public void run() {
             while (true) {
+                resource.get();
                 PushItem pushItem = DaoUtil.findPushItemByToken(token);
                 if (pushItem == null) {
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                        continue;
-                    }
                     continue;
                 }
                 Channel channel = channels.find(channelId);
@@ -101,7 +100,6 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                         default:
                             break;
                     }
-
                 }
             }
         }
@@ -116,10 +114,12 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
         private final BiMap<String, String> token2Id;
         private final BiMap<String, ChannelId> id2ChannelId;
         private final BiMap<String, PushTask> token2PushTask;
+        private final BiMap<String, PushResource> token2PushResource;
         TokenPool() {
             token2Id = HashBiMap.create();
             id2ChannelId = HashBiMap.create();
             token2PushTask = HashBiMap.create();
+            token2PushResource = HashBiMap.create();
         }
 
         /**
@@ -131,11 +131,12 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
         public void insert(String token, String id, ChannelId channelId) {
             if (token2Id.containsKey(token)) {
                 threadPoolExecutor.remove(token2PushTask.get(token));
-                token2PushTask.remove(token);
             }
             token2Id.forcePut(token, id);
             id2ChannelId.forcePut(id, channelId);
-            token2PushTask.forcePut(token, new PushTask(token, channelId));
+            PushResource resource = new PushResource();
+            token2PushTask.forcePut(token, new PushTask(token, channelId, resource));
+            token2PushResource.forcePut(token, resource);
         }
 
         /**
@@ -144,8 +145,11 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
          */
         public void remove(String token) {
             if (token2Id.containsKey(token)) {
+                threadPoolExecutor.remove(token2PushTask.get(token));
                 id2ChannelId.remove(token2Id.get(token));
                 token2Id.remove(token);
+                token2PushResource.remove(token);
+                token2PushTask.remove(token);
             }
         }
 
@@ -154,9 +158,13 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
          * @param channelId 要删除的连接id
          */
         public void remove(ChannelId channelId) {
-            if (id2ChannelId.containsValue(channelId)) {
-                token2Id.inverse().remove(id2ChannelId.inverse().get(channelId));
-                id2ChannelId.inverse().remove(channelId);
+            String token = token2Id.inverse().getOrDefault(id2ChannelId.inverse().getOrDefault(channelId, null), null);
+            if (token != null) {
+                threadPoolExecutor.remove(token2PushTask.get(token));
+                id2ChannelId.remove(token2Id.get(token));
+                token2Id.remove(token);
+                token2PushResource.remove(token);
+                token2PushTask.remove(token);
             }
         }
 
@@ -207,6 +215,10 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
 
         public PushTask findPushTaskByToken(String token) {
             return token2PushTask.getOrDefault(token, null);
+        }
+
+        public PushResource findPushResourceByToken(String token) {
+            return token2PushResource.getOrDefault(token, null);
         }
     }
 
@@ -286,8 +298,6 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                         DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.LOGOUT)
                                 .setSubtype(DatagramProto.DatagramVersion1.Subtype.RESPONSE).setOk(100).setToken(token).build().toByteString()
                 ).build());
-                DaoUtil.deletePushItemByToken(token);
-                TokenPool.INSTANCE.remove(token);
                 ctx.close();
                 break;
             }
@@ -335,6 +345,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                                         if (token != null && channelId != null) { // 如果群中某成员在线, 则推送课程群群
                                                 // 在数据库中添加推送条目
                                             DaoUtil.insertPushItem(token, 4, time, courseId);
+                                            TokenPool.INSTANCE.findPushResourceByToken(token).put();
                                         }
                                     }
                                 }
@@ -380,6 +391,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                                     if (channel != null) {
                                         // 在数据库中添加推送条目
                                         DaoUtil.insertPushItem(token, 3, user.getCreateTime(), userId);
+                                        TokenPool.INSTANCE.findPushResourceByToken(token).put();
                                     }
                                 }
                             }
@@ -627,6 +639,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                         ChannelId channelId = TokenPool.INSTANCE.findChannelIdById(userId);
                         if (token != null && channelId != null) { // 如果群中某成员在线, 则推送消息
                             DaoUtil.insertPushItem(token, 1, time, rId, mId);
+                            TokenPool.INSTANCE.findPushResourceByToken(token).put();
                         }
                     }
                 } else { // 因未知原因发送失败
@@ -662,6 +675,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                         if (token != null && channelId != null) { // 如果群中某成员在线
                             // 在数据库中添加推送条目
                             DaoUtil.insertPushItem(token, 2, time, rId, nId);
+                            TokenPool.INSTANCE.findPushResourceByToken(token).put();
                         }
                     }
                 }
@@ -685,6 +699,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
      */
     private void version1ACK(DatagramProto.DatagramVersion1 msg) {
         DaoUtil.deletePushItem(msg.getPush());
+        TokenPool.INSTANCE.findPushResourceByToken(msg.getToken()).put();
     }
 
     @Override
