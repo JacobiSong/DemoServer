@@ -53,7 +53,7 @@ message Course {
   string name = 2;
   string classroom = 3;
   string time = 4;
-  int32 semester = 5;
+  string semester = 5;
   string remarks = 6;
   int64 last_modified = 7;
 }

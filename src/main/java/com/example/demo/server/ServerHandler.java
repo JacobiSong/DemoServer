@@ -18,7 +18,6 @@ import io.netty.util.concurrent.GlobalEventExecutor;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -43,6 +42,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
         }
 
         @Override
+        @SuppressWarnings("InfiniteLoopStatement")
         public void run() {
             while (true) {
                 resource.get();
@@ -269,7 +269,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                 String password = message.getPassword();
                 if (DaoUtil.loginCheck(username, password)) { // 密码正确
                     try { // 生成token
-                        final String token = Arrays.toString(MessageDigest.getInstance("md5").digest(UUId.getInstance().getUniqID().getBytes()));
+                        final String token = MessageDigest.getInstance("md5").digest(UUId.getInstance().getUniqID().getBytes()).toString();
                         TokenPool.INSTANCE.insert(token, username, ctx.channel().id());
                         DaoUtil.DbSynchronization(username, token, message.getDbVersion());
                         ctx.channel().writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
@@ -277,15 +277,16 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                                         .setSubtype(DatagramProto.DatagramVersion1.Subtype.RESPONSE).setOk(100).setToken(token).build().toByteString()
                         ).build());
                         threadPoolExecutor.execute(TokenPool.INSTANCE.findPushTaskByToken(token));
+                        TokenPool.INSTANCE.findPushResourceByToken(token).put();
                     } catch (NoSuchAlgorithmException e) {
                         e.printStackTrace();
                         break;
                     }
-                } else { // 密码错误
+                } else { // 账号或密码错误
                     // 发送Response报文, 返回错误码200
                     ctx.channel().writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
                             DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.LOGIN)
-                                    .setSubtype(DatagramProto.DatagramVersion1.Subtype.RESPONSE).setOk(201).build().toByteString()
+                                    .setSubtype(DatagramProto.DatagramVersion1.Subtype.RESPONSE).setOk(200).build().toByteString()
                     ).build());
                 }
                 break;
@@ -321,11 +322,12 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                         }
                         case 101: { // 添加课程群请求
                             String courseId = msg.getCourse().getId();
-                            if (DaoUtil.hasGroupId(id)) { // 该群已经被创建了
+                            if (DaoUtil.hasGroupId(courseId)) { // 该群已经被创建了
                                 // 发送Response报文, 返回错误码200
                                 ctx.channel().writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
                                         DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.COURSE)
-                                                .setSubtype(DatagramProto.DatagramVersion1.Subtype.RESPONSE).setOk(200).build().toByteString()
+                                                .setSubtype(DatagramProto.DatagramVersion1.Subtype.RESPONSE)
+                                                .setToken(token).setOk(200).build().toByteString()
                                 ).build());
                             } else if (DaoUtil.insertGroup(id, courseId)) { // 添加成功
                                 // 发送Response报文, 返回正确码101
@@ -353,7 +355,8 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                                 // 发送Response报文, 返回错误码201
                                 ctx.channel().writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
                                         DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.COURSE)
-                                                .setSubtype(DatagramProto.DatagramVersion1.Subtype.RESPONSE).setOk(201).build().toByteString()
+                                                .setSubtype(DatagramProto.DatagramVersion1.Subtype.RESPONSE).setOk(201)
+                                                .setToken(token).build().toByteString()
                                 ).build());
                             }
                             break;
@@ -382,6 +385,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                                         .setOk(100).setSubtype(DatagramProto.DatagramVersion1.Subtype.RESPONSE).build().toByteString()
                         ).build());
                         // 新用户推送
+                        long time = user.getCreateTime();
                         for (String courseId : DaoUtil.findGroupIdsByUserId(id)) {
                             for (String userId : DaoUtil.findUserIdsByGroupId(courseId)) {
                                 String token = TokenPool.INSTANCE.findTokenById(userId);
@@ -390,14 +394,14 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                                     Channel channel = channels.find(channelId);
                                     if (channel != null) {
                                         // 在数据库中添加推送条目
-                                        DaoUtil.insertPushItem(token, 3, user.getCreateTime(), userId);
+                                        DaoUtil.insertPushItem(token, 3, time, id);
                                         TokenPool.INSTANCE.findPushResourceByToken(token).put();
                                     }
                                 }
                             }
                         }
                     }
-                    else { // 注册失败, 可能是身份与学工号不对应, 或学校数据库中查无此人, 或其他原因
+                    else { // 注册失败
                         // 发送Response报文, 返回错误码201
                         ctx.channel().writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
                                 DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.REGISTER)
@@ -415,6 +419,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                         DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.KEEP_ALIVE)
                                 .setSubtype(DatagramProto.DatagramVersion1.Subtype.RESPONSE).setOk(100).setToken(token).build().toByteString()
                 ).build());
+                TokenPool.INSTANCE.findPushResourceByToken(token).put();
                 break;
             }
             // 用户资料相关请求
@@ -423,7 +428,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                 final String id = TokenPool.INSTANCE.findIdByToken(token);
                 final String userId = msg.getUser().getId();
                 final long time = msg.getUser().getLastModified();
-                if (!userId.isEmpty() && !userId.equals(id)) { // 查询用户信息
+                if (!userId.isEmpty()) { // 查询用户信息
                     DatagramProto.User user = DaoUtil.findUserById(userId, time);
                     if (user != null) { // 用户存在
                         if (user.getId().isEmpty()) { // 无需更新
@@ -637,7 +642,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                     for (String userId : list) {
                         String token = TokenPool.INSTANCE.findTokenById(userId);
                         ChannelId channelId = TokenPool.INSTANCE.findChannelIdById(userId);
-                        if (token != null && channelId != null) { // 如果群中某成员在线, 则推送消息
+                        if (token != null && channelId != null) {
                             DaoUtil.insertPushItem(token, 1, time, rId, mId);
                             TokenPool.INSTANCE.findPushResourceByToken(token).put();
                         }
@@ -668,8 +673,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                     ).build());
                     // 通知推送
                     List<String> list = DaoUtil.findUserIdsByGroupId(notification.getReceiverId());
-                    list.remove(notification.getSenderId()); // 移除发送者
-                    for (String userId : list) { // 循环其余所有的用户
+                    for (String userId : list) {
                         String token = TokenPool.INSTANCE.findTokenById(userId);
                         ChannelId channelId = TokenPool.INSTANCE.findChannelIdById(userId);
                         if (token != null && channelId != null) { // 如果群中某成员在线
@@ -698,8 +702,10 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
      * 处理客户发来的版本1的Ack应答
      */
     private void version1ACK(DatagramProto.DatagramVersion1 msg) {
-        DaoUtil.deletePushItem(msg.getPush());
-        TokenPool.INSTANCE.findPushResourceByToken(msg.getToken()).put();
+        if (msg.getOk() == 100) {
+            DaoUtil.deletePushItem(msg.getPush());
+            TokenPool.INSTANCE.findPushResourceByToken(msg.getToken()).put();
+        }
     }
 
     @Override
@@ -717,26 +723,6 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
             DaoUtil.deletePushItemByToken(token);
         }
         super.handlerRemoved(ctx);
-    }
-
-    @Override
-    public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
-        super.channelRegistered(ctx);
-    }
-
-    @Override
-    public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
-        super.channelUnregistered(ctx);
-    }
-
-    @Override
-    public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        super.channelActive(ctx);
-    }
-
-    @Override
-    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        super.channelInactive(ctx);
     }
 
     @Override
