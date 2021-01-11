@@ -18,6 +18,7 @@ import io.netty.util.concurrent.GlobalEventExecutor;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.List;
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -267,9 +268,16 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                 DatagramProto.Login message = msg.getLogin();
                 String username = message.getUsername();
                 String password = message.getPassword();
-                if (DaoUtil.loginCheck(username, password)) { // 密码正确
+                if (!DaoUtil.loginCheck(username, password)) { // 账号或密码错误
+                    // 发送Response报文, 返回错误码200
+                    ctx.channel().writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
+                            DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.LOGIN)
+                                    .setSubtype(DatagramProto.DatagramVersion1.Subtype.RESPONSE).setOk(200).build().toByteString()
+                    ).build());
+                } else if (message.getIdentity() == 1 && DaoUtil.teacherCheck(username) ||
+                        message.getIdentity() == 0 && DaoUtil.studentCheck(username)) {
                     try { // 生成token
-                        final String token = MessageDigest.getInstance("md5").digest(UUId.getInstance().getUniqID().getBytes()).toString();
+                        final String token = Base64.getEncoder().encodeToString(MessageDigest.getInstance("md5").digest(UUId.getInstance().getUniqID().getBytes()));
                         TokenPool.INSTANCE.insert(token, username, ctx.channel().id());
                         DaoUtil.DbSynchronization(username, token, message.getDbVersion());
                         ctx.channel().writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
@@ -282,7 +290,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                         e.printStackTrace();
                         break;
                     }
-                } else { // 账号或密码错误
+                } else { // 身份错误
                     // 发送Response报文, 返回错误码200
                     ctx.channel().writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
                             DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.LOGIN)
@@ -464,7 +472,6 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                                                 .build().toByteString()
                                 ).build());
                             } else { // 未知原因修改失败
-                                System.out.println(201);
                                 // 发送Response报文, 返回错误代码201
                                 ctx.channel().writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
                                         DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.USER)
@@ -634,7 +641,8 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                     // 发送Response报文, 返回正确码100
                     ctx.channel().writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
                             DatagramProto.DatagramVersion1.newBuilder().setToken(msg.getToken()).setOk(100)
-                                    .setType(DatagramProto.DatagramVersion1.Type.MESSAGE)
+                                    .setType(DatagramProto.DatagramVersion1.Type.MESSAGE).setMessage(
+                                            DatagramProto.Message.newBuilder().setTemporaryId(message.getTemporaryId()).build())
                                     .setSubtype(DatagramProto.DatagramVersion1.Subtype.RESPONSE).build().toByteString()
                     ).build());
                     // 消息推送
@@ -669,6 +677,9 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                             DatagramProto.DatagramVersion1.newBuilder().setToken(msg.getToken())
                                     .setType(DatagramProto.DatagramVersion1.Type.NOTIFICATION).setOk(100)
                                     .setSubtype(DatagramProto.DatagramVersion1.Subtype.RESPONSE)
+                                    .setNotification(
+                                            DatagramProto.Notification.newBuilder().setTemporaryId(notification.getTemporaryId()).build()
+                                    )
                                     .build().toByteString()
                     ).build());
                     // 通知推送

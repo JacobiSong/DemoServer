@@ -38,7 +38,6 @@ public class DaoUtil {
                     time = rs1.getString(4);
                     semester = rs1.getString(5);
                     remarks = rs1.getString(6);
-
                     DatagramProto.Course.Builder builder = DatagramProto.Course.newBuilder().setId(id).setName(name)
                             .setClassroom(classroom).setTime(time).setSemester(semester);
                     if (remarks != null) {
@@ -171,12 +170,11 @@ public class DaoUtil {
                 String email = rs.getString(4);
                 int gender = rs.getInt(5);
                 long last_modified = rs.getLong(6);
-                builder.setId(id).setName(name).setLastModified(last_modified);
+                builder.setId(id).setName(name).setLastModified(last_modified).setIdentityValue(identity);
                 ps.close();
                 rs.close();
                 switch (identity) {
                     case 0: {
-                        builder.setType(DatagramProto.User.Identity.STUDENT);
                         ps = conn.prepareStatement("select class_no, major, department from student where id = ?");
                         ps.setString(1, id);
                         rs = ps.executeQuery();
@@ -201,7 +199,6 @@ public class DaoUtil {
                         break;
                     }
                     case 1: {
-                        builder.setType(DatagramProto.User.Identity.TEACHER);
                         ps = conn.prepareStatement("select department from teacher where id = ?");
                         ps.setString(1, id);
                         rs = ps.executeQuery();
@@ -281,10 +278,7 @@ public class DaoUtil {
         Connection conn1 = ConnectionUtil.getConn1();
         String id = register.getUsername();
         String password = register.getPassword();
-        int identity = 0;
-        if (register.getIdentity() == DatagramProto.Register.Identity.TEACHER) {
-            identity = 1;
-        }
+        int identity = register.getIdentityValue();
         try {
             PreparedStatement ps1 = conn1.prepareStatement("select identity, name from user where id = ?");
             ps1.setString(1, id);
@@ -601,7 +595,8 @@ public class DaoUtil {
             ps.setString(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                DatagramProto.Course.Builder courseBuilder = DatagramProto.Course.newBuilder().setName(rs.getString(1))
+                DatagramProto.Course.Builder courseBuilder = DatagramProto.Course.newBuilder().setId(id)
+                        .setName(rs.getString(1))
                         .setClassroom(rs.getString(2)).setTime(rs.getString(3))
                         .setSemester(rs.getString(4)).setLastModified(rs.getLong(5));
                 String remarks = rs.getString(6);
@@ -612,17 +607,17 @@ public class DaoUtil {
                 ps.close();
                 rs.close();
                 ps = conn.prepareStatement(
-                        "select user_id, name from t_join left join user on user_id = id where course_id = ?");
+                        "select user_id, name, identity, create_time from t_join left join user on user_id = id where course_id = ?");
                 ps.setString(1, id);
                 rs = ps.executeQuery();
                 DatagramProto.Users.Builder usersBuilder = DatagramProto.Users.newBuilder();
                 while (rs.next()) {
                     String name = rs.getString(2);
-                    if (name == null) {
-                        usersBuilder.addUsers(DatagramProto.User.newBuilder().setId(rs.getString(1)).build());
-                    } else {
+                    if (name != null) {
                         usersBuilder.addUsers(DatagramProto.User.newBuilder().setId(rs.getString(1))
-                                .setName(rs.getString(2)).build());
+                                .setName(name).setIdentityValue(rs.getInt(3)).setCreateTime(rs.getLong(4)).build());
+                    } else {
+                        usersBuilder.addUsers(DatagramProto.User.newBuilder().setId(rs.getString(1)).build());
                     }
                 }
                 groupBuilder.setUsers(usersBuilder.build());
@@ -635,6 +630,8 @@ public class DaoUtil {
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
+        } finally {
+            ConnectionUtil.closeConn();
         }
         return null;
     }
@@ -652,7 +649,7 @@ public class DaoUtil {
         }
     }
 
-    public static void DbSynchronization(String id, String token, long dbVersion) {
+    public static void  DbSynchronization(String id, String token, long dbVersion) {
         Connection conn = ConnectionUtil.getConn();
         try {
             ResultSet rs;
@@ -898,6 +895,8 @@ public class DaoUtil {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            ConnectionUtil.closeConn();
         }
     }
 
@@ -910,6 +909,8 @@ public class DaoUtil {
             ps.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            ConnectionUtil.closeConn();
         }
     }
 
@@ -941,12 +942,12 @@ public class DaoUtil {
     public static DatagramProto.User findUserByIdSimply(String userId) {
         Connection conn = ConnectionUtil.getConn();
         try {
-            PreparedStatement ps = conn.prepareStatement("select create_time, name from user where id = ?");
+            PreparedStatement ps = conn.prepareStatement("select create_time, name, identity from user where id = ?");
             ps.setString(1, userId);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 return DatagramProto.User.newBuilder().setId(userId).setName(rs.getString(2))
-                        .setCreateTime(rs.getLong(1)).build();
+                        .setCreateTime(rs.getLong(1)).setIdentityValue(rs.getInt(3)).build();
             }
             ps.close();
             rs.close();

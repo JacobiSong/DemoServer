@@ -17,8 +17,6 @@ public class UUId {
     private final Random random = new SecureRandom();
     private final UniqTimer timer = new UniqTimer();
 
-    private boolean isOutputInfo = false;
-
     private UUId() {
         try {
             final InetAddress addr = InetAddress.getLocalHost();
@@ -35,10 +33,6 @@ public class UUId {
 
         }
         hostAddr = hostAddr.substring(hostAddr.length()-2).replace(".", "0");
-
-        if(isOutputInfo){
-            System.out.println("[UniqID]hostAddr is:" + hostAddr + "----length:"+hostAddr.length());
-        }
     }
 
 
@@ -48,7 +42,6 @@ public class UUId {
      * @return UniqId
      */
     public static UUId getInstance() {
-        me.isOutputInfo = false;
         return me;
     }
 
@@ -58,11 +51,7 @@ public class UUId {
      * @return 不会重复的时间
      */
     public String getUniqTime() {
-        String time = timer.getCurrentTime();
-        if(isOutputInfo){
-            System.out.println("[UniqID.getUniqTime]" + time +"----length:"+ time.length());
-        }
-        return time;
+        return timer.getCurrentTime();
     }
 
     /**
@@ -71,25 +60,18 @@ public class UUId {
      * @return uniqTime-randomNum-hostAddr-threadId
      */
     public String getUniqID() {
-        final StringBuffer sb = new StringBuffer();
+        final StringBuilder sb = new StringBuilder();
         final String t = getUniqTime();
         int randomNumber = random.nextInt(8999999) + 1000000;
         sb.append(t);
         sb.append(hostAddr);
         sb.append(getUniqThreadCode());
         sb.append(randomNumber);
-        if (isOutputInfo) {
-            System.out.println("[UniqID.randomNumber]" + randomNumber+"----length:"+String.valueOf(randomNumber).length());
-            System.out.println("[UniqID.getUniqID]" + sb.toString()+"----length:"+String.valueOf(sb).length());
-        }
         return sb.toString();
     }
 
     public String getUniqThreadCode(){
         String threadCode = StringUtils.left(String.valueOf(Thread.currentThread().hashCode()),9);
-        if (isOutputInfo) {
-            System.out.println("[UniqID.getUniqThreadCode]" +threadCode+"----length:"+threadCode.length());
-        }
         return StringUtils.leftPad(threadCode, 9, "0");
     }
 
@@ -103,7 +85,7 @@ public class UUId {
             if(!timestamp2Date(this.lastTime.incrementAndGet()).equals(timestamp2Date(System.currentTimeMillis()))){
                 lastTime.set(System.currentTimeMillis()+random.nextInt(10000));
             }
-            return timestamp2Datetimes(this.lastTime.incrementAndGet());
+            return timestamp2Datetime(this.lastTime.incrementAndGet());
         }
     }
 
@@ -117,7 +99,7 @@ public class UUId {
         return dateFormat.format(new Date(timestamp * 1000));
     }
 
-    private static String timestamp2Datetimes(long timestamp){
+    private static String timestamp2Datetime(long timestamp){
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
         return dateFormat.format(new Date(timestamp));
     }
