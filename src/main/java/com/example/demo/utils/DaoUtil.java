@@ -377,17 +377,7 @@ public class DaoUtil {
         if (gender == null) {
             return false;
         }
-        int g = 0;
-        switch (gender) {
-            case FEMALE:
-                g = 1;
-                break;
-            case MALE:
-                g = 2;
-                break;
-            default:
-                break;
-        }
+        int g = gender.getNumber();
         Connection conn = ConnectionUtil.getConn();
         try {
             PreparedStatement ps = conn.prepareStatement("update user set gender = ?, last_modified = ? where id = ?");
@@ -414,14 +404,21 @@ public class DaoUtil {
         }
         Connection conn = ConnectionUtil.getConn();
         try {
-            PreparedStatement ps = conn.prepareStatement("update user set password = ?, last_modified = ? where id = ?");
-            return updateUserAttr(id, password, ps);
+            PreparedStatement ps = conn.prepareStatement("update user set password = ? where id = ?");
+            ps.setString(1, password);
+            ps.setString(2, id);
+            if (ps.executeUpdate() == 1) {
+                ps.close();
+                return true;
+            }
+            ps.close();
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         } finally {
             ConnectionUtil.closeConn();
         }
+        return false;
     }
 
     public static boolean updateDepartmentByStudentId(String id, String department) {
@@ -649,7 +646,7 @@ public class DaoUtil {
         }
     }
 
-    public static void  DbSynchronization(String id, String token, long dbVersion) {
+    public static void DbSynchronization(String id, String token, long dbVersion) {
         Connection conn = ConnectionUtil.getConn();
         try {
             ResultSet rs;
@@ -730,6 +727,22 @@ public class DaoUtil {
                 preparedStatement.setString(2, token);
                 preparedStatement.setString(3, rs.getString(1));
                 preparedStatement.setLong(4, rs.getLong(2));
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
+            }
+            ps.close();
+            rs.close();
+            ps = conn.prepareStatement("select last_modified from user where id = ? and last_modified > ?");
+            ps.setString(1, id);
+            ps.setLong(2, dbVersion);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                PreparedStatement preparedStatement = conn.prepareStatement(
+                        "insert into t_push (type, token, id1, time) values (?, ?, ?, ?)");
+                preparedStatement.setInt(1, 5);
+                preparedStatement.setString(2, token);
+                preparedStatement.setString(3, id);
+                preparedStatement.setLong(4, rs.getLong(1));
                 preparedStatement.executeUpdate();
                 preparedStatement.close();
             }
@@ -1021,5 +1034,24 @@ public class DaoUtil {
             ConnectionUtil.closeConn();
         }
         return null;
+    }
+
+    public static long findLastModifiedByUserId(String id) {
+        Connection conn = ConnectionUtil.getConn();
+        try {
+            PreparedStatement ps = conn.prepareStatement(
+                    "select last_modified from user where id = ?");
+            ps.setString(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getLong(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        } finally {
+            ConnectionUtil.closeConn();
+        }
+        return 0;
     }
 }

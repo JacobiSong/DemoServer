@@ -54,7 +54,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                 Channel channel = channels.find(channelId);
                 if (channel != null) {
                     switch (pushItem.getType()) {
-                        case 1:
+                        case 1: {
                             DatagramProto.Message message = DaoUtil.findMessageById(pushItem.getId1(), pushItem.getId2());
                             if (message != null) {
                                 channel.writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
@@ -65,7 +65,8 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                                 ).build());
                             }
                             break;
-                        case 2:
+                        }
+                        case 2: {
                             DatagramProto.Notification notification = DaoUtil.findNotificationById(pushItem.getId1(), pushItem.getId2());
                             if (notification != null) {
                                 channel.writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
@@ -76,7 +77,8 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                                 ).build());
                             }
                             break;
-                        case 3:
+                        }
+                        case 3: {
                             DatagramProto.User user = DaoUtil.findUserByIdSimply(pushItem.getId1());
                             if (user != null) {
                                 channel.writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
@@ -87,7 +89,8 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                                 ).build());
                             }
                             break;
-                        case 4:
+                        }
+                        case 4: {
                             DatagramProto.Group group = DaoUtil.findGroupById(pushItem.getId1());
                             if (group != null) {
                                 channel.writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
@@ -98,6 +101,19 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                                 ).build());
                             }
                             break;
+                        }
+                        case 5: {
+                            DatagramProto.User user = DaoUtil.findUserById(pushItem.getId1());
+                            if (user != null) {
+                                channel.writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
+                                        DatagramProto.DatagramVersion1.newBuilder().setToken(token).setPush(pushItem.getId())
+                                                .setOk(101).setSubtype(DatagramProto.DatagramVersion1.Subtype.PUSH)
+                                                .setType(DatagramProto.DatagramVersion1.Type.USER)
+                                                .setUser(user).build().toByteString()
+                                ).build());
+                            }
+                            break;
+                        }
                         default:
                             break;
                     }
@@ -435,8 +451,8 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                 final String token = msg.getToken();
                 final String id = TokenPool.INSTANCE.findIdByToken(token);
                 final String userId = msg.getUser().getId();
-                final long time = msg.getUser().getLastModified();
                 if (!userId.isEmpty()) { // 查询用户信息
+                    final long time = msg.getUser().getLastModified();
                     DatagramProto.User user = DaoUtil.findUserById(userId, time);
                     if (user != null) { // 用户存在
                         if (user.getId().isEmpty()) { // 无需更新
@@ -463,13 +479,18 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                     }
                 } else {
                     switch (msg.getOk()) {
-                        case 101: // 修改手机号
-                            if (DaoUtil.updatePhoneById(id, msg.getUser().getPhone())) { // 修改成功
+                        case 101: { // 修改手机号
+                            String phone = msg.getUser().getPhone();
+                            if (DaoUtil.updatePhoneById(id, phone)) { // 修改成功
                                 // 发送Response报文, 返回正确代码101
                                 ctx.channel().writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
                                         DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.USER)
                                                 .setSubtype(DatagramProto.DatagramVersion1.Subtype.RESPONSE).setOk(101).setToken(token)
-                                                .build().toByteString()
+                                                .setUser(
+                                                        DatagramProto.User.newBuilder().setPhone(phone).setLastModified(
+                                                                DaoUtil.findLastModifiedByUserId(id)
+                                                        ).build()
+                                                ).build().toByteString()
                                 ).build());
                             } else { // 未知原因修改失败
                                 // 发送Response报文, 返回错误代码201
@@ -480,13 +501,19 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                                 ).build());
                             }
                             break;
-                        case 102: // 修改电子邮箱地址
-                            if (DaoUtil.updateEmailById(id, msg.getUser().getEmail())) { // 修改成功
+                        }
+                        case 102: { // 修改电子邮箱地址
+                            String email = msg.getUser().getEmail();
+                            if (DaoUtil.updateEmailById(id, email)) { // 修改成功
                                 // 发送Response报文, 返回正确代码102
                                 ctx.channel().writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
                                         DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.USER)
                                                 .setSubtype(DatagramProto.DatagramVersion1.Subtype.RESPONSE).setOk(102).setToken(token)
-                                                .build().toByteString()
+                                                .setUser(
+                                                        DatagramProto.User.newBuilder().setEmail(email).setLastModified(
+                                                                DaoUtil.findLastModifiedByUserId(id)
+                                                        ).build()
+                                                ).build().toByteString()
                                 ).build());
                             } else { // 未知原因修改失败
                                 // 发送Response报文, 返回错误代码202
@@ -497,13 +524,19 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                                 ).build());
                             }
                             break;
-                        case 103: // 修改性别
-                            if (DaoUtil.updateGenderById(id, msg.getUser().getGender())) { // 修改成功
+                        }
+                        case 103: { // 修改性别
+                            DatagramProto.User.Gender gender = msg.getUser().getGender();
+                            if (DaoUtil.updateGenderById(id, gender)) { // 修改成功
                                 // 发送Response报文, 返回正确代码103
                                 ctx.channel().writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
                                         DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.USER)
                                                 .setSubtype(DatagramProto.DatagramVersion1.Subtype.RESPONSE).setOk(103).setToken(token)
-                                                .build().toByteString()
+                                                .setUser(
+                                                        DatagramProto.User.newBuilder().setGender(gender).setLastModified(
+                                                                DaoUtil.findLastModifiedByUserId(id)
+                                                        ).build()
+                                                ).build().toByteString()
                                 ).build());
                             } else { // 未知原因修改失败
                                 // 发送Response报文, 返回错误代码203
@@ -514,13 +547,17 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                                 ).build());
                             }
                             break;
-                        case 104: // 修改密码
-                            if (DaoUtil.updatePasswordById(id, msg.getUser().getPassword())) { // 修改成功
+                        }
+                        case 104: { // 修改密码
+                            String password = msg.getUser().getPassword();
+                            if (DaoUtil.updatePasswordById(id, password)) { // 修改成功
                                 // 发送Response报文, 返回正确代码104
                                 ctx.channel().writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
                                         DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.USER)
                                                 .setSubtype(DatagramProto.DatagramVersion1.Subtype.RESPONSE).setOk(104).setToken(token)
-                                                .build().toByteString()
+                                                .setUser(
+                                                        DatagramProto.User.newBuilder().setPassword(password).build()
+                                                ).build().toByteString()
                                 ).build());
                             } else { // 未知原因修改失败
                                 // 发送Response报文, 返回错误代码204
@@ -531,14 +568,20 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                                 ).build());
                             }
                             break;
-                        case 105: // 修改院系
+                        }
+                        case 105: { // 修改院系
                             if (DaoUtil.studentCheck(id)) { // 身份为学生
-                                if (DaoUtil.updateDepartmentByStudentId(id, msg.getUser().getStudent().getDepartment())) { // 修改成功
+                                String department = msg.getUser().getStudent().getDepartment();
+                                if (DaoUtil.updateDepartmentByStudentId(id, department)) { // 修改成功
                                     // 发送Response报文, 返回正确代码105
                                     ctx.channel().writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
                                             DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.USER)
                                                     .setSubtype(DatagramProto.DatagramVersion1.Subtype.RESPONSE).setOk(105).setToken(token)
-                                                    .build().toByteString()
+                                                    .setUser(
+                                                            DatagramProto.User.newBuilder().setStudent(
+                                                                    DatagramProto.Student.newBuilder().setDepartment(department).build()
+                                                            ).setLastModified(DaoUtil.findLastModifiedByUserId(id)).build()
+                                                    ).build().toByteString()
                                     ).build());
                                 } else { // 未知原因修改失败
                                     // 发送Response报文, 返回错误代码205
@@ -549,10 +592,14 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                                     ).build());
                                 }
                             } else if (DaoUtil.teacherCheck(id)) { // 身份为老师
-                                if (DaoUtil.updateDepartmentByTeacherId(id, msg.getUser().getTeacher().getDepartment())) { // 修改成功
+                                String department = msg.getUser().getTeacher().getDepartment();
+                                if (DaoUtil.updateDepartmentByTeacherId(id, department)) { // 修改成功
                                     // 发送Response报文, 返回正确代码105
                                     ctx.channel().writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
                                             DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.USER)
+                                                    .setUser(DatagramProto.User.newBuilder().setTeacher(
+                                                            DatagramProto.Teacher.newBuilder().setDepartment(department).build()
+                                                    ).setLastModified(DaoUtil.findLastModifiedByUserId(id)).build())
                                                     .setSubtype(DatagramProto.DatagramVersion1.Subtype.RESPONSE).setOk(105).setToken(token)
                                                     .build().toByteString()
                                     ).build());
@@ -573,14 +620,20 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                                 ).build());
                             }
                             break;
-                        case 106: // 修改专业
+                        }
+                        case 106: { // 修改专业
                             if (DaoUtil.studentCheck(id)) { // 身份正确
-                                if (DaoUtil.updateMajorById(id, msg.getUser().getStudent().getMajor())) { // 修改成功
+                                String major = msg.getUser().getStudent().getMajor();
+                                if (DaoUtil.updateMajorById(id, major)) { // 修改成功
                                     // 发送Response报文, 返回正确代码106
                                     ctx.channel().writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
                                             DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.USER)
                                                     .setSubtype(DatagramProto.DatagramVersion1.Subtype.RESPONSE).setOk(106).setToken(token)
-                                                    .build().toByteString()
+                                                    .setUser(
+                                                            DatagramProto.User.newBuilder().setStudent(
+                                                                    DatagramProto.Student.newBuilder().setMajor(major).build()
+                                                            ).setLastModified(DaoUtil.findLastModifiedByUserId(id)).build()
+                                                    ).build().toByteString()
                                     ).build());
                                 } else { // 未知原因修改失败
                                     // 发送Response报文, 返回错误代码206
@@ -599,13 +652,19 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                                 ).build());
                             }
                             break;
-                        case 107: // 修改班级
+                        }
+                        case 107: { // 修改班级
                             if (DaoUtil.studentCheck(id)) { // 身份正确
-                                if (DaoUtil.updateClassNoById(id, msg.getUser().getStudent().getClassNo())) { // 修改成功
+                                String classNo = msg.getUser().getStudent().getClassNo();
+                                if (DaoUtil.updateClassNoById(id, classNo)) { // 修改成功
                                     // 发送Response报文, 返回正确代码107
                                     ctx.channel().writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
                                             DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.USER)
-                                                    .setSubtype(DatagramProto.DatagramVersion1.Subtype.RESPONSE).setOk(107).setToken(token)
+                                                    .setUser(
+                                                            DatagramProto.User.newBuilder().setStudent(
+                                                                    DatagramProto.Student.newBuilder().setClassNo(classNo).build()
+                                                            ).setLastModified(DaoUtil.findLastModifiedByUserId(id)).build()
+                                                    ).setSubtype(DatagramProto.DatagramVersion1.Subtype.RESPONSE).setOk(107).setToken(token)
                                                     .build().toByteString()
                                     ).build());
                                 } else { // 未知原因修改失败
@@ -625,6 +684,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                                 ).build());
                             }
                             break;
+                        }
                         default:
                             break;
                     }
