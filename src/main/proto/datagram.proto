@@ -96,6 +96,7 @@ message User {
   }
   int64 last_modified = 10;
   int64 create_time = 11;
+  bytes photo = 12;
 }
 
 message Users {

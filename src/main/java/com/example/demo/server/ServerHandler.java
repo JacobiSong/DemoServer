@@ -6,6 +6,7 @@ import com.example.demo.datagram.DatagramProto;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
+import com.google.protobuf.ByteString;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelId;
@@ -684,6 +685,24 @@ public class ServerHandler extends SimpleChannelInboundHandler<DatagramProto.Dat
                                 ).build());
                             }
                             break;
+                        }
+                        case 108: { // 修改头像
+                            ByteString bytes = msg.getUser().getPhoto();
+                            if (DaoUtil.updatePhotoByUserId(id, bytes)) {
+                                ctx.channel().writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
+                                        DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.USER)
+                                                .setSubtype(DatagramProto.DatagramVersion1.Subtype.RESPONSE).setOk(108).setToken(token)
+                                                .setUser(
+                                                        DatagramProto.User.newBuilder().setPhoto(bytes).build()
+                                                ).build().toByteString()
+                                ).build());
+                            } else {
+                                ctx.channel().writeAndFlush(DatagramProto.Datagram.newBuilder().setVersion(1).setDatagram(
+                                        DatagramProto.DatagramVersion1.newBuilder().setType(DatagramProto.DatagramVersion1.Type.USER)
+                                                .setSubtype(DatagramProto.DatagramVersion1.Subtype.RESPONSE).setOk(208).setToken(token)
+                                                .build().toByteString()
+                                ).build());
+                            }
                         }
                         default:
                             break;

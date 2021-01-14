@@ -2,7 +2,9 @@ package com.example.demo.utils;
 
 import com.example.demo.datagram.DatagramProto;
 import com.example.demo.server.PushItem;
+import com.google.protobuf.ByteString;
 
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -159,6 +161,14 @@ public class DaoUtil {
         Connection conn = ConnectionUtil.getConn();
         DatagramProto.User.Builder builder = DatagramProto.User.newBuilder();
         try {
+            File file = new File("/usr/img" + File.separator + id + "_img.jpg");
+            if (file.exists()) {
+                int length = (int) file.length();
+                byte[] data = new byte[length];
+                if (new FileInputStream(file).read(data) > 0) {
+                    builder.setPhoto(ByteString.copyFrom(data));
+                }
+            }
             PreparedStatement ps = conn.prepareStatement("select name, identity, phone, email, gender, last_modified" +
                     " from user where id = ?");
             ps.setString(1, id);
@@ -240,9 +250,11 @@ public class DaoUtil {
             }
             ps.close();
             rs.close();
-        } catch (SQLException e) {
+        } catch (SQLException | FileNotFoundException e) {
             e.printStackTrace();
             return null;
+        } catch (IOException e) {
+            e.printStackTrace();
         } finally {
             ConnectionUtil.closeConn();
         }
@@ -1053,5 +1065,48 @@ public class DaoUtil {
             ConnectionUtil.closeConn();
         }
         return 0;
+    }
+
+    public static boolean updatePhotoByUserId(String userId, ByteString bytes) {
+        byte[] image = bytes.toByteArray();
+        BufferedOutputStream bos = null;
+        FileOutputStream fos = null;
+        File file;
+        Connection conn = ConnectionUtil.getConn();
+        try {
+            File dir = new File("/usr/img");
+            if(!dir.exists() && !dir.isDirectory()){
+                dir.mkdirs();
+            }
+            file = new File("/usr/img" + File.separator + userId + "_img.jpg");
+            fos = new FileOutputStream(file);
+            bos = new BufferedOutputStream(fos);
+            bos.write(image);
+            PreparedStatement ps = conn.prepareStatement("update user set last_modified = ? where id = ?");
+            ps.setLong(1, System.currentTimeMillis());
+            ps.setString(2, userId);
+            ps.executeUpdate();
+            ps.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionUtil.closeConn();
+            if (bos != null) {
+                try {
+                    bos.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            if (fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        }
+        return false;
     }
 }
